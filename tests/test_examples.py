@@ -12,10 +12,10 @@ from projectcard.projectcard import validate
 logger = logging.getLogger(__name__)
 
 ROOTDIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-EXAMPLEDIR = os.path.join(ROOTDIR,"examples")
+EXAMPLEDIR = os.path.join(ROOTDIR, "examples")
+
 
 def test_read_dir():
     cards = read_projectcard(EXAMPLEDIR)
     print(f"Cards: {cards}")
     logger.debug(f"Cards: {cards}")
-    

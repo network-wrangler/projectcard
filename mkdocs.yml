@@ -28,7 +28,7 @@ theme:
 plugins:
   - autorefs
   - awesome-pages
-  - mike
+  - mikes
   - mkdocs-jupyter:
       include_source: True
   - mkdocstrings:
@@ -44,8 +44,7 @@ plugins:
             heading_level: 3
       custom_templates: templates
       watch:
-        - projectcard_validator
-        - schema
+        - projectcard
   - search
 
 extra:

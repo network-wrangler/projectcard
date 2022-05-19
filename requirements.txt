@@ -1,5 +1,8 @@
 flake8
+fontawesome_markdown
+generate-schema-doc
 jsonschema
+jsonschema2md
 mike
 mkdocs
 mkdocs-autorefs
@@ -7,6 +10,7 @@ mkdocs-awesome-pages-plugin
 mkdocs-jupyter
 mkdocs-macros-plugin
 mkdocs-material
+mkdocstrings
 pandas
 pandera
 pre-commit
