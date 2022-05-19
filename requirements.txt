@@ -1,0 +1,15 @@
+flake8
+jsonschema
+mike
+mkdocs
+mkdocs-autorefs
+mkdocs-awesome-pages-plugin
+mkdocs-jupyter
+mkdocs-macros-plugin
+mkdocs-material
+pandas
+pandera
+pre-commit
+pytest
+pyyaml
+toml
