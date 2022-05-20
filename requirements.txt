@@ -1,6 +1,6 @@
 flake8
 fontawesome_markdown
-generate-schema-doc
+json-schema-for-humans
 jsonschema
 jsonschema2md
 mike
