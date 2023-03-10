@@ -11,6 +11,8 @@ mkdocs-jupyter
 mkdocs-macros-plugin
 mkdocs-material
 mkdocstrings
+pandas
+pandera
 pre-commit
 pytest
 pyyaml

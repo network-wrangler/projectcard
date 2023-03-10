@@ -1,3 +1,13 @@
+Metadata-Version: 2.1
+Name: projectcard
+Version: 0.0.1
+Summary: UNKNOWN
+Home-page: https://github.com/network-wrangler/projectcard
+License: Apache 2
+Platform: any
+Description-Content-Type: text/markdown
+License-File: LICENSE
+
 Project Cards
 
 
@@ -42,3 +52,5 @@ or
 ## Production Environment
 
 To come.
+
+

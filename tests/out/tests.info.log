@@ -1,0 +1,9 @@
+2023-03-10 15:11:43, INFO: Reading cards from example directory.
+2023-03-10 15:11:43, INFO: Testing that all cards in example directory can be read in.
+2023-03-10 15:11:43, INFO: Testing that all cards in example directory are valid.
+2023-03-10 15:11:43, INFO: Evaluated 1 schema files
+2023-03-10 15:11:43, INFO: Evaluated 0 bad card files
+2023-03-10 15:11:43, INFO: Evaluated json valid for 12 schema files
+2023-03-10 15:11:43, INFO: Wrote projectcard to projectcard.testpackage
+2023-03-10 15:11:43, INFO: Evaluated schema valid for 12 schema files
+2023-03-10 15:11:43, INFO: Evaluated 0 bad schema files

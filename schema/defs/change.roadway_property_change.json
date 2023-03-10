@@ -1,0 +1,26 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+	"required": [
+		"category",
+		"facility",
+		"properties"
+	],
+	"additionalProperties" : false,
+	"properties": {
+		"category": {
+			"type": "string",
+			"pattern": "roadway property change"
+	   },
+	   "facility": {
+			"type": "object",
+		 	"$ref": "roadway.facility.json"
+   },
+		"properties": {
+			"type": "object",
+			"$ref": "roadway.properties.json"
+		}
+	}
+}
+
+

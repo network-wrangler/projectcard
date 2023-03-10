@@ -1,0 +1,30 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "id": "resource:/schema/definitions/dependencies#",
+    "type":"object",
+    "additionalProperties": false,
+    "title": "Project Dependencies",
+    "properties": {
+      "prerequisites": {
+        "type": "array",
+        "title": "Project Prerequisites",
+        "examples": [
+          "7th St E Road Diet"
+        ]
+      },
+      "corequisites": {
+        "type": "array",
+        "title": "Project Co-requisites",
+        "examples": [
+          "7th St E Road Diet"
+        ]
+      },
+      "conflicts": {
+        "type": "array",
+        "title": "Project Conflicts",
+        "examples": [
+          "7th St E Road Diet"
+        ]
+      }
+    }
+}

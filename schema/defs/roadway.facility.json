@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "id": "roadway.facility",
+    "type": "object",
+    "additionalProperties": false,
+	"title": "Roadway Facility Selection",
+    "required": [
+        "links",
+        "A",
+        "B"
+      ],
+    "properties": {
+        "links": {
+            "type": "array",
+            "$ref": "roadway.links.json"
+        },
+        "A": {
+            "type": "object",
+            "$ref": "roadway.node.json"
+        },
+        "B": {
+            "type": "object",
+            "$ref": "roadway.node.json"
+        }
+    }
+}
