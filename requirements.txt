@@ -1,5 +1,6 @@
 flake8
 fontawesome_markdown
+jsonref
 json-schema-for-humans
 jsonschema
 jsonschema2md
