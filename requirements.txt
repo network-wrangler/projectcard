@@ -12,6 +12,7 @@ mkdocs-jupyter
 mkdocs-macros-plugin
 mkdocs-material
 mkdocstrings
+mkdocstrings-python
 pre-commit
 pytest
 pyyaml
