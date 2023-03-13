@@ -8,6 +8,7 @@ The ProjectCard schema is represented as a [json-schema](https://json-schema.org
 ## Example Data
 
 Example project cards can be found in the `/examples` directory and on the [examples page](examples.md)
+
 # Basic Usage
 
 ```python
@@ -34,14 +35,24 @@ Generally it is not necessary to install the projectcard package as the main pur
 
 2. Install dependencies
 
-`conda install --yes --file requirements.txt`
+```sh
+conda install --yes --file requirements.txt
+```
+
 or
-`pip install -r requirements.txt`
+
+```sh
+pip install -r requirements.txt
+```
 
 3. Install from working directory
 
-`pip install -e .`
+```sh
+pip install -e .
+```
 
 ## Production Environment
 
-To come.
+```sh
+pip install git+https://github.com/network-wrangler/projectcard@main#egg=projectcard
+```
