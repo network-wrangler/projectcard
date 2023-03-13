@@ -8,8 +8,7 @@ import os
 
 import pytest
 
-from projectcard import validate_schema_file
-from projectcard import CardLogger
+from projectcard import CardLogger, validate_schema_file
 from projectcard.validate import _open_json, package_schema
 
 
@@ -32,7 +31,6 @@ def test_individual_schemas(all_schema_files):
 
 
 def test_bad_schema(all_bad_schema_files):
-
     for s in all_bad_schema_files:
         try:
             validate_schema_file(s)

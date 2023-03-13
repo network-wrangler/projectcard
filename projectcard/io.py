@@ -6,13 +6,13 @@ import logging
 import os
 from glob import glob
 from pathlib import Path
-from typing import Any, Collection, Mapping, Union, Callable
+from typing import Any, Callable, Collection, Mapping, Union
 
 import toml
 import yaml
 
 from .logger import CardLogger
-from .projectcard import ProjectCard, VALID_EXT, REPLACE_KEYS
+from .projectcard import REPLACE_KEYS, VALID_EXT, ProjectCard
 
 
 def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):

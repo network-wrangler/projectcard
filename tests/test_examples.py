@@ -5,8 +5,7 @@ USAGE:
 """
 import pytest
 
-from projectcard import CardLogger
-from projectcard import read_cards
+from projectcard import CardLogger, read_cards
 
 
 def test_read_dir(all_example_cards, example_dir):
@@ -30,7 +29,6 @@ def test_example_valid(all_example_cards):
 
 
 def test_bad_cards(all_bad_card_files):
-
     for s in all_bad_card_files:
         try:
             cards = read_cards(s)

@@ -29,6 +29,12 @@ plugins:
   - autorefs
   - awesome-pages
   - mike
+  - macros
+  - mermaid2:
+      arguments:
+        theme: |
+            ^(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'
+        securityLevel: 'loose'
   - mkdocs-jupyter:
       include_source: True
   - mkdocstrings:

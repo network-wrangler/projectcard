@@ -1,7 +1,6 @@
-import os
 import logging
+import os
 import sys
-
 from datetime import datetime
 
 CardLogger = logging.getLogger("CardLogger")

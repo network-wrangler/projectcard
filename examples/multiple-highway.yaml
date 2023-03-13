@@ -13,11 +13,11 @@ changes:
         - osm_link_id:
             - '1234'
       A:
-        osm_node_id: '4321' 
+        osm_node_id: '4321'
       B:
-        osm_node_id: '4322' 
+        osm_node_id: '4322'
     properties:
-      - property: lanes  
+      - property: lanes
         existing: 3
         change: -1
 notes: Simple project example to do a road diet on 6th St E in front of MetCouncil

@@ -1,13 +1,12 @@
+import json
 import os
+from json import JSONDecodeError
 from pathlib import Path
 from typing import Union
 
-import json
-from json import JSONDecodeError
-
+import jsonref
 from jsonschema import validate
 from jsonschema.exceptions import SchemaError, ValidationError
-import jsonref
 
 from .logger import CardLogger
 
@@ -28,7 +27,6 @@ def _open_json(schema_path: str) -> dict:
 
 
 def _load_schema(schema_absolute_path):
-
     base_path = os.path.dirname(schema_absolute_path)
     base_uri = "file://{}/".format(base_path)
 

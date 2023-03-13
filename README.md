@@ -23,7 +23,7 @@ print(project_cards["4th Ave Busway"])
 
 # Installation
 
-Generally it is not necessary to install the projectcard package as the main purpose of this repository is to maintain the project card *schema*. 
+Generally it is not necessary to install the projectcard package as the main purpose of this repository is to maintain the project card *schema*.
 
 ## Development Environment
 
