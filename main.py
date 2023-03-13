@@ -50,3 +50,61 @@ def define_env(env):
             content = re.sub(md_heading_re[1], r"#\1\2", content)
 
         return content
+    
+    def _categories_as_str(card:'ProjectCard')->str:
+        if card.__dict__.get("category"):
+            return  card.__dict__.get("category")
+        if len(card.__dict__["changes"])==1:
+            return  card.__dict__["changes"][0]["category"]
+        
+        _cat_str = "Multiple Change Categories:<ul>\n"
+        for ch in card.__dict__["changes"]:
+            _cat_str +=f"<li>{ch['category']}</li>\n"
+        _cat_str += "</ul>"
+
+    
+    def _card_to_md(card:'ProjectCard')->str:
+        _card_md = f"\n###{card.project}\n\n"
+        _card_md += f"**Category**: {_categories_as_str(card)}\n"
+        _card_md += "```yml\n\n"
+        _card_md += include_file((card.__dict__['file']), downshift_h1= False)
+        _card_md += "\n```\n"
+        return _card_md
+
+    
+
+    @env.macro
+    def list_examples(data_dir: str) -> str:
+        """Outputs a simple list of the directories in a folder in markdown.
+        Args:
+            data_dir (str):directory to search in
+        Returns:
+            str: markdown-formatted list
+        """
+        from projectcard.io import read_cards, _make_slug
+        table_fields = ["Category"]
+
+        data_dir = os.path.join(env.project_dir, data_dir)
+
+        _md_examples = f"\n## Cards\n"
+        _md_table = (
+            "| **Name** | " + "** | **".join(table_fields) + " |\n| " + " ----- | " * (len(table_fields)+1) + "\n"
+        )
+
+        def _card_to_mdrow(card, fields):
+            _md_row = f"| [{card.project}](#{_make_slug(card.project).replace('_','-')}) | "
+            _md_row += f"{_categories_as_str(card)}" " |\n"
+            return _md_row
+            
+
+        _example_cards = read_cards(data_dir)
+
+        for _card in _example_cards.values():
+            _md_table += _card_to_mdrow(_card, table_fields)
+            _md_examples += _card_to_md(_card)
+
+        example_md = _md_table+_md_examples
+
+        return example_md
+    
+    

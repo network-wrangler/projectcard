@@ -3,8 +3,11 @@ Project Cards
 
 # Schema
 
-The ProjectCard schema is represented as a [json-schema](https://json-schema.org) in the `/schema` directory.s
+The ProjectCard schema is represented as a [json-schema](https://json-schema.org) in the `/schema` directory and is documented on the [schemas page](schemas.md).
 
+## Example Data
+
+Example project cards can be found in the `/examples` directory and on the [examples page](examples.md)
 # Basic Usage
 
 ```python
