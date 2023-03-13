@@ -28,7 +28,7 @@ theme:
 plugins:
   - autorefs
   - awesome-pages
-  - mikes
+  - mike
   - mkdocs-jupyter:
       include_source: True
   - mkdocstrings:
