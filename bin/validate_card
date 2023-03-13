@@ -9,19 +9,19 @@ from projectcard import CardLogger
 parser = argparse.ArgumentParser(description='Project Card Validator')
 
 parser.add_argument(
-    'card_search_dir', 
-    type=str, 
+    'card_search_dir',
+    type=str,
     help='Directory or file location to find project cards.'
 )
 
 parser.add_argument(
-    'filter_tags', 
-    type=list, 
+    'filter_tags',
+    type=list,
     help='Tags to filter project cards by. If not provided, will look at all.'
 )
 
 if __name__ == "__main__":
-    
+
     args = parser.parse_args()
     dir = args.card_search_dir
     filter_tags = []
@@ -39,4 +39,3 @@ if __name__ == "__main__":
         except as e:
             CardLogger.error((f"{project} - Not Valid"))
             CardLogger.error((f"{project} Error:\n{e}"))
-        

@@ -39,5 +39,5 @@ setup(
     packages=["projectcard"],
     include_package_data=True,
     install_requires=install_requires,
-    scripts = [bin/validate_card],
+    scripts=["bin/validate_card"],
 )

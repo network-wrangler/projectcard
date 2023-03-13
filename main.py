@@ -1,10 +1,10 @@
+import logging
 import os
 import re
-import logging
-
 from pathlib import Path
 
 SCHEMA_DIR = "schema"
+
 
 def define_env(env):
     """
@@ -13,33 +13,45 @@ def define_env(env):
     - variables: the dictionary that contains the environment variables
     - macro: a decorator function, to declare a macro.
     """
+
     @env.macro
-    def document_schema(schema_filename:str)->str:
+    def document_schema(schema_filename: str) -> str:
         import json
+
         from json_schema_for_humans.generate import generate_from_schema
-        from json_schema_for_humans.generation_configuration import GenerationConfiguration
-      
-        _rel_schema_path = os.path.join(SCHEMA_DIR,schema_filename) 
+        from json_schema_for_humans.generation_configuration import (
+            GenerationConfiguration,
+        )
+
+        _rel_schema_path = os.path.join(SCHEMA_DIR, schema_filename)
         _abs_schema_path = Path(_rel_schema_path).absolute()
         if not os.path.exists(_abs_schema_path):
             raise ValueError(f"Schema doesn't exist at: {_abs_schema_path}")
 
-        _config = GenerationConfiguration(copy_css=False,copy_js = False, expand_buttons=True)
-        
-        content = generate_from_schema(_abs_schema_path, config = _config)
+        _config = GenerationConfiguration(
+            minify=False,
+            copy_css=False,
+            copy_js=False,
+            template_name="js",
+            expand_buttons=True,
+        )
+
+        content = generate_from_schema(_abs_schema_path, config=_config)
 
         ### get content ready for mkdocs
+        _footer = _get_html_between_tags(content, tag="footer")
         replace_strings = {
-            "<!DOCTYPE html>":""
+            "<!DOCTYPE html>": "",
+            '<div class="breadcrumbs"></div><span class="badge badge-dark value-type">Type: object</span><br/>': "",
         }
 
-        for _orig,_new in replace_strings.items():
-            content = content.replace(_orig,_new)
+        for _orig, _new in replace_strings.items():
+            content = content.replace(_orig, _new)
 
-        content =_get_html_between_tags( content, tag = "body")
-        
+        content = _get_html_between_tags(content, tag="body")
+        content = _rm_html_between_tags(content, tag="footer")
         return content
-        
+
     @env.macro
     def include_file(
         filename: str, downshift_h1=True, start_line: int = 0, end_line: int = None
@@ -109,7 +121,7 @@ def define_env(env):
         Returns:
             str: markdown-formatted list
         """
-        from projectcard.io import read_cards, _make_slug
+        from projectcard.io import _make_slug, read_cards
 
         table_fields = ["Category"]
 
@@ -141,18 +153,37 @@ def define_env(env):
 
         return example_md
 
-def _get_html_between_tags(content:str, tag:str = "body")->str:
+
+def _get_html_between_tags(content: str, tag: str = "body") -> str:
     """Returns string that is between tags if they are found. If not, returns whole string.
 
     Args:
         content (str): Content
-        tag: tag to get content for. Note if multiple sets of the tag extist, will return the 
+        tag: tag to get content for. Note if multiple sets of the tag extist, will return the
             first set of content wrapped by the tag if the tag exists. Defaults to "body" tag.
-    """ 
-    if f'</{tag}>' not in content:
+    """
+    if f"</{tag}>" not in content:
         return content
-    content = content[content.index(f'<{tag}'):]
-    content = content[content.index('>'):]
+    content = content[content.index(f"<{tag}") :]
+    content = content[content.index(">") :]
 
-    content = content[:content.index(f'</{tag}>')]
+    content = content[: content.index(f"</{tag}>")]
     return content
+
+
+def _rm_html_between_tags(content: str, tag: str = "footer") -> str:
+    """Returns string without the tags if they are found. If not, returns whole string.
+    Only removes first found instance.
+
+    Args:
+        content (str): Content
+        tag: tag to get content for. Note if multiple sets of the tag extist, will return the
+            first set of content wrapped by the tag if the tag exists. Defaults to "body" tag.
+    """
+    if f"</{tag}>" not in content:
+        return content
+
+    content_a, content_b = content.split(f"<{tag}", 1)
+    content_b, content_c = content_b.split(f"</{tag}>", 1)
+
+    return content_a + content_c
