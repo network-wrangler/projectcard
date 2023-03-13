@@ -2,6 +2,12 @@ site_name: "Project Cards"
 site_url: https://network-wrangler.github.io/projectcard
 repo_url: https://github.com/network-wrangler/projectcard
 
+nav:
+    - 'index.md'
+    - 'schemas.md'
+    - 'api.md'
+    - 'examples.md'
+
 theme:
   name: material
   features:
@@ -10,20 +16,9 @@ theme:
     - content.tabs.link
     - navigation.indexes
   palette:
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: blue
-      accent: grey
-      toggle:
-        icon: material/toggle-switch-off-outline
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: blue
-      accent: grey
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to light mode
+    - scheme: default
+      primary: blue grey
+      accent: deep purple
 
 plugins:
   - autorefs
@@ -31,10 +26,7 @@ plugins:
   - mike
   - macros
   - mermaid2:
-      arguments:
-        theme: |
-            ^(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) ? 'dark' : 'light'
-        securityLevel: 'loose'
+      securityLevel: 'loose'
   - mkdocs-jupyter:
       include_source: True
   - mkdocstrings:
@@ -60,9 +52,15 @@ extra:
 
 extra_javascript:
   - https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js
+  - https://code.jquery.com/jquery-3.4.1.min.js
+  - https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js
+  - javascript/schema_doc.min.js
 
 extra_css:
   - https://use.fontawesome.com/releases/v5.13.0/css/all.css
+  - https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css
+  - extra_css/schema_doc.css
+  - extra_css/extra.css
 
 markdown_extensions:
   - admonition

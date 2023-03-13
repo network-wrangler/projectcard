@@ -26,7 +26,7 @@ def _open_json(schema_path: str) -> dict:
         raise Exception("Schema definition invalid")
 
 
-def _load_schema(schema_absolute_path):
+def _load_schema(schema_absolute_path: Union[Path, str]) -> dict:
     base_path = os.path.dirname(schema_absolute_path)
     base_uri = "file://{}/".format(base_path)
 
@@ -48,8 +48,9 @@ def package_schema(
     """Consolidates referenced schemas into a single schema and writes it out.
 
     Args:
-        schema_path: Schema to read int and package. Defaults to PROJECTCARD_SCHEMA.
-        outfile: Where to write out packaged schema. Defaults to schema_path.basepath.packaged.json
+        schema_path: Schema to read int and package. Defaults to PROJECTCARD_SCHEMA which is
+            os.path.join(ROOTDIR, "schema", "projectcard.json").
+        outfile_path: Where to write out packaged schema. Defaults to schema_path.basepath.packaged.json
     """
     schema_path = Path(schema_path)
     _s_data = _load_schema(schema_path)
@@ -63,7 +64,13 @@ def package_schema(
     CardLogger.info(f"Wrote {schema_path.stem} to {outfile_path.stem}")
 
 
-def validate_schema_file(schema_path=PROJECTCARD_SCHEMA):
+def validate_schema_file(schema_path: Union[Path, str] = PROJECTCARD_SCHEMA) -> bool:
+    """Validates that a schema file is a valid JSON-schema.
+
+    Args:
+        schema_path: _description_. Defaults to PROJECTCARD_SCHEMA which is
+             os.path.join(ROOTDIR, "schema", "projectcard.json").
+    """
     try:
         _schema_data = _load_schema(schema_path)
         # _resolver = _ref_resolver(schema_path,_schema_data)
@@ -73,18 +80,22 @@ def validate_schema_file(schema_path=PROJECTCARD_SCHEMA):
     except SchemaError as e:
         CardLogger.error(e)
         raise SchemaError(f"{e}")
+    return True
 
 
-def validate_card(jsondata, schema_path=PROJECTCARD_SCHEMA):
+def validate_card(
+    jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SCHEMA
+) -> bool:
     """Validates json-like data to specified schema.
 
     Args:
         jsondata: json-like data to validate.
-        schema: schema to validate to, in json-schema format. Defaults to PROJECTCARD_SCHEMA.
+        schema_path: path to schema to validate to.
+            Defaults to PROJECTCARD_SCHEMA which is os.path.join(ROOTDIR, "schema", "projectcard.json")
 
     Raises:
-        ValidationError: _description_
-        SchemaError: _description_
+        ValidationError: If jsondata doesn't conform to specified schema.
+        SchemaError: If schema itself is not valid.
     """
 
     CardLogger.debug(f"Validating: {jsondata['project']}")

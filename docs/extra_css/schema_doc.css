@@ -1,10 +1,3 @@
-body {
-  font: 16px/1.5em "Overpass", "Open Sans", Helvetica, sans-serif;
-  color: #333;
-  font-weight: 300;
-  padding: 40px;
-}
-
 .btn.btn-link {
     font-size: 18px;
 }
@@ -109,8 +102,6 @@ body {
 }
 
 /* From https://github.com/richleland/pygments-css/blob/master/friendly.css, see https://github.com/trentm/python-markdown2/wiki/fenced-code-blocks */
-.highlight  { background: #e9ecef; } /* Changed from #f0f0f0 in the original style to be the same as bootstrap's jumbotron */
-.highlight .hll { background-color: #ffffcc }
 .highlight .c { color: #60a0b0; font-style: italic } /* Comment */
 .highlight .err { border: 1px solid #FF0000 } /* Error */
 .highlight .k { color: #007020; font-weight: bold } /* Keyword */
@@ -120,7 +111,7 @@ body {
 .highlight .cp { color: #007020 } /* Comment.Preproc */
 .highlight .cpf { color: #60a0b0; font-style: italic } /* Comment.PreprocFile */
 .highlight .c1 { color: #60a0b0; font-style: italic } /* Comment.Single */
-.highlight .cs { color: #60a0b0; background-color: #fff0f0 } /* Comment.Special */
+.highlight .cs { color: #60a0b0; } /* Comment.Special */
 .highlight .gd { color: #A00000 } /* Generic.Deleted */
 .highlight .ge { font-style: italic } /* Generic.Emph */
 .highlight .gr { color: #FF0000 } /* Generic.Error */

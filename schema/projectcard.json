@@ -7,7 +7,7 @@
 		"changes"
 	],
 	"properties": {
-        "project": {"type": "string"},
+        "project": {"type": "string","description": "A project name which uniquely identifies this project"},
 		"changes": {
 			"type": "array",
 			"items": { "$ref": "defs/change.roadway_property_change.json"}
