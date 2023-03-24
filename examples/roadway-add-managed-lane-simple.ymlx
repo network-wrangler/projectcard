@@ -1,0 +1,55 @@
+project: example add simple managed lane project
+category: Parallel Managed lanes
+notes: Simple managed lane project with AM and PM lanes are HOT during the peak periods
+tags:
+   - 'example'
+   - 'managed'
+dependencies:
+  prerequisites: []
+  corequisites: []
+  conflicts: []
+changes:
+  - facility:
+      links:
+        - name:
+          - 'I 35E'
+      A:
+        osm_node_id: '961117623'
+      B:
+        osm_node_id: '2564047368'
+    properties:
+      - property: segment_id
+        set: 35EHOT-A
+      - property: lanes
+        set: 3
+        timeofday:
+          - time: ['6:00', '9:00']
+            set: 2
+          - time: ['16:00', '19:00']
+            set: 2
+      - property: ML_lanes
+        set: 0
+        timeofday:
+          - time: ['6:00', '9:00']
+            set: 1
+          - time: ['16:00', '19:00']
+            set: 1
+      - property: ML_price
+        set: 0
+        group:
+          - category: ['sov']
+            timeofday:
+              - time: ['6:00', '9:00']
+                set: 1.5
+              - time: ['16:00', '19:00']
+                set: 2.5
+          - category: ['hov2']
+            timeofday:
+              - time: ['6:00', '9:00']
+                set: 1.0
+              - time: ['16:00', '19:00']
+                set: 2.0
+      - property: ML_access
+        set: 'all'
+      - property: ML_egress
+        set: 'all'

@@ -10,15 +10,16 @@
 	"properties": {
 		"category": {
 			"type": "string",
-			"pattern": "roadway property change"
-	   },
+			"description": "Should be 'roadway property change'",
+			"pattern": "^[Rr][Oo][Aa][Dd][Ww][Aa][Yy] [Pp][Rr][Oo][Pp][Ee][Rr][Tt][Yy] [Cc][Hh][Aa][Nn][Gg][Ee]$"
+	    },
 	   "facility": {
 			"type": "object",
 		 	"$ref": "roadway.facility.json"
-   },
+   		},
 		"properties": {
 			"type": "object",
-			"$ref": "roadway.properties.json"
+			"$ref": "roadway.property-changes.json"
 		}
 	}
 }

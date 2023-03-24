@@ -30,15 +30,14 @@ def _load_schema(schema_absolute_path: Union[Path, str]) -> dict:
     base_path = os.path.dirname(schema_absolute_path)
     base_uri = "file://{}/".format(base_path)
 
-    with open(schema_absolute_path) as schema_file:
-        _s = jsonref.replace_refs(
-            _open_json(schema_absolute_path),
-            base_uri=base_uri,
-            proxies=False,
-            lazy_load=False,
-        )
-        CardLogger.debug(f"----\n{schema_absolute_path}\n{_s}")
-        return _s
+    _s = jsonref.replace_refs(
+        _open_json(schema_absolute_path),
+        base_uri=base_uri,
+        proxies=False,
+        lazy_load=False,
+    )
+    # CardLogger.debug(f"----\n{schema_absolute_path}\n{_s}")
+    return _s
 
 
 def package_schema(
@@ -50,7 +49,8 @@ def package_schema(
     Args:
         schema_path: Schema to read int and package. Defaults to PROJECTCARD_SCHEMA which is
             os.path.join(ROOTDIR, "schema", "projectcard.json").
-        outfile_path: Where to write out packaged schema. Defaults to schema_path.basepath.packaged.json
+        outfile_path: Where to write out packaged schema. Defaults
+            to schema_path.basepath.packaged.json
     """
     schema_path = Path(schema_path)
     _s_data = _load_schema(schema_path)
@@ -75,7 +75,7 @@ def validate_schema_file(schema_path: Union[Path, str] = PROJECTCARD_SCHEMA) -> 
         _schema_data = _load_schema(schema_path)
         # _resolver = _ref_resolver(schema_path,_schema_data)
         validate({}, schema=_schema_data)  # ,resolver=_resolver)
-    except ValidationError as e:
+    except ValidationError:
         pass
     except SchemaError as e:
         CardLogger.error(e)
@@ -91,7 +91,8 @@ def validate_card(
     Args:
         jsondata: json-like data to validate.
         schema_path: path to schema to validate to.
-            Defaults to PROJECTCARD_SCHEMA which is os.path.join(ROOTDIR, "schema", "projectcard.json")
+            Defaults to PROJECTCARD_SCHEMA which is
+            os.path.join(ROOTDIR, "schema", "projectcard.json")
 
     Raises:
         ValidationError: If jsondata doesn't conform to specified schema.
@@ -103,6 +104,7 @@ def validate_card(
         _schema_data = _load_schema(schema_path)
         validate(jsondata, schema=_schema_data)
     except ValidationError as e:
+        CardLogger.error(f"---- Error validating {jsondata['project']} ----")
         CardLogger.error(e)
         raise ValidationError(f"{e}")
     except SchemaError as e:

@@ -12,15 +12,15 @@
     "properties": {
         "links": {
             "type": "array",
-            "$ref": "roadway.links.json"
+            "$ref": "roadway.facility.links.json"
         },
         "A": {
             "type": "object",
-            "$ref": "roadway.node.json"
+            "$ref": "roadway.facility.node.json"
         },
         "B": {
             "type": "object",
-            "$ref": "roadway.node.json"
+            "$ref": "roadway.facility.node.json"
         }
     }
 }

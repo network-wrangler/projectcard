@@ -46,21 +46,21 @@ def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):
 def _read_yml(filepath: str) -> dict:
     CardLogger.debug(f"Reading YML: {filepath}")
     with open(filepath, "r") as cardfile:
-        attribute_dictionary = yaml.safe_load(cardfile.read().lower())
+        attribute_dictionary = yaml.safe_load(cardfile.read())
     return attribute_dictionary
 
 
 def _read_toml(filepath: str) -> dict:
     CardLogger.debug(f"Reading TOML: {filepath}")
     with open(filepath, "r", encoding="utf-8") as cardfile:
-        attribute_dictionary = toml.load(cardfile.read().lower())
+        attribute_dictionary = toml.load(cardfile.read())
     return attribute_dictionary
 
 
 def _read_json(filepath: str) -> dict:
     CardLogger.debug(f"Reading JSON: {filepath}")
     with open(filepath, "r") as cardfile:
-        attribute_dictionary = json.safe_load(cardfile.read().lower())
+        attribute_dictionary = json.safe_load(cardfile.read())
     return attribute_dictionary
 
 
@@ -70,7 +70,7 @@ def _read_wrangler(filepath: str) -> dict:
         delim = cardfile.readline()
         _yaml, _pycode = cardfile.read().split(delim)
 
-    attribute_dictionary = yaml.safe_load(_yaml.lower())
+    attribute_dictionary = yaml.safe_load(_yaml)
     attribute_dictionary["pycode"] = _pycode.lstrip("\n")
 
     return attribute_dictionary
@@ -113,7 +113,8 @@ def _replace_selected(txt: str, change_dict: dict = REPLACE_KEYS):
 
     Args:
         txt: string
-        text_to_uppercase: Mapping of values to replace to their replacements. Defaults to REPLACE_KEYS.
+        text_to_uppercase: Mapping of values to replace to their replacements.
+            Defaults to REPLACE_KEYS.
     """
     return change_dict.get(txt, txt)
 
@@ -167,7 +168,7 @@ def read_cards(
 
     Returns: dictionary of project cards by project name
     """
-    _filter_tags = map(str.lower, filter_tags)
+    filter_tags = list(map(str.lower, filter_tags))
     if not Path(filepath).is_file():
         _card_paths = _get_cardpath_list(filepath, valid_ext=_method_map.keys())
         for p in _card_paths:
@@ -185,8 +186,8 @@ def read_cards(
         raise ValueError(
             f"Names not unique from existing scenario projects: {_project_name}"
         )
-    if filter_tags and map(str.lower, _card_dict.get("tags", [])).isdisjoint(
-        filter_tags
+    if filter_tags and set(list(map(str.lower, _card_dict.get("tags", [])))).isdisjoint(
+        set(filter_tags)
     ):
         CardLogger.debug(
             f"Skipping {_project_name} - no overlapping tags with {filter_tags}."

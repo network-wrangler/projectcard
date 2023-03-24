@@ -10,8 +10,15 @@
         "project": {"type": "string","description": "A project name which uniquely identifies this project"},
 		"changes": {
 			"type": "array",
-			"items": { "$ref": "defs/change.roadway_property_change.json"}
-			},
+			"items": {
+				"oneOf": [
+					{ "$ref": "defs/change.roadway.delete.json"},
+					{ "$ref": "defs/change.roadway.add.json"},
+					{ "$ref": "defs/change.roadway.property-changes.json"},
+					{ "$ref": "defs/change.roadway.parallel-managed-lanes.json"}
+			  ]
+			}
+		},
 		"notes": {"type": "string"}
 	}
 }

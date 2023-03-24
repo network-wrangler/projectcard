@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "id": "roadway.node.selection",
+  "description": "requirements for describing a single node in the `facility` section of a project card.",
+  "additionalProperties": false,
+  "title": "Roadway network node",
+  "type":"object",
+  "properties":{
+    "osm_node_id":{"type":"string"},
+    "model_node_id":{"type":"integer"}
+  },
+  "oneOf": [
+    {"required": ["osm_node_id"]},
+    {"required": ["model_node_id"]}
+  ]
+}

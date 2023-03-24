@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "id": "roadway.nodes",
+  "description": "Requirements for roadway nodes.",
+  "type":"object",
+  "definitions":{
+    "model_node_id":{
+      "id": "roadway.nodes.model_node_id",
+      "type": "integer",
+      "uniqueItems": true,
+      "description": "Primary key to the nodes object."
+    },
+    "point": {
+      "id": "roadway.nodes.point",
+      "type": "array",
+      "description": "The Point Schema",
+      "minItems": 2,
+      "maxItems": 3,
+      "prefixItems": [
+        {"$ref": "#/definitions/X"},
+        {"$ref": "#/definitions/Y"}
+      ],
+      "items":{"$ref": "#/definitions/Z"}
+    },
+    "X": {
+      "id": "roadway.nodes.X",
+      "type": "number",
+      "description": "X coordinate (e.g. Longitude)"
+    },
+    "Y": {
+      "id": "roadway.nodes.X",
+      "type": "number",
+      "description": "Y coordinate (e.g. Latitude)"
+    },
+    "Z": {
+      "id": "roadway.nodes.Z",
+      "type": "number",
+      "description": "Z coordinate (e.g. Altitude)"
+    },
+    "osm_node_id":{
+      "id": "roadway.nodes.osm_node_id",
+      "type": "string",
+      "examples": ["954734870"],
+      "description":"Reference to the corresponding Open Street Map node."
+    },
+    "shstReferenceId":{
+      "id": "roadway.nodes.shstReferenceId",
+      "type": "string",
+      "examples": ["0751f5ce12472360fed0d0e80ceae35c"],
+      "description":"Shared streets node ID reference."
+    },
+    "walk_node":{
+      "id": "roadway.nodes.walk_node",
+      "type":["integer","boolean"] ,
+      "description": "Indicates node is part of the pedestrian network. Useful for exporting or querying networks by mode."
+    },
+    "bike_node":{
+      "id": "roadway.nodes.bike_node",
+      "type":["integer","boolean"],
+      "description": "Indicates node is part of the bike network. Useful for exporting or querying networks by mode."
+    },
+    "drive_node":{
+      "id": "roadway.nodes.drive_node",
+      "type":["integer","boolean"],
+      "description": "Indicates node is part of the driving network. Useful for exporting or querying networks by mode."
+    },
+    "transit_node":{
+      "id": "roadway.nodes.transit_node",
+      "type":["integer","boolean"],
+      "description": "Indicates node is part of the transit network. Useful for exporting or querying networks by mode."
+    }
+  },
+  "title": "Roadway nodes",
+  "required": [
+    "N",
+    "model_node_id",
+    "roadway",
+    "lanes",
+    "walk_node",
+    "drive_node",
+    "transit_node",
+    "bike_node",
+    "X",
+    "Y"
+  ],
+  "properties": {
+    "N":{"$ref": "#/definitions/model_node_id"},
+    "osm_node_id":{"$ref": "#/definitions/osm_node_id"},
+    "shstReferenceId":{"$ref": "#/definitions/shstReferenceId"},
+    "outboundReferenceIds":{"type":"array","items":{"$ref": "roadway.links.json#/definitions/shstReferenceId"}},
+    "inboundReferenceIds":{"type":"array","items":{"$ref": "roadway.links.json#/definitions/shstReferenceId"}},
+    "walk_node":{"$ref": "#/definitions/walk_node"},
+    "bike_node":{"$ref": "#/definitions/bike_node"},
+    "drive_node":{"$ref": "#/definitions/drive_node"},
+    "transit_node":{"$ref": "#/definitions/transit_node"},
+    "X":{"$ref": "#/definitions/X"},
+    "Y":{"$ref": "#/definitions/Y"},
+    "Z":{"$ref": "#/definitions/Z"}
+  }
+}

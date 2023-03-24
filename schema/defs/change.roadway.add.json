@@ -1,0 +1,27 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+	"required": [
+		"category"
+	],
+	"anyOf": [
+        {"required": ["links"]},
+        {"required": ["nodes"]}
+    ],
+	"additionalProperties" : false,
+	"properties": {
+		"category": {
+			"type": "string",
+			"description": " Must be 'add new roadway'",
+			"pattern": "^[Aa][Dd][Dd] [Nn][Ee][Ww] [Rr][Oo][Aa][Dd][Ww][Aa][Yy]$"
+	   	},
+	   "links": {
+			"type": "array",
+		 	"items": {"$ref": "roadway.links.json"}
+   		},
+		"nodes": {
+			"type": "array",
+			"items": {"$ref": "roadway.nodes.json"}
+		}
+	}
+}

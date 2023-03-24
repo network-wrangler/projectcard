@@ -1,0 +1,21 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+	"required": [
+		"category"
+	],
+	"anyOf": [
+        {"required": ["links"]},
+        {"required": ["nodes"]}
+    ],
+	"additionalProperties" : false,
+	"properties": {
+		"category": {
+			"type": "string",
+			"description": "Should be 'roadway deletion'",
+			"pattern": "^[Rr][Oo][Aa][Dd][Ww][Aa][Yy] [Dd][Ee][Ll][Ee][Tt][Ii][Oo][Nn]$"
+	   	},
+	    "links": {"$ref": "roadway.facility.links.json"},
+		"nodes": {"$ref": "roadway.facility.nodes.json"}
+	}
+}

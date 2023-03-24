@@ -3,6 +3,8 @@ import os
 import re
 from pathlib import Path
 
+from projectcard import ProjectCard
+
 SCHEMA_DIR = "schema"
 
 
@@ -42,7 +44,8 @@ def define_env(env):
         _footer = _get_html_between_tags(content, tag="footer")
         replace_strings = {
             "<!DOCTYPE html>": "",
-            '<div class="breadcrumbs"></div><span class="badge badge-dark value-type">Type: object</span><br/>': "",
+            '<div class="breadcrumbs"></div><span class="badge badge-dark value-type">\
+            Type: object</span><br/>': "",
         }
 
         for _orig, _new in replace_strings.items():
