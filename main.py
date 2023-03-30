@@ -98,14 +98,23 @@ def define_env(env):
         return content
 
     def _categories_as_str(card: "ProjectCard") -> str:
-        if card.__dict__.get("category"):
-            return card.__dict__.get("category")
+        _change_types = [
+            "roadway_deletion",
+            "roadway_addition",
+            "roadway_managed_lanes",
+            "roadway_property_change",
+        ]
+        _cats = [c for c in card.__dict__ if c in _change_types]
+        if _cats:
+            return _cats[0]
+
         if len(card.__dict__["changes"]) == 1:
-            return card.__dict__["changes"][0]["category"]
+            _cats = [c for c in card.__dict__["changes"] if c in _change_types]
+            return _cats[0]
 
         _cat_str = "Multiple Change Categories:<ul>\n"
-        for ch in card.__dict__["changes"]:
-            _cat_str += f"<li>{ch['category']}</li>\n"
+        _cats = [c for c in card.__dict__["changes"] if c in _change_types]
+        _cat_str += "".join([f"<li>{c}</li>\n" for c in _cats])
         _cat_str += "</ul>"
 
     def _card_to_md(card: "ProjectCard") -> str:

@@ -1,23 +1,18 @@
 project: Example property change
-
 tags:
    - 'example'
-dependencies:
-  prerequisites: []
-  corequisites: []
-  conflicts: []
-changes:
-  - category: roadway property change
-    facility:
-      links:
-        - osm_link_id:
-            - '1234'
-      A:
-        osm_node_id: '4321'
-      B:
-        osm_node_id: '4322'
-    properties:
-      - property: lanes
-        existing: 3
-        change: -1
-notes: Simple project example to do a road diet on 6th St E in front of MetCouncil
+roadway_property_change:
+  facility:
+    osm_link_id:
+      - '1234'
+      - '2345'
+    from:
+      osm_node_id: '4321'
+    to:
+      osm_node_id: '4322'
+  property_changes:
+    - roadway_property: lanes
+      set: 2
+    - roadway_property: bicycle_facility
+      set: 3
+notes: Simple road diet

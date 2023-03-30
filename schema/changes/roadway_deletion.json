@@ -1,0 +1,13 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+	"anyOf": [
+        {"required": ["links"]},
+        {"required": ["nodes"]}
+    ],
+	"additionalProperties" : false,
+	"properties": {
+	    "links": {"$ref": "../roadway/selection/select_links.json"},
+		"nodes": {"$ref": "../roadway/selection/select_nodes.json"}
+	}
+}

@@ -4,7 +4,6 @@ USAGE:
     pytest --log-cli-level=10
 """
 import pytest
-
 from jsonschema.exceptions import ValidationError
 
 from projectcard import CardLogger, read_cards
@@ -19,6 +18,7 @@ def test_read_dir(all_example_cards, example_dir):
 
     _expected_cards = _get_cardpath_list(example_dir)
     assert len(_cards) == len(_expected_cards)
+
 
 @pytest.mark.menow
 def test_example_valid(all_example_cards):
@@ -37,11 +37,13 @@ def test_example_valid(all_example_cards):
             CardLogger.error(e)
         else:
             ok.append(project)
-    _delim = '\n - '
+    _delim = "\n - "
     CardLogger.debug(f"Valid Cards: {_delim}{_delim.join(ok)}")
-    if errors: 
+    if errors:
         CardLogger.error(f"Card Validation Errors: {_delim}{_delim.join(errors)}")
-        raise ValidationError(f"Errors in {len(errors)} of {len(all_example_cards)} example project cards")
+        raise ValidationError(
+            f"Errors in {len(errors)} of {len(all_example_cards)} example project cards"
+        )
 
     CardLogger.info(f"Evaluated {len(all_example_cards)} schema files")
 

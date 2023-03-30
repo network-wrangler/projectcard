@@ -60,7 +60,7 @@ def _read_toml(filepath: str) -> dict:
 def _read_json(filepath: str) -> dict:
     CardLogger.debug(f"Reading JSON: {filepath}")
     with open(filepath, "r") as cardfile:
-        attribute_dictionary = json.safe_load(cardfile.read())
+        attribute_dictionary = json.loads(cardfile.read())
     return attribute_dictionary
 
 

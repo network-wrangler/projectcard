@@ -3,15 +3,19 @@ site
 
 # Compiled Source
 *.pyc
+**/*.pyc
 
 # Temp and test cache
 .temp
 .pytest_cache
+__pycache__
+>benchmarks
 *.bak
 .cache
-
+tests/out
 # Logs
 *.log
+**/*.log
 scenario_log.txt
 
 # Jupyter
@@ -41,6 +45,7 @@ eggs/
 .eggs/
 *.egg
 *.egg-info/
+projectcard.egg-info/
 .installed.cfg
 MANIFEST
 *.manifest
@@ -64,3 +69,7 @@ env/
 .pydevproject
 .settings
 *.hubstorinfo
+projectcard.egg-info/SOURCES.txt
+projectcard.egg-info/requires.txt
+projectcard.egg-info/PKG-INFO
+*.pyc

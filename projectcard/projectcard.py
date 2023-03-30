@@ -23,8 +23,8 @@ class ProjectCard(object):
         """
         # add these first so they are first on write out
         self.project = None
-        self.tags = ""
-        self.dependencies = ""
+        self.tags = []
+        self.dependencies = {}
 
         self.__dict__.update(attribute_dictonary)
 

@@ -2,9 +2,11 @@ import json
 import os
 from json import JSONDecodeError
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from typing import Union
 
 import jsonref
+from flake8.api import legacy as flake8
 from jsonschema import validate
 from jsonschema.exceptions import SchemaError, ValidationError
 
@@ -13,11 +15,19 @@ from .logger import CardLogger
 ROOTDIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECTCARD_SCHEMA = os.path.join(ROOTDIR, "schema", "projectcard.json")
 
+# Errors to catch in valdiating "wrangler" project cards which use python code.
+# E9 Runtime
+# F63 undefined name name
+# F823 local variable name ... referenced before assignment
+# F405 name may be undefined, or defined from star imports: module
+FLAKE8_ERRORS = ["E9", "F821", "F823", "F405"]
+
 
 def _open_json(schema_path: str) -> dict:
     try:
         with open(schema_path, "r") as file:
-            return json.loads(file.read())
+            _json = json.loads(file.read())
+            return _json
     except FileNotFoundError:
         CardLogger.error(f"Schema not found: {schema_path}")
         raise Exception("Schema definition missing")
@@ -28,14 +38,15 @@ def _open_json(schema_path: str) -> dict:
 
 def _load_schema(schema_absolute_path: Union[Path, str]) -> dict:
     base_path = os.path.dirname(schema_absolute_path)
-    base_uri = "file://{}/".format(base_path)
+    base_uri = f"file://{base_path}/"
 
     _s = jsonref.replace_refs(
         _open_json(schema_absolute_path),
         base_uri=base_uri,
-        proxies=False,
+        jsonschema=True,
         lazy_load=False,
     )
+
     # CardLogger.debug(f"----\n{schema_absolute_path}\n{_s}")
     return _s
 
@@ -80,6 +91,7 @@ def validate_schema_file(schema_path: Union[Path, str] = PROJECTCARD_SCHEMA) -> 
     except SchemaError as e:
         CardLogger.error(e)
         raise SchemaError(f"{e}")
+
     return True
 
 
@@ -87,6 +99,9 @@ def validate_card(
     jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SCHEMA
 ) -> bool:
     """Validates json-like data to specified schema.
+
+    If `pycode` key exists, will evaluate it for basic runtime errors using Flake8.
+    Note: will not flag any invalid use of RoadwayNetwork or TransitNetwork APIs.
 
     Args:
         jsondata: json-like data to validate.
@@ -105,9 +120,50 @@ def validate_card(
         validate(jsondata, schema=_schema_data)
     except ValidationError as e:
         CardLogger.error(f"---- Error validating {jsondata['project']} ----")
-        CardLogger.error(e)
+        msg = f"\nRelevant schema: {e.schema}\nValidator Value: {e.validator_value}\nValidator: {e.validator}"
+        msg += f"\nabsolute_schema_path:{e.absolute_schema_path}\nabsolute_path:{e.absolute_path}"
+        CardLogger.error(msg)
         raise ValidationError(f"{e}")
     except SchemaError as e:
         CardLogger.error(e)
         raise SchemaError(f"{e}")
+
+    if "pycode" in jsondata:
+        _validate_pycode(jsondata)
+
     return True
+
+
+class PycodeError(Exception):
+    "Basic runtime error in python code."
+    pass
+
+
+def _validate_pycode(jsondata: dict) -> None:
+    """Use flake8 to evaluate basic runtime errors on pycode.
+
+    Uses mock.MagicMock() for self to mimic RoadwayNetwork or TransitNetwork
+    Limitation: will not fail on invalid use of RoadwayNetwork or TransitNetwork APIs
+
+    Args:
+        jsondata (dict): project card json data as a python dictionary
+    """
+    style_guide = flake8.get_style_guide(select=FLAKE8_ERRORS)
+    dir = TemporaryDirectory()
+    tmp_py_path = os.path.join(dir.name, "tempcode.py")
+    CardLogger.debug(f"Storing temporary python files at: {tmp_py_path}")
+    py_file_contents = f"import mock\nself=mock.Mock()\n" + jsondata["pycode"]
+    with open(tmp_py_path, "w") as py_file:
+        py_file.write(py_file_contents)
+
+    report = style_guide.check_files([tmp_py_path])
+    errors = report._application.report_errors()
+    CardLogger.debug(f"Flake 8 Report:\n {errors}")
+    CardLogger.debug(f"FILE CONTENTS\n{py_file_contents}")
+    if report.total_errors:
+        CardLogger.error(f"Errors found in {jsondata['project']}")
+        CardLogger.debug(f"FILE CONTENTS\n{py_file_contents}")
+        raise PycodeError(
+            f"Found {report.total_errors} errors in {jsondata['project']}"
+        )
+    dir.cleanup()

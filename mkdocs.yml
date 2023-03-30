@@ -25,8 +25,7 @@ plugins:
   - awesome-pages
   - mike
   - macros
-  - mermaid2:
-      securityLevel: 'loose'
+  - mermaid2
   - mkdocs-jupyter:
       include_source: True
   - mkdocstrings:
