@@ -12,7 +12,8 @@ __pycache__
 >benchmarks
 *.bak
 .cache
-tests/out
+tests/out/**
+
 # Logs
 *.log
 **/*.log
