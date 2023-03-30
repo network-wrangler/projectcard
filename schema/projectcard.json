@@ -6,19 +6,22 @@
 		"change_roadway_addition": { "$ref": "changes/roadway_addition.json"},
 		"change_roadway_property_change": { "$ref": "changes/roadway_property_change.json"},
 		"change_roadway_managed_lanes": { "$ref": "changes/roadway_managed_lanes.json"},
+		"transit_property_change": { "$ref": "changes/transit_property_change.json"},
 		"change": {
 			"type":"object",
 			"properties": {
 				"roadway_deletion": { "$ref": "#/$defs/change_roadway_deletion"},
 				"roadway_addition": { "$ref": "#/$defs/change_roadway_addition"},
 				"roadway_property_change": { "$ref": "#/$defs/change_roadway_property_change"},
-				"roadway_managed_lanes": { "$ref": "#/$defs/change_roadway_managed_lanes"}
+				"roadway_managed_lanes": { "$ref": "#/$defs/change_roadway_managed_lanes"},
+				"transit_property_change": { "$ref": "#/$defs/transit_property_change"}
 			},
 			"oneOf": [
 				{"required":["roadway_deletion"]},
 				{"required":["roadway_addition"]},
 				{"required":["roadway_property_change"]},
-				{"required":["roadway_managed_lanes"]}
+				{"required":["roadway_managed_lanes"]},
+				{"required":["transit_property_change"]}
 			]
 		}
 	},
@@ -31,6 +34,7 @@
 		{"required":["roadway_addition"]},
 		{"required":["roadway_property_change"]},
 		{"required":["roadway_managed_lanes"]},
+		{"required":["transit_property_change"]},
 		{"required":["changes"]},
 		{"required":["self"]}
 	],
@@ -43,6 +47,7 @@
 		"roadway_addition": { "$ref": "#/$defs/change_roadway_addition"},
 		"roadway_property_change": { "$ref": "#/$defs/change_roadway_property_change"},
 		"roadway_managed_lanes": { "$ref": "#/$defs/change_roadway_managed_lanes"},
+		"transit_property_change":{ "$ref": "#/$defs/transit_property_change"},
 		"changes": {"type": "array","items":{"$ref": "#/$defs/change"}},
 		"self": {"type": "string","enum": ["RoadwayNetwork","TransitNetwork"],"description":"For calculated project cards, must refer to the object to perform the calculation on. "},
 		"notes": {"type": "string"}

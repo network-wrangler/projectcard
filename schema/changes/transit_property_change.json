@@ -1,0 +1,37 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+	"$defs":{
+		"transit_property_change": {
+			"required": ["transit_property"],
+			"oneOf": [
+				{"required":["set"]},
+				{"required":["change"]}
+			],
+			"additionalProperties" : false,
+			"properties":{
+				"transit_property": {
+					"type":"string",
+					"enum":["headway_secs","routing"]
+				},
+				"existing":{},
+				"set":{},
+				"change":{}
+			}
+		}
+	},
+	"required": [
+		"service",
+		"property_changes"
+	],
+	"additionalProperties" : false,
+	"properties": {
+	   "service": {"$ref": "../transit/selection/transit_service.json"},
+	   "property_changes": {
+		    "type": "array",
+			"items":{"$ref":"#/$defs/transit_property_change"},
+            "minItems":1,
+            "description": "TODO"
+		}
+	}
+}

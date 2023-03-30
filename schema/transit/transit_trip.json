@@ -1,0 +1,46 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "Requirements for roadway links.",
+    "type":"object",
+    "$defs":{
+      "trip_id":{
+        "type": "string",
+        "description": "ID for Individual trip a transit vehicle takes.."
+      },
+      "route_id":{
+        "type": "string",
+        "description": "ID for general route."
+      },
+      "short_name":{
+        "type": "string",
+        "description": "Route short name, often something like `38X`."
+      },
+      "long_name":{
+        "type": "string",
+        "description": "Route long name."
+      },
+      "direction_id":{
+        "type":"integer",
+        "enum":[0,1],
+        "description": "Consistent with GTFS definition defining outbound vs inbound routes."
+      },
+      "headway_secs":{
+        "type": "integer",
+        "description": "Headway between trips in seconds."
+      },
+      "routing":{
+        "type":"array",
+        "items":{"type":"integer"},
+        "description": "List of nodes that the trip traverses with a `-` in front of nodes where the service does not stop."
+      }
+    },
+    "properties":{
+        "trip_id":{"$ref":"#/$defs/trip_id"},
+        "route_id":{"$ref":"#/$defs/route_id"},
+        "short_name":{"$ref":"#/$defs/short_name"},
+        "long_name":{"$ref":"#/$defs/long_name"},
+        "direction_id":{"$ref":"#/$defs/direction_id"},
+        "headway_secs":{"$ref":"#/$defs/headway_secs"},
+        "routing":{"$ref":"#/$defs/routing"}
+    }
+}
