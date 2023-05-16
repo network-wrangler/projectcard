@@ -3,11 +3,24 @@
 USAGE:
     pytest --log-cli-level=10
 """
+import os
+
 import pytest
 from jsonschema.exceptions import ValidationError
 
-from projectcard import CardLogger, read_cards
+from projectcard import CardLogger, read_cards, read_card
 
+@pytest.mark.menow
+def test_read_single_card( example_dir):
+    CardLogger.info("Testing that a single card in example directory can be read in.")
+    _ex_name = "example roadway add"
+    _ex_file = "roadway-add.yml"
+    _card_path = os.path.join(example_dir,_ex_file)
+    CardLogger.debug(f"Reading {_card_path}")
+    card = read_card(_card_path)
+    CardLogger.debug(f"Read card:\n {card}")
+    assert card.project == _ex_name
+    
 
 def test_read_dir(all_example_cards, example_dir):
     CardLogger.info("Testing that all cards in example directory can be read in.")
@@ -20,7 +33,6 @@ def test_read_dir(all_example_cards, example_dir):
     assert len(_cards) == len(_expected_cards)
 
 
-@pytest.mark.menow
 def test_example_valid(all_example_cards):
     CardLogger.info("Testing that all cards in example directory are valid.")
     errors = []

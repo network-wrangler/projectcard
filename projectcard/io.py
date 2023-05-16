@@ -151,9 +151,23 @@ _method_map = {
     ".wrangler": _read_wrangler,
 }
 
+def read_card(filepath: str, validate:bool = False):
+    """Read single project card from a path and return project card object.
+    
+    args:
+        filepath: file where the project card is.
+        validate: if True, will validate the project card schemea
+    """
+    if not Path(filepath).is_file():
+        raise ValueError(f"Cannot find project card file: {filepath}")
+    card_dict = read_cards(filepath,_cards={})
+    card = list(card_dict.values())[0]
+    if validate:
+        assert card.valid
+    return card
 
 def read_cards(
-    filepath: str,
+    filepath: Union[Collection[str],str],
     filter_tags: Collection[str] = [],
     _cards: Mapping[str, ProjectCard] = {},
 ) -> Mapping[str, ProjectCard]:
@@ -194,5 +208,5 @@ def read_cards(
         )
         return _cards
     _cards[_project_name] = ProjectCard(_card_dict)
-
+    
     return _cards
