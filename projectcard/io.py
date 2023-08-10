@@ -31,10 +31,10 @@ def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):
         if not all(Path(f).is_file() for f in filepath):
             _missing = [f for f in filepath if not Path(f).is_file()]
             raise FileNotFoundError(f"{_missing} is/are not a file/s")
-        _paths = filepath
-    elif (isinstance(filepath, Path) or (filepath, str)) and Path(filepath).is_dir():
+        _paths = [Path(f) for f in filepath]
+    elif (isinstance(filepath, Path) or isinstance(filepath, str)) and Path(filepath).is_dir():
         CardLogger.debug(f"Getting all files in: {filepath}")
-        _paths = [p for p in Path(filepath).glob("*")]
+        _paths = [Path(p) for p in Path(filepath).glob("*")]
     else:
         raise ValueError(f"filepath: {filepath} not understood.")
     CardLogger.debug(f"All paths: {_paths}")
@@ -142,7 +142,7 @@ def _change_keys(obj: dict, convert: Callable = _replace_selected) -> dict:
     return new
 
 
-_method_map = {
+_read_method_map = {
     ".yml": _read_yml,
     ".yaml": _read_yml,
     ".json": _read_json,
@@ -182,17 +182,20 @@ def read_cards(
 
     Returns: dictionary of project cards by project name
     """
+    CardLogger.debug(f"Reading cards from {filepath}." )
+
     filter_tags = list(map(str.lower, filter_tags))
-    if not Path(filepath).is_file():
-        _card_paths = _get_cardpath_list(filepath, valid_ext=_method_map.keys())
+    if isinstance(filepath,list) or not os.path.isfile(filepath):
+        _card_paths = _get_cardpath_list(filepath, valid_ext=_read_method_map.keys())
         for p in _card_paths:
             _cards.update(read_cards(p, filter_tags=filter_tags, _cards=_cards))
         return _cards
-
+    
     _ext = os.path.splitext(filepath)[1]
-    if _ext not in _method_map.keys():
-        raise ValueError("Unsupported file type: {}".format(_ext))
-    _card_dict = _method_map[_ext](filepath)
+    if _ext not in _read_method_map.keys():
+        CardLogger.debug(f"Unsupported file type for file {filepath}")
+        raise ValueError(f"Unsupported file type: {_ext}")
+    _card_dict = _read_method_map[_ext](filepath)
     _card_dict = _change_keys(_card_dict)
     _card_dict["file"] = filepath
     _project_name = _card_dict["project"].lower()

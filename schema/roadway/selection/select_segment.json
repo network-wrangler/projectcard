@@ -2,34 +2,28 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "type": "object",
     "id": "facility_roadway",
+    "$defs": {
+        "mode":{
+            "anyOf": [
+                "drive",
+                "walk",
+                "bike",
+                "transit",
+                "any"
+            ]
+    },
     "additionalProperties": false,
     "oneOf": [
-        {"required":["name","from","to"]},
-        {"required":["osm_link_id"]},
-        {"required":["model_link_id"]}
+        {"required":["links","from","to"]},
+        {"required":["links"]},
+        {"required":["nodes"]}
       ],
 	"title": "Roadway Facility Selection",
     "properties": {
-        "model_link_id": {
-            "type": "array",
-            "minItems": 1,
-            "items":{"$ref": "../roadway_link.json#/$defs/model_link_id"}
-        },
-        "osm_link_id": {
-            "type": "array",
-            "minItems": 1,
-            "items":{"$ref": "../roadway_link.json#/$defs/osm_link_id"}
-        },
-        "name": {
-            "type": "array",
-            "minItems": 1,
-            "items":{"$ref": "../roadway_link.json#/$defs/name"}
-        },
-        "from": {
-            "$ref": "select_node.json"
-        },
-        "to": {
-            "$ref": "select_node.json"
-        }
+        "links": {"$ref":"select_links.json"},
+        "nodes": {"$ref":"select_nodes.json"},
+        "from": {"$ref":"select_node.json"},
+        "modes": {"type":"array", "items":{"$ref":"#/$defs/mode"}}},
+        "to": {"$ref":"select_node.json"}
     }
 }

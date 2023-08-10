@@ -1,22 +1,21 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
     "type": "object",
-	"$defs":{
-		"transit_property_change": {
-			"required": ["transit_property"],
-			"oneOf": [
-				{"required":["set"]},
-				{"required":["change"]}
-			],
-			"additionalProperties" : false,
-			"properties":{
-				"transit_property": {
-					"type":"string",
-					"enum":["headway_secs","routing"]
-				},
-				"existing":{},
-				"set":{},
-				"change":{}
+	"$defs": {
+		"set": {
+			"type" : "object",
+			"required": ["set"],
+			"properties" : {
+				"existing" : {"type": ["number", "string"]},
+				"set" : {"type": ["number", "string"]}
+			}
+		},
+		"existing_change": {
+			"type" : "object",
+			"required": ["existing","change"],
+			"properties" : {
+				"existing" : {"type" : "number"},
+				"change" : {"type" : "number"}
 			}
 		}
 	},
@@ -28,10 +27,12 @@
 	"properties": {
 	   "service": {"$ref": "../transit/selection/transit_service.json"},
 	   "property_changes": {
-		    "type": "array",
-			"items":{"$ref":"#/$defs/transit_property_change"},
-            "minItems":1,
-            "description": "TODO"
+			"type": "object",
+			"minItems":1,
+			"oneOf": [
+				{"patternProperties":{".*": {"$ref": "#/$defs/set"}}},
+				{"patternProperties":{".*": {"$ref": "#/$defs/existing_change"}}}
+			]
 		}
 	}
 }

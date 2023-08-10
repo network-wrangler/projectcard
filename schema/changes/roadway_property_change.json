@@ -3,18 +3,16 @@
 	"$defs":{
         "set": {
             "type" : "object",
-            "required": ["roadway_property","set"],
+            "required": ["set"],
             "properties" : {
-                "roadway_property" : {"type" : "string"},
                 "existing" : {"type": ["number", "string"]},
                 "set" : {"type": ["number", "string"]}
             }
         },
         "existing_change": {
             "type" : "object",
-            "required": ["roadway_property","existing","change"],
+            "required": ["existing","change"],
             "properties" : {
-                "roadway_property" : {"type" : "string"},
                 "existing" : {"type" : "number"},
                 "change" : {"type" : "number"}
             }
@@ -29,9 +27,12 @@
 	"properties": {
 	   "facility": {"$ref": "../roadway/selection/select_segment.json"},
 	   "property_changes": {
-		    "type": "array",
+		    "type": "object",
             "minItems":1,
-		    "items" : {"$ref": "#/$defs/set"}
-		}
-	}
+		    "oneOf": [
+                {"patternProperties":{".*": {"$ref": "#/$defs/set"}}},
+                {"patternProperties":{".*": {"$ref": "#/$defs/existing_change"}}}
+            ]
+	    }
+    }
 }

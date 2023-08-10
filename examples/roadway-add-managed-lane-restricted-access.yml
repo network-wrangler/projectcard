@@ -3,11 +3,12 @@ tags: ['managed lanes']
 notes: Need to adjust normal lanes
 roadway_managed_lanes:
   facility:
-    model_link_id:
-      - 390239
-      - 391206
-      - 390344
-      - 401484
+    links:
+      model_link_id:
+        - 390239
+        - 391206
+        - 390344
+        - 401484
   property_changes:
     ML_lanes:
       set: 0

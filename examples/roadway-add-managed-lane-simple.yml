@@ -1,13 +1,13 @@
 project: example add simple managed lane project
-
 notes: Simple managed lane project with AM and PM lanes are HOT during the peak periods
 tags:
    - 'example'
    - 'managed'
 roadway_managed_lanes:
   facility:
-    name:
-      - 'I 35E'
+    links:
+      name:
+        - 'I 35E'
     from:
       osm_node_id: '961117623'
     to:

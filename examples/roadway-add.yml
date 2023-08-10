@@ -3,10 +3,6 @@ notes: Simple project card to add new roadway
 tags:
   - 'add roadway'
   - 'example'
-dependencies:
-  prerequisites: []
-  corequisites: []
-  conflicts: []
 roadway_addition:
   links:
     - A: 269066

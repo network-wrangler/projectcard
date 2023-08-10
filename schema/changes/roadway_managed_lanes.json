@@ -31,7 +31,8 @@
 		 	"$ref": "../roadway/selection/select_segment.json"
    		},
 		"property_changes": {
-			"type":"array",
+		    "type": "object",
+            "minItems":1,
 			"contains":{"allOf": [
 				{"$ref":"#/$defs/lanes.change-item"},
 				{"$ref":"#/$defs/ML_lanes.change-item"}

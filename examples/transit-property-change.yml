@@ -8,5 +8,5 @@ transit_property_change:
     time: 
      - ['06:00:00', '09:00:00']
   property_changes:
-    - transit_property: headway_secs
+    headway_secs:
       set: 900

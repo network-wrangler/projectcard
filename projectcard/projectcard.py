@@ -1,13 +1,14 @@
 from typing import Union, List
 
-
+from .logger import CardLogger
 from .validate import validate_card
 from .utils import findkeys
 
 UNSPECIFIED_PROJECT_NAMES = ["", "TO DO User Define", "USER TO define"]
 VALID_EXT = [".yml", ".yaml", ".json", ".toml", ".wr", ".wrangler"]
 REPLACE_KEYS = {"a": "A", "b": "B"}
- 
+
+
 
 class ProjectCard(object):
     """
@@ -33,10 +34,10 @@ class ProjectCard(object):
             attribute_dictonary: a nested dictionary of attributes
         """
         # add these first so they are first on write out
-        self.project = None
-        self.tags = []
-        self.dependencies = {}
-        self.sub_projects = []
+        self.project: str = None
+        self.tags: list[str] = []
+        self.dependencies: dict = {}
+        self.sub_projects: list[SubProject] = []
 
         self.__dict__.update(attribute_dictonary)
         for sp in self.__dict__.get("changes",[]):
@@ -53,6 +54,9 @@ class ProjectCard(object):
 
     @property
     def facilities(self) -> List[dict]:
+        if not any(["transit" in t for t in self.types]):
+            CardLogger.warning("Transit project doesn't have services.")
+            return []
         f = list(findkeys(self.__dict__,"facility"))
         if not f:
             raise ValueError("Couldn't find facility in project card")
@@ -65,6 +69,23 @@ class ProjectCard(object):
             return "multiple"
         return f[0]
 
+    @property
+    def services(self) -> List[dict]:
+        if not any(["roadway" in t for t in self.types]):
+            CardLogger.warning("Roadway project doesn't have services.")
+            return []
+        f = list(findkeys(self.__dict__,"service"))
+        if not f:
+            raise ValueError("Couldn't find service in project card")
+        return f
+    
+    @property
+    def service(self) -> Union[str,dict]:
+        f = self.services
+        if len(f) > 1:
+            return "multiple"
+        return f[0]
+    
     @property
     def all_property_changes(self) -> List[dict]:
         p = list(findkeys(self.__dict__,"property_changes"))
@@ -79,13 +100,13 @@ class ProjectCard(object):
     
     @property
     def types(self) -> List[str]:
-        _ignore = ["project","tags","notes","dependencies","self","pycode"]
-        keys = [k for k in self.__dict__.keys() if k not in _ignore]
-        if "changes" in keys:
-            keys = [k for k in self.__dict__["changes"].keys() if k not in _ignore]
-        if not keys:
+        if self.sub_projects:
+            return [sp.type for sp in self.sub_projects]
+        _ignore = ["project","tags","notes","dependencies","self","pycode","sub_projects","file"]
+        type_keys = [k for k in self.__dict__.keys() if k not in _ignore]
+        if not type_keys:
             raise ValueError("Couldn't find type of project card")
-        return keys
+        return type_keys
     
     @property
     def type(self) -> str:
@@ -119,9 +140,14 @@ class SubProject(ProjectCard):
         self.parent_project = parent_project
 
         assert len(sp_dictionary) == 1
-
-        self.type = list(sp_dictionary.keys())[0]
+        self._type = list(sp_dictionary.keys())[0]
         self.__dict__.update(sp_dictionary[self.type])
+        self.sub_projects = []
+
+    @property
+    def type(self) -> str:
+        # have to override as a method because is a method in super class
+        return self._type
     
     @property
     def project(self) -> str:
@@ -144,3 +170,7 @@ class SubProject(ProjectCard):
     def facility(self) -> dict:
         f = self.__dict__.get("facility",{})
         return f
+
+    @property
+    def valid(self) -> bool:
+        return self.parent_project.valid
