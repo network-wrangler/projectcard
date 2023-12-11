@@ -54,7 +54,7 @@ class ProjectCard(object):
 
     @property
     def facilities(self) -> List[dict]:
-        if not any(["transit" in t for t in self.types]):
+        if any(["transit" in t for t in self.types]):
             CardLogger.warning("Transit project doesn't have services.")
             return []
         f = list(findkeys(self.__dict__,"facility"))
@@ -71,29 +71,65 @@ class ProjectCard(object):
 
     @property
     def services(self) -> List[dict]:
-        if not any(["roadway" in t for t in self.types]):
+        if any(["roadway" in t for t in self.types]):
             CardLogger.warning("Roadway project doesn't have services.")
             return []
-        f = list(findkeys(self.__dict__,"service"))
-        if not f:
+        s = list(findkeys(self.__dict__,"service"))
+        if not s:
             raise ValueError("Couldn't find service in project card")
-        return f
+        return s
     
     @property
     def service(self) -> Union[str,dict]:
-        f = self.services
-        if len(f) > 1:
+        s = self.services
+        if len(s) > 1:
             return "multiple"
-        return f[0]
+        return s[0]
     
     @property
-    def all_property_changes(self) -> List[dict]:
-        p = list(findkeys(self.__dict__,"property_changes"))
+    def all_roadway_property_changes(self) -> List[dict]:
+        if not any(["roadway_property_change" in t for t in self.types]):
+            CardLogger.warning("Project doesn't have roadway_property changes.")
+            return []
+        rp = list(findkeys(self.__dict__,"roadway_property_change"))
+        p = [i["property_changes"] for i in rp]
         return p
 
     @property
-    def property_changes(self) -> Union[str,dict]:
-        p = self.all_property_changes
+    def roadway_property_change(self) -> Union[str,dict]:
+        p = self.all_roadway_property_changes
+        if len(p) > 1:
+            return "multiple"
+        return p[0]
+    
+    @property
+    def all_transit_property_changes(self) -> List[dict]:
+        if not any(["transit_property_change" in t for t in self.types]):
+            CardLogger.warning("Project doesn't have transit property changes.")
+            return []
+        tp = list(findkeys(self.__dict__,"transit_property_change"))
+        p = [i["property_changes"] for i in tp]
+        return p
+
+    @property
+    def transit_property_change(self) -> Union[str,dict]:
+        p = self.all_transit_property_changes
+        if len(p) > 1:
+            return "multiple"
+        return p[0]
+    
+    @property
+    def all_transit_routing_changes(self) -> List[dict]:
+        if not any(["transit_routing_change" in t for t in self.types]):
+            CardLogger.warning("Project doesn't have routing changes.")
+            return []
+        r = list(findkeys(self.__dict__,"routing"))
+        CardLogger.debug(f"transit routing change: {r}")
+        return r
+
+    @property
+    def transit_routing_change(self) -> Union[str,dict]:
+        p = self.all_transit_routing_changes
         if len(p) > 1:
             return "multiple"
         return p[0]
