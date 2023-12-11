@@ -129,6 +129,9 @@ def validate_card(
         raise SchemaError(f"{e}")
 
     if "pycode" in jsondata:
+        if "self." in jsondata["pycode"]:
+            if not "self" in jsondata:
+                raise ValidationError("If using self, must specify what `self` refers to in yml frontmatter")
         _validate_pycode(jsondata)
 
     return True
@@ -139,7 +142,7 @@ class PycodeError(Exception):
     pass
 
 
-def _validate_pycode(jsondata: dict,mocked_vars:List[str]=["roadway_net","transit_net"]) -> None:
+def _validate_pycode(jsondata: dict,mocked_vars:List[str]=["self","roadway_net","transit_net"]) -> None:
     """Use flake8 to evaluate basic runtime errors on pycode.
 
     Uses mock.MagicMock() for self to mimic RoadwayNetwork or TransitNetwork
@@ -154,7 +157,7 @@ def _validate_pycode(jsondata: dict,mocked_vars:List[str]=["roadway_net","transi
     tmp_py_path = os.path.join(dir.name, "tempcode.py")
     CardLogger.debug(f"Storing temporary python files at: {tmp_py_path}")
 
-    # Add transit_net and roadway_net as mocked elements
+    # Add self, transit_net and roadway_net as mocked elements
     py_file_contents = f"import mock\n"
     py_file_contents += "\n".join( [f"{v}=mock.Mock()" for v in  mocked_vars])
     py_file_contents += "\n"+jsondata["pycode"]

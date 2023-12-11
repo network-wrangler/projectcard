@@ -43,8 +43,7 @@
 		{"required":["transit_property_change"]},
 		{"required":["transit_routing_change"]},
 		{"required":["pycode"]},
-		{"required":["changes"]},
-		{"required":["self"]}
+		{"required":["changes"]}
 	],
 	"properties": {
 		"$schema": {"type": "string", "description": "Reference to the project card schema which this file uses. If not specified, will be assumed to be the most recent release."},
