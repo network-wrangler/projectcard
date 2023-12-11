@@ -3,7 +3,7 @@ import os
 from json import JSONDecodeError
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from typing import Union
+from typing import Union, List
 
 import jsonref
 from flake8.api import legacy as flake8
@@ -139,30 +139,36 @@ class PycodeError(Exception):
     pass
 
 
-def _validate_pycode(jsondata: dict) -> None:
+def _validate_pycode(jsondata: dict,mocked_vars:List[str]=["roadway_net","transit_net"]) -> None:
     """Use flake8 to evaluate basic runtime errors on pycode.
 
     Uses mock.MagicMock() for self to mimic RoadwayNetwork or TransitNetwork
     Limitation: will not fail on invalid use of RoadwayNetwork or TransitNetwork APIs
 
     Args:
-        jsondata (dict): project card json data as a python dictionary
+        jsondata: project card json data as a python dictionary
+        mocked_vars: list of variables available in the execution of the code
     """
-    style_guide = flake8.get_style_guide(select=FLAKE8_ERRORS)
+    style_guide = flake8.get_style_guide(select=FLAKE8_ERRORS,ignore=["E","F","W"])
     dir = TemporaryDirectory()
     tmp_py_path = os.path.join(dir.name, "tempcode.py")
     CardLogger.debug(f"Storing temporary python files at: {tmp_py_path}")
-    py_file_contents = f"import mock\nself=mock.Mock()\n" + jsondata["pycode"]
+
+    # Add transit_net and roadway_net as mocked elements
+    py_file_contents = f"import mock\n"
+    py_file_contents += "\n".join( [f"{v}=mock.Mock()" for v in  mocked_vars])
+    py_file_contents += "\n"+jsondata["pycode"]
+
     with open(tmp_py_path, "w") as py_file:
         py_file.write(py_file_contents)
 
     report = style_guide.check_files([tmp_py_path])
-    errors = report._application.report_errors()
-    CardLogger.debug(f"Flake 8 Report:\n {errors}")
-    CardLogger.debug(f"FILE CONTENTS\n{py_file_contents}")
+    
     if report.total_errors:
         CardLogger.error(f"Errors found in {jsondata['project']}")
         CardLogger.debug(f"FILE CONTENTS\n{py_file_contents}")
+        errors = {c:report.get_statistics(c) for c in FLAKE8_ERRORS if report.get_statistics(c)}
+        CardLogger.debug(f"Flake 8 Report:\n {errors}")
         raise PycodeError(
             f"Found {report.total_errors} errors in {jsondata['project']}"
         )
