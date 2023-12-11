@@ -138,7 +138,7 @@ class ProjectCard(object):
     def types(self) -> List[str]:
         if self.sub_projects:
             return [sp.type for sp in self.sub_projects]
-        _ignore = ["project","tags","notes","dependencies","self","pycode","sub_projects","file"]
+        _ignore = ["project","tags","notes","dependencies","self","sub_projects","file"]
         type_keys = [k for k in self.__dict__.keys() if k not in _ignore]
         if not type_keys:
             raise ValueError("Couldn't find type of project card")
