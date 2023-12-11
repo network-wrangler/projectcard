@@ -10,7 +10,7 @@
 	   "service": {"$ref": "../transit/selection/transit_service.json"},
 	   "routing": {
 		    "type": "object",
-			"required": ["existing","set"],
+			"required": ["set"],
 			"additionalProperties" : false,
 			"properties":{
 				"existing":{"type":"array"},
