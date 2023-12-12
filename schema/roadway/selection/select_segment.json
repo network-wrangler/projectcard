@@ -2,16 +2,6 @@
     "$schema": "http://json-schema.org/draft-07/schema",
     "type": "object",
     "id": "facility_roadway",
-    "$defs": {
-        "mode":{
-            "anyOf": [
-                "drive",
-                "walk",
-                "bike",
-                "transit",
-                "any"
-            ]
-    },
     "additionalProperties": false,
     "oneOf": [
         {"required":["links","from","to"]},
@@ -23,7 +13,7 @@
         "links": {"$ref":"select_links.json"},
         "nodes": {"$ref":"select_nodes.json"},
         "from": {"$ref":"select_node.json"},
-        "modes": {"type":"array", "items":{"$ref":"#/$defs/mode"}}},
+        "modes": {"type":"array", "items":{"$ref":"../../defs/mode.json"}},
         "to": {"$ref":"select_node.json"}
     }
 }

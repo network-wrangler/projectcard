@@ -13,6 +13,7 @@
       "all":{"enum":["True","False"]},
       "name":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/name"}},
       "osm_link_id":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/osm_link_id"}},
-      "model_link_id":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/model_link_id"}}
+      "model_link_id":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/model_link_id"}},
+      "mode":{"$ref":"../../defs/mode.json"}
     }
   }
