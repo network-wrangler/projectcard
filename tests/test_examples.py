@@ -20,35 +20,25 @@ def test_read_single_card( example_dir):
     card = read_card(_card_path)
     CardLogger.debug(f"Read card:\n {card}")
     assert card.project == _ex_name
-    
-
-def test_read_dir(all_example_cards, example_dir):
-    CardLogger.info("Testing that all cards in example directory can be read in.")
-    _cards = all_example_cards
-    delim = "\n--------\n"
-    CardLogger.debug(f"Cards:{delim}{delim.join(str(v) for v in _cards.values())}")
-    from projectcard.io import _get_cardpath_list
-
-    _expected_cards = _get_cardpath_list(example_dir)
-    assert len(_cards) == len(_expected_cards)
 
 
 def test_example_valid(all_example_cards):
     CardLogger.info("Testing that all cards in example directory are valid.")
     errors = []
     ok = []
-    for project, card in all_example_cards.items():
-        CardLogger.debug(f"Evaluating: {project}")
+    for pc_path in all_example_cards:
+        card = read_card(pc_path)
+        CardLogger.debug(f"Evaluating: {str(pc_path)}")
         try:
             assert card.valid
         except ValidationError as e:
-            errors.append(project)
+            errors.append(str(pc_path))
             CardLogger.error(e)
         except AssertionError as e:
-            errors.append(project)
+            errors.append(str(pc_path))
             CardLogger.error(e)
         else:
-            ok.append(project)
+            ok.append(str(pc_path))
     _delim = "\n - "
     CardLogger.debug(f"Valid Cards: {_delim}{_delim.join(ok)}")
     if errors:

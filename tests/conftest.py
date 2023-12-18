@@ -56,11 +56,17 @@ def all_bad_schema_files(test_dir):
 
 @pytest.fixture(scope="session")
 def example_dir(base_dir):
-    return os.path.join(base_dir, "examples")
+    return Path(base_dir) /  "examples"
+
+@pytest.fixture(scope="session")
+def all_example_cards(example_dir):
+    """Card files should pass"""
+    card_files =  list(example_dir.iterdir())
+    return card_files
 
 
 @pytest.fixture(scope="session")
 def all_bad_card_files(test_dir):
     """Card files which should fail"""
-    bad_card_files = [p for p in Path(test_dir + "data" + "cards").glob("**/*bad.json")]
+    bad_card_files = [p for p in Path(test_dir + "data" + "cards").glob("**/*bad.yaml")]
     return bad_card_files

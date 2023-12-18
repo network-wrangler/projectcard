@@ -163,7 +163,7 @@ def _validate_pycode(jsondata: dict,mocked_vars:List[str]=["self","roadway_net",
     """
     style_guide = flake8.get_style_guide(select=FLAKE8_ERRORS,ignore=["E","F","W"])
     dir = TemporaryDirectory()
-    tmp_py_path = os.path.join(dir.name, "tempcode.py")
+    tmp_py_path = str(Path(dir.name) / "tempcode.py")
     CardLogger.debug(f"Storing temporary python files at: {tmp_py_path}")
 
     # Add self, transit_net and roadway_net as mocked elements

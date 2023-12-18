@@ -3,9 +3,9 @@ tags:
    - 'example'
 roadway_property_change:
   facility:
-    modes: ['drive']
     links: 
-      all: True
+      modes: ['drive']
+      all: 'True'
       lanes: 2
       bicycle_facility: [0,2,3]
   property_changes:

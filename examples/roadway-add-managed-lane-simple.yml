@@ -8,10 +8,10 @@ roadway_managed_lanes:
     links:
       name:
         - 'I 35E'
-    from:
-      osm_node_id: '961117623'
-    to:
-      osm_node_id: '2564047368'
+      from:
+        osm_node_id: '961117623'
+      to:
+        osm_node_id: '2564047368'
   property_changes:
     segment_id:
       set: 35EHOT-A

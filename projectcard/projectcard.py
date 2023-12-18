@@ -160,6 +160,7 @@ class SubProject(ProjectCard):
         self.parent_project = parent_project
 
         if not len(sp_dictionary) == 1:
+            CardLogger.debug(f"Invalid sp_dictionary with !=1 keys: {sp_dictionary.keys()}")
             raise SubprojectValidationError(f"Subproject of {parent_project.project} \
                  should only have one change. Did you forget to indent the rest of this change?.")
         self._type = list(sp_dictionary.keys())[0]
