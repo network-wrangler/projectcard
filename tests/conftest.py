@@ -59,15 +59,6 @@ def example_dir(base_dir):
     return os.path.join(base_dir, "examples")
 
 
-@pytest.fixture(scope="module")
-def all_example_cards(example_dir):
-    from projectcard import read_cards
-
-    CardLogger.info("Reading cards from example directory.")
-    cards = read_cards(example_dir)
-    return cards
-
-
 @pytest.fixture(scope="session")
 def all_bad_card_files(test_dir):
     """Card files which should fail"""

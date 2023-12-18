@@ -14,6 +14,8 @@ import yaml
 from .logger import CardLogger
 from .projectcard import REPLACE_KEYS, VALID_EXT, ProjectCard
 
+class ProjectCardReadError(Exception):
+    pass
 
 def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):
     """Returns a list of valid paths to project cards given a search string.
@@ -36,7 +38,7 @@ def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):
         CardLogger.debug(f"Getting all files in: {filepath}")
         _paths = [Path(p) for p in Path(filepath).glob("*")]
     else:
-        raise ValueError(f"filepath: {filepath} not understood.")
+        raise ProjectCardReadError(f"filepath: {filepath} not understood.")
     CardLogger.debug(f"All paths: {_paths}")
     _card_paths = [p for p in _paths if p.suffix in valid_ext]
     CardLogger.debug(f"Reading set of paths: {_card_paths}")
@@ -159,7 +161,7 @@ def read_card(filepath: str, validate:bool = False):
         validate: if True, will validate the project card schemea
     """
     if not Path(filepath).is_file():
-        raise ValueError(f"Cannot find project card file: {filepath}")
+        raise FileNotFoundError(f"Cannot find project card file: {filepath}")
     card_dict = read_cards(filepath,_cards={})
     card = list(card_dict.values())[0]
     if validate:
@@ -194,13 +196,13 @@ def read_cards(
     _ext = os.path.splitext(filepath)[1]
     if _ext not in _read_method_map.keys():
         CardLogger.debug(f"Unsupported file type for file {filepath}")
-        raise ValueError(f"Unsupported file type: {_ext}")
+        raise ProjectCardReadError(f"Unsupported file type: {_ext}")
     _card_dict = _read_method_map[_ext](filepath)
     _card_dict = _change_keys(_card_dict)
     _card_dict["file"] = filepath
     _project_name = _card_dict["project"].lower()
     if _project_name in _cards:
-        raise ValueError(
+        raise ProjectCardReadError(
             f"Names not unique from existing scenario projects: {_project_name}"
         )
     if filter_tags and set(list(map(str.lower, _card_dict.get("tags", [])))).isdisjoint(

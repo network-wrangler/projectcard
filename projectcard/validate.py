@@ -22,6 +22,20 @@ PROJECTCARD_SCHEMA = os.path.join(ROOTDIR, "schema", "projectcard.json")
 # F405 name may be undefined, or defined from star imports: module
 FLAKE8_ERRORS = ["E9", "F821", "F823", "F405"]
 
+class ProjectCardValidationError(ValidationError):
+    "Error in formatting of ProjectCard."
+    pass
+class SubprojectValidationError(ProjectCardValidationError):
+    "Error in formatting of Subproject."
+    pass
+class PycodeError(ProjectCardValidationError):
+    "Basic runtime error in python code."
+    pass
+
+class ProjectCardJSONSchemaError(SchemaError):
+    "Error in the ProjectCard json schema"
+    pass
+
 
 def _open_json(schema_path: str) -> dict:
     try:
@@ -30,10 +44,10 @@ def _open_json(schema_path: str) -> dict:
             return _json
     except FileNotFoundError:
         CardLogger.error(f"Schema not found: {schema_path}")
-        raise Exception("Schema definition missing")
+        raise ProjectCardJSONSchemaError("Schema definition missing")
     except JSONDecodeError:
         CardLogger.error(f"Schema not valid JSON: {schema_path}")
-        raise Exception("Schema definition invalid")
+        raise ProjectCardJSONSchemaError("Schema definition invalid")
 
 
 def _load_schema(schema_absolute_path: Union[Path, str]) -> dict:
@@ -90,7 +104,7 @@ def validate_schema_file(schema_path: Union[Path, str] = PROJECTCARD_SCHEMA) -> 
         pass
     except SchemaError as e:
         CardLogger.error(e)
-        raise SchemaError(f"{e}")
+        raise ProjectCardJSONSchemaError(f"{e}")
 
     return True
 
@@ -123,23 +137,18 @@ def validate_card(
         msg = f"\nRelevant schema: {e.schema}\nValidator Value: {e.validator_value}\nValidator: {e.validator}"
         msg += f"\nabsolute_schema_path:{e.absolute_schema_path}\nabsolute_path:{e.absolute_path}"
         CardLogger.error(msg)
-        raise ValidationError(f"{e}")
+        raise ProjectCardValidationError(f"{e}")
     except SchemaError as e:
         CardLogger.error(e)
-        raise SchemaError(f"{e}")
+        raise ProjectCardJSONSchemaError(f"{e}")
 
     if "pycode" in jsondata:
         if "self." in jsondata["pycode"]:
             if not "self" in jsondata:
-                raise ValidationError("If using self, must specify what `self` refers to in yml frontmatter")
+                raise PycodeError("If using self, must specify what `self` refers to in yml frontmatter")
         _validate_pycode(jsondata)
 
     return True
-
-
-class PycodeError(Exception):
-    "Basic runtime error in python code."
-    pass
 
 
 def _validate_pycode(jsondata: dict,mocked_vars:List[str]=["self","roadway_net","transit_net"]) -> None:
