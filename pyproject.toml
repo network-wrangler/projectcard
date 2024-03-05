@@ -20,10 +20,6 @@ classifiers = [
     "Programming Language :: Python :: 3",
 ]
 
-[project.urls]
-Homepage = https://network-wrangler.github.io/projectcard/main/
-
-
 [tool.flake8]
 max-line-length = 99
 ignore = [
