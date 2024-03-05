@@ -18,8 +18,6 @@ def define_env(env):
 
     @env.macro
     def document_schema(schema_filename: str) -> str:
-        import json
-
         from json_schema_for_humans.generate import generate_from_schema
         from json_schema_for_humans.generation_configuration import (
             GenerationConfiguration,
@@ -40,7 +38,7 @@ def define_env(env):
 
         content = generate_from_schema(_abs_schema_path, config=_config)
 
-        ### get content ready for mkdocs
+        # get content ready for mkdocs
         _footer = _get_html_between_tags(content, tag="footer")
         replace_strings = {
             "<!DOCTYPE html>": "",
@@ -96,23 +94,12 @@ def define_env(env):
         return content
 
     def _categories_as_str(card: "ProjectCard") -> str:
-        _change_types = [
-            "roadway_deletion",
-            "roadway_addition",
-            "roadway_managed_lanes",
-            "roadway_property_change",
-        ]
-        _cats = [c for c in card.__dict__ if c in _change_types]
-        if _cats:
-            return _cats[0]
 
-        if len(card.__dict__["changes"]) == 1:
-            _cats = [c for c in card.__dict__["changes"] if c in _change_types]
-            return _cats[0]
+        if len(card.change_types) == 1:
+            return card.change_type
 
         _cat_str = "Multiple Change Categories:<ul>\n"
-        _cats = [c for c in card.__dict__["changes"] if c in _change_types]
-        _cat_str += "".join([f"<li>{c}</li>\n" for c in _cats])
+        _cat_str += "".join([f"<li>{c}</li>\n" for c in card.change_types])
         _cat_str += "</ul>"
 
     def _card_to_md(card: "ProjectCard") -> str:

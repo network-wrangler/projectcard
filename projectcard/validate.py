@@ -145,7 +145,7 @@ def validate_card(jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SC
 
     if "pycode" in jsondata:
         if "self." in jsondata["pycode"]:
-            if not "self_obj_type" in jsondata:
+            if "self_obj_type" not in jsondata:
                 raise PycodeError(
                     "If using self, must specify what `self` refers to in yml frontmatter using self_obj_type: <RoadwayNetwork|TransitNetwork>"
                 )

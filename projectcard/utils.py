@@ -1,4 +1,4 @@
-def findkeys(node, kv):
+def _findkeys(node, kv):
     """Returns values of all keys in various objects.
 
     Adapted from arainchi on Stack Overflow:

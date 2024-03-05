@@ -1,6 +1,6 @@
 import datetime
 from datetime import time
-from typing import Annotated, Any, List
+from typing import Annotated, List
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
@@ -24,12 +24,12 @@ class PC_Time:
 
     @property
     def datetime(self):
-        if type(self.time) == str:
+        if self.time is str:
             if len(self.time.split(":")) == 2:
                 return datetime.datetime.strptime(self.time, "%H:%M")
             else:
                 return datetime.datetime.strptime(self.time, "%H:%M:%S")
-        elif type(self.time) == time:
+        elif self.time is time:
             return self.time
         else:
             raise TimeFormatError("time must be a string or time object")

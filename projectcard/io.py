@@ -4,9 +4,8 @@
 import json
 import logging
 import os
-from glob import glob
 from pathlib import Path
-from typing import Any, Callable, Collection, Mapping, Union
+from typing import Callable, Collection, Mapping, Union
 
 import toml
 import yaml
