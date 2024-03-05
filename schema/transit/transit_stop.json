@@ -1,0 +1,15 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "Transit stop properties.",
+    "type":"object",
+    "$defs":{
+      "stop_id":{
+        "type": "string",
+        "description": "ID for specific transit stop."
+      }
+    },
+    "additionalProperties": true,
+    "properties":{
+        "stop_id":{"$ref":"#/$defs/stop_id"}
+    }
+}

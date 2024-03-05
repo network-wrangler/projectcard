@@ -1,0 +1,19 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type" : "object",
+    "oneOf": [
+        {
+            "required": ["change"],
+            "not": {"required": ["set"]}
+        },
+        {
+            "required": ["set"],
+            "not": {"required": ["change"]}
+        }
+    ],
+    "properties" : {
+        "existing" : {"type": ["number", "string"]},
+        "change" : {"type" : ["number","string"]},
+        "set" : {"type": ["number", "string"]}
+    }
+}

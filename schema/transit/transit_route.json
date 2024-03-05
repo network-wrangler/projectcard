@@ -1,0 +1,47 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "Transit service properties.",
+    "type":"object",
+    "$defs":{
+      "agency_id":{
+        "type": "string",
+        "description": "ID for agency."
+      },
+      "route_id":{
+        "type": "string",
+        "description": "ID for general route."
+      },
+      "route_short_name":{
+        "type": "string",
+        "description": "Route short name."
+      },
+      "route_long_name":{
+        "type": "string",
+        "description": "Route long name."
+      },
+      "route_type":{
+        "type": "integer",
+        "description": "Route type.",
+        "enum": [0, 1, 2, 3, 4, 5, 6, 7, 11, 12],
+        "enumDescriptions": [
+          "Tram, Streetcar, Light rail. Any light rail or street level system within a metropolitan area.",
+          "Subway, Metro. Any underground rail system within a metropolitan area.",
+          "Rail. Used for intercity or long-distance travel.",
+          "Bus. Used for short- and long-distance bus routes.",
+          "Ferry. Used for short- and long-distance boat service.",
+          "Cable tram. Used for street-level rail cars where the cable runs beneath the vehicle, e.g., cable car in San Francisco.",
+          "Aerial lift, suspended cable car (e.g., gondola lift, aerial tramway). Cable transport where cabins, cars, gondolas or open chairs are suspended by means of one or more cables.",
+          "Funicular. Any rail system designed for steep inclines.",
+          "Trolleybus. Electric buses that draw power from overhead wires using poles.",
+          "Monorail. Railway in which the track consists of a single rail or a beam."
+        ]
+      }
+    },
+    "properties":{
+        "route_id":{"$ref":"#/$defs/route_id"},
+        "agency_id":{"$ref":"#/$defs/agency_id"},
+        "route_short_name":{"$ref":"#/$defs/route_short_name"},
+        "route_long_name":{"$ref":"#/$defs/route_long_name"},
+        "route_type":{"$ref":"#/$defs/route_type"}
+    }
+}

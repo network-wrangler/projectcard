@@ -1,0 +1,26 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "requirements for describing multiple transit nodes of a project card (e.g. to delete).",
+    "type": "object",
+    "additionalProperties": false,
+    "title": "Transit network nodes",
+    "oneOf": [
+      {"required": ["stop_id"]},
+      {"required": ["model_node_id"]}
+    ],
+    "examples": [
+      {
+        "stop_id": ["stop1", "stop2"],
+        "require": "any"
+      },
+      {
+        "model_node_id": [1, 2],
+        "require": "all"
+      }
+    ],
+   "properties":{
+      "stop_id":{"type":"array","minItems":1,"items":{"$ref":"../transit_stop.json#/$defs/stop_id"}},
+      "model_node_id":{"type":"array","minItems": 1,"items":{"$ref":"../../roadway/roadway_node.json#/$defs/model_node_id"}},
+      "require":{"type": "string", "enum": ["any", "all"]}
+    }
+  }

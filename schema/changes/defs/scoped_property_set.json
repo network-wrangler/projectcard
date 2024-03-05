@@ -1,0 +1,75 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type" : "object",
+    "$defs": {
+        "set_num": {"type": "number", "minimum": 0},
+        "change_num": {"type": "number"},
+        "timespan_scoped_property_set_item":{
+            "type": "object",
+            "examples": [
+              {"timespan":["7:00","9:00"],"set":0.50}
+            ],
+            "oneOf": [
+              {
+                "required": ["timespan","set"]
+              },
+              {
+                "required": ["timespan","change"]
+              }
+            ],
+            "properties":{
+              "set": {"$ref": "#/$defs/set_num"},
+              "change": {"$ref": "#/$defs/change_num"},
+              "timespan": {"$ref": "../../defs/timespan.json"}
+              }
+          },
+        "category_scoped_property_set_item":{
+            "type": "object",
+            "examples": [
+              {"category":["sov"],"set":0.50},
+              {"category":["hov2"],"timeofday":[{"timespan":["7:00","9:00"],"change":-1}]}
+            ],
+            "oneOf": [
+              {
+                "required": ["category","set"]
+              },
+              {
+                "required": ["category","change"]
+              },
+              {
+                "required": ["category","timeofday"]
+              }
+            ],
+            "properties":{
+              "set": {"$ref": "#/$defs/set_num"},
+              "change": {"$ref": "#/$defs/change_num"},
+              "timeofday": {"type": "array","items":{"$ref": "#/$defs/timespan_scoped_property_set_item"}}
+              }
+          }
+    },
+    "oneOf": [
+      {
+        "required": ["set","timeofday"],
+        "not": {"required": ["change"]}
+      },
+      {
+        "required": ["set","group"],
+        "not": {"required": ["change"]}
+      },
+      {
+        "required": ["change","timeofday"],
+        "not": {"required": ["set"]}
+      },
+      {
+        "required": ["set","group"],
+        "not": {"required": ["set"]}
+      }
+    ],
+    "properties" : {
+        "existing" : {"type": ["number", "string"]},
+        "set" : {"$ref": "#/$defs/set_num"},
+        "change" : {"$ref": "#/$defs/change_num"},
+        "timeofday" : {"$ref": "#/$defs/timespan_scoped_property_set_item"},
+        "group" : {"$ref": "#/$defs/category_scoped_property_set_item"}
+    }
+}

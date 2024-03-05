@@ -1,0 +1,89 @@
+#!/bin/bash
+
+# This script updates the Pydantic models based on JSON schemas.
+# It takes a directory containing JSON schemas as input and generates Pydantic models for each schema file.
+# The generated models are saved in an output directory.
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+SCHEMA_DIR="$(cd "$SCRIPT_DIR/../schema" && pwd)"
+OUTPUT_DIR="$(cd "$SCRIPT_DIR/../projectcard/models/generated" && pwd)"
+SCHEMA_PATH=$SCHEMA_DIR/"projectcard.json"
+OUTPUT_V1="$OUTPUT_DIR/v1"
+OUTPUT_V2="$OUTPUT_DIR/v2"
+
+MODEL_NAME="ProjectCardModel"
+
+# Check if the schema file exists
+if [ ! -f "$SCHEMA_PATH" ]; then
+    echo "Schema file not found: $SCHEMA_PATH"
+    exit 1
+fi
+
+echo "Found schema: $SCHEMA_PATH"
+
+
+# Define the list of requirements
+requirements=("check-jsonschema" "datamodel-codegen")
+
+# Loop through the requirements
+for requirement in "${requirements[@]}"; do
+    # Check if the requirement is installed
+    if ! command -v "$requirement" &> /dev/null; then
+        echo "$requirement is not installed. Would you like to install it using pip or conda? (pip/conda/mamba)"
+        read install_choice
+        if [ "$install_choice" == "pip" ]; then
+            pip install "$requirement"
+        elif [ "$install_choice" == "conda" ]; then
+            conda install "$requirement"
+        elif [ "$install_choice" == "mamba" ]; then
+            mamba install "$requirement"
+        else
+            echo "$requirement is required for this script. Exiting..."
+            exit 1
+        fi
+    fi
+done
+
+# Validate the JSON/YAML schema using the jsonschema command-line tool
+check-jsonschema --check-metaschema "$SCHEMA_PATH"
+exit_code=$?
+
+# If the validation is successful, generate a Pydantic model for the schema file
+if [ $exit_code -eq 0 ]; then
+    # Generate the Pydanticv1 model
+    datamodel-codegen --input "$SCHEMA_PATH" \
+        --input-file-type "jsonschema" \
+        --output-model-type "pydantic.BaseModel" \
+        --output "$OUTPUT_V1" \
+        --use-schema-description \
+        --field-constraints \
+        --reuse-model \
+        --use-annotated \
+        --class-name "$MODEL_NAME"
+
+    python $SCRIPT_DIR/"_modify_model.py" $OUTPUT_V1 --pydantic-v1
+    black $OUTPUT_V1
+
+    if [ $? -eq 0 ]; then
+        # Echo the location of the generated file
+        echo "Wrote v1 pydantic model to: $OUTPUT_V1"
+    fi
+
+    # Generate the Pydanticv2 model
+    datamodel-codegen --input "$SCHEMA_PATH" \
+        --input-file-type "jsonschema" \
+        --output-model-type "pydantic_v2.BaseModel" \
+        --output "$OUTPUT_V2" \
+        --use-schema-description \
+        --field-constraints \
+        --reuse-model \
+        --use-annotated \
+        --class-name "$MODEL_NAME"
+
+    python $SCRIPT_DIR/"_modify_model.py" $OUTPUT_V2
+    black $OUTPUT_V2
+    if [ $? -eq 0 ]; then
+        # Echo the location of the generated file
+        echo "Wrote v2 pydantic model to: $OUTPUT_V2"
+    fi
+fi
