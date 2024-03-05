@@ -14,8 +14,10 @@ import yaml
 from .logger import CardLogger
 from .projectcard import REPLACE_KEYS, VALID_EXT, ProjectCard
 
+
 class ProjectCardReadError(Exception):
     pass
+
 
 def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):
     """Returns a list of valid paths to project cards given a search string.
@@ -153,23 +155,25 @@ _read_method_map = {
     ".wrangler": _read_wrangler,
 }
 
-def read_card(filepath: str, validate:bool = False):
+
+def read_card(filepath: str, validate: bool = False):
     """Read single project card from a path and return project card object.
-    
+
     args:
         filepath: file where the project card is.
         validate: if True, will validate the project card schemea
     """
     if not Path(filepath).is_file():
         raise FileNotFoundError(f"Cannot find project card file: {filepath}")
-    card_dict = read_cards(filepath,_cards={})
+    card_dict = read_cards(filepath, _cards={})
     card = list(card_dict.values())[0]
     if validate:
         assert card.valid
     return card
 
+
 def read_cards(
-    filepath: Union[Collection[str],str],
+    filepath: Union[Collection[str], str],
     filter_tags: Collection[str] = [],
     _cards: Mapping[str, ProjectCard] = {},
 ) -> Mapping[str, ProjectCard]:
@@ -184,15 +188,15 @@ def read_cards(
 
     Returns: dictionary of project cards by project name
     """
-    CardLogger.debug(f"Reading cards from {filepath}." )
+    CardLogger.debug(f"Reading cards from {filepath}.")
 
     filter_tags = list(map(str.lower, filter_tags))
-    if isinstance(filepath,list) or not os.path.isfile(filepath):
+    if isinstance(filepath, list) or not os.path.isfile(filepath):
         _card_paths = _get_cardpath_list(filepath, valid_ext=_read_method_map.keys())
         for p in _card_paths:
             _cards.update(read_cards(p, filter_tags=filter_tags, _cards=_cards))
         return _cards
-    
+
     _ext = os.path.splitext(filepath)[1]
     if _ext not in _read_method_map.keys():
         CardLogger.debug(f"Unsupported file type for file {filepath}")
@@ -208,10 +212,8 @@ def read_cards(
     if filter_tags and set(list(map(str.lower, _card_dict.get("tags", [])))).isdisjoint(
         set(filter_tags)
     ):
-        CardLogger.debug(
-            f"Skipping {_project_name} - no overlapping tags with {filter_tags}."
-        )
+        CardLogger.debug(f"Skipping {_project_name} - no overlapping tags with {filter_tags}.")
         return _cards
     _cards[_project_name] = ProjectCard(_card_dict)
-    
+
     return _cards

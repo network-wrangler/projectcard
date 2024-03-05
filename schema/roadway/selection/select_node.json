@@ -8,6 +8,14 @@
         {"required":["osm_node_id"]},
         {"required":["model_node_id"]}
       ],
+    "examples": [
+        {
+            "osm_node_id": "12345"
+        },
+        {
+            "model_node_id": 67890
+        }
+    ],
     "properties":{
         "osm_node_id":{"$ref":"../roadway_node.json#/$defs/osm_node_id"},
         "model_node_id":{"$ref":"../roadway_node.json#/$defs/model_node_id"}

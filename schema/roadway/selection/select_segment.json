@@ -3,17 +3,44 @@
     "type": "object",
     "id": "facility_roadway",
     "additionalProperties": false,
-    "oneOf": [
+    "anyOf": [
         {"required":["links","from","to"]},
         {"required":["links"]},
         {"required":["nodes"]}
       ],
 	"title": "Roadway Facility Selection",
+    "examples":[
+        {
+            "links": {
+                "name": ["Main Street"]
+            },
+            "from": {
+                "model_node_id": 1
+            },
+            "to": {
+                "model_node_id": 2
+            }
+        },
+        {
+            "nodes": {
+                "osm_node_id": ["1","2","3"]
+            }
+        },
+        {
+            "nodes": {
+                "model_node_id": [1,2,3]
+            }
+        },
+        {
+            "links": {
+                "model_link_id": [1,2,3]
+            }
+        }
+    ],
     "properties": {
         "links": {"$ref":"select_links.json"},
         "nodes": {"$ref":"select_nodes.json"},
         "from": {"$ref":"select_node.json"},
-        "modes": {"type":"array", "items":{"$ref":"../../defs/mode.json"}},
         "to": {"$ref":"select_node.json"}
     }
 }

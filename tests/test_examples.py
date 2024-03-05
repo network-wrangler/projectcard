@@ -4,18 +4,19 @@ USAGE:
     pytest --log-cli-level=10
 """
 import os
+from pathlib import Path
 
 import pytest
 from jsonschema.exceptions import ValidationError
 
-from projectcard import CardLogger, read_cards, read_card
+from projectcard import CardLogger, read_card, read_cards
 
-@pytest.mark.menow
-def test_read_single_card( example_dir):
+
+def test_read_single_card(example_dir):
     CardLogger.info("Testing that a single card in example directory can be read in.")
     _ex_name = "example roadway add"
     _ex_file = "roadway-add.yml"
-    _card_path = os.path.join(example_dir,_ex_file)
+    _card_path = os.path.join(example_dir, _ex_file)
     CardLogger.debug(f"Reading {_card_path}")
     card = read_card(_card_path)
     CardLogger.debug(f"Read card:\n {card}")
@@ -50,6 +51,14 @@ def test_example_valid(all_example_cards):
     CardLogger.info(f"Evaluated {len(all_example_cards)} schema files")
 
 
+@pytest.fixture(scope="session")
+def all_bad_card_files(test_dir):
+    """Card files which should fail"""
+    _card_dir = Path(test_dir) / "data" / "cards"
+    bad_card_files = [p for p in _card_dir.glob("**/*bad.yaml")]
+    return bad_card_files
+
+
 def test_bad_cards(all_bad_card_files):
     for s in all_bad_card_files:
         try:
@@ -58,8 +67,8 @@ def test_bad_cards(all_bad_card_files):
         except:
             pass
         else:
-            CardLogger.error(f"Schema should not be valid: {s}")
+            CardLogger.error(f"Card should not be valid: {s}")
             raise ValueError(
-                "Schema shouldn't be valid but is not raising an error in validate_schema_file"
+                "Card shouldn't be valid but is not raising an error in validate_schema_file"
             )
     CardLogger.info(f"Evaluated {len(all_bad_card_files)} bad card files")

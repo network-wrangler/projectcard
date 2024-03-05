@@ -7,7 +7,7 @@
 	],
 	"additionalProperties" : false,
 	"properties": {
-	   "service": {"$ref": "../transit/selection/transit_service.json"},
+	   "service": {"$ref": "../transit/selection/select_trips.json"},
 	   "routing": {
 		    "type": "object",
 			"required": ["set"],

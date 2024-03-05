@@ -12,7 +12,7 @@
       "description": "The Intersectionid Schema",
       "examples": ["4d0231aa0ebb779f142c2518703ee481"]
     },
-    "shstReferenceId": {
+    "shstReferenceId_link": {
       "type": "string",
       "description": "The Shstreferenceid Schema",
       "examples": [ "6a22969708104ae2497244f3d079381d"]
@@ -81,24 +81,29 @@
       "description": "The Locationreferences Schema",
       "items": {"$ref": "#/$defs/locationReference"}
     },
+    "scoped_number_property_value":{
+      "oneOf": [
+        {"$ref": "#/$defs/number_property.by_time-of-day"},
+        {"$ref": "#/$defs/number_property.by_access-category"},
+        {"$ref": "#/$defs/number_property.by_access-category-and-time-of-day"}
+      ]
+    },
     "lanes":{
       "oneOf": [
         {"type": "number","minimum":0},
-        {"$ref": "#/$defs/property.by_time-of-day"},
-        {"$ref": "#/$defs/property.by_access-category"},
-        {"$ref": "#/$defs/property.by_access-category-and-time-of-day"}
+        {"$ref": "#/$defs/scoped_number_property_value"}
       ],
-      "examples": [2,5,{"default":1,"timeofday":{"time":["6:00","9:00"],"value":2}}],
+      "examples": [2,5,{"default":1,"timeofday":{"timespan":["6:00","9:00"],"value":2}}],
       "description": "Number of lanes either in simple or complex terms."
     },
     "ML_lanes":{
       "$ref": "#/$defs/lanes",
       "description": "Lanes for a parallel managed lane facility."
     },
-    "property.by_time-of-day":{
+    "number_property.by_time-of-day":{
       "type": "object",
       "examples": [
-        {"default":1,"timeofday":[{"time":["7:00","9:00"],"value":0.50}]}
+        {"default":1,"timeofday":[{"timespan":["7:00","9:00"],"value":0.50}]}
       ],
       "required": ["default","timeofday"],
       "properties":{
@@ -107,16 +112,16 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["time","value"],
+            "required": ["timespan","value"],
             "properties": {
-              "time": {"$ref": "../defs/timespan.json"},
+              "timespan": {"$ref": "../defs/timespan.json"},
               "value": {"type": "number","minimum":0}
             }
           }
         }
       }
     },
-    "property.by_access-category":{
+    "number_property.by_access-category":{
       "type": "object",
       "required": ["default","groups"],
       "examples": [
@@ -137,11 +142,11 @@
         }
       }
     },
-    "property.by_access-category-and-time-of-day":{
+    "number_property.by_access-category-and-time-of-day":{
       "type": "object",
       "required": ["default","timeofday"],
       "examples": [
-        {"default":1,"timeofday":[{"time":["7:00","9:00"],"category":["HOV2"],"value":0.50}]}
+        {"default":1,"timeofday":[{"timespan":["7:00","9:00"],"category":["HOV2"],"value":0.50}]}
       ],
       "properties":{
         "default": {"type": "number","minimum":0},
@@ -149,10 +154,10 @@
           "type": "array",
           "items": {
             "type": "object",
-            "required": ["category","time","value"],
+            "required": ["category","timespan","value"],
             "properties": {
               "category": {"type": "array","items":{"type":"string"}},
-              "time": {"$ref": "../defs/timespan.json"},
+              "timespan": {"$ref": "../defs/timespan.json"},
               "value": {"type": "number","minimum":0}
             }
           }
@@ -162,9 +167,7 @@
     "price":{
       "oneOf": [
         {"type": "number","minimum":0},
-        {"$ref": "#/$defs/property.by_time-of-day"},
-        {"$ref": "#/$defs/property.by_access-category"},
-        {"$ref": "#/$defs/property.by_access-category-and-time-of-day"}
+        {"$ref": "#/$defs/scoped_number_property_value"}
       ],
       "examples": [0.75,2.90,{"default":1,"timeofday":{"time":["6:00","9:00"],"value":2}}],
       "description": "Price of facility, either as a positive number of a complex type by time of day and/or access category."
@@ -202,17 +205,13 @@
       "type": ["string","integer"],
       "description": "An identifier for segments of roadway. Can be useful for querying and setting values for parts of facilities, summary scripts, etc."
     },
-    "ML_access":{
+    "ML_access_egress":{
       "oneOf": [
         {"type":"string","value":"all"},
         {"type":"array","items":{"$ref": "#/$defs/node"},"minItems":1}
       ],
       "examples":["all",[123,5543]],
-      "description": "Indicates where a managed lane facility can by accessed either by indicating `all` for everywhere, or listing foreign keys to specific A-nodes."
-    },
-    "ML_egress":{
-      "$ref": "#/$defs/ML_access",
-      "description": "Indicates where a managed lane facility can by existed either by indicating `all` for everywhere, or listing foreign keys to specific B-nodes."
+      "description": "Indicates where a managed lane facility can by accessed or exited either by indicating `all` for everywhere, or listing foreign keys to specific A-nodes."
     }
   },
   "title": "Roadway links",
@@ -224,16 +223,34 @@
     "roadway",
     "lanes",
     "walk_access",
+    "bike_access",
     "drive_access",
     "bus_only",
     "rail_only"
+  ],
+  "examples":[
+    {
+      "A": 123,
+      "B": 5543,
+      "model_link_id": 123,
+      "name": "Elm Street",
+      "roadway": "residential",
+      "lanes": 2,
+      "price": 0.75,
+      "walk_access": 1,
+      "bike_access": 1,
+      "bike_facility": 1,
+      "drive_access": 1,
+      "bus_only": 0,
+      "rail_only": 0
+    }
   ],
   "properties": {
     "A":{"$ref": "#/$defs/node"},
     "B":{"$ref": "#/$defs/node"},
     "model_link_id":{"$ref": "#/$defs/model_link_id"},
     "osm_link_id":{"$ref": "#/$defs/osm_link_id"},
-    "shstReferenceId":{"$ref": "#/$defs/shstReferenceId"},
+    "shstReferenceId":{"$ref": "#/$defs/shstReferenceId_link"},
     "shstGeometryId":{"$ref": "#/$defs/shstGeometryId"},
     "locationReferences":{"$ref": "#/$defs/locationReferences"},
     "name":{"$ref": "#/$defs/name"},
@@ -243,8 +260,8 @@
     "price":{"$ref": "#/$defs/price"},
     "ML_lanes":{"$ref": "#/$defs/lanes"},
     "ML_price":{"$ref": "#/$defs/ML_price"},
-    "ML_access":{"$ref": "#/$defs/ML_access"},
-    "ML_egress":{"$ref": "#/$defs/ML_egress"},
+    "ML_access":{"$ref": "#/$defs/ML_access_egress"},
+    "ML_egress":{"$ref": "#/$defs/ML_access_egress"},
     "walk_access":{"$ref": "#/$defs/walk_access"},
     "bike_access":{"$ref": "#/$defs/bike_access"},
     "bike_facility":{"$ref": "#/$defs/bike_facility"},

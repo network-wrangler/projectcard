@@ -5,7 +5,6 @@
 		"change_roadway_deletion": { "$ref": "changes/roadway_deletion.json"},
 		"change_roadway_addition": { "$ref": "changes/roadway_addition.json"},
 		"change_roadway_property_change": { "$ref": "changes/roadway_property_change.json"},
-		"change_roadway_managed_lanes": { "$ref": "changes/roadway_managed_lanes.json"},
 		"transit_property_change": { "$ref": "changes/transit_property_change.json"},
 		"transit_routing_change": { "$ref": "changes/transit_routing_change.json"},
 		"pycode":{ "type": "string" },
@@ -15,7 +14,7 @@
 				"roadway_deletion": { "$ref": "#/$defs/change_roadway_deletion"},
 				"roadway_addition": { "$ref": "#/$defs/change_roadway_addition"},
 				"roadway_property_change": { "$ref": "#/$defs/change_roadway_property_change"},
-				"roadway_managed_lanes": { "$ref": "#/$defs/change_roadway_managed_lanes"},
+				"roadway_managed_lanes": { "$ref": "#/$defs/change_roadway_property_change"},
 				"transit_property_change": { "$ref": "#/$defs/transit_property_change"},
 				"transit_routing_change": { "$ref": "#/$defs/transit_routing_change"},
 				"pycode": { "$ref": "#/$defs/pycode"}
@@ -53,12 +52,12 @@
 		"roadway_deletion": { "$ref": "#/$defs/change_roadway_deletion"},
 		"roadway_addition": { "$ref": "#/$defs/change_roadway_addition"},
 		"roadway_property_change": { "$ref": "#/$defs/change_roadway_property_change"},
-		"roadway_managed_lanes": { "$ref": "#/$defs/change_roadway_managed_lanes"},
+		"roadway_managed_lanes": { "$ref": "#/$defs/change_roadway_property_change"},
 		"transit_property_change":{ "$ref": "#/$defs/transit_property_change"},
 		"transit_routing_change":{ "$ref": "#/$defs/transit_routing_change"},
 		"pycode":{ "$ref": "#/$defs/pycode"},
 		"changes": {"type": "array","items":{"$ref": "#/$defs/change"}},
-		"self": {"type": "string","enum": ["RoadwayNetwork","TransitNetwork"],"description":"For calculated project cards, must refer to the object to perform the calculation on. "},
+		"self_obj_type": {"type": "string","enum": ["RoadwayNetwork","TransitNetwork"],"description":"For calculated project cards, must refer to the object to perform the calculation on. "},
 		"notes": {"type": "string"}
 	}
 }

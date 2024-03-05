@@ -1,23 +1,5 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-	"$defs":{
-        "set": {
-            "type" : "object",
-            "required": ["set"],
-            "properties" : {
-                "existing" : {"type": ["number", "string"]},
-                "set" : {"type": ["number", "string"]}
-            }
-        },
-        "existing_change": {
-            "type" : "object",
-            "required": ["existing","change"],
-            "properties" : {
-                "existing" : {"type" : "number"},
-                "change" : {"type" : "number"}
-            }
-        }
-    },
     "type": "object",
 	"required": [
 		"facility",
@@ -29,9 +11,12 @@
 	   "property_changes": {
 		    "type": "object",
             "minItems":1,
-		    "oneOf": [
-                {"patternProperties":{".*": {"$ref": "#/$defs/set"}}},
-                {"patternProperties":{".*": {"$ref": "#/$defs/existing_change"}}}
+		    "anyOf": [
+                {"patternProperties":{".*": {"$ref": "defs/property_set.json"}}},
+				{"price": {"$ref": "defs/scoped_property_set.json"}},
+				{"lanes": {"$ref": "defs/scoped_property_set.json"}},
+				{"ML_price": {"$ref": "defs/scoped_property_set.json"}},
+				{"ML_lanes": {"$ref": "defs/scoped_property_set.json"}}
             ]
 	    }
     }

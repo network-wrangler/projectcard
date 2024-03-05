@@ -8,10 +8,10 @@ roadway_property_change:
       osm_link_id:
         - '1234'
         - '2345'
-      from:
-        osm_node_id: '4321'
-      to:
-        osm_node_id: '4322'
+    from:
+      osm_node_id: '4321'
+    to:
+      osm_node_id: '4322'
   property_changes:
     lanes:
       set: 2

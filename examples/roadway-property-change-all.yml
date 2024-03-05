@@ -3,7 +3,7 @@ tags:
    - 'example'
 roadway_property_change:
   facility:
-    links: 
+    links:
       modes: ['drive']
       all: 'True'
       lanes: 2

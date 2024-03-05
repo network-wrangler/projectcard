@@ -56,9 +56,7 @@ def define_env(env):
         return content
 
     @env.macro
-    def include_file(
-        filename: str, downshift_h1=True, start_line: int = 0, end_line: int = None
-    ):
+    def include_file(filename: str, downshift_h1=True, start_line: int = 0, end_line: int = None):
         """
         Include a file, optionally indicating start_line and end_line.
 
@@ -149,9 +147,7 @@ def define_env(env):
         )
 
         def _card_to_mdrow(card, fields):
-            _md_row = (
-                f"| [{card.project}](#{_make_slug(card.project).replace('_','-')}) | "
-            )
+            _md_row = f"| [{card.project}](#{_make_slug(card.project).replace('_','-')}) | "
             _md_row += f"{_categories_as_str(card)}" " |\n"
             return _md_row
 

@@ -1,4 +1,4 @@
-import os
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -7,36 +7,44 @@ from projectcard import CardLogger
 
 
 @pytest.fixture(scope="session")
+def update_datamodels():
+    """Run update_data_models script before every test run."""
+    base_dir = Path(__file__).resolve().parent.parent
+    update_script = base_dir / "bin" / "update_data_models"
+    subprocess.run([update_script], check=True)
+
+
+@pytest.fixture(scope="session")
 def base_dir():
-    return os.path.dirname(os.path.dirname(os.path.realpath(__file__)))
+    return Path(__file__).resolve().parent.parent
 
 
 @pytest.fixture(scope="session")
 def test_dir():
-    return os.path.dirname(os.path.realpath(__file__))
+    return Path(__file__).resolve().parent
 
 
 @pytest.fixture(scope="session")
-def test_out_dir(test_dir):
-    _test_out_dir = os.path.join(test_dir, "out")
-    if not os.path.exists(_test_out_dir):
-        os.mkdir(_test_out_dir)
+def test_out_dir(test_dir: Path):
+    _test_out_dir = test_dir / "out"
+    if not _test_out_dir.exists():
+        _test_out_dir.mkdir()
     return _test_out_dir
 
 
 @pytest.fixture(scope="session", autouse=True)
-def test_logging(test_out_dir):
+def test_logging(test_out_dir: Path):
     from projectcard import setup_logging
 
     setup_logging(
-        info_log_filename=os.path.join(test_out_dir, "tests.info.log"),
-        debug_log_filename=os.path.join(test_out_dir, "tests.debug.log"),
+        info_log_filename=test_out_dir / "tests.info.log",
+        debug_log_filename=test_out_dir / "tests.debug.log",
     )
 
 
 @pytest.fixture(scope="session")
-def schema_dir(base_dir):
-    return os.path.join(base_dir, "schema")
+def schema_dir(base_dir: Path):
+    return base_dir / "schema"
 
 
 @pytest.fixture(scope="session")
@@ -46,27 +54,12 @@ def all_schema_files(schema_dir):
 
 
 @pytest.fixture(scope="session")
-def all_bad_schema_files(test_dir):
-    """Schema files which should fail"""
-    bad_schema_files = [
-        p for p in Path(test_dir + "data" + "schemas").glob("**/*bad.json")
-    ]
-    return bad_schema_files
+def example_dir(base_dir: Path):
+    return Path(base_dir) / "examples"
 
-
-@pytest.fixture(scope="session")
-def example_dir(base_dir):
-    return Path(base_dir) /  "examples"
 
 @pytest.fixture(scope="session")
 def all_example_cards(example_dir):
     """Card files should pass"""
-    card_files =  list(example_dir.iterdir())
+    card_files = list(example_dir.iterdir())
     return card_files
-
-
-@pytest.fixture(scope="session")
-def all_bad_card_files(test_dir):
-    """Card files which should fail"""
-    bad_card_files = [p for p in Path(test_dir + "data" + "cards").glob("**/*bad.yaml")]
-    return bad_card_files
