@@ -1,0 +1,52 @@
+project: add_transit_test
+tags:
+- 'add new transit services'
+dependencies: ''
+category: Add New Transit
+routes:
+- route_id: "1"
+  route_short_name: "A"
+  route_long_name: "commuter rail line A"
+  route_type: 2
+  agency_raw_name: "metro_transit_10_27_23"
+  agency_id: "0"
+shapes:
+- shape_id: "1111"
+  agency_raw_name: "metro_transit_10_27_23"
+  shape_model_node_id:
+    - 16505
+    - 196629
+    - 11089
+    - 11234
+    - 18129
+- shape_id: "1112"
+  agency_raw_name: "metro_transit_10_27_23"
+  shape_model_node_id:
+    - 18129
+    - 11234
+    - 11089
+    - 196629
+    - 16505
+trips:
+- trip_id: "122"
+  headway_secs: 3600
+  time_of_day: ['06:00:00', '10:00:00']
+  route_id: "1"
+  direction_id: 0
+  agency_raw_name: "metro_transit_10_27_23"
+  shape_id: "1111"
+  stop_sequence:
+    - 16505
+    - 196629
+    - 18129
+- trip_id: "133"
+  headway_secs: 3600
+  time_of_day: ['06:00:00', '10:00:00']
+  route_id: "1"
+  direction_id: 1
+  agency_raw_name: "metro_transit_10_27_23"
+  shape_id: "1112"
+  stop_sequence:
+    - 18129
+    - 196629
+    - 16505
