@@ -10,4 +10,5 @@ setup(
         "jsonschema"
     ],
     scripts=["bin/validate_card"],
+    include_package_data=True,
 )
