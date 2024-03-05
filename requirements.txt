@@ -7,7 +7,7 @@ json-schema-for-humans
 jsonref
 jsonschema
 jsonschema2md
-mike
+mike<2.0
 mkdocs
 mkdocs-autorefs
 mkdocs-awesome-pages-plugin
