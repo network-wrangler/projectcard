@@ -1,16 +1,16 @@
 [build-system]
 requires = ["setuptools", "wheel"]
+
 [project]
-requires = ["jsonschema"]
 name = "projectcard"
 version = "0.0.1"
 description = ""
+license =  {file = "LICENSE"}
 readme = "README.md"
 authors = [
     { name = "Your Name", email = "your.email@example.com" },
 ]
-license = "Apache-2.0"
-homepage = "https://github.com/network-wrangler/projectcard"
+
 classifiers = [
     "Development Status :: 1 - Planning",
     "License :: OSI Approved :: Apache Software License",
@@ -19,6 +19,11 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
 ]
+
+[project.urls]
+Homepage = https://network-wrangler.github.io/projectcard/main/
+
+
 [tool.flake8]
 max-line-length = 99
 ignore = [
