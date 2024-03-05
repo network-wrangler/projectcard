@@ -1,0 +1,52 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "Transit trip properties.",
+    "type":"object",
+    "$defs":{
+      "trip_id":{
+        "type": "string",
+        "description": "ID for Individual trip a transit vehicle takes.."
+      },
+      "shape_id":{
+        "type": "string",
+        "description": "ID for shape trip is following."
+      },
+      "service_id":{
+        "type": "string",
+        "description": "ID for service schedule."
+      },
+      "trip_short_name":{
+        "type": "string",
+        "description": "Route short name, often something like `38X`."
+      },
+      "trip_headsign":{
+        "type": "string",
+        "description": "Trip Headsign."
+      },
+      "direction_id":{
+        "type":"integer",
+        "enum":[0,1],
+        "description": "Consistent with GTFS definition defining outbound vs inbound routes."
+      },
+      "headway_secs":{
+        "type": "integer",
+        "description": "Headway between trips in seconds."
+      },
+      "routing":{
+        "type":"array",
+        "items":{"type":"integer"},
+        "description": "List of nodes that the trip traverses with a `-` in front of nodes where the service does not stop."
+      }
+    },
+    "properties":{
+        "trip_id":{"$ref":"#/$defs/trip_id"},
+        "service_id":{"$ref":"#/$defs/service_id"},
+        "shape_id":{"$ref":"#/$defs/shape_id"},
+        "route_id":{"$ref":"transit_route.json#/$defs/route_id"},
+        "trip_headsign":{"$ref":"#/$defs/trip_headsign"},
+        "trip_short_name":{"$ref":"#/$defs/trip_short_name"},
+        "direction_id":{"$ref":"#/$defs/direction_id"},
+        "headway_secs":{"$ref":"#/$defs/headway_secs"},
+        "routing":{"$ref":"#/$defs/routing"}
+    }
+}

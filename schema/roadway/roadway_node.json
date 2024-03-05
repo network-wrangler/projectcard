@@ -1,0 +1,88 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "Requirements for roadway nodes.",
+  "type":"object",
+  "$defs":{
+    "model_node_id":{
+      "type": "integer",
+      "uniqueItems": true,
+      "description": "Primary key to the nodes object."
+    },
+    "point": {
+      "type": "array",
+      "description": "The Point Schema",
+      "minItems": 2,
+      "maxItems": 3,
+      "prefixItems": [
+        {"$ref": "#/$defs/X"},
+        {"$ref": "#/$defs/Y"}
+      ],
+      "items":{"$ref": "#/$defs/Z"}
+    },
+    "X": {
+      "type": "number",
+      "description": "X coordinate (e.g. Longitude)"
+    },
+    "Y": {
+      "type": "number",
+      "description": "Y coordinate (e.g. Latitude)"
+    },
+    "Z": {
+      "type": "number",
+      "description": "Z coordinate (e.g. Altitude)"
+    },
+    "osm_node_id":{
+      "type": "string",
+      "examples": ["954734870"],
+      "description":"Reference to the corresponding Open Street Map node."
+    },
+    "shstReferenceId_node":{
+      "type": "string",
+      "examples": ["0751f5ce12472360fed0d0e80ceae35c"],
+      "description":"Shared streets node ID reference."
+    },
+    "walk_node":{
+      "type":["integer","boolean"] ,
+      "description": "Indicates node is part of the pedestrian network. Useful for exporting or querying networks by mode."
+    },
+    "bike_node":{
+      "type":["integer","boolean"],
+      "description": "Indicates node is part of the bike network. Useful for exporting or querying networks by mode."
+    },
+    "drive_node":{
+      "type":["integer","boolean"],
+      "description": "Indicates node is part of the driving network. Useful for exporting or querying networks by mode."
+    },
+    "transit_node":{
+      "type":["integer","boolean"],
+      "description": "Indicates node is part of the transit network. Useful for exporting or querying networks by mode."
+    }
+  },
+  "title": "Roadway nodes",
+  "required": [
+    "model_node_id",
+    "X",
+    "Y"
+  ],
+  "examples": [
+    {
+      "model_node_id": 1,
+      "X": -122.419,
+      "Y": 37.774
+    }
+  ],
+  "properties": {
+    "model_node_id":{"$ref": "#/$defs/model_node_id"},
+    "osm_node_id":{"$ref": "#/$defs/osm_node_id"},
+    "shstReferenceId":{"$ref": "#/$defs/shstReferenceId_node"},
+    "outboundReferenceIds":{"type":"array","items":{"$ref": "roadway_link.json#/$defs/shstReferenceId_link"}},
+    "inboundReferenceIds":{"type":"array","items":{"$ref": "roadway_link.json#/$defs/shstReferenceId_link"}},
+    "walk_node":{"$ref": "#/$defs/walk_node"},
+    "bike_node":{"$ref": "#/$defs/bike_node"},
+    "drive_node":{"$ref": "#/$defs/drive_node"},
+    "transit_node":{"$ref": "#/$defs/transit_node"},
+    "X":{"$ref": "#/$defs/X"},
+    "Y":{"$ref": "#/$defs/Y"},
+    "Z":{"$ref": "#/$defs/Z"}
+  }
+}

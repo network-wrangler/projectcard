@@ -1,32 +1,29 @@
 #!/usr/bin/env python3
-USAGE = "validate_card search_dir --filter_tags ['baseline2030']"
+"""Validates Project Cards from command line.
+
+eg:
+    validate_card card_search_dir --filter_tags ['baseline2030']
+"""
 
 import argparse
-
-from projectcard import read_cards
-from projectcard import CardLogger
+from projectcard import read_cards, CardLogger
 
 parser = argparse.ArgumentParser(description='Project Card Validator')
-
 parser.add_argument(
     'card_search_dir',
     type=str,
     help='Directory or file location to find project cards.'
-)
-
+    )
 parser.add_argument(
     'filter_tags',
-    type=list,
-    help='Tags to filter project cards by. If not provided, will look at all.'
-)
+    nargs='*',
+    type=str,
+    help='Tags to filter project cards by. If not provided, will look at all.')
 
 if __name__ == "__main__":
-
     args = parser.parse_args()
     dir = args.card_search_dir
-    filter_tags = []
-    if args.filter_tags:
-        filter_tags = args.filter_tags
+    filter_tags = args.filter_tags if args.filter_tags else []
 
     card_dict = read_cards(dir, filter_tags=filter_tags)
 
@@ -36,6 +33,6 @@ if __name__ == "__main__":
         try:
             assert card.valid
             CardLogger.info(f"{project} - Valid")
-        except as e:
-            CardLogger.error((f"{project} - Not Valid"))
-            CardLogger.error((f"{project} Error:\n{e}"))
+        except Exception as e:
+            CardLogger.error(f"{project} - Not Valid")
+            CardLogger.error(f"{project} Error:\n{e}")

@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+
+[project]
+name = "projectcard"
+version = "0.0.1"
+description = ""
+license =  {file = "LICENSE"}
+readme = "README.md"
+authors = [
+    { name = "Your Name", email = "your.email@example.com" },
+]
+
+classifiers = [
+    "Development Status :: 1 - Planning",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+
+[tool.flake8]
+max-line-length = 99
+ignore = [
+    "E203",  # whitespace before ':'
+    "E266",  # too many leading '#' for block comment
+    "E501",  # line too long (82 > 79 characters)
+    "W503",  # line break before binary operator
+    "F401",  # imported but unused
+    "E231",  # missing whitespace after ','
+    "E265",  # block comment should start with '# '
+    "F541",  # f-string is missing placeholders
+]
+
+exclude = [
+    "build",
+    "docs/**",
+    "__pycache__"
+]
+
+[tool.pydocstyle]
+convention = "google"
+
+[tool.black]
+skip-string-normalization = true
+line-length = 100

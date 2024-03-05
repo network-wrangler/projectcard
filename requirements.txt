@@ -1,11 +1,13 @@
 black
+check-jsonschema
+datamodel-code-generator
 flake8
 fontawesome_markdown
 json-schema-for-humans
 jsonref
 jsonschema
 jsonschema2md
-mike
+mike<2.0
 mkdocs
 mkdocs-autorefs
 mkdocs-awesome-pages-plugin
@@ -16,6 +18,7 @@ mkdocs-mermaid2-plugin
 mkdocstrings
 mkdocstrings-python
 pre-commit
+pydantic>=2.0
 pytest
 pyyaml
 toml

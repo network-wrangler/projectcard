@@ -1,0 +1,273 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "Requirements for roadway links.",
+  "type":"object",
+  "$defs":{
+    "node":{
+      "type": "integer",
+      "description": "Foreign key to the nodes object."
+    },
+    "intersectionId":{
+      "type": "string",
+      "description": "The Intersectionid Schema",
+      "examples": ["4d0231aa0ebb779f142c2518703ee481"]
+    },
+    "shstReferenceId_link": {
+      "type": "string",
+      "description": "The Shstreferenceid Schema",
+      "examples": [ "6a22969708104ae2497244f3d079381d"]
+    },
+    "shstGeometryId": {
+      "type": "string",
+      "description": "The Shstgeometryid Schema",
+      "examples": [ "6a22969708104ae2497244f3d079381d"]
+    },
+    "bearing": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum":360,
+      "description": "The angle of the eminating arc from the point, expressed in clockwise degrees from North (0)",
+      "examples": [0, 90, 275]
+    },
+    "point": {
+      "#ref": "roadway_node.json#/$defs/roadway_nodes_point"
+    },
+    "distance": {
+      "type": "number",
+      "title": "Distance",
+      "minimum": 0,
+      "examples": [93.08]
+    },
+    "name":{
+      "type": "string",
+      "examples": ["Elm Street","Raleigh Beltline", "Capital Beltway","3rd St,Willie Mays Blvd"],
+      "description":"Name of Roadway facility. If multiple, can be contatenated with a comma."
+    },
+    "ref":{
+      "type": "string",
+      "examples": ["I-40","US66","WA520"],
+      "description":"Reference name of roadway, per Open Street Map definition."
+    },
+    "model_link_id":{
+      "type": "integer",
+      "description": "Unique id for facility."
+    },
+    "osm_link_id":{
+      "type": "string",
+      "description":"Reference to the corresponding Open Street Map link. Note that due to link splitting this may or may not be unique, and is not a required attribute."
+    },
+    "roadway":{
+      "type": "string",
+      "enum":["motorway","trunk","primary","secondary","tertiary","unclassified","residential","motorway_link","trunk_link","primary_link","secondary_link","tertiary_link","living_street","service","pedestrian","footway","steps","cycleway","track","bus_guideway","road"],
+      "default":"road",
+      "description":"Roadway type, using [OSM Highway values](https://wiki.openstreetmap.org/wiki/Key:highway#Roads). Notes: * `X_link` roadway types denote linkage roads going to/from roadway type X (i.e. on/off ramps, etc). * `road` denotes unknown type."
+    },
+    "locationReference": {
+      "type": "object",
+        "required": [
+          "sequence",
+          "point"
+        ],
+        "properties": {
+          "sequence": {"type": "integer","minimum":0},
+          "point": {"$ref":"#/$defs/point"},
+          "distanceToNextRef": {"$ref":"#/$defs/distance"},
+          "bearing":  {"$ref":"#/$defs/bearing"},
+          "intersectionId":  {"$ref":"#/$defs/intersectionId"}
+        }
+    },
+    "locationReferences": {
+      "type": "array",
+      "description": "The Locationreferences Schema",
+      "items": {"$ref": "#/$defs/locationReference"}
+    },
+    "scoped_number_property_value":{
+      "oneOf": [
+        {"$ref": "#/$defs/number_property.by_time-of-day"},
+        {"$ref": "#/$defs/number_property.by_access-category"},
+        {"$ref": "#/$defs/number_property.by_access-category-and-time-of-day"}
+      ]
+    },
+    "lanes":{
+      "oneOf": [
+        {"type": "number","minimum":0},
+        {"$ref": "#/$defs/scoped_number_property_value"}
+      ],
+      "examples": [2,5,{"default":1,"timeofday":{"timespan":["6:00","9:00"],"value":2}}],
+      "description": "Number of lanes either in simple or complex terms."
+    },
+    "ML_lanes":{
+      "$ref": "#/$defs/lanes",
+      "description": "Lanes for a parallel managed lane facility."
+    },
+    "number_property.by_time-of-day":{
+      "type": "object",
+      "examples": [
+        {"default":1,"timeofday":[{"timespan":["7:00","9:00"],"value":0.50}]}
+      ],
+      "required": ["default","timeofday"],
+      "properties":{
+        "default": {"type": "number","minimum":0},
+        "timeofday": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["timespan","value"],
+            "properties": {
+              "timespan": {"$ref": "../defs/timespan.json"},
+              "value": {"type": "number","minimum":0}
+            }
+          }
+        }
+      }
+    },
+    "number_property.by_access-category":{
+      "type": "object",
+      "required": ["default","groups"],
+      "examples": [
+        {"default":1,"groups":[{"category":["HOV2"],"value":0.50}]}
+      ],
+      "properties":{
+        "default": {"type": "number","minimum":0},
+        "group": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["category","value"],
+            "properties": {
+              "category": {"type": "array","items":{"type":"string"}},
+              "value": {"type": "number","minimum":0}
+            }
+          }
+        }
+      }
+    },
+    "number_property.by_access-category-and-time-of-day":{
+      "type": "object",
+      "required": ["default","timeofday"],
+      "examples": [
+        {"default":1,"timeofday":[{"timespan":["7:00","9:00"],"category":["HOV2"],"value":0.50}]}
+      ],
+      "properties":{
+        "default": {"type": "number","minimum":0},
+        "timeofday": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["category","timespan","value"],
+            "properties": {
+              "category": {"type": "array","items":{"type":"string"}},
+              "timespan": {"$ref": "../defs/timespan.json"},
+              "value": {"type": "number","minimum":0}
+            }
+          }
+        }
+      }
+    },
+    "price":{
+      "oneOf": [
+        {"type": "number","minimum":0},
+        {"$ref": "#/$defs/scoped_number_property_value"}
+      ],
+      "examples": [0.75,2.90,{"default":1,"timeofday":{"time":["6:00","9:00"],"value":2}}],
+      "description": "Price of facility, either as a positive number of a complex type by time of day and/or access category."
+    },
+    "ML_price":{
+      "$ref": "#/$defs/price",
+      "description": "Price for a parallel managed lane facility."
+    },
+    "walk_access":{
+      "type":["integer","boolean"] ,
+      "description": "Indicates if a facility is generally available for pedestrians. Must not be true if any of bus_only or rail_only are true."
+    },
+    "bike_access":{
+      "type":["integer","boolean"] ,
+      "description": "Indicates if a facility is generally available for cyclists. Must not be true if any of bus_only or rail_only are true."
+    },
+    "bike_facility":{
+      "type":"integer",
+      "minimum": 0,
+      "description": "Indicator for the category of bicycle facility on or along the roadway. If null, indicates unknown. If zero, indicates no facility."
+    },
+    "drive_access":{
+      "type":["integer","boolean"],
+      "description": "Indicates if a facility is generally available for driving. Must not be true if any of bus_only or rail_only are true."
+    },
+    "bus_only":{
+      "type":["integer","boolean"],
+      "description": "Indicates if a facility is rail-only if True.  Must not be true if any of walk_access, bike_access, drive_access, rail_only are True."
+    },
+    "rail_only":{
+      "type":["integer","boolean"],
+      "description": "Indicates if a facility is rail-only if True.  Must not be true if any of walk_access, bike_access, drive_access, bus_only are True."
+    },
+    "segment_id":{
+      "type": ["string","integer"],
+      "description": "An identifier for segments of roadway. Can be useful for querying and setting values for parts of facilities, summary scripts, etc."
+    },
+    "ML_access_egress":{
+      "oneOf": [
+        {"type":"string","value":"all"},
+        {"type":"array","items":{"$ref": "#/$defs/node"},"minItems":1}
+      ],
+      "examples":["all",[123,5543]],
+      "description": "Indicates where a managed lane facility can by accessed or exited either by indicating `all` for everywhere, or listing foreign keys to specific A-nodes."
+    }
+  },
+  "title": "Roadway links",
+  "required": [
+    "A",
+    "B",
+    "name",
+    "model_link_id",
+    "roadway",
+    "lanes",
+    "walk_access",
+    "bike_access",
+    "drive_access",
+    "bus_only",
+    "rail_only"
+  ],
+  "examples":[
+    {
+      "A": 123,
+      "B": 5543,
+      "model_link_id": 123,
+      "name": "Elm Street",
+      "roadway": "residential",
+      "lanes": 2,
+      "price": 0.75,
+      "walk_access": 1,
+      "bike_access": 1,
+      "bike_facility": 1,
+      "drive_access": 1,
+      "bus_only": 0,
+      "rail_only": 0
+    }
+  ],
+  "properties": {
+    "A":{"$ref": "#/$defs/node"},
+    "B":{"$ref": "#/$defs/node"},
+    "model_link_id":{"$ref": "#/$defs/model_link_id"},
+    "osm_link_id":{"$ref": "#/$defs/osm_link_id"},
+    "shstReferenceId":{"$ref": "#/$defs/shstReferenceId_link"},
+    "shstGeometryId":{"$ref": "#/$defs/shstGeometryId"},
+    "locationReferences":{"$ref": "#/$defs/locationReferences"},
+    "name":{"$ref": "#/$defs/name"},
+    "ref":{"$ref": "#/$defs/ref"},
+    "roadway":{"$ref": "#/$defs/roadway"},
+    "lanes":{"$ref": "#/$defs/lanes"},
+    "price":{"$ref": "#/$defs/price"},
+    "ML_lanes":{"$ref": "#/$defs/lanes"},
+    "ML_price":{"$ref": "#/$defs/ML_price"},
+    "ML_access":{"$ref": "#/$defs/ML_access_egress"},
+    "ML_egress":{"$ref": "#/$defs/ML_access_egress"},
+    "walk_access":{"$ref": "#/$defs/walk_access"},
+    "bike_access":{"$ref": "#/$defs/bike_access"},
+    "bike_facility":{"$ref": "#/$defs/bike_facility"},
+    "drive_access":{"$ref": "#/$defs/drive_access"},
+    "bus_only":{"$ref": "#/$defs/bus_only"},
+    "rail_only":{"$ref": "#/$defs/rail_only"},
+    "segment_id":{"$ref": "#/$defs/segment_id"}
+  }
+}

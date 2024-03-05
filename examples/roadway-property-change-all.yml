@@ -1,0 +1,16 @@
+project: Example property change for all links
+tags:
+   - 'example'
+roadway_property_change:
+  facility:
+    links:
+      modes: ['drive']
+      all: 'True'
+      lanes: 2
+      bicycle_facility: [0,2,3]
+  property_changes:
+    lanes:
+      set: 1
+    bicycle_facility:
+      set: 1
+notes: Reduce lanes and add separated bike facility for all drive links with two lanes and bicycle facility of 0,2, or 3

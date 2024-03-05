@@ -1,0 +1,21 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+	"required": [
+		"service",
+		"routing"
+	],
+	"additionalProperties" : false,
+	"properties": {
+	   "service": {"$ref": "../transit/selection/select_trips.json"},
+	   "routing": {
+		    "type": "object",
+			"required": ["set"],
+			"additionalProperties" : false,
+			"properties":{
+				"existing":{"type":"array"},
+				"set":{"type":"array"}
+			}
+		}
+	}
+}

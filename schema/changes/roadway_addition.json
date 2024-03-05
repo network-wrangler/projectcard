@@ -1,0 +1,53 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+	"anyOf": [
+        {"required": ["links"]},
+        {"required": ["nodes"]}
+    ],
+	"examples":[
+		{
+			"links": [
+				{
+					"A": 1,
+					"B": 2,
+					"model_link_id": 123,
+					"name": "Elm Street",
+					"roadway": "residential",
+					"lanes": 2,
+					"price": 0.75,
+					"walk_access": 1,
+					"bike_access": 1,
+					"bike_facility": 1,
+					"drive_access": 1,
+					"bus_only": 0,
+					"rail_only": 0
+				}
+			],
+			"nodes": [
+				{
+					"model_node_id": 1,
+					"X": -122.419,
+     				"Y": 37.7
+				},
+				{
+					"model_node_id": 2,
+					"X": -122.419,
+      				"Y": 37.8
+				}
+			]
+		}
+
+	],
+	"additionalProperties" : false,
+	"properties": {
+	   "links": {
+			"type": "array",
+		 	"items": {"$ref": "../roadway/roadway_link.json"}
+   		},
+		"nodes": {
+			"type": "array",
+			"items": {"$ref": "../roadway/roadway_node.json"}
+		}
+	}
+}

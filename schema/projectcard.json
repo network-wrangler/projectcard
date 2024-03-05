@@ -1,24 +1,63 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema",
 	"type": "object",
+	"$defs": {
+		"change_roadway_deletion": { "$ref": "changes/roadway_deletion.json"},
+		"change_roadway_addition": { "$ref": "changes/roadway_addition.json"},
+		"change_roadway_property_change": { "$ref": "changes/roadway_property_change.json"},
+		"transit_property_change": { "$ref": "changes/transit_property_change.json"},
+		"transit_routing_change": { "$ref": "changes/transit_routing_change.json"},
+		"pycode":{ "type": "string" },
+		"change": {
+			"type":"object",
+			"properties": {
+				"roadway_deletion": { "$ref": "#/$defs/change_roadway_deletion"},
+				"roadway_addition": { "$ref": "#/$defs/change_roadway_addition"},
+				"roadway_property_change": { "$ref": "#/$defs/change_roadway_property_change"},
+				"roadway_managed_lanes": { "$ref": "#/$defs/change_roadway_property_change"},
+				"transit_property_change": { "$ref": "#/$defs/transit_property_change"},
+				"transit_routing_change": { "$ref": "#/$defs/transit_routing_change"},
+				"pycode": { "$ref": "#/$defs/pycode"}
+			},
+			"oneOf": [
+				{"required":["roadway_deletion"]},
+				{"required":["roadway_addition"]},
+				{"required":["roadway_property_change"]},
+				{"required":["roadway_managed_lanes"]},
+				{"required":["transit_property_change"]},
+				{"required":["transit_routing_change"]},
+				{"required":["pycode"]}
+			]
+		}
+	},
 	"title": "Project Card Schema",
 	"required": [
-		"project",
-		"changes"
+		"project"
+	],
+	"oneOf": [
+		{"required":["roadway_deletion"]},
+		{"required":["roadway_addition"]},
+		{"required":["roadway_property_change"]},
+		{"required":["roadway_managed_lanes"]},
+		{"required":["transit_property_change"]},
+		{"required":["transit_routing_change"]},
+		{"required":["pycode"]},
+		{"required":["changes"]}
 	],
 	"properties": {
+		"$schema": {"type": "string", "description": "Reference to the project card schema which this file uses. If not specified, will be assumed to be the most recent release."},
         "project": {"type": "string","description": "A project name which uniquely identifies this project"},
-		"changes": {
-			"type": "array",
-			"items": {
-				"oneOf": [
-					{ "$ref": "defs/change.roadway.delete.json"},
-					{ "$ref": "defs/change.roadway.add.json"},
-					{ "$ref": "defs/change.roadway.property-changes.json"},
-					{ "$ref": "defs/change.roadway.parallel-managed-lanes.json"}
-			  ]
-			}
-		},
+		"dependencies":  { "$ref": "defs/dependencies.json"},
+		"tags":{ "$ref": "defs/tags.json"},
+		"roadway_deletion": { "$ref": "#/$defs/change_roadway_deletion"},
+		"roadway_addition": { "$ref": "#/$defs/change_roadway_addition"},
+		"roadway_property_change": { "$ref": "#/$defs/change_roadway_property_change"},
+		"roadway_managed_lanes": { "$ref": "#/$defs/change_roadway_property_change"},
+		"transit_property_change":{ "$ref": "#/$defs/transit_property_change"},
+		"transit_routing_change":{ "$ref": "#/$defs/transit_routing_change"},
+		"pycode":{ "$ref": "#/$defs/pycode"},
+		"changes": {"type": "array","items":{"$ref": "#/$defs/change"}},
+		"self_obj_type": {"type": "string","enum": ["RoadwayNetwork","TransitNetwork"],"description":"For calculated project cards, must refer to the object to perform the calculation on. "},
 		"notes": {"type": "string"}
 	}
 }

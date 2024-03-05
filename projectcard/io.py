@@ -4,15 +4,18 @@
 import json
 import logging
 import os
-from glob import glob
 from pathlib import Path
-from typing import Any, Callable, Collection, Mapping, Union
+from typing import Callable, Collection, Mapping, Union
 
 import toml
 import yaml
 
 from .logger import CardLogger
 from .projectcard import REPLACE_KEYS, VALID_EXT, ProjectCard
+
+
+class ProjectCardReadError(Exception):
+    pass
 
 
 def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):
@@ -31,12 +34,12 @@ def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):
         if not all(Path(f).is_file() for f in filepath):
             _missing = [f for f in filepath if not Path(f).is_file()]
             raise FileNotFoundError(f"{_missing} is/are not a file/s")
-        _paths = filepath
-    elif (isinstance(filepath, Path) or (filepath, str)) and Path(filepath).is_dir():
+        _paths = [Path(f) for f in filepath]
+    elif (isinstance(filepath, Path) or isinstance(filepath, str)) and Path(filepath).is_dir():
         CardLogger.debug(f"Getting all files in: {filepath}")
-        _paths = [p for p in Path(filepath).glob("*")]
+        _paths = [Path(p) for p in Path(filepath).glob("*")]
     else:
-        raise ValueError(f"filepath: {filepath} not understood.")
+        raise ProjectCardReadError(f"filepath: {filepath} not understood.")
     CardLogger.debug(f"All paths: {_paths}")
     _card_paths = [p for p in _paths if p.suffix in valid_ext]
     CardLogger.debug(f"Reading set of paths: {_card_paths}")
@@ -60,7 +63,7 @@ def _read_toml(filepath: str) -> dict:
 def _read_json(filepath: str) -> dict:
     CardLogger.debug(f"Reading JSON: {filepath}")
     with open(filepath, "r") as cardfile:
-        attribute_dictionary = json.safe_load(cardfile.read())
+        attribute_dictionary = json.loads(cardfile.read())
     return attribute_dictionary
 
 
@@ -142,7 +145,7 @@ def _change_keys(obj: dict, convert: Callable = _replace_selected) -> dict:
     return new
 
 
-_method_map = {
+_read_method_map = {
     ".yml": _read_yml,
     ".yaml": _read_yml,
     ".json": _read_json,
@@ -152,8 +155,24 @@ _method_map = {
 }
 
 
+def read_card(filepath: str, validate: bool = False):
+    """Read single project card from a path and return project card object.
+
+    args:
+        filepath: file where the project card is.
+        validate: if True, will validate the project card schemea
+    """
+    if not Path(filepath).is_file():
+        raise FileNotFoundError(f"Cannot find project card file: {filepath}")
+    card_dict = read_cards(filepath, _cards={})
+    card = list(card_dict.values())[0]
+    if validate:
+        assert card.valid
+    return card
+
+
 def read_cards(
-    filepath: str,
+    filepath: Union[Collection[str], str],
     filter_tags: Collection[str] = [],
     _cards: Mapping[str, ProjectCard] = {},
 ) -> Mapping[str, ProjectCard]:
@@ -168,30 +187,31 @@ def read_cards(
 
     Returns: dictionary of project cards by project name
     """
+    CardLogger.debug(f"Reading cards from {filepath}.")
+
     filter_tags = list(map(str.lower, filter_tags))
-    if not Path(filepath).is_file():
-        _card_paths = _get_cardpath_list(filepath, valid_ext=_method_map.keys())
+    if isinstance(filepath, list) or not os.path.isfile(filepath):
+        _card_paths = _get_cardpath_list(filepath, valid_ext=_read_method_map.keys())
         for p in _card_paths:
             _cards.update(read_cards(p, filter_tags=filter_tags, _cards=_cards))
         return _cards
 
     _ext = os.path.splitext(filepath)[1]
-    if _ext not in _method_map.keys():
-        raise ValueError("Unsupported file type: {}".format(_ext))
-    _card_dict = _method_map[_ext](filepath)
+    if _ext not in _read_method_map.keys():
+        CardLogger.debug(f"Unsupported file type for file {filepath}")
+        raise ProjectCardReadError(f"Unsupported file type: {_ext}")
+    _card_dict = _read_method_map[_ext](filepath)
     _card_dict = _change_keys(_card_dict)
     _card_dict["file"] = filepath
     _project_name = _card_dict["project"].lower()
     if _project_name in _cards:
-        raise ValueError(
+        raise ProjectCardReadError(
             f"Names not unique from existing scenario projects: {_project_name}"
         )
     if filter_tags and set(list(map(str.lower, _card_dict.get("tags", [])))).isdisjoint(
         set(filter_tags)
     ):
-        CardLogger.debug(
-            f"Skipping {_project_name} - no overlapping tags with {filter_tags}."
-        )
+        CardLogger.debug(f"Skipping {_project_name} - no overlapping tags with {filter_tags}.")
         return _cards
     _cards[_project_name] = ProjectCard(_card_dict)
 

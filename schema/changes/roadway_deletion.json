@@ -1,0 +1,32 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+	"anyOf": [
+        {"required": ["links"]},
+        {"required": ["nodes"]}
+    ],
+	"examples": [
+		{
+			"links": {
+				"model_link_id": [1, 2, 3]
+			}
+		},
+		{
+			"links": {
+				"ref": ["I-5"],
+				"lanes": 2
+			}
+		},
+		{
+			"nodes": {
+				"model_node_id": [1, 2, 3]
+			}
+		}
+
+	],
+	"additionalProperties" : false,
+	"properties": {
+	    "links": {"$ref": "../roadway/selection/select_links.json"},
+		"nodes": {"$ref": "../roadway/selection/select_nodes.json"}
+	}
+}

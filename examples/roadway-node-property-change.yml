@@ -1,0 +1,8 @@
+project: Change node X value location
+roadway_property_change:
+  facility:
+    nodes:
+      model_node_id: [1234]
+  property_changes:
+    X:
+      set: 1.0

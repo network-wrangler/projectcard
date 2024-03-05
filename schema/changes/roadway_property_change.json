@@ -1,0 +1,23 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+	"required": [
+		"facility",
+		"property_changes"
+	],
+	"additionalProperties" : false,
+	"properties": {
+	   "facility": {"$ref": "../roadway/selection/select_segment.json"},
+	   "property_changes": {
+		    "type": "object",
+            "minItems":1,
+		    "anyOf": [
+                {"patternProperties":{".*": {"$ref": "defs/property_set.json"}}},
+				{"price": {"$ref": "defs/scoped_property_set.json"}},
+				{"lanes": {"$ref": "defs/scoped_property_set.json"}},
+				{"ML_price": {"$ref": "defs/scoped_property_set.json"}},
+				{"ML_lanes": {"$ref": "defs/scoped_property_set.json"}}
+            ]
+	    }
+    }
+}

@@ -1,0 +1,6 @@
+---
+project: example calculate mega freeways
+self_obj_type: RoadwayNetwork
+---
+
+self.links_df.loc[self.links_df['lanes'] == 4, 'lanes'] = 12

@@ -5,11 +5,13 @@ USAGE:
 """
 import logging
 import os
+from pathlib import Path
 
 import pytest
+from jsonschema import validate
 
 from projectcard import CardLogger, validate_schema_file
-from projectcard.validate import _open_json, package_schema
+from projectcard.validate import _load_schema, _open_json, package_schema
 
 
 def test_schemas_valid_json(all_schema_files):
@@ -30,6 +32,14 @@ def test_individual_schemas(all_schema_files):
     CardLogger.info(f"Evaluated schema valid for {len(all_schema_files)} schema files")
 
 
+@pytest.fixture(scope="session")
+def all_bad_schema_files(test_dir):
+    """Schema files which should fail"""
+    schemas_dir = Path(test_dir) / "data" / "schemas"
+    bad_schema_files = [p for p in schemas_dir.glob("**/*bad.json")]
+    return bad_schema_files
+
+
 def test_bad_schema(all_bad_schema_files):
     for s in all_bad_schema_files:
         try:
@@ -42,3 +52,14 @@ def test_bad_schema(all_bad_schema_files):
                 "Schema shouldn't be valid but is not raising an error in validate_schema_file"
             )
     CardLogger.info(f"Evaluated {len(all_bad_schema_files)} bad schema files")
+
+
+def test_json_schema_examples_valid(all_schema_files):
+    """If referenced json schema has examples listed, test that they are valid."""
+    for s in all_schema_files:
+        CardLogger.info(f"Validating Examples for {s}")
+        schema = _load_schema(s)
+        if "examples" in schema:
+            for example in schema["examples"]:
+                validate(example, schema=schema)
+    CardLogger.info(f"Evaluated examples valid for {len(all_schema_files)} schema files")

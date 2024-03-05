@@ -1,0 +1,16 @@
+project: Bus resign
+tags:
+   - existing_plus_committed
+transit_property_change:
+  service:
+    trip_properties:
+      route_id:
+        - "294-111"
+    nodes:
+      model_node_id:
+        - 37582
+        - 37574
+      require: "any"
+  property_changes:
+    trip_headsign:
+      change: " thru Union Station"

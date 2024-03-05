@@ -3,14 +3,11 @@ notes: project card with multiple category of add and delete changes
 tags:
   - 'delete roadway'
   - 'example'
-changes:
-  - category: roadway deletion
-    links:
-      - model_link_id: 
-         - 281
-         - 477533
-    nodes:
-      - model_node_id:
-         - 314159
-   
-
+roadway_deletion:
+  links:
+    model_link_id:
+      - 281
+      - 477533
+  nodes:
+    model_node_id:
+      - 314159

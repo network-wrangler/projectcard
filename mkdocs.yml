@@ -4,7 +4,8 @@ repo_url: https://github.com/network-wrangler/projectcard
 
 nav:
     - 'index.md'
-    - 'schemas.md'
+    - 'json-schemas.md'
+    - "Pydantic": 'pydantic-datamodels.md'
     - 'api.md'
     - 'examples.md'
 
@@ -25,8 +26,7 @@ plugins:
   - awesome-pages
   - mike
   - macros
-  - mermaid2:
-      securityLevel: 'loose'
+  - mermaid2
   - mkdocs-jupyter:
       include_source: True
   - mkdocstrings:
@@ -40,7 +40,6 @@ plugins:
             show_root_heading: true
             show_source: true
             heading_level: 3
-      custom_templates: templates
       watch:
         - projectcard
   - search
@@ -57,16 +56,13 @@ extra_javascript:
   - javascript/schema_doc.min.js
 
 extra_css:
-  - https://use.fontawesome.com/releases/v5.13.0/css/all.css
-  - https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css
-  - extra_css/schema_doc.css
+
   - extra_css/extra.css
 
 markdown_extensions:
   - admonition
   - codehilite:
       linenums: true
-  - fontawesome_markdown
   - meta
   - pymdownx.inlinehilite
   - pymdownx.tasklist:

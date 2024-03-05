@@ -18,8 +18,6 @@ def define_env(env):
 
     @env.macro
     def document_schema(schema_filename: str) -> str:
-        import json
-
         from json_schema_for_humans.generate import generate_from_schema
         from json_schema_for_humans.generation_configuration import (
             GenerationConfiguration,
@@ -40,7 +38,7 @@ def define_env(env):
 
         content = generate_from_schema(_abs_schema_path, config=_config)
 
-        ### get content ready for mkdocs
+        # get content ready for mkdocs
         _footer = _get_html_between_tags(content, tag="footer")
         replace_strings = {
             "<!DOCTYPE html>": "",
@@ -56,9 +54,7 @@ def define_env(env):
         return content
 
     @env.macro
-    def include_file(
-        filename: str, downshift_h1=True, start_line: int = 0, end_line: int = None
-    ):
+    def include_file(filename: str, downshift_h1=True, start_line: int = 0, end_line: int = None):
         """
         Include a file, optionally indicating start_line and end_line.
 
@@ -98,14 +94,12 @@ def define_env(env):
         return content
 
     def _categories_as_str(card: "ProjectCard") -> str:
-        if card.__dict__.get("category"):
-            return card.__dict__.get("category")
-        if len(card.__dict__["changes"]) == 1:
-            return card.__dict__["changes"][0]["category"]
+
+        if len(card.change_types) == 1:
+            return card.change_type
 
         _cat_str = "Multiple Change Categories:<ul>\n"
-        for ch in card.__dict__["changes"]:
-            _cat_str += f"<li>{ch['category']}</li>\n"
+        _cat_str += "".join([f"<li>{c}</li>\n" for c in card.change_types])
         _cat_str += "</ul>"
 
     def _card_to_md(card: "ProjectCard") -> str:
@@ -140,9 +134,7 @@ def define_env(env):
         )
 
         def _card_to_mdrow(card, fields):
-            _md_row = (
-                f"| [{card.project}](#{_make_slug(card.project).replace('_','-')}) | "
-            )
+            _md_row = f"| [{card.project}](#{_make_slug(card.project).replace('_','-')}) | "
             _md_row += f"{_categories_as_str(card)}" " |\n"
             return _md_row
 

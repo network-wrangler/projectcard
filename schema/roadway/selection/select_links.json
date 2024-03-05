@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "description": "requirements for describing links in the `facility` section of a project card.",
+  "type":"object",
+  "title": "Roadway link selection",
+  "oneOf": [
+    {"required":["name"]},
+    {"required":["ref"]},
+    {"required":["osm_link_id"]},
+    {"required":["model_link_id"]},
+    {"required":["all"]}
+  ],
+  "additionalProperties": true,
+  "not": {
+    "anyOf": [
+      {"required": ["from"]},
+      {"required": ["to"]}
+    ]
+  },
+  "examples": [
+    {
+      "name": ["Main St"],
+      "modes": ["drive"]
+    },
+    {
+      "osm_link_id": ["123456789"]
+    },
+    {
+      "model_link_id": [123456789],
+      "modes": ["walk"]
+    },
+    {
+      "all": "True",
+      "modes": ["transit"]
+    }
+  ],
+  "properties":{
+      "all":{"enum":["True","False"]},
+      "name":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/name"}},
+      "ref":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/ref"}},
+      "osm_link_id":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/osm_link_id"}},
+      "model_link_id":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/model_link_id"}},
+      "modes": {"type": "array","items": {"$ref": "../../defs/mode.json"}}
+    }
+  }
