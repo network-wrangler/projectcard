@@ -12,7 +12,19 @@
       "route_properties": {
         "agency_id": ["2"]
       },
-      "timespan": ["06:00:00", "09:00:00"]
+      "timespans": [["06:00:00", "09:00:00"]]
+    },
+    {
+      "trip_properties": {
+        "route_id": ["4321"]
+      },
+      "route_properties": {
+        "agency_id": ["1"]
+      },
+      "timespans": [
+        ["06:00:00", "09:00:00"],
+        ["15:00:00", "18:00:00"]  
+      ]
     },
     {
       "nodes": {
@@ -24,7 +36,7 @@
   "properties": {
     "trip_properties":{"$ref":"select_trip_properties.json"},
     "route_properties":{"$ref":"select_route_properties.json"},
-    "timespan":{"$ref":"../../defs/timespan.json"},
+    "timespans":{"type":"array","items":{"$ref":"../../defs/timespan.json"},"minItems":1},
     "nodes":{"$ref":"select_nodes.json"}
   }
 }

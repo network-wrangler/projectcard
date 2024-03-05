@@ -1,9 +1,7 @@
 from __future__ import annotations
-
 from enum import Enum
 from typing import Any, Dict, List, Optional, Union
-
-from pydantic import BaseModel, BeforeValidator, ConfigDict, Field, RootModel
+from pydantic import BaseModel, ConfigDict, Field, RootModel, BeforeValidator
 from typing_extensions import Annotated
 
 
@@ -1001,7 +999,7 @@ class SelectTrips(BaseModel):
     model_config = ConfigDict(extra='forbid')
     trip_properties: Optional[SelectTripProperties] = None
     route_properties: Optional[SelectRouteProperties] = None
-    timespan: Optional[Timespan] = None
+    timespans: Annotated[Optional[List[Timespan]], Field(None, min_length=1)]
     nodes: Optional[SelectNodesModel] = None
 
     class ConfigDict:

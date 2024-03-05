@@ -62,7 +62,7 @@ def test_instantiating_data_models_with_pyd():
     valid_data = {
         "trip_properties": {"trip_id": ["1234"]},
         "route_properties": {"agency_id": [4321]},
-        "timespan": ["12:45", "12:30"],
+        "timespans": [["12:45", "12:30"]],
     }
 
     invalid_data = {"timespan": ["123", "123"]}
