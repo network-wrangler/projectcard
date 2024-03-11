@@ -6,7 +6,7 @@
 
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 SCHEMA_DIR="$(cd "$SCRIPT_DIR/../schema" && pwd)"
-OUTPUT_DIR="$(cd "$SCRIPT_DIR/../projectcard/models/generated" && pwd)"
+OUTPUT_DIR="$(cd "$SCRIPT_DIR/../projectcard/models/_generated" && pwd)"
 SCHEMA_PATH=$SCHEMA_DIR/"projectcard.json"
 OUTPUT_V1="$OUTPUT_DIR/v1"
 OUTPUT_V2="$OUTPUT_DIR/v2"

@@ -30,7 +30,6 @@ def test_models_to_examples(pyd_data_models):
 
 
 def test_using_validate_call_models_with_pyd():
-
     valid_data = {"links": {"model_link_id": [1234], "lanes": [2, 3]}}
 
     invalid_data = {"links": {"model_link_id": 1234}}
@@ -55,7 +54,6 @@ def test_using_validate_call_models_with_pyd():
 
 
 def test_instantiating_data_models_with_pyd():
-
     # Create valid and invalid data instances
     from projectcard.models import SelectTrips
 

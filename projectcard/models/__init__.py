@@ -1,11 +1,7 @@
 """
-Access to pydantic data models for the projectcard package generated from /schema jsonschema files.
+Access to pydantic and pandera data models for projectcard.
 
-Checks if pydantic v1 vs v2 is installed and imports corresponding data models.
-If pydantic is not installed, its functionality will be "mocked" so that the project card package
-can be used without pydantic.
-
-NOTE: if pydantic is not installed they will provide no actual functionality
+NOTE: if pandera is not installed they will provide no actual functionality
 (but they shouldn't crash either)
 """
 
@@ -16,22 +12,17 @@ class MockPydModel:
             setattr(self, key, value)
 
 
-class MockModule:
-    def __getattr__(self, name):
-        return MockPydModel
-
-
 try:
     import pydantic
 
-    if pydantic.__version__.startswith('2'):
-        from .generated.v2 import *
+    if pydantic.__version__.startswith('1'):
+        raise ImportError
     else:
-        from .generated.v1 import *
+        from .records import *
 except ImportError:
     # Mock the data models
     globals().update(
         {
-            'generated': MockModule(),
+            '*': MockPydModel(),
         }
     )

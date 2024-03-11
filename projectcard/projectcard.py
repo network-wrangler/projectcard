@@ -10,7 +10,6 @@ from .validate import (
 
 UNSPECIFIED_PROJECT_NAMES = ["", "TO DO User Define", "USER TO define"]
 VALID_EXT = [".yml", ".yaml", ".json", ".toml", ".wr", ".wrangler"]
-REPLACE_KEYS = {"a": "A", "b": "B"}
 
 
 class ProjectCard(object):

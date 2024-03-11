@@ -5,6 +5,8 @@ from typing import Annotated, List
 from pydantic import Field
 from pydantic.dataclasses import dataclass
 
+from .types import TimeString
+
 
 class TimeFormatError(Exception):
     pass
@@ -14,13 +16,12 @@ class TimespanFormatError(Exception):
     pass
 
 
-PC_TimeString = Annotated[str, Field(pattern=r"^\d{2}:\d{2}(:\d{2})?$")]
-PC_TimeSpanString = Annotated[List[PC_TimeString], Field(min_length=2, max_length=2)]
+PC_TimeSpanString = Annotated[List[TimeString], Field(min_length=2, max_length=2)]
 
 
 @dataclass
 class PC_Time:
-    time: PC_TimeString
+    time: TimeString
 
     @property
     def datetime(self):

@@ -94,7 +94,6 @@ def define_env(env):
         return content
 
     def _categories_as_str(card: "ProjectCard") -> str:
-
         if len(card.change_types) == 1:
             return card.change_type
 

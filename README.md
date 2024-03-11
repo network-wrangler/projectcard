@@ -56,3 +56,30 @@ pip install -e .
 ```sh
 pip install git+https://github.com/network-wrangler/projectcard@main#egg=projectcard
 ```
+
+
+# Readme
+
+The GTFS datamodels package provides classes and functions for working with GTFS (General Transit Feed Specification) data within the python environment of NetworkWrangler.
+
+It is used by:
+
+- NetworkWrangler
+- ProjectCard
+
+It is separated out as its own package becuase it is used by both and
+we didn't want to make ProjectCard dependent on NetworkWrangler.
+
+Usage:
+
+1. Import the GTFS datamodels package:
+    from gtfs_datamodels import *
+
+2. Load GTFS data:
+    gtfs_data = load_gtfs_data('gtfs_data.zip')
+
+3. Access transit agencies:
+    agencies = get_agencies()
+
+4. Access transit routes:
+    routes = get_routes()

@@ -1,0 +1,380 @@
+#!/usr/bin/env python3
+"""Updates older project cards to current format.
+
+Contains three public functions:
+
+1. `update_schema_for_card`: Updates a card to the current format.
+2. `update_schema_for_card_file`: Updates a card file to the current format.
+3. `update_schema_for_card_dir`: Updates all card files in a directory to the current format.
+
+There is a wrapper script for the third function in `/bin/batch_update_project_cards.py`.
+
+Note that this script is tested (`test_conversion_script.py`) to successfully convert all the 
+project cards in `tests/data/cards/*.v0.yaml` to the current format.  
+
+If you have a project card that isn't successfully converting using this script or its wrapper,
+`/bin/batch_update_project_cards.py`, please open an issue on the projectcard repo with the card.
+
+If you want to address it yourself, please open a pull request with:
+
+1. The card that isn't converting (or similar) added to `/tests/data/cards/` with v0 at end of name.
+2. Update the below releveant functions or add a new function and append it to the 
+    set of functions executed in `update_schema_for_card` function.
+3. Validate that the card is converting successfully using the tests in `test_conversion_script.py`.
+"""
+import sys
+from pathlib import Path
+
+import yaml
+
+from projectcard import ProjectCard, write_card
+from projectcard.utils import _update_dict_key
+from projectcard.models import ProjectCardModel
+from projectcard import CardLogger
+
+
+def _get_card_files(card_search_dir_or_filename: Path) -> list[Path]:
+    if card_search_dir_or_filename.is_dir():
+        # Read all .yaml or .yml files in the directory
+        card_files = list(Path(card_search_dir_or_filename).rglob("*.[yY][aA]?[mM][lL]*"))
+        if not card_files:
+            print(f"No card files found in {card_search_dir_or_filename}")
+            sys.exit(1)
+        return [Path(file) for file in card_files]
+    else:
+        return [Path(card_search_dir_or_filename)]
+
+
+CATEGORY_NAME_MAP = {
+    "Roadway Property Change": "roadway_property_change",
+    "Add New Roadway": "roadway_addition",
+    "Parallel Managed lanes": "roadway_managed_lanes",
+    "Roadway Deletion": "roadway_deletion",
+    "Transit Property Change": "transit_property_change",
+    "Transit Service Property Change": "transit_property_change",
+}
+
+NESTED_VALUES = ['facility', 'properties', 'property_changes', 'links', 'nodes']
+
+
+def _nest_change_under_category_type(card: dict) -> dict:
+    """Nest the change object under category_name.
+
+    Also updates category names based on CATEGORY_NAME_MAP
+
+    eg:
+
+    INPUT:
+
+    ```yaml
+    category: category_name
+    facility: ...
+    ...
+    ```
+
+    OUTPUT:
+
+    ```yaml
+    category_name:
+        facility: ...
+        ...
+    ```
+
+    """
+    CardLogger.debug(f"Card.nest_change_under_category_type:\n {card}")
+    if "changes" in card:
+        _updated_changes = []
+        for change in card["changes"]:
+            CardLogger.debug(f"...Change: {change}")
+            _updated_changes.append(_nest_change_under_category_type(change))
+        card["changes"] = _updated_changes
+        return card
+    elif "category" in card:
+        category = card.pop("category")
+
+        CardLogger.debug(f"Category: {category}")
+        if category not in CATEGORY_NAME_MAP:
+            raise ValueError(f"Invalid category: {category}")
+        category_key = CATEGORY_NAME_MAP[category]
+        card[category_key] = {k: card.pop(k) for k in NESTED_VALUES if k in card}
+        CardLogger.debug(f"Updated Card.nest_change_under_category_type:\n {card}")
+        return card
+
+    else:
+        CardLogger.debug(f"Can't find category in: {card}. This card might already be updated?")
+        return card
+
+
+def _update_property_changes_key(card):
+    """Find "properties" key and update to "property_changes" and to nest as object under the property name .
+
+    e.g.
+
+    FROM:
+
+    ```yaml
+    properties:
+    - property: trn_priority
+        set: 2
+    ```
+
+    TO:
+
+    ```yaml
+    property_changes:
+        trn_priority:
+            set: 2
+    ```
+
+    """
+    if "properties" not in card:
+        return card
+    CardLogger.debug(f"Card.update_property_changes_key:\n {card}")
+    _pchanges = card.pop("properties")
+    updated_pchanges = {}
+    for _pc in _pchanges:
+        property_name = _pc.pop("property")
+        updated_pchanges[property_name] = _pc
+    card["property_changes"] = updated_pchanges
+    CardLogger.debug(f"Updated Card.update_property_changes_key:\n {card}")
+    return card
+
+
+ROADWAY_FACILITY_UPDATED_KEYS = {"link": "links", "A": "from", "B": "to"}
+
+
+def _update_roadway_facility(card):
+    """find "link" under "facility" under "roadway_property_change" and update to "links"."""
+
+    if "roadway_property_change" in card and "facility" in card["roadway_property_change"]:
+        for old_key, new_key in ROADWAY_FACILITY_UPDATED_KEYS.items():
+            if old_key in card["roadway_property_change"]["facility"]:
+                card["roadway_property_change"]["facility"][new_key] = card[
+                    "roadway_property_change"
+                ]["facility"].pop(old_key)
+
+        # unnest links from list
+        if "links" in card["roadway_property_change"]["facility"]:
+            card["roadway_property_change"]["facility"]["links"] = card["roadway_property_change"][
+                "facility"
+            ].pop("links")[0]
+        CardLogger.debug(f"Updated Card.update_roadway_facility:\n {card}")
+    return card
+
+
+def _update_transit_service(card):
+    """For a change with "transit" in the title, update 'facility' to 'service' and change format.
+
+    Nest under trip_properties and route_properties as follows:
+
+    trip_properties: trip_id, route_id, direction_id
+    route_properties: route_long_name, route_short_name, agency_id
+
+    Update "time" value to be a list of lists under property "timespans".
+
+    e.g.
+
+    FROM:
+
+    ```yaml
+    transit_property_change:
+        facility:
+            trip_id: ['123']
+            route_id: [21-111, 53-111]
+            time:  ['09:00', '15:00']
+            route_long_name:['express']
+            route_short_name:['exp']
+            agency_id: ['1']
+            direction_id: 0
+    ```
+
+    TO:
+
+    ```yaml
+    transit_property_change:
+        service:
+            trip_properties:
+                trip_id: ['123']
+                route_id: ['21-111,' '53-111']
+                direction_id: 0
+            timespans: [['09:00', '15:00']]
+            route_properties:
+                route_long_name: ['express']
+                route_short_name: ['exp']
+                agency_id: ['1']
+    ```
+
+    """
+    if "facility" not in card.get("transit_property_change", {}):
+        _tpc = card.get("transit_property_change", {})
+        CardLogger.debug(f"card.get(...): { _tpc}")
+        return card
+
+    ROUTE_PROPS = ["route_long_name", "route_short_name", "agency_id"]
+    TRIP_PROPS = ["trip_id", "route_id", "direction_id"]
+    NOT_A_LIST = ["direction_id"]
+    facility = card["transit_property_change"].pop("facility")
+    trip_properties = {}
+    route_properties = {}
+
+    for key, value in facility.items():
+        if value is not list and key not in NOT_A_LIST:
+            value = [value]
+        if key in TRIP_PROPS:
+            trip_properties[key] = value
+        elif key in ROUTE_PROPS:
+            route_properties[key] = value
+        elif key == "time":
+            # timespans is a list of a list
+            timespans = value
+        else:
+            raise ValueError(f"Unimplemented transit property: {key}")
+    card["transit_property_change"]["service"] = {}
+    if trip_properties:
+        card["transit_property_change"]["service"]["trip_properties"] = trip_properties
+    if route_properties:
+        card["transit_property_change"]["service"]["route_properties"] = route_properties
+    if timespans:
+        card["transit_property_change"]["service"]["timespans"] = timespans
+
+    CardLogger.debug(f"Updated Card.Updated Transit Service:\n {card}")
+    return card
+
+
+def _update_timespan(card):
+    """Find "time" key and update to "timespan" in a nested dictionary.
+
+    Args:
+        card: The card dictionary to update.
+
+    Returns:
+        The updated card dictionary.
+    """
+    card = _update_dict_key(card, "time", "timespan")
+
+    CardLogger.debug(f"Updated Card.update_timespan:\n {card}")
+    return card
+
+
+def update_schema_for_card(card_data: dict, errlog_output_dir: Path = ".") -> dict:
+    """Update older project card data in dictionary to current format.
+
+    Example usage:
+
+    ```python
+    new_card_data = update_schema_for_card(old_card_data_dict)
+    write_card(new_card_data, Path("my_new_card.yml"))
+    ```
+
+    args:
+        card_data: card data to update.
+        errlog_output_dir: directory to log erroneous data for further examination. Defaults to ".".
+    """
+    _project = card_data['project']
+    CardLogger.info(f"Updating {_project}...")
+    card_data = _update_property_changes_key(card_data)
+    card_data = _nest_change_under_category_type(card_data)
+    card_data = _update_roadway_facility(card_data)
+    card_data = _update_transit_service(card_data)
+    card_data = _update_timespan(card_data)
+    CardLogger.info(f"...validating against ProjectCardModel")
+    try:
+        ProjectCardModel(**card_data)
+    except Exception as e:
+        _outfile_path = errlog_output_dir / (_project + ".ERROR_DUMP.yaml")
+        with open(_outfile_path, "w") as outfile:
+            yaml.dump(card_data, outfile, default_flow_style=False, sort_keys=False)
+        CardLogger.error(f"Erroneous data dumped to { _outfile_path}")
+        raise e
+
+    return card_data
+
+
+def update_schema_for_card_file(
+    input_card_path: Path, output_card_path: Path = None, rename_input: bool = False
+) -> None:
+    """Update previous project card files to current format.
+
+    Example usage:
+
+    ```python
+    update_schema_for_card_file(Path("my_old_card.yml"), Path("/home/me/newcards/")
+    ```
+
+    args:
+        input_card_path: path to card file.
+        output_card_path: path to write updated card file. Defaults to None. If None, will
+            write to input_card_path with a v1 pre-suffix.
+        rename_input: rename input card file with a ".v0 pre-suffix. Default: False
+    """
+
+    card_data = yaml.safe_load(input_card_path.read_text())
+
+    if output_card_path is None:
+        output_card_path = input_card_path.parent / (
+            input_card_path.stem + ".v1" + input_card_path.suffix
+        )
+
+    if output_card_path.is_dir():
+        output_card_path = output_card_path / (
+            input_card_path.stem + ".v1" + input_card_path.suffix
+        )
+    if rename_input:
+        output_card_path = input_card_path
+        input_card_path.rename(
+            input_card_path.parent / (input_card_path.stem + ".v0" + input_card_path.suffix)
+        )
+
+    card_data = update_schema_for_card(card_data, errlog_output_dir=output_card_path.parent)
+    card = ProjectCard(card_data)
+    write_card(card, output_card_path)
+
+
+def update_schema_for_card_dir(
+    input_card_dir: Path, output_card_dir: Path = None, rename_input: bool = False
+) -> None:
+    """Update all card files in a directory to current format.
+
+
+    Example usage:
+
+    ```python
+    update_schema_for_card_dir(Path("/home/me/oldcards"), Path("/home/me/newcards/")
+    ```
+
+    args:
+        input_card_dir: directory with card files.
+        output_card_dir: directory to write updated card files. Defaults to None. If None, will
+            write to input_card_dir with a v1 pre-suffix.
+        rename_input: rename input card files with a v0 pre-suffix. Default: False
+    """
+
+    # check that input and output paths are valid
+    if not input_card_dir.exists():
+        raise ValueError(f"Invalid input_card_dir: {input_card_dir}")
+
+    if output_card_dir is not None:
+        if not output_card_dir.exists():
+            raise ValueError(f"Invalid output_dir: {output_card_dir}")
+
+        if input_card_dir == output_card_dir:
+            raise ValueError(
+                "Error: output_dir cannot be the same as card_search_dir or card_filename."
+            )
+
+    if input_card_dir.is_file():
+        if output_card_dir is not None and input_card_dir.parent == output_card_dir:
+            raise ValueError(
+                "Error: output_dir cannot be the same as the directory of card_search_dir or card_filename."
+            )
+        input_card_files = [input_card_dir]
+    else:
+        input_card_files = _get_card_files(input_card_dir)
+
+    for input_card in input_card_files:
+        output_subfolder = input_card.relative_to(input_card_dir).parent
+        output_card_path = (
+            output_card_dir / output_subfolder / (input_card.stem + input_card.suffix)
+        )
+        output_card_path.parent.mkdir(parents=True, exist_ok=True)
+        update_schema_for_card_file(input_card, output_card_path, rename_input)

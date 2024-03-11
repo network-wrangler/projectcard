@@ -6,9 +6,7 @@ setup(
     description="",
     packages=find_packages(include=['projectcard']),
     author="Elizabeth Sall",
-    install_requires=[
-        "jsonschema"
-    ],
+    install_requires=["jsonschema"],
     scripts=["bin/validate_card"],
     include_package_data=True,
 )

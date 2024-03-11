@@ -11,7 +11,7 @@ import toml
 import yaml
 
 from .logger import CardLogger
-from .projectcard import REPLACE_KEYS, VALID_EXT, ProjectCard
+from .projectcard import VALID_EXT, ProjectCard
 
 
 class ProjectCardReadError(Exception):
@@ -79,6 +79,9 @@ def _read_wrangler(filepath: str) -> dict:
     return attribute_dictionary
 
 
+DROP_ON_WRITE = ["file", "valid", "sub_projects"]
+
+
 def write_card(project_card, filename: str = None):
     """
     Writes project card dictionary to YAML file
@@ -87,13 +90,16 @@ def write_card(project_card, filename: str = None):
         filename = _make_slug(project_card.project) + ".yml"
     if not project_card.valid:
         CardLogger.warning(f"{project_card.project} Project Card not valid.")
-    # import collections
-    # out_dict = collections.OrderedDict()
+
+    # Write out in order that we want to see in the file
     out_dict = {}
     out_dict["project"] = None
     out_dict["tags"] = ""
     out_dict["dependencies"] = ""
     out_dict.update(project_card.__dict__)
+
+    for key in DROP_ON_WRITE:
+        out_dict.pop(key, None)
 
     with open(filename, "w") as outfile:
         yaml.dump(out_dict, outfile, default_flow_style=False, sort_keys=False)
@@ -109,40 +115,6 @@ def _make_slug(text, delimiter: str = "_"):
 
     text = re.sub("[,.;@#?!&$']+", "", text.lower())
     return re.sub("[\ ]+", delimiter, text)
-
-
-def _replace_selected(txt: str, change_dict: dict = REPLACE_KEYS):
-    """Will returned uppercased text if matches a select set of values. Otherwise returns same text.
-
-    Args:
-        txt: string
-        text_to_uppercase: Mapping of values to replace to their replacements.
-            Defaults to REPLACE_KEYS.
-    """
-    return change_dict.get(txt, txt)
-
-
-def _change_keys(obj: dict, convert: Callable = _replace_selected) -> dict:
-    """
-    Recursively goes through the dictionary obj and replaces keys with the convert function.
-
-    args:
-        obj: dictionary object to convert keys of
-        convert: convert function from one to other
-
-    Source: https://stackoverflow.com/questions/11700705/how-to-recursively-replace-character-in-keys-of-a-nested-dictionary
-    """
-    if isinstance(obj, (str, int, float)):
-        return obj
-    if isinstance(obj, dict):
-        new = obj.__class__()
-        for k, v in obj.items():
-            new[convert(k)] = _change_keys(v, convert)
-    elif isinstance(obj, (list, set, tuple)):
-        new = obj.__class__(_change_keys(v, convert) for v in obj)
-    else:
-        return obj
-    return new
 
 
 _read_method_map = {
@@ -178,8 +150,7 @@ def read_cards(
 ) -> Mapping[str, ProjectCard]:
     """Reads collection of project card files by inferring the file type.
 
-    Lowercases all keys, but then replaces any that need to be uppercased using the
-    REPLACE_KEYS mapping.  Needed to keep "A" and "B" uppercased.
+    Lowercases all keys.
 
     Args:
         filepath: where the project card is.  A single path, list of paths,
