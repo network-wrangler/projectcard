@@ -1,0 +1,6 @@
+project: test simple roadway deletion
+category: Roadway Deletion
+links:
+  model_link_id:
+    - 477533
+notes: Simple project card to delete roadway
