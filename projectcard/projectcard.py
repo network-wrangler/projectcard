@@ -24,7 +24,7 @@ class ProjectCard(object):
         facility: either singular facility in project card or the string "multiple"
         all_property_changes: List of all property_changes objects in project card
         property_changes: either singular property_changes in project card or the string "multiple"
-        chnage_types: List of all project types in project card
+        change_types: List of all project types in project card
         change_type: either singular project type in project card or the string "multiple"
         sub_projects: list of sub_project objects
     """
@@ -53,7 +53,12 @@ class ProjectCard(object):
 
     @property
     def valid(self) -> bool:
-        return validate_card(self.__dict__)
+        try:
+            validate_card(self.__dict__)
+        except ProjectCardValidationError as e:
+            CardLogger.error(f"Project {self.project} is not valid: {e}")
+            return False
+        return True
 
     @property
     def facilities(self) -> List[dict]:
