@@ -51,10 +51,13 @@ class ProjectCard(object):
         s = ["{}: {}".format(key, value) for key, value in self.__dict__.items()]
         return "\n".join(s)
 
+    def validate(self) -> bool:
+        return validate_card(self.__dict__)
+
     @property
     def valid(self) -> bool:
         try:
-            validate_card(self.__dict__)
+            self.validate()
         except ProjectCardValidationError as e:
             CardLogger.error(f"Project {self.project} is not valid: {e}")
             return False
