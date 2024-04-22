@@ -93,6 +93,7 @@ def _nest_change_under_category_type(card: dict) -> dict:
         CardLogger.debug(f"Can't find category in: {card}. This card might already be updated?")
         return card
 
+
 DEFAULT_ROADWAY_VALUES: dict = {
     "links":{
         "name": "new_link - TODO NAME ME!",
@@ -108,7 +109,7 @@ DEFAULT_ROADWAY_VALUES: dict = {
 }
 
 
-def _update_roadway_addition(card,default_roadway_values:dict = DEFAULT_ROADWAY_VALUES):
+def _update_roadway_addition(card, default_roadway_values: dict = DEFAULT_ROADWAY_VALUES):
     """Adds required link and node values for roadway additions with assumed defaults.
 
     Args:
@@ -130,6 +131,80 @@ def _update_roadway_addition(card,default_roadway_values:dict = DEFAULT_ROADWAY_
 
     CardLogger.debug(f"Updated Card.update_roadway_addition:\n {card}")
     return card
+
+def _unnest_scoped_properties(property_change:dict)->list[dict]:
+    """Update keys scoped managed lanes to a list of single-level dicts""
+
+    e.g.
+
+    from:
+
+    ```yaml
+    timeofday:
+     - timespan: [08:00,11:00]
+       value: abc
+     - timespan: 12:00,14:00]
+       value: xyz
+    ```
+
+    to:
+
+    ```yaml
+    scoped:
+     - timespan: [08:00,11:00]
+       value: abc
+     - timespan: 12:00,14:00]
+       value: xyz
+    ```
+
+    And from:
+
+    ```yaml
+    group:
+     - category: A
+        - timespan: [08:00,11:00]
+           value: 1
+        - timespan: [14:00,16:00]
+           value: 11
+     - category: B
+       - timespan: [08:00,11:00]
+           value: 2
+        - timespan: [14:00,16:00]
+           value: 22
+    ```
+
+    TO:
+
+    ```yaml
+    scoped:
+    - category: A
+      timespan: [08:00,11:00]
+      value: 1
+    - category:A
+      timespan: [14:00,16:00]
+      value: 11
+    - category: B
+      timespan: [08:00,11:00]
+      value: 2
+    - category: B
+      timespan: .[14:00,16:00]
+      value: 22
+    ```
+    """
+    if "group" in property_change:
+        property_change["scoped"] = []
+        for cat, change_list in property_change["group"].items():
+            for change in change_list:
+                property_change["scoped"].append(change.update({"category": cat}))
+        property_change.pop("group")
+
+    elif "timeofday" in property_change:
+        property_change["scoped"] = []
+        for change in property_change["timeofday"]:
+            property_change["scoped"].append(change.update({"category": cat}))
+        property_change.pop("category")
+        return property_change
+
 
 def _update_property_changes_key(card):
     """Find "properties" key and update to "property_changes" and to nest as object under the property name .
@@ -160,6 +235,8 @@ def _update_property_changes_key(card):
     updated_pchanges = {}
     for _pc in _pchanges:
         property_name = _pc.pop("property")
+        if "group" in _pc or "timeofday" in _pc:
+            _pc = _unnest_scoped_properties(_pc)
         updated_pchanges[property_name] = _pc
     card["property_changes"] = updated_pchanges
     CardLogger.debug(f"Updated Card.update_property_changes_key:\n {card}")
@@ -183,7 +260,7 @@ def _update_roadway_facility(card):
     for change_cat in applicable_categories:
         if change_cat not in card:
             continue
-        
+
         for old_key, new_key in ROADWAY_FACILITY_UPDATED_KEYS.items():
             if old_key in card[change_cat]["facility"]:
                 card[change_cat]["facility"][new_key] = card[
@@ -278,6 +355,7 @@ def _update_transit_service(card):
     CardLogger.debug(f"Updated Card.Updated Transit Service:\n {card}")
     return card
 
+
 def _update_transit_routing(card):
     """
     """
@@ -291,6 +369,7 @@ def _update_transit_routing(card):
                 "routing": transit_property_change["property_changes"]["routing"]
             }
     return card
+
 
 def _update_timespan(card):
     """Find "time" key and update to "timespan" in a nested dictionary.
