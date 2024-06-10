@@ -260,14 +260,16 @@
     "price":{"$ref": "#/$defs/price"},
     "ML_lanes":{"$ref": "#/$defs/lanes"},
     "ML_price":{"$ref": "#/$defs/ML_price"},
-    "ML_access":{"$ref": "#/$defs/ML_access_egress"},
-    "ML_egress":{"$ref": "#/$defs/ML_access_egress"},
+    "ML_access_point":{"$ref": "#/$defs/ML_access_egress"},
+    "ML_egress_point":{"$ref": "#/$defs/ML_access_egress"},
     "walk_access":{"$ref": "#/$defs/walk_access"},
     "bike_access":{"$ref": "#/$defs/bike_access"},
     "bike_facility":{"$ref": "#/$defs/bike_facility"},
     "drive_access":{"$ref": "#/$defs/drive_access"},
     "bus_only":{"$ref": "#/$defs/bus_only"},
     "rail_only":{"$ref": "#/$defs/rail_only"},
-    "segment_id":{"$ref": "#/$defs/segment_id"}
+    "segment_id":{"$ref": "#/$defs/segment_id"},
+    "ignore_missing": {"type": "boolean"},
+    "all": {"type": "boolean"}
   }
 }

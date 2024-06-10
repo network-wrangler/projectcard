@@ -1,7 +1,7 @@
 project: Example I394 Parallel Lanes
 tags: ['managed lanes']
 notes: Need to adjust normal lanes
-roadway_managed_lanes:
+roadway_property_change:
   facility:
     links:
       model_link_id:

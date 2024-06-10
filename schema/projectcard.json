@@ -14,7 +14,6 @@
 				"roadway_deletion": { "$ref": "#/$defs/change_roadway_deletion"},
 				"roadway_addition": { "$ref": "#/$defs/change_roadway_addition"},
 				"roadway_property_change": { "$ref": "#/$defs/change_roadway_property_change"},
-				"roadway_managed_lanes": { "$ref": "#/$defs/change_roadway_property_change"},
 				"transit_property_change": { "$ref": "#/$defs/transit_property_change"},
 				"transit_routing_change": { "$ref": "#/$defs/transit_routing_change"},
 				"pycode": { "$ref": "#/$defs/pycode"}
@@ -23,7 +22,6 @@
 				{"required":["roadway_deletion"]},
 				{"required":["roadway_addition"]},
 				{"required":["roadway_property_change"]},
-				{"required":["roadway_managed_lanes"]},
 				{"required":["transit_property_change"]},
 				{"required":["transit_routing_change"]},
 				{"required":["pycode"]}

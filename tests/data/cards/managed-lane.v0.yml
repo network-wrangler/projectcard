@@ -38,7 +38,7 @@ properties:
       - time: ['16:00', '19:00']
         category: ['hov2']
         set: 2.0
-  - property: ML_access
+  - property: ML_access_point
     set: 'all'
-  - property: ML_egress
+  - property: ML_egress_point
     set: 'all'
