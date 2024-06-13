@@ -1,8 +1,6 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+"""Functions for reading and writing project cards."""
 
 import json
-import logging
 import os
 from pathlib import Path
 from typing import Callable, Collection, Mapping, Union
@@ -15,6 +13,8 @@ from .projectcard import REPLACE_KEYS, VALID_EXT, ProjectCard
 
 
 class ProjectCardReadError(Exception):
+    """Error in reading project card."""
+
     pass
 
 
@@ -80,9 +80,7 @@ def _read_wrangler(filepath: str) -> dict:
 
 
 def write_card(project_card, filename: str = None):
-    """
-    Writes project card dictionary to YAML file
-    """
+    """Writes project card dictionary to YAML file."""
     if not filename:
         filename = _make_slug(project_card.project) + ".yml"
     if not project_card.valid:
@@ -102,9 +100,7 @@ def write_card(project_card, filename: str = None):
 
 
 def _make_slug(text, delimiter: str = "_"):
-    """
-    makes a slug from text
-    """
+    """Makes a slug from text."""
     import re
 
     text = re.sub("[,.;@#?!&$']+", "", text.lower())
@@ -112,21 +108,21 @@ def _make_slug(text, delimiter: str = "_"):
 
 
 def _replace_selected(txt: str, change_dict: dict = REPLACE_KEYS):
-    """Will returned uppercased text if matches a select set of values. Otherwise returns same text.
+    """Will returned uppercased text if matches a select set of values.
+
+    Otherwise returns same text.
 
     Args:
         txt: string
-        text_to_uppercase: Mapping of values to replace to their replacements.
-            Defaults to REPLACE_KEYS.
+        change_dict: dictionary of key value pairs to replace
     """
     return change_dict.get(txt, txt)
 
 
 def _change_keys(obj: dict, convert: Callable = _replace_selected) -> dict:
-    """
-    Recursively goes through the dictionary obj and replaces keys with the convert function.
+    """Recursively goes through the dictionary obj and replaces keys with the convert function.
 
-    args:
+    Args:
         obj: dictionary object to convert keys of
         convert: convert function from one to other
 
@@ -158,7 +154,7 @@ _read_method_map = {
 def read_card(filepath: str, validate: bool = False):
     """Read single project card from a path and return project card object.
 
-    args:
+    Args:
         filepath: file where the project card is.
         validate: if True, will validate the project card schemea
     """
@@ -184,6 +180,8 @@ def read_cards(
     Args:
         filepath: where the project card is.  A single path, list of paths,
             a directory, or a glob pattern.
+        filter_tags: list of tags to filter by
+        _cards: dictionary of project cards to add to. Should not be used by user.
 
     Returns: dictionary of project cards by project name
     """

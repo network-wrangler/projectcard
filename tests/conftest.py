@@ -3,8 +3,6 @@ from pathlib import Path
 
 import pytest
 
-from projectcard import CardLogger
-
 
 @pytest.fixture(scope="session")
 def update_datamodels():
@@ -60,6 +58,6 @@ def example_dir(base_dir: Path):
 
 @pytest.fixture(scope="session")
 def all_example_cards(example_dir):
-    """Card files should pass"""
+    """Card files should pass."""
     card_files = list(example_dir.iterdir())
     return card_files

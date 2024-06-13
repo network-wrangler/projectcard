@@ -1,9 +1,9 @@
-"""Testing of schemas
+"""Testing of schemas.
 
 USAGE:
     pytest tests/test_schemas.py
 """
-import logging
+
 import os
 from pathlib import Path
 
@@ -34,7 +34,7 @@ def test_individual_schemas(all_schema_files):
 
 @pytest.fixture(scope="session")
 def all_bad_schema_files(test_dir):
-    """Schema files which should fail"""
+    """Schema files which should fail."""
     schemas_dir = Path(test_dir) / "data" / "schemas"
     bad_schema_files = [p for p in schemas_dir.glob("**/*bad.json")]
     return bad_schema_files

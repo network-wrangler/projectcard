@@ -1,3 +1,5 @@
+"""Project Card class for project card data schema."""
+
 from typing import List, Union
 
 from .logger import CardLogger
@@ -14,8 +16,7 @@ REPLACE_KEYS = {"a": "A", "b": "B"}
 
 
 class ProjectCard(object):
-    """
-    Representation of a Project Card
+    """Representation of a Project Card.
 
     Attributes:
         __dict__: Dictionary of project card attributes
@@ -30,10 +31,9 @@ class ProjectCard(object):
     """
 
     def __init__(self, attribute_dictonary: dict):
-        """
-        Constructor
+        """Constructor for ProjectCard object.
 
-        args:
+        Args:
             attribute_dictonary: a nested dictionary of attributes
         """
         # add these first so they are first on write out
@@ -48,14 +48,17 @@ class ProjectCard(object):
             self.sub_projects.append(sp_obj)
 
     def __str__(self):
+        """String representation of project card."""
         s = ["{}: {}".format(key, value) for key, value in self.__dict__.items()]
         return "\n".join(s)
 
     def validate(self) -> bool:
+        """Return True if project card is valid, False otherwise."""
         return validate_card(self.__dict__)
 
     @property
     def valid(self) -> bool:
+        """Return True if project card is valid, False otherwise."""
         try:
             self.validate()
         except ProjectCardValidationError as e:
@@ -65,6 +68,7 @@ class ProjectCard(object):
 
     @property
     def facilities(self) -> List[dict]:
+        """Return all facilities from project card as list of dicts."""
         if any(["transit" in t for t in self.change_types]):
             CardLogger.warning("Transit project doesn't have services.")
             return []
@@ -75,6 +79,7 @@ class ProjectCard(object):
 
     @property
     def facility(self) -> Union[str, dict]:
+        """Return facility part of project card or "multiple" if more than one."""
         f = self.facilities
         if len(f) > 1:
             return "multiple"
@@ -82,6 +87,7 @@ class ProjectCard(object):
 
     @property
     def services(self) -> List[dict]:
+        """Return all services from project card as list of dicts."""
         if any(["roadway" in t for t in self.change_types]):
             CardLogger.warning("Roadway project doesn't have services.")
             return []
@@ -92,6 +98,7 @@ class ProjectCard(object):
 
     @property
     def service(self) -> Union[str, dict]:
+        """Return service part of from project card or "multiple" if more than one."""
         s = self.services
         if len(s) > 1:
             return "multiple"
@@ -99,6 +106,7 @@ class ProjectCard(object):
 
     @property
     def all_transit_property_changes(self) -> List[dict]:
+        """Return all transit property changes from project card."""
         if not any(["transit_property_change" in t for t in self.change_types]):
             CardLogger.warning(f"Project {self.project} doesn't have transit property changes.")
             return []
@@ -108,6 +116,7 @@ class ProjectCard(object):
 
     @property
     def transit_property_change(self) -> Union[str, dict]:
+        """Return transit property change from project card or "multiple if more than one."""
         p = self.all_transit_property_changes
         if len(p) > 1:
             return "multiple"
@@ -115,6 +124,7 @@ class ProjectCard(object):
 
     @property
     def all_transit_routing_changes(self) -> List[dict]:
+        """Return all transit routing changes from project card."""
         if not any(["transit_routing_change" in t for t in self.change_types]):
             CardLogger.warning(f"Project {self.project} doesn't have routing changes.")
             return []
@@ -124,6 +134,7 @@ class ProjectCard(object):
 
     @property
     def transit_routing_change(self) -> Union[str, dict]:
+        """Return transit routing change from project card."""
         p = self.all_transit_routing_changes
         if len(p) > 1:
             return "multiple"
@@ -131,6 +142,7 @@ class ProjectCard(object):
 
     @property
     def change_types(self) -> List[str]:
+        """Returns list of all change types from project/subproject."""
         if self.sub_projects:
             return [sp.change_type for sp in self.sub_projects]
         _ignore = [
@@ -149,6 +161,7 @@ class ProjectCard(object):
 
     @property
     def change_type(self) -> str:
+        """Return single change type if single project or "multiple" if >1 subproject."""
         t = self.change_types
         if len(t) > 1:
             return "multiple"
@@ -156,8 +169,7 @@ class ProjectCard(object):
 
 
 class SubProject(ProjectCard):
-    """
-    Representation of a SubProject within a ProjectCard
+    """Representation of a SubProject within a ProjectCard.
 
     Attributes:
         parent_project: reference to parent ProjectCard object
@@ -191,24 +203,28 @@ class SubProject(ProjectCard):
 
     @property
     def change_type(self) -> str:
-        # have to override as a method because is a method in super class
+        """Return change type from subproject."""
         return self._change_type
 
     @property
     def project(self) -> str:
+        """Return project name from parent project card."""
         return self.parent_project.project
 
     @property
     def dependencies(self) -> str:
+        """Return dependencies from parent project card."""
         return self.parent_project.dependencies
 
     @property
     def tags(self) -> str:
+        """Return tags from parent project card."""
         return self.parent_project.tags
 
     @property
     def facility(self) -> dict:
-        if not "facility" in self.__dict__:
+        """Return facility dictionary from subproject."""
+        if "facility" not in self.__dict__:
             raise SubprojectValidationError(
                 f"Couldn't find facility in subproject in project card\
                                             {self.parent_project.project}"
@@ -217,4 +233,5 @@ class SubProject(ProjectCard):
 
     @property
     def valid(self) -> bool:
+        """Check if subproject is valid."""
         return self.parent_project.valid

@@ -1,3 +1,5 @@
+"""Validates ProjectCard JSON data against a JSON schema."""
+
 import json
 from json import JSONDecodeError
 from pathlib import Path
@@ -23,22 +25,26 @@ FLAKE8_ERRORS = ["E9", "F821", "F823", "F405"]
 
 
 class ProjectCardValidationError(ValidationError):
-    "Error in formatting of ProjectCard."
+    """Error in formatting of ProjectCard."""
+
     pass
 
 
 class SubprojectValidationError(ProjectCardValidationError):
-    "Error in formatting of Subproject."
+    """Error in formatting of Subproject."""
+
     pass
 
 
 class PycodeError(ProjectCardValidationError):
-    "Basic runtime error in python code."
+    """Basic runtime error in python code."""
+
     pass
 
 
 class ProjectCardJSONSchemaError(SchemaError):
-    "Error in the ProjectCard json schema"
+    """Error in the ProjectCard json schema."""
+
     pass
 
 
@@ -128,7 +134,6 @@ def validate_card(jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SC
         ValidationError: If jsondata doesn't conform to specified schema.
         SchemaError: If schema itself is not valid.
     """
-
     CardLogger.debug(f"Validating: {jsondata['project']}")
     try:
         _schema_data = _load_schema(schema_path)
@@ -172,7 +177,7 @@ def _validate_pycode(
     CardLogger.debug(f"Storing temporary python files at: {tmp_py_path}")
 
     # Add self, transit_net and roadway_net as mocked elements
-    py_file_contents = f"import mock\n"
+    py_file_contents = "import mock\n"
     py_file_contents += "\n".join([f"{v}=mock.Mock()" for v in mocked_vars])
     py_file_contents += "\n" + jsondata["pycode"]
 

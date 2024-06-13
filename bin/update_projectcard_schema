@@ -8,7 +8,7 @@ If you have a project card that isn't successfully converting using this script 
 If you want to address it yourself, please open a pull request with:
 
 1. The card that isn't converting (or similar) added to `/tests/data/cards/` with v0 at end of name.
-2. Update the below releveant functions or add a new function and append it to the 
+2. Update the below releveant functions or add a new function and append it to the
     set of functions executed in `update_schema_for_card` function.
 3. Validate that the card is converting successfully using the tests in `test_conversion_script.py`.
 """

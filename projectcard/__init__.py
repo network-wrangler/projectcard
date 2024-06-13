@@ -1,3 +1,5 @@
+"""Project Card representation and validation."""
+
 from .io import read_card, read_cards, write_card
 from .logger import CardLogger, setup_logging
 from .projectcard import ProjectCard, SubProject

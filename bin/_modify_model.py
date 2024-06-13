@@ -6,6 +6,7 @@ Also:
 
 usage: _modify_model.py <model_file_dir>
 """
+
 import argparse
 import ast
 from pathlib import Path
@@ -78,7 +79,7 @@ def _merge_classes_from_one_file_to_another(
     )
     for _c in source_classes_names:
         target_model_file_txt = target_model_file_txt.replace(
-            f"{source_class_basename}.{_c}", f'{_c}'
+            f"{source_class_basename}.{_c}", f"{_c}"
         )
 
     # Insert stray_classes_to_import_txt between import statements and other classes
@@ -102,12 +103,12 @@ def _merge_classes_from_one_file_to_another(
 
 
 _config_wo_protected_namespaces = ast.ClassDef(
-    name='ConfigDict',
+    name="ConfigDict",
     bases=[],
     keywords=[],
     body=[
         ast.Assign(
-            targets=[ast.Name(id='protected_namespaces', ctx=ast.Store())],
+            targets=[ast.Name(id="protected_namespaces", ctx=ast.Store())],
             value=ast.Tuple(elts=[], ctx=ast.Load()),
         )
     ],
@@ -120,14 +121,14 @@ def _is_class_with_var(node, var_name="model_"):
         return False
     has_var = any(
         child
-        for child in getattr(node, 'body', [])  # Use getattr to handle ImportFrom
+        for child in getattr(node, "body", [])  # Use getattr to handle ImportFrom
         if isinstance(child, ast.Assign)
         and any(target.id.startswith(var_name) for target in child.targets)
     )
     return has_var
 
 
-def _get_class(node, class_name='ConfigDict') -> ast.ClassDef:
+def _get_class(node, class_name="ConfigDict") -> ast.ClassDef:
     for child in node.body:
         if isinstance(child, ast.ClassDef) and child.name == class_name:
             return child
@@ -137,7 +138,8 @@ def _get_class(node, class_name='ConfigDict') -> ast.ClassDef:
 def _replace_base_class(class_file_txt: str) -> str:
     """Replaces the base class of the model with a new base class that validates int to str.
 
-    Adds import statement for new base class."""
+    Adds import statement for new base class.
+    """
     class_file_txt = class_file_txt.replace(
         "root: Annotated[str,", "root: Annotated[str,BeforeValidator(str),"
     )
@@ -156,7 +158,7 @@ def _remove_protected_namespaces(class_file_txt: str) -> str:
             else:
                 # Add protected_namespaces = () to the existing ConfigDict class
                 protected_namespaces = ast.Assign(
-                    targets=[ast.Name(id='protected_namespaces', ctx=ast.Store())],
+                    targets=[ast.Name(id="protected_namespaces", ctx=ast.Store())],
                     value=ast.Tuple(elts=[], ctx=ast.Load()),
                 )
                 _config_dict.body.append(protected_namespaces)
@@ -170,12 +172,12 @@ def _remove_protected_namespaces(class_file_txt: str) -> str:
     return ast.unparse(tree)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     # Parse command-line arguments
-    parser = argparse.ArgumentParser(description='Process some integers.')
-    parser.add_argument('dir', help='The directory where the model files are located')
+    parser = argparse.ArgumentParser(description="Process some integers.")
+    parser.add_argument("dir", help="The directory where the model files are located")
     parser.add_argument(
-        '--pydantic-v1', action='store_true', help='Flag to indicate Pydantic version 1'
+        "--pydantic-v1", action="store_true", help="Flag to indicate Pydantic version 1"
     )
 
     args = parser.parse_args()
@@ -186,7 +188,7 @@ if __name__ == '__main__':
     # print(f"MERGING MODEL FILES: {stray_model_paths}")
     target_model_path = Path(args.dir) / TARGET_MODEL_FILE
 
-    with open(target_model_path, 'r') as target_model_file:
+    with open(target_model_path, "r") as target_model_file:
         target_model_file_txt = target_model_file.read()
 
     existing_class_names = _get_class_names_from_txt(target_model_file_txt)
@@ -202,7 +204,7 @@ if __name__ == '__main__':
         target_model_file_txt = _remove_protected_namespaces(target_model_file_txt)
 
     # overwrite the target model file with the new text
-    with open(target_model_path, 'w') as target_model_file:
+    with open(target_model_path, "w") as target_model_file:
         target_model_file.write(target_model_file_txt)
 
     # remove the stray model files that aren't necessary anymore

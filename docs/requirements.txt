@@ -1,0 +1,12 @@
+fontawesome_markdown
+jsonschema2md
+mike<2.0
+mkdocs
+mkdocs-autorefs
+mkdocs-awesome-pages-plugin
+mkdocs-jupyter
+mkdocs-macros-plugin
+mkdocs-material
+mkdocs-mermaid2-plugin
+mkdocstrings
+mkdocstrings-python

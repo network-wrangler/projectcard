@@ -1,3 +1,6 @@
+"""Utility functions for projectcard."""
+
+
 def _findkeys(node, kv):
     """Returns values of all keys in various objects.
 

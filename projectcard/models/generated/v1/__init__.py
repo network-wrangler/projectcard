@@ -975,8 +975,8 @@ class RoadwayLink(BaseModel):
     price: Optional[Price] = None
     ML_lanes: Optional[Lanes] = None
     ML_price: Optional[MLPrice] = None
-    ML_access: Optional[MLAccessEgress] = None
-    ML_egress: Optional[MLAccessEgress] = None
+    ML_access_point: Optional[MLAccessEgress] = None
+    ML_egress_point: Optional[MLAccessEgress] = None
     walk_access: WalkAccess
     bike_access: BikeAccess
     bike_facility: Optional[BikeFacility] = None

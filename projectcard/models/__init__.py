@@ -1,5 +1,4 @@
-"""
-Access to pydantic data models for the projectcard package generated from /schema jsonschema files.
+"""Access to pydantic data models for the projectcard package generated from /schema jsonschema files.
 
 Checks if pydantic v1 vs v2 is installed and imports corresponding data models.
 If pydantic is not installed, its functionality will be "mocked" so that the project card package
@@ -24,7 +23,7 @@ class MockModule:
 try:
     import pydantic
 
-    if pydantic.__version__.startswith('2'):
+    if pydantic.__version__.startswith("2"):
         from .generated.v2 import *
     else:
         from .generated.v1 import *
@@ -32,6 +31,6 @@ except ImportError:
     # Mock the data models
     globals().update(
         {
-            'generated': MockModule(),
+            "generated": MockModule(),
         }
     )

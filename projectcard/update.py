@@ -8,9 +8,10 @@ Contains three public functions:
 
 There is a wrapper script for the third function in `/bin/batch_update_project_cards.py`.
 
-Note that this script is tested (`test_conversion_script.py`) to successfully convert all the 
-project cards in `tests/data/cards/*.v0.yaml` to the current format.  
+Note that this script is tested (`test_conversion_script.py`) to successfully convert all the
+project cards in `tests/data/cards/*.v0.yaml` to the current format.
 """
+
 import sys
 from pathlib import Path
 
@@ -18,7 +19,6 @@ import yaml
 
 from projectcard import ProjectCard, write_card
 from projectcard.utils import _update_dict_key
-from projectcard.models import ProjectCardModel
 from projectcard import CardLogger
 
 
@@ -43,7 +43,7 @@ CATEGORY_NAME_MAP = {
     "Transit Service Property Change": "transit_property_change",
 }
 
-NESTED_VALUES = ['facility', 'properties', 'property_changes', 'links', 'nodes']
+NESTED_VALUES = ["facility", "properties", "property_changes", "links", "nodes"]
 
 
 def _nest_change_under_category_type(card: dict) -> dict:
@@ -95,7 +95,7 @@ def _nest_change_under_category_type(card: dict) -> dict:
 
 
 DEFAULT_ROADWAY_VALUES: dict = {
-    "links":{
+    "links": {
         "name": "new_link - TODO NAME ME!",
         "roadway": "road",
         "bus_only": 0,
@@ -104,8 +104,7 @@ DEFAULT_ROADWAY_VALUES: dict = {
         "bike_access": 1,
         "walk_access": 1,
     },
-    "nodes": {
-    }
+    "nodes": {},
 }
 
 
@@ -113,8 +112,8 @@ def _update_roadway_addition(card, default_roadway_values: dict = DEFAULT_ROADWA
     """Adds required link and node values for roadway additions with assumed defaults.
 
     Args:
-        card (_type_): _description_
-        default_link_values (dict): Mapping of field name and default value to use for links if 
+        card: ProjectCard dictionary to update.
+        default_roadway_values (dict): Mapping of field name and default value to use for links if
             not specified in project card. Defaults to DEFAULT_ROADWAY_VALUES.
 
     """
@@ -132,8 +131,9 @@ def _update_roadway_addition(card, default_roadway_values: dict = DEFAULT_ROADWA
     CardLogger.debug(f"Updated Card.update_roadway_addition:\n {card}")
     return card
 
-def _unnest_scoped_properties(property_change:dict)->list[dict]:
-    """Update keys scoped managed lanes to a list of single-level dicts""
+
+def _unnest_scoped_properties(property_change: dict) -> list[dict]:
+    """Update keys scoped managed lanes to a list of single-level dicts"".
 
     e.g.
 
@@ -247,7 +247,7 @@ ROADWAY_FACILITY_UPDATED_KEYS = {"link": "links", "A": "from", "B": "to"}
 
 
 def _update_roadway_facility(card):
-    """Update keys for "facility" dict under "roadway_property_change or roadway_managed_lanes""
+    """Update keys for "facility" dict under "roadway_property_change or roadway_managed_lanes"".
 
     Also unnests "links" from an unnecessary list.
 
@@ -263,15 +263,11 @@ def _update_roadway_facility(card):
 
         for old_key, new_key in ROADWAY_FACILITY_UPDATED_KEYS.items():
             if old_key in card[change_cat]["facility"]:
-                card[change_cat]["facility"][new_key] = card[
-                    change_cat
-                ]["facility"].pop(old_key)
+                card[change_cat]["facility"][new_key] = card[change_cat]["facility"].pop(old_key)
 
         # unnest links from list
         if "links" in card[change_cat]["facility"]:
-            card[change_cat]["facility"]["links"] = card[change_cat][
-                "facility"
-            ].pop("links")[0]
+            card[change_cat]["facility"]["links"] = card[change_cat]["facility"].pop("links")[0]
         CardLogger.debug(f"Updated Card.update_roadway_facility:\n {card}")
     return card
 
@@ -357,16 +353,14 @@ def _update_transit_service(card):
 
 
 def _update_transit_routing(card):
-    """
-    """
     if "transit_property_change" in card:
-         # TODO do "shapes"
+        # TODO do "shapes"
         if "routing" in card["transit_property_change"]["property_changes"]:
             transit_property_change = card.pop("transit_property_change")
 
             card["transit_routing_change"] = {
                 "service": transit_property_change["service"],
-                "routing": transit_property_change["property_changes"]["routing"]
+                "routing": transit_property_change["property_changes"]["routing"],
             }
     return card
 
@@ -396,11 +390,11 @@ def update_schema_for_card(card_data: dict, errlog_output_dir: Path = ".") -> di
     write_card(new_card_data, Path("my_new_card.yml"))
     ```
 
-    args:
+    Args:
         card_data: card data to update.
         errlog_output_dir: directory to log erroneous data for further examination. Defaults to ".".
     """
-    _project = card_data['project']
+    _project = card_data["project"]
     CardLogger.info(f"Updating {_project}...")
     card_data = _update_property_changes_key(card_data)
     card_data = _nest_change_under_category_type(card_data)
@@ -409,7 +403,7 @@ def update_schema_for_card(card_data: dict, errlog_output_dir: Path = ".") -> di
     card_data = _update_transit_service(card_data)
     card_data = _update_transit_routing(card_data)
     card_data = _update_timespan(card_data)
-   
+
     """
     TODO: validate against ProjectCardModel when that is updated before returning
 
@@ -438,13 +432,12 @@ def update_schema_for_card_file(
     update_schema_for_card_file(Path("my_old_card.yml"), Path("/home/me/newcards/")
     ```
 
-    args:
+    Args:
         input_card_path: path to card file.
         output_card_path: path to write updated card file. Defaults to None. If None, will
             write to input_card_path with a v1 pre-suffix.
         rename_input: rename input card file with a ".v0 pre-suffix. Default: False
     """
-
     card_data = yaml.safe_load(input_card_path.read_text())
 
     if output_card_path is None:
@@ -474,20 +467,18 @@ def update_schema_for_card_dir(
 ) -> None:
     """Update all card files in a directory to current format.
 
-
     Example usage:
 
     ```python
     update_schema_for_card_dir(Path("/home/me/oldcards"), Path("/home/me/newcards/")
     ```
 
-    args:
+    Args:
         input_card_dir: directory with card files.
         output_card_dir: directory to write updated card files. Defaults to None. If None, will
             write to input_card_dir with a v1 pre-suffix.
         rename_input: rename input card files with a v0 pre-suffix. Default: False
     """
-
     # check that input and output paths are valid
     if not input_card_dir.exists():
         raise ValueError(f"Invalid input_card_dir: {input_card_dir}")
@@ -504,7 +495,8 @@ def update_schema_for_card_dir(
     if input_card_dir.is_file():
         if output_card_dir is not None and input_card_dir.parent == output_card_dir:
             raise ValueError(
-                "Error: output_dir cannot be the same as the directory of card_search_dir or card_filename."
+                "Error: output_dir cannot be the same as the directory of \
+                    card_search_dir or card_filename."
             )
         input_card_files = [input_card_dir]
     else:

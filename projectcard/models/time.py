@@ -1,3 +1,4 @@
+"""Helper classes for time and timespan representation."""
 import datetime
 from datetime import time
 from typing import Annotated, List
@@ -7,10 +8,12 @@ from pydantic.dataclasses import dataclass
 
 
 class TimeFormatError(Exception):
+    """Exception raised for errors in the time format."""
     pass
 
 
 class TimespanFormatError(Exception):
+    """Exception raised for errors in the timespan format."""
     pass
 
 
@@ -20,6 +23,7 @@ PC_TimeSpanString = Annotated[List[PC_TimeString], Field(min_length=2, max_lengt
 
 @dataclass
 class PC_Time:
+    """Project Card Time representation."""
     time: PC_TimeString
 
     @property
@@ -36,27 +40,35 @@ class PC_Time:
 
     @property
     def time_sec(self):
-        return self.datetime.hour * 3600 + self.datetime.minute * 60 + self.datetime.second
+        """Time in seconds since midnight."""
+        return (
+            self.datetime.hour * 3600 + self.datetime.minute * 60 + self.datetime.second
+        )
 
 
 @dataclass
 class PC_Timespan:
+    """Project Card Timespan representation."""
     timespan: PC_TimeSpanString
 
     @property
     def start_time(self):
+        """Start time of the timespan."""
         return self.timespan[0].time
 
     @property
     def end_time(self):
+        """End time of the timespan."""
         return self.timespan[1].time
 
     @property
     def start_time_dt(self):
+        """Start time as a datetime object."""
         return self.timespan[0].datetime
 
     @property
     def end_time_dt(self):
+        """End time as a datetime object."""
         return self.timespan[1].datetime
 
     @property

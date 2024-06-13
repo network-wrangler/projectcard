@@ -3,6 +3,7 @@
 USAGE:
     pytest --log-cli-level=10
 """
+
 import os
 from pathlib import Path
 
@@ -53,7 +54,7 @@ def test_example_valid(all_example_cards):
 
 @pytest.fixture(scope="session")
 def all_bad_card_files(test_dir):
-    """Card files which should fail"""
+    """Card files which should fail."""
     _card_dir = Path(test_dir) / "data" / "cards"
     bad_card_files = [p for p in _card_dir.glob("**/*bad.yaml")]
     return bad_card_files

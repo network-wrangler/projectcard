@@ -1,3 +1,5 @@
+"""Functions for mkdocs documentation."""
+
 import logging
 import os
 import re
@@ -9,8 +11,7 @@ SCHEMA_DIR = "schema"
 
 
 def define_env(env):
-    """
-    This is the hook for defining variables, macros and filters
+    """This is the hook for defining variables, macros and filters.
 
     - variables: the dictionary that contains the environment variables
     - macro: a decorator function, to declare a macro.
@@ -55,12 +56,11 @@ def define_env(env):
 
     @env.macro
     def include_file(filename: str, downshift_h1=True, start_line: int = 0, end_line: int = None):
-        """
-        Include a file, optionally indicating start_line and end_line.
+        """Include a file, optionally indicating start_line and end_line.
 
         Will create redirects if specified in FIND_REPLACE in main.py.
 
-        args:
+        Args:
             filename: file to include, relative to the top directory of the documentation project.
             downshift_h1: If true, will downshift headings by 1 if h1 heading found.
                 Defaults to True.
@@ -112,6 +112,7 @@ def define_env(env):
     @env.macro
     def list_examples(data_dir: str) -> str:
         """Outputs a simple list of the directories in a folder in markdown.
+
         Args:
             data_dir (str):directory to search in
         Returns:
@@ -123,7 +124,7 @@ def define_env(env):
 
         data_dir = os.path.join(env.project_dir, data_dir)
 
-        _md_examples = f"\n## Cards\n"
+        _md_examples = "\n## Cards\n"
         _md_table = (
             "| **Name** | "
             + "** | **".join(table_fields)
@@ -167,6 +168,7 @@ def _get_html_between_tags(content: str, tag: str = "body") -> str:
 
 def _rm_html_between_tags(content: str, tag: str = "footer") -> str:
     """Returns string without the tags if they are found. If not, returns whole string.
+
     Only removes first found instance.
 
     Args:

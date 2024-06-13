@@ -3,12 +3,12 @@ requires = ["setuptools", "wheel"]
 
 [project]
 name = "projectcard"
-version = "0.0.1"
+version = "0.0.2"
 description = ""
 license =  {file = "LICENSE"}
 readme = "README.md"
 authors = [
-    { name = "Your Name", email = "your.email@example.com" },
+    { name = "Elizabeth Sall", email = "elizabeth@urbanlabs.io" },
 ]
 
 classifiers = [
@@ -25,7 +25,7 @@ max-line-length = 99
 ignore = [
     "E203",  # whitespace before ':'
     "E266",  # too many leading '#' for block comment
-    "E501",  # line too long 
+    "E501",  # line too long
     "W503",  # line break before binary operator
     "F401",  # imported but unused
     "E231",  # missing whitespace after ','
@@ -42,6 +42,18 @@ exclude = [
 [tool.pydocstyle]
 convention = "google"
 
-[tool.black]
-skip-string-normalization = true
-line-length = 100
+[tool.ruff]
+exclude = [
+    "projectcard/models/**",
+]
+line-length = 99
+
+[tool.ruff.lint]
+select = ["D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D103", "D106", "D101", "D104", "D100"]
+"**/__init__.py" = ["F401", "F403"]

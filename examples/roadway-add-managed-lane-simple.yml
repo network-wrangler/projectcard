@@ -3,7 +3,7 @@ notes: Simple managed lane project with AM and PM lanes are HOT during the peak 
 tags:
    - 'example'
    - 'managed'
-roadway_managed_lanes:
+roadway_property_change:
   facility:
     links:
       name:
@@ -41,10 +41,10 @@ roadway_managed_lanes:
         - timespan: ['6:00', '9:00']
           category: ['hov2']
           set: 1.0
-        - time: ['16:00', '19:00']
+        - timespan: ['16:00', '19:00']
           category: ['hov2']
           set: 2.0
-    ML_access:
+    ML_access_point:
       set: 'all'
-    ML_egress:
+    ML_egress_point:
       set: 'all'
