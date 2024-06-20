@@ -138,6 +138,7 @@ def define_env(env):
             _md_row += f"{_categories_as_str(card)}" " |\n"
             return _md_row
 
+        _example_cards = None
         _example_cards = read_cards(data_dir)
 
         for _card in _example_cards.values():

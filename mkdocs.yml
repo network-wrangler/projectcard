@@ -20,6 +20,8 @@ theme:
     - scheme: default
       primary: blue grey
       accent: deep purple
+  icon:
+    logo: material/playlist-check
 
 plugins:
   - autorefs

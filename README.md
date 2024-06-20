@@ -1,7 +1,8 @@
-Project Cards
+# Project Card Data Schema
 
+Project Cards represent information about a tranportation infrastructure projects sufficient for usage in a regional travel demand model.
 
-# Schema
+## Schema
 
 The ProjectCard schema is represented as a [json-schema](https://json-schema.org) in the `/schema` directory and is documented on the [schemas page](json_schemas.md).
 
@@ -9,7 +10,27 @@ The ProjectCard schema is represented as a [json-schema](https://json-schema.org
 
 Example project cards can be found in the `/examples` directory and on the [examples page](examples.md)
 
-# Basic Usage
+## Basic Usage
+
+This package should generally be used to validate or update project cards.  
+
+There is also a limited object model, `ProjectCard` which can be used to organize and manage project cards.
+
+### Command Line
+
+Validate project card(s) from a directory or specific file path, optionally filtering by a tag.
+
+```sh
+validate_card card_search_dir --filter_tags ['tag_to_search_for']
+```
+
+Update older project card(s) to current format from a directory or specific file path.  Cards should still be validated afterwards.
+
+```sh
+update_projectcard_schema card_search_dir output_dir
+```
+
+### Python API
 
 ```python
 from projectcard.io import read_cards
@@ -25,11 +46,13 @@ for project_name,card in project_cards.items():
 print(project_cards["4th Ave Busway"])
 ```
 
-# Installation
+## Installation
 
-Generally it is not necessary to install the projectcard package as the main purpose of this repository is to maintain the project card *schema*.
+`pip install projectcard`
 
-## Development Environment
+Note :Generally it is not necessary to install the projectcard package as the main purpose of this repository is to maintain the project card *schema*.  Projects that use the package to validate project cards usually include projectcards as a requirement and install it on their own.  
+
+### Development Environment
 
 1. [Fork](https://github.com/network-wrangler/projectcard/fork) and clone repo locally
 
@@ -51,7 +74,7 @@ pip install -r requirements.txt
 pip install -e .
 ```
 
-## Production Environment
+### Production Environment
 
 ```sh
 pip install git+https://github.com/network-wrangler/projectcard@main#egg=projectcard
