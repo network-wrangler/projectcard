@@ -1,6 +1,6 @@
 # Project Card Data Schema
 
-Project Cards represent information about a tranportation infrastructure projects sufficient for usage in a regional travel demand model.
+Project Cards represent information about a tranportation infrastructure projects sufficient for usage in a regional travel demand model. This package supports validation and usage of this schema.
 
 ## Schema
 
