@@ -1,0 +1,2650 @@
+
+<!DOCTYPE html>
+
+<html class="no-js" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<link href="https://network-wrangler.github.io/projectcard/v0.1.1/api/" rel="canonical"/>
+<link href="../pydantic-datamodels/" rel="prev"/>
+<link href="../examples/" rel="next"/>
+<link href="../assets/images/favicon.png" rel="icon"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-9.5.27" name="generator"/>
+<title>API - Project Cards</title>
+<link href="../assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
+<link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+<link href="../assets/_mkdocstrings.css" rel="stylesheet"/>
+<link href="../extra_css/extra.css" rel="stylesheet"/>
+<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="deep-purple" data-md-color-primary="blue-grey" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#api">
+          Skip to content
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<div data-md-color-scheme="default" data-md-component="outdated" hidden="">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="Header" class="md-header__inner md-grid">
+<a aria-label="Project Cards" class="md-header__button md-logo" data-md-component="logo" href=".." title="Project Cards">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 10H3v2h11v-2m0-4H3v2h11V6M3 16h7v-2H3v2m18.5-4.5L23 13l-7 7-4.5-4.5L13 14l3 3 5.5-5.5Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Project Cards
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              API
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-hidden="true" class="md-option" data-md-color-accent="deep-purple" data-md-color-media="" data-md-color-primary="blue-grey" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+</form>
+<script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
+</label>
+<nav aria-label="Search" class="md-search__options">
+<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
+</button>
+</nav>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            Initializing search
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/network-wrangler/projectcard" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="..">
+        
+  
+    
+  
+  Project Cards
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../json-schemas/">
+        
+  
+    
+  
+  Schema Documentation
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../pydantic-datamodels/">
+        
+  
+    
+  
+  Pydantic
+
+      </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="./">
+        
+  
+    
+  
+  API
+
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../examples/">
+        
+  
+    
+  
+  Example Data
+
+      </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Project Cards" class="md-nav__button md-logo" data-md-component="logo" href=".." title="Project Cards">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 10H3v2h11v-2m0-4H3v2h11V6M3 16h7v-2H3v2m18.5-4.5L23 13l-7 7-4.5-4.5L13 14l3 3 5.5-5.5Z"></path></svg>
+</a>
+    Project Cards
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/network-wrangler/projectcard" title="Go to repository">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
+</div>
+<div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="..">
+<span class="md-ellipsis">
+    Project Cards
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../json-schemas/">
+<span class="md-ellipsis">
+    Schema Documentation
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../pydantic-datamodels/">
+<span class="md-ellipsis">
+    Pydantic
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    API
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    API
+  </span>
+</a>
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#basic-usage">
+<span class="md-ellipsis">
+      Basic Usage
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard">
+<span class="md-ellipsis">
+      projectcard
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard">
+<span class="md-ellipsis">
+      ProjectCard
+    </span>
+</a>
+<nav aria-label="ProjectCard" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.all_transit_property_changes">
+<span class="md-ellipsis">
+      all_transit_property_changes
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.all_transit_routing_changes">
+<span class="md-ellipsis">
+      all_transit_routing_changes
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.change_type">
+<span class="md-ellipsis">
+      change_type
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.change_types">
+<span class="md-ellipsis">
+      change_types
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.facilities">
+<span class="md-ellipsis">
+      facilities
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.facility">
+<span class="md-ellipsis">
+      facility
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.service">
+<span class="md-ellipsis">
+      service
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.services">
+<span class="md-ellipsis">
+      services
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.transit_property_change">
+<span class="md-ellipsis">
+      transit_property_change
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.transit_routing_change">
+<span class="md-ellipsis">
+      transit_routing_change
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.valid">
+<span class="md-ellipsis">
+      valid
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.__init__">
+<span class="md-ellipsis">
+      __init__
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.__str__">
+<span class="md-ellipsis">
+      __str__
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.validate">
+<span class="md-ellipsis">
+      validate
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject">
+<span class="md-ellipsis">
+      SubProject
+    </span>
+</a>
+<nav aria-label="SubProject" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.change_type">
+<span class="md-ellipsis">
+      change_type
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.dependencies">
+<span class="md-ellipsis">
+      dependencies
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.facility">
+<span class="md-ellipsis">
+      facility
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.project">
+<span class="md-ellipsis">
+      project
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.tags">
+<span class="md-ellipsis">
+      tags
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.valid">
+<span class="md-ellipsis">
+      valid
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.__init__">
+<span class="md-ellipsis">
+      __init__
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.io">
+<span class="md-ellipsis">
+      io
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.io.ProjectCardReadError">
+<span class="md-ellipsis">
+      ProjectCardReadError
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.io.read_card">
+<span class="md-ellipsis">
+      read_card
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.io.read_cards">
+<span class="md-ellipsis">
+      read_cards
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.io.write_card">
+<span class="md-ellipsis">
+      write_card
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate">
+<span class="md-ellipsis">
+      validate
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.ProjectCardJSONSchemaError">
+<span class="md-ellipsis">
+      ProjectCardJSONSchemaError
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.ProjectCardValidationError">
+<span class="md-ellipsis">
+      ProjectCardValidationError
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.PycodeError">
+<span class="md-ellipsis">
+      PycodeError
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.SubprojectValidationError">
+<span class="md-ellipsis">
+      SubprojectValidationError
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.package_schema">
+<span class="md-ellipsis">
+      package_schema
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.validate_card">
+<span class="md-ellipsis">
+      validate_card
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.validate_schema_file">
+<span class="md-ellipsis">
+      validate_schema_file
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../examples/">
+<span class="md-ellipsis">
+    Example Data
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#basic-usage">
+<span class="md-ellipsis">
+      Basic Usage
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard">
+<span class="md-ellipsis">
+      projectcard
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard">
+<span class="md-ellipsis">
+      ProjectCard
+    </span>
+</a>
+<nav aria-label="ProjectCard" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.all_transit_property_changes">
+<span class="md-ellipsis">
+      all_transit_property_changes
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.all_transit_routing_changes">
+<span class="md-ellipsis">
+      all_transit_routing_changes
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.change_type">
+<span class="md-ellipsis">
+      change_type
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.change_types">
+<span class="md-ellipsis">
+      change_types
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.facilities">
+<span class="md-ellipsis">
+      facilities
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.facility">
+<span class="md-ellipsis">
+      facility
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.service">
+<span class="md-ellipsis">
+      service
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.services">
+<span class="md-ellipsis">
+      services
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.transit_property_change">
+<span class="md-ellipsis">
+      transit_property_change
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.transit_routing_change">
+<span class="md-ellipsis">
+      transit_routing_change
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.valid">
+<span class="md-ellipsis">
+      valid
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.__init__">
+<span class="md-ellipsis">
+      __init__
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.__str__">
+<span class="md-ellipsis">
+      __str__
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.ProjectCard.validate">
+<span class="md-ellipsis">
+      validate
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject">
+<span class="md-ellipsis">
+      SubProject
+    </span>
+</a>
+<nav aria-label="SubProject" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.change_type">
+<span class="md-ellipsis">
+      change_type
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.dependencies">
+<span class="md-ellipsis">
+      dependencies
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.facility">
+<span class="md-ellipsis">
+      facility
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.project">
+<span class="md-ellipsis">
+      project
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.tags">
+<span class="md-ellipsis">
+      tags
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.valid">
+<span class="md-ellipsis">
+      valid
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.projectcard.SubProject.__init__">
+<span class="md-ellipsis">
+      __init__
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.io">
+<span class="md-ellipsis">
+      io
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.io.ProjectCardReadError">
+<span class="md-ellipsis">
+      ProjectCardReadError
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.io.read_card">
+<span class="md-ellipsis">
+      read_card
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.io.read_cards">
+<span class="md-ellipsis">
+      read_cards
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.io.write_card">
+<span class="md-ellipsis">
+      write_card
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate">
+<span class="md-ellipsis">
+      validate
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.ProjectCardJSONSchemaError">
+<span class="md-ellipsis">
+      ProjectCardJSONSchemaError
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.ProjectCardValidationError">
+<span class="md-ellipsis">
+      ProjectCardValidationError
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.PycodeError">
+<span class="md-ellipsis">
+      PycodeError
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.SubprojectValidationError">
+<span class="md-ellipsis">
+      SubprojectValidationError
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.package_schema">
+<span class="md-ellipsis">
+      package_schema
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.validate_card">
+<span class="md-ellipsis">
+      validate_card
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.validate.validate_schema_file">
+<span class="md-ellipsis">
+      validate_schema_file
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<h1 id="api">API<a class="headerlink" href="#api" title="Permanent link"> ¶</a></h1>
+<h3 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link"> ¶</a></h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">projectcard.io</span> <span class="kn">import</span> <span class="n">read_cards</span>
+
+<span class="c1"># Read in cards from a directory with the tag "Baseline 2030"</span>
+<span class="n">project_cards</span> <span class="o">=</span> <span class="n">read_cards</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">filter_tags</span><span class="o">=</span><span class="p">[</span><span class="s2">"Baseline2030"</span><span class="p">])</span>
+
+<span class="c1"># Iterate through a deck of cards for validity</span>
+<span class="k">for</span> <span class="n">project_name</span><span class="p">,</span><span class="n">card</span> <span class="ow">in</span> <span class="n">project_cards</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">project_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">card</span><span class="o">.</span><span class="n">valid</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="c1"># Print out a summary of the card with the project name "4th Ave Busway"</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">project_cards</span><span class="p">[</span><span class="s2">"4th Ave Busway"</span><span class="p">])</span>
+</code></pre></div>
+<div class="doc doc-object doc-module">
+<a id="projectcard.projectcard"></a>
+<div class="doc doc-contents first">
+<p>Project Card class for project card data schema.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="projectcard.projectcard.ProjectCard">
+<code>ProjectCard</code>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+              Bases: <code>object</code></p>
+<p>Representation of a Project Card.</p>
+<p><span class="doc-section-title">Attributes:</span></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="doc-section-item">
+<td><code><span title="projectcard.projectcard.ProjectCard.__dict__">__dict__</span></code></td>
+<td>
+</td>
+<td>
+<div class="doc-md-description">
+<p>Dictionary of project card attributes</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><a class="autorefs autorefs-internal" href="#projectcard.projectcard.ProjectCard.valid" title="projectcard.projectcard.ProjectCard.valid">valid</a></code></td>
+<td>
+<code>bool</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>Boolean indicating if data conforms to project card data schema</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><a class="autorefs autorefs-internal" href="#projectcard.projectcard.ProjectCard.facilities" title="projectcard.projectcard.ProjectCard.facilities">facilities</a></code></td>
+<td>
+<code><span title="typing.List">List</span>[dict]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>List of all facility objects in project card</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><a class="autorefs autorefs-internal" href="#projectcard.projectcard.ProjectCard.facility" title="projectcard.projectcard.ProjectCard.facility">facility</a></code></td>
+<td>
+<code><span title="typing.Union">Union</span>[str, dict]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>either singular facility in project card or the string “multiple”</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><span title="projectcard.projectcard.ProjectCard.all_property_changes">all_property_changes</span></code></td>
+<td>
+<code><span title="typing.Union">Union</span>[str, dict]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>List of all property_changes objects in project card</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><span title="projectcard.projectcard.ProjectCard.property_changes">property_changes</span></code></td>
+<td>
+<code><span title="typing.Union">Union</span>[str, dict]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>either singular property_changes in project card or the string “multiple”</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><a class="autorefs autorefs-internal" href="#projectcard.projectcard.ProjectCard.change_types" title="projectcard.projectcard.ProjectCard.change_types">change_types</a></code></td>
+<td>
+<code><span title="typing.List">List</span>[str]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>List of all project types in project card</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><a class="autorefs autorefs-internal" href="#projectcard.projectcard.ProjectCard.change_type" title="projectcard.projectcard.ProjectCard.change_type">change_type</a></code></td>
+<td>
+<code>str</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>either singular project type in project card or the string “multiple”</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><span title="projectcard.projectcard.ProjectCard.sub_projects">sub_projects</span></code></td>
+<td>
+<code>list[<a class="autorefs autorefs-internal" href="#projectcard.projectcard.SubProject" title="projectcard.projectcard.SubProject">SubProject</a>]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>list of sub_project objects</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>projectcard/projectcard.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ProjectCard</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Representation of a Project Card.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        __dict__: Dictionary of project card attributes</span>
+<span class="sd">        valid: Boolean indicating if data conforms to project card data schema</span>
+<span class="sd">        facilities: List of all facility objects in project card</span>
+<span class="sd">        facility: either singular facility in project card or the string "multiple"</span>
+<span class="sd">        all_property_changes: List of all property_changes objects in project card</span>
+<span class="sd">        property_changes: either singular property_changes in project card or the string "multiple"</span>
+<span class="sd">        change_types: List of all project types in project card</span>
+<span class="sd">        change_type: either singular project type in project card or the string "multiple"</span>
+<span class="sd">        sub_projects: list of sub_project objects</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute_dictonary</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Constructor for ProjectCard object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            attribute_dictonary: a nested dictionary of attributes</span>
+<span class="sd">        """</span>
+        <span class="c1"># add these first so they are first on write out</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dependencies</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_projects</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SubProject</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">attribute_dictonary</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">sp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"changes"</span><span class="p">,</span> <span class="p">[]):</span>
+            <span class="n">sp_obj</span> <span class="o">=</span> <span class="n">SubProject</span><span class="p">(</span><span class="n">sp</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sub_projects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sp_obj</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""String representation of project card."""</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+        <span class="k">return</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return True if project card is valid, False otherwise."""</span>
+        <span class="k">return</span> <span class="n">validate_card</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">valid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return True if project card is valid, False otherwise."""</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">validate</span><span class="p">()</span>
+        <span class="k">except</span> <span class="n">ProjectCardValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">CardLogger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Project </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="si">}</span><span class="s2"> is not valid: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">facilities</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Return all facilities from project card as list of dicts."""</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="s2">"transit"</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">change_types</span><span class="p">]):</span>
+            <span class="n">CardLogger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"Transit project doesn't have services."</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_findkeys</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="s2">"facility"</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">f</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ProjectCardValidationError</span><span class="p">(</span><span class="s2">"Couldn't find facility in project card"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">f</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">facility</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Return facility part of project card or "multiple" if more than one."""</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">facilities</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"multiple"</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">services</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Return all services from project card as list of dicts."""</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">([</span><span class="s2">"roadway"</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">change_types</span><span class="p">]):</span>
+            <span class="n">CardLogger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="s2">"Roadway project doesn't have services."</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_findkeys</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="s2">"service"</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">s</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ProjectCardValidationError</span><span class="p">(</span><span class="s2">"Couldn't find service in project card"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">s</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">service</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Return service part of from project card or "multiple" if more than one."""</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">services</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"multiple"</span>
+        <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">all_transit_property_changes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Return all transit property changes from project card."""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span><span class="s2">"transit_property_change"</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">change_types</span><span class="p">]):</span>
+            <span class="n">CardLogger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Project </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="si">}</span><span class="s2"> doesn't have transit property changes."</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">tp</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_findkeys</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="s2">"transit_property_change"</span><span class="p">))</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="s2">"property_changes"</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tp</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">p</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">transit_property_change</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Return transit property change from project card or "multiple if more than one."""</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_transit_property_changes</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"multiple"</span>
+        <span class="k">return</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">all_transit_routing_changes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Return all transit routing changes from project card."""</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">([</span><span class="s2">"transit_routing_change"</span> <span class="ow">in</span> <span class="n">t</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">change_types</span><span class="p">]):</span>
+            <span class="n">CardLogger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Project </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="si">}</span><span class="s2"> doesn't have routing changes."</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">_findkeys</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">,</span> <span class="s2">"routing"</span><span class="p">))</span>
+        <span class="n">CardLogger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"transit routing change: </span><span class="si">{</span><span class="n">r</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">r</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">transit_routing_change</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Return transit routing change from project card."""</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">all_transit_routing_changes</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"multiple"</span>
+        <span class="k">return</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">change_types</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">"""Returns list of all change types from project/subproject."""</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_projects</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">sp</span><span class="o">.</span><span class="n">change_type</span> <span class="k">for</span> <span class="n">sp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sub_projects</span><span class="p">]</span>
+        <span class="n">_ignore</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">"project"</span><span class="p">,</span>
+            <span class="s2">"tags"</span><span class="p">,</span>
+            <span class="s2">"notes"</span><span class="p">,</span>
+            <span class="s2">"dependencies"</span><span class="p">,</span>
+            <span class="s2">"self_obj_type"</span><span class="p">,</span>
+            <span class="s2">"sub_projects"</span><span class="p">,</span>
+            <span class="s2">"file"</span><span class="p">,</span>
+        <span class="p">]</span>
+        <span class="n">type_keys</span> <span class="o">=</span> <span class="p">[</span><span class="n">k</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_ignore</span><span class="p">]</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">type_keys</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">ProjectCardValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Couldn't find type of project card </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">type_keys</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">change_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return single change type if single project or "multiple" if &gt;1 subproject."""</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">change_types</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"multiple"</span>
+        <span class="k">return</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.all_transit_property_changes">
+<code class="language-python"><span class="n">all_transit_property_changes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.all_transit_property_changes" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return all transit property changes from project card.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.all_transit_routing_changes">
+<code class="language-python"><span class="n">all_transit_routing_changes</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.all_transit_routing_changes" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return all transit routing changes from project card.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.change_type">
+<code class="language-python"><span class="n">change_type</span><span class="p">:</span> <span class="nb">str</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.change_type" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return single change type if single project or “multiple” if &gt;1 subproject.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.change_types">
+<code class="language-python"><span class="n">change_types</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.change_types" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Returns list of all change types from project/subproject.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.facilities">
+<code class="language-python"><span class="n">facilities</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.facilities" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return all facilities from project card as list of dicts.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.facility">
+<code class="language-python"><span class="n">facility</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.facility" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return facility part of project card or “multiple” if more than one.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.service">
+<code class="language-python"><span class="n">service</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.service" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return service part of from project card or “multiple” if more than one.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.services">
+<code class="language-python"><span class="n">services</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">dict</span><span class="p">]</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.services" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return all services from project card as list of dicts.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.transit_property_change">
+<code class="language-python"><span class="n">transit_property_change</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.transit_property_change" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return transit property change from project card or “multiple if more than one.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.transit_routing_change">
+<code class="language-python"><span class="n">transit_routing_change</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">dict</span><span class="p">]</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.transit_routing_change" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return transit routing change from project card.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.valid">
+<code class="language-python"><span class="n">valid</span><span class="p">:</span> <span class="nb">bool</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.valid" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return True if project card is valid, False otherwise.</p>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.__init__">
+<code class="language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">attribute_dictonary</span><span class="p">)</span></code>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.__init__" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Constructor for ProjectCard object.</p>
+<p><span class="doc-section-title">Parameters:</span></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="doc-section-item">
+<td><code>attribute_dictonary</code></td>
+<td>
+<code>dict</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>a nested dictionary of attributes</p>
+</div>
+</td>
+<td>
+<em>required</em>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>projectcard/projectcard.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">attribute_dictonary</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Constructor for ProjectCard object.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        attribute_dictonary: a nested dictionary of attributes</span>
+<span class="sd">    """</span>
+    <span class="c1"># add these first so they are first on write out</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">project</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">tags</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">dependencies</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sub_projects</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">SubProject</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">attribute_dictonary</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">sp</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"changes"</span><span class="p">,</span> <span class="p">[]):</span>
+        <span class="n">sp_obj</span> <span class="o">=</span> <span class="n">SubProject</span><span class="p">(</span><span class="n">sp</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_projects</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sp_obj</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.__str__">
+<code class="language-python"><span class="fm">__str__</span><span class="p">()</span></code>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.__str__" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>String representation of project card.</p>
+<details class="quote">
+<summary>Source code in <code>projectcard/projectcard.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""String representation of project card."""</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"</span><span class="si">{}</span><span class="s2">: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+    <span class="k">return</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="projectcard.projectcard.ProjectCard.validate">
+<code class="language-python"><span class="n">validate</span><span class="p">()</span></code>
+<a class="headerlink" href="#projectcard.projectcard.ProjectCard.validate" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return True if project card is valid, False otherwise.</p>
+<details class="quote">
+<summary>Source code in <code>projectcard/projectcard.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">validate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Return True if project card is valid, False otherwise."""</span>
+    <span class="k">return</span> <span class="n">validate_card</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="projectcard.projectcard.SubProject">
+<code>SubProject</code>
+<a class="headerlink" href="#projectcard.projectcard.SubProject" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" href="#projectcard.projectcard.ProjectCard" title="projectcard.projectcard.ProjectCard">ProjectCard</a></code></p>
+<p>Representation of a SubProject within a ProjectCard.</p>
+<p><span class="doc-section-title">Attributes:</span></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="doc-section-item">
+<td><code><span title="projectcard.projectcard.SubProject.parent_project">parent_project</span></code></td>
+<td>
+</td>
+<td>
+<div class="doc-md-description">
+<p>reference to parent ProjectCard object</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><span title="projectcard.projectcard.SubProject.type">type</span></code></td>
+<td>
+</td>
+<td>
+<div class="doc-md-description">
+<p>project type</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><a class="autorefs autorefs-internal" href="#projectcard.projectcard.SubProject.tags" title="projectcard.projectcard.SubProject.tags">tags</a></code></td>
+<td>
+<code>str</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>reference to parent project card tags</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><a class="autorefs autorefs-internal" href="#projectcard.projectcard.SubProject.dependencies" title="projectcard.projectcard.SubProject.dependencies">dependencies</a></code></td>
+<td>
+<code>str</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>reference to parent project card’s dependencies</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><a class="autorefs autorefs-internal" href="#projectcard.projectcard.SubProject.project" title="projectcard.projectcard.SubProject.project">project</a></code></td>
+<td>
+<code>str</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>reference to the name of the parent project card’s name</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><a class="autorefs autorefs-internal" href="#projectcard.projectcard.SubProject.facility" title="projectcard.projectcard.SubProject.facility">facility</a></code></td>
+<td>
+<code>dict</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>facility selection dictionary</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code><span title="projectcard.projectcard.SubProject.property_changes">property_changes</span></code></td>
+<td>
+<code>dict</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>property_changes dictionary</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>projectcard/projectcard.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SubProject</span><span class="p">(</span><span class="n">ProjectCard</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Representation of a SubProject within a ProjectCard.</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">        parent_project: reference to parent ProjectCard object</span>
+<span class="sd">        type:  project type</span>
+<span class="sd">        tags: reference to parent project card tags</span>
+<span class="sd">        dependencies: reference to parent project card's dependencies</span>
+<span class="sd">        project: reference to the name of the parent project card's name</span>
+<span class="sd">        facility: facility selection dictionary</span>
+<span class="sd">        property_changes:property_changes dictionary</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sp_dictionary</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">parent_project</span><span class="p">:</span> <span class="n">ProjectCard</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Constructor for SubProject object.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            sp_dictionary (dict): dictionary of sub-project attributes contained within "changes"</span>
+<span class="sd">                list of parent projet card</span>
+<span class="sd">            parent_project (ProjectCard): ProjectCard object for parent project card</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">parent_project</span> <span class="o">=</span> <span class="n">parent_project</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">sp_dictionary</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">CardLogger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid sp_dictionary with !=1 keys: </span><span class="si">{</span><span class="n">sp_dictionary</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="n">SubprojectValidationError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Subproject of </span><span class="si">{</span><span class="n">parent_project</span><span class="o">.</span><span class="n">project</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">                 should only have one change. Did you forget to indent the rest of this change?."</span>
+            <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_change_type</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sp_dictionary</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">sp_dictionary</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sub_projects</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">change_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return change type from subproject."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_change_type</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">project</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return project name from parent project card."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent_project</span><span class="o">.</span><span class="n">project</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">dependencies</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return dependencies from parent project card."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent_project</span><span class="o">.</span><span class="n">dependencies</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">tags</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return tags from parent project card."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent_project</span><span class="o">.</span><span class="n">tags</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">facility</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Return facility dictionary from subproject."""</span>
+        <span class="k">if</span> <span class="s2">"facility"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">SubprojectValidationError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">"Couldn't find facility in subproject in project card</span><span class="se">\</span>
+<span class="s2">                                            </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">parent_project</span><span class="o">.</span><span class="n">project</span><span class="si">}</span><span class="s2">"</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s2">"facility"</span><span class="p">]</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">valid</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""Check if subproject is valid."""</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent_project</span><span class="o">.</span><span class="n">valid</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.SubProject.change_type">
+<code class="language-python"><span class="n">change_type</span><span class="p">:</span> <span class="nb">str</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.SubProject.change_type" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return change type from subproject.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.SubProject.dependencies">
+<code class="language-python"><span class="n">dependencies</span><span class="p">:</span> <span class="nb">str</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.SubProject.dependencies" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return dependencies from parent project card.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.SubProject.facility">
+<code class="language-python"><span class="n">facility</span><span class="p">:</span> <span class="nb">dict</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.SubProject.facility" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return facility dictionary from subproject.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.SubProject.project">
+<code class="language-python"><span class="n">project</span><span class="p">:</span> <span class="nb">str</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.SubProject.project" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return project name from parent project card.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.SubProject.tags">
+<code class="language-python"><span class="n">tags</span><span class="p">:</span> <span class="nb">str</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.SubProject.tags" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Return tags from parent project card.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.projectcard.SubProject.valid">
+<code class="language-python"><span class="n">valid</span><span class="p">:</span> <span class="nb">bool</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.projectcard.SubProject.valid" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Check if subproject is valid.</p>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h3 class="doc doc-heading" id="projectcard.projectcard.SubProject.__init__">
+<code class="language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">sp_dictionary</span><span class="p">,</span> <span class="n">parent_project</span><span class="p">)</span></code>
+<a class="headerlink" href="#projectcard.projectcard.SubProject.__init__" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Constructor for SubProject object.</p>
+<p><span class="doc-section-title">Parameters:</span></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="doc-section-item">
+<td><code>sp_dictionary</code></td>
+<td>
+<code>dict</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>dictionary of sub-project attributes contained within “changes”
+list of parent projet card</p>
+</div>
+</td>
+<td>
+<em>required</em>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code>parent_project</code></td>
+<td>
+<code><a class="autorefs autorefs-internal" href="#projectcard.projectcard.ProjectCard" title="projectcard.projectcard.ProjectCard">ProjectCard</a></code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>ProjectCard object for parent project card</p>
+</div>
+</td>
+<td>
+<em>required</em>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>projectcard/projectcard.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sp_dictionary</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">parent_project</span><span class="p">:</span> <span class="n">ProjectCard</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Constructor for SubProject object.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        sp_dictionary (dict): dictionary of sub-project attributes contained within "changes"</span>
+<span class="sd">            list of parent projet card</span>
+<span class="sd">        parent_project (ProjectCard): ProjectCard object for parent project card</span>
+<span class="sd">    """</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">parent_project</span> <span class="o">=</span> <span class="n">parent_project</span>
+
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">len</span><span class="p">(</span><span class="n">sp_dictionary</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">CardLogger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Invalid sp_dictionary with !=1 keys: </span><span class="si">{</span><span class="n">sp_dictionary</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">SubprojectValidationError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Subproject of </span><span class="si">{</span><span class="n">parent_project</span><span class="o">.</span><span class="n">project</span><span class="si">}</span><span class="s2"> </span><span class="se">\</span>
+<span class="s2">             should only have one change. Did you forget to indent the rest of this change?."</span>
+        <span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">_change_type</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">sp_dictionary</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">sp_dictionary</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sub_projects</span> <span class="o">=</span> <span class="p">[]</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-module">
+<a id="projectcard.io"></a>
+<div class="doc doc-contents first">
+<p>Functions for reading and writing project cards.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="projectcard.io.ProjectCardReadError">
+<code>ProjectCardReadError</code>
+<a class="headerlink" href="#projectcard.io.ProjectCardReadError" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+              Bases: <code>Exception</code></p>
+<p>Error in reading project card.</p>
+<details class="quote">
+<summary>Source code in <code>projectcard/io.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ProjectCardReadError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Error in reading project card."""</span>
+
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="projectcard.io.read_card">
+<code class="language-python"><span class="n">read_card</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<a class="headerlink" href="#projectcard.io.read_card" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p>Read single project card from a path and return project card object.</p>
+<p><span class="doc-section-title">Parameters:</span></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="doc-section-item">
+<td><code>filepath</code></td>
+<td>
+<code>str</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>file where the project card is.</p>
+</div>
+</td>
+<td>
+<em>required</em>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code>validate</code></td>
+<td>
+<code>bool</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>if True, will validate the project card schemea</p>
+</div>
+</td>
+<td>
+<code>False</code>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>projectcard/io.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_card</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">validate</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Read single project card from a path and return project card object.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filepath: file where the project card is.</span>
+<span class="sd">        validate: if True, will validate the project card schemea</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">Path</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span><span class="o">.</span><span class="n">is_file</span><span class="p">():</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cannot find project card file: </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">card_dict</span> <span class="o">=</span> <span class="n">read_cards</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">_cards</span><span class="o">=</span><span class="p">{})</span>
+    <span class="n">card</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">card_dict</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">validate</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="n">card</span><span class="o">.</span><span class="n">valid</span>
+    <span class="k">return</span> <span class="n">card</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="projectcard.io.read_cards">
+<code class="language-python"><span class="n">read_cards</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">filter_tags</span><span class="o">=</span><span class="p">[],</span> <span class="n">_cards</span><span class="o">=</span><span class="p">{})</span></code>
+<a class="headerlink" href="#projectcard.io.read_cards" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p>Reads collection of project card files by inferring the file type.</p>
+<p>Lowercases all keys, but then replaces any that need to be uppercased using the
+REPLACE_KEYS mapping.  Needed to keep “A” and “B” uppercased.</p>
+<p><span class="doc-section-title">Parameters:</span></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="doc-section-item">
+<td><code>filepath</code></td>
+<td>
+<code><span title="typing.Union">Union</span>[<span title="typing.Collection">Collection</span>[str], str]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>where the project card is.  A single path, list of paths,
+a directory, or a glob pattern.</p>
+</div>
+</td>
+<td>
+<em>required</em>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code>filter_tags</code></td>
+<td>
+<code><span title="typing.Collection">Collection</span>[str]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>list of tags to filter by</p>
+</div>
+</td>
+<td>
+<code>[]</code>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code>_cards</code></td>
+<td>
+<code><span title="typing.Mapping">Mapping</span>[str, <a class="autorefs autorefs-internal" href="#projectcard.projectcard.ProjectCard" title="projectcard.projectcard.ProjectCard">ProjectCard</a>]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>dictionary of project cards to add to. Should not be used by user.</p>
+</div>
+</td>
+<td>
+<code>{}</code>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>projectcard/io.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">read_cards</span><span class="p">(</span>
+    <span class="n">filepath</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Collection</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="nb">str</span><span class="p">],</span>
+    <span class="n">filter_tags</span><span class="p">:</span> <span class="n">Collection</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span>
+    <span class="n">_cards</span><span class="p">:</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ProjectCard</span><span class="p">]</span> <span class="o">=</span> <span class="p">{},</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Mapping</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">ProjectCard</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">"""Reads collection of project card files by inferring the file type.</span>
+
+<span class="sd">    Lowercases all keys, but then replaces any that need to be uppercased using the</span>
+<span class="sd">    REPLACE_KEYS mapping.  Needed to keep "A" and "B" uppercased.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        filepath: where the project card is.  A single path, list of paths,</span>
+<span class="sd">            a directory, or a glob pattern.</span>
+<span class="sd">        filter_tags: list of tags to filter by</span>
+<span class="sd">        _cards: dictionary of project cards to add to. Should not be used by user.</span>
+
+<span class="sd">    Returns: dictionary of project cards by project name</span>
+<span class="sd">    """</span>
+    <span class="n">CardLogger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Reading cards from </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+
+    <span class="n">filter_tags</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">filter_tags</span><span class="p">))</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="nb">list</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">filepath</span><span class="p">):</span>
+        <span class="n">_card_paths</span> <span class="o">=</span> <span class="n">_get_cardpath_list</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="n">valid_ext</span><span class="o">=</span><span class="n">_read_method_map</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">_card_paths</span><span class="p">:</span>
+            <span class="n">_cards</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">read_cards</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">filter_tags</span><span class="o">=</span><span class="n">filter_tags</span><span class="p">,</span> <span class="n">_cards</span><span class="o">=</span><span class="n">_cards</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">_cards</span>
+
+    <span class="n">_ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">filepath</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">_ext</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_read_method_map</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="n">CardLogger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unsupported file type for file </span><span class="si">{</span><span class="n">filepath</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">ProjectCardReadError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Unsupported file type: </span><span class="si">{</span><span class="n">_ext</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="n">_card_dict</span> <span class="o">=</span> <span class="n">_read_method_map</span><span class="p">[</span><span class="n">_ext</span><span class="p">](</span><span class="n">filepath</span><span class="p">)</span>
+    <span class="n">_card_dict</span> <span class="o">=</span> <span class="n">_change_keys</span><span class="p">(</span><span class="n">_card_dict</span><span class="p">)</span>
+    <span class="n">_card_dict</span><span class="p">[</span><span class="s2">"file"</span><span class="p">]</span> <span class="o">=</span> <span class="n">filepath</span>
+    <span class="n">_project_name</span> <span class="o">=</span> <span class="n">_card_dict</span><span class="p">[</span><span class="s2">"project"</span><span class="p">]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">_project_name</span> <span class="ow">in</span> <span class="n">_cards</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="n">ProjectCardReadError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">"Names not unique from existing scenario projects: </span><span class="si">{</span><span class="n">_project_name</span><span class="si">}</span><span class="s2">"</span>
+        <span class="p">)</span>
+    <span class="k">if</span> <span class="n">filter_tags</span> <span class="ow">and</span> <span class="nb">set</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="o">.</span><span class="n">lower</span><span class="p">,</span> <span class="n">_card_dict</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">"tags"</span><span class="p">,</span> <span class="p">[]))))</span><span class="o">.</span><span class="n">isdisjoint</span><span class="p">(</span>
+        <span class="nb">set</span><span class="p">(</span><span class="n">filter_tags</span><span class="p">)</span>
+    <span class="p">):</span>
+        <span class="n">CardLogger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Skipping </span><span class="si">{</span><span class="n">_project_name</span><span class="si">}</span><span class="s2"> - no overlapping tags with </span><span class="si">{</span><span class="n">filter_tags</span><span class="si">}</span><span class="s2">."</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">_cards</span>
+    <span class="n">_cards</span><span class="p">[</span><span class="n">_project_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">ProjectCard</span><span class="p">(</span><span class="n">_card_dict</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">_cards</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="projectcard.io.write_card">
+<code class="language-python"><span class="n">write_card</span><span class="p">(</span><span class="n">project_card</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<a class="headerlink" href="#projectcard.io.write_card" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p>Writes project card dictionary to YAML file.</p>
+<details class="quote">
+<summary>Source code in <code>projectcard/io.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span>
+<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">write_card</span><span class="p">(</span><span class="n">project_card</span><span class="p">,</span> <span class="n">filename</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Writes project card dictionary to YAML file."""</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">filename</span><span class="p">:</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">_make_slug</span><span class="p">(</span><span class="n">project_card</span><span class="o">.</span><span class="n">project</span><span class="p">)</span> <span class="o">+</span> <span class="s2">".yml"</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">project_card</span><span class="o">.</span><span class="n">valid</span><span class="p">:</span>
+        <span class="n">CardLogger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">project_card</span><span class="o">.</span><span class="n">project</span><span class="si">}</span><span class="s2"> Project Card not valid."</span><span class="p">)</span>
+    <span class="c1"># import collections</span>
+    <span class="c1"># out_dict = collections.OrderedDict()</span>
+    <span class="n">out_dict</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">out_dict</span><span class="p">[</span><span class="s2">"project"</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">out_dict</span><span class="p">[</span><span class="s2">"tags"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">""</span>
+    <span class="n">out_dict</span><span class="p">[</span><span class="s2">"dependencies"</span><span class="p">]</span> <span class="o">=</span> <span class="s2">""</span>
+    <span class="n">out_dict</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">project_card</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+        <span class="n">yaml</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">out_dict</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">default_flow_style</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="n">CardLogger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Wrote project card to: </span><span class="si">{}</span><span class="s2">"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="doc doc-object doc-module">
+<a id="projectcard.validate"></a>
+<div class="doc doc-contents first">
+<p>Validates ProjectCard JSON data against a JSON schema.</p>
+<div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="projectcard.validate.ProjectCardJSONSchemaError">
+<code>ProjectCardJSONSchemaError</code>
+<a class="headerlink" href="#projectcard.validate.ProjectCardJSONSchemaError" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+              Bases: <code><span title="jsonschema.exceptions.SchemaError">SchemaError</span></code></p>
+<p>Error in the ProjectCard json schema.</p>
+<details class="quote">
+<summary>Source code in <code>projectcard/validate.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ProjectCardJSONSchemaError</span><span class="p">(</span><span class="n">SchemaError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Error in the ProjectCard json schema."""</span>
+
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="projectcard.validate.ProjectCardValidationError">
+<code>ProjectCardValidationError</code>
+<a class="headerlink" href="#projectcard.validate.ProjectCardValidationError" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+              Bases: <code><span title="jsonschema.exceptions.ValidationError">ValidationError</span></code></p>
+<p>Error in formatting of ProjectCard.</p>
+<details class="quote">
+<summary>Source code in <code>projectcard/validate.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ProjectCardValidationError</span><span class="p">(</span><span class="n">ValidationError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Error in formatting of ProjectCard."""</span>
+
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="projectcard.validate.PycodeError">
+<code>PycodeError</code>
+<a class="headerlink" href="#projectcard.validate.PycodeError" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" href="#projectcard.validate.ProjectCardValidationError" title="projectcard.validate.ProjectCardValidationError">ProjectCardValidationError</a></code></p>
+<p>Basic runtime error in python code.</p>
+<details class="quote">
+<summary>Source code in <code>projectcard/validate.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">PycodeError</span><span class="p">(</span><span class="n">ProjectCardValidationError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Basic runtime error in python code."""</span>
+
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="projectcard.validate.SubprojectValidationError">
+<code>SubprojectValidationError</code>
+<a class="headerlink" href="#projectcard.validate.SubprojectValidationError" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" href="#projectcard.validate.ProjectCardValidationError" title="projectcard.validate.ProjectCardValidationError">ProjectCardValidationError</a></code></p>
+<p>Error in formatting of Subproject.</p>
+<details class="quote">
+<summary>Source code in <code>projectcard/validate.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SubprojectValidationError</span><span class="p">(</span><span class="n">ProjectCardValidationError</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Error in formatting of Subproject."""</span>
+
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="projectcard.validate.package_schema">
+<code class="language-python"><span class="n">package_schema</span><span class="p">(</span><span class="n">schema_path</span><span class="o">=</span><span class="n">PROJECTCARD_SCHEMA</span><span class="p">,</span> <span class="n">outfile_path</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+<a class="headerlink" href="#projectcard.validate.package_schema" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p>Consolidates referenced schemas into a single schema and writes it out.</p>
+<p><span class="doc-section-title">Parameters:</span></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="doc-section-item">
+<td><code>schema_path</code></td>
+<td>
+<code><span title="typing.Union">Union</span>[<span title="pathlib.Path">Path</span>, str]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>Schema to read int and package. Defaults to PROJECTCARD_SCHEMA which is
+ ROOTDIR / “schema” / “projectcard.json”.</p>
+</div>
+</td>
+<td>
+<code><span title="projectcard.validate.PROJECTCARD_SCHEMA">PROJECTCARD_SCHEMA</span></code>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code>outfile_path</code></td>
+<td>
+<code><span title="typing.Union">Union</span>[<span title="pathlib.Path">Path</span>, str]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>Where to write out packaged schema. Defaults
+to schema_path.basepath.packaged.json</p>
+</div>
+</td>
+<td>
+<code>None</code>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>projectcard/validate.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">package_schema</span><span class="p">(</span>
+    <span class="n">schema_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">PROJECTCARD_SCHEMA</span><span class="p">,</span>
+    <span class="n">outfile_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Consolidates referenced schemas into a single schema and writes it out.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        schema_path: Schema to read int and package. Defaults to PROJECTCARD_SCHEMA which is</span>
+<span class="sd">             ROOTDIR / "schema" / "projectcard.json".</span>
+<span class="sd">        outfile_path: Where to write out packaged schema. Defaults</span>
+<span class="sd">            to schema_path.basepath.packaged.json</span>
+<span class="sd">    """</span>
+    <span class="n">schema_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">schema_path</span><span class="p">)</span>
+    <span class="n">_s_data</span> <span class="o">=</span> <span class="n">_load_schema</span><span class="p">(</span><span class="n">schema_path</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">outfile_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">outfile_path</span> <span class="o">=</span> <span class="n">schema_path</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">schema_path</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">packaged.</span><span class="si">{</span><span class="n">schema_path</span><span class="o">.</span><span class="n">suffix</span><span class="si">}</span><span class="s2">"</span>
+    <span class="n">outfile_path</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="n">outfile_path</span><span class="p">)</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">outfile_path</span><span class="p">,</span> <span class="s2">"w"</span><span class="p">)</span> <span class="k">as</span> <span class="n">outfile</span><span class="p">:</span>
+        <span class="n">json</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">_s_data</span><span class="p">,</span> <span class="n">outfile</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">CardLogger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Wrote </span><span class="si">{</span><span class="n">schema_path</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">outfile_path</span><span class="o">.</span><span class="n">stem</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="projectcard.validate.validate_card">
+<code class="language-python"><span class="n">validate_card</span><span class="p">(</span><span class="n">jsondata</span><span class="p">,</span> <span class="n">schema_path</span><span class="o">=</span><span class="n">PROJECTCARD_SCHEMA</span><span class="p">)</span></code>
+<a class="headerlink" href="#projectcard.validate.validate_card" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p>Validates json-like data to specified schema.</p>
+<p>If <code>pycode</code> key exists, will evaluate it for basic runtime errors using Flake8.
+Note: will not flag any invalid use of RoadwayNetwork or TransitNetwork APIs.</p>
+<p><span class="doc-section-title">Parameters:</span></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="doc-section-item">
+<td><code>jsondata</code></td>
+<td>
+<code>dict</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>json-like data to validate.</p>
+</div>
+</td>
+<td>
+<em>required</em>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td><code>schema_path</code></td>
+<td>
+<code><span title="typing.Union">Union</span>[str, <span title="pathlib.Path">Path</span>]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>path to schema to validate to.
+Defaults to PROJECTCARD_SCHEMA which is
+ROOTDIR / “schema” / “projectcard.json”</p>
+</div>
+</td>
+<td>
+<code><span title="projectcard.validate.PROJECTCARD_SCHEMA">PROJECTCARD_SCHEMA</span></code>
+</td>
+</tr>
+</tbody>
+</table>
+<p><span class="doc-section-title">Raises:</span></p>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="doc-section-item">
+<td>
+<code><span title="jsonschema.exceptions.ValidationError">ValidationError</span></code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>If jsondata doesn’t conform to specified schema.</p>
+</div>
+</td>
+</tr>
+<tr class="doc-section-item">
+<td>
+<code><span title="jsonschema.exceptions.SchemaError">SchemaError</span></code>
+</td>
+<td>
+<div class="doc-md-description">
+<p>If schema itself is not valid.</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>projectcard/validate.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">validate_card</span><span class="p">(</span><span class="n">jsondata</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">schema_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="n">PROJECTCARD_SCHEMA</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Validates json-like data to specified schema.</span>
+
+<span class="sd">    If `pycode` key exists, will evaluate it for basic runtime errors using Flake8.</span>
+<span class="sd">    Note: will not flag any invalid use of RoadwayNetwork or TransitNetwork APIs.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        jsondata: json-like data to validate.</span>
+<span class="sd">        schema_path: path to schema to validate to.</span>
+<span class="sd">            Defaults to PROJECTCARD_SCHEMA which is</span>
+<span class="sd">            ROOTDIR / "schema" / "projectcard.json"</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValidationError: If jsondata doesn't conform to specified schema.</span>
+<span class="sd">        SchemaError: If schema itself is not valid.</span>
+<span class="sd">    """</span>
+    <span class="n">CardLogger</span><span class="o">.</span><span class="n">debug</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Validating: </span><span class="si">{</span><span class="n">jsondata</span><span class="p">[</span><span class="s1">'project'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">_schema_data</span> <span class="o">=</span> <span class="n">_load_schema</span><span class="p">(</span><span class="n">schema_path</span><span class="p">)</span>
+        <span class="n">validate</span><span class="p">(</span><span class="n">jsondata</span><span class="p">,</span> <span class="n">schema</span><span class="o">=</span><span class="n">_schema_data</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">ValidationError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">CardLogger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">"---- Error validating </span><span class="si">{</span><span class="n">jsondata</span><span class="p">[</span><span class="s1">'project'</span><span class="p">]</span><span class="si">}</span><span class="s2"> ----"</span><span class="p">)</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">Relevant schema: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">schema</span><span class="si">}</span><span class="se">\n</span><span class="s2">Validator Value: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">validator_value</span><span class="si">}</span><span class="se">\n</span><span class="s2">Validator: </span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">validator</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="s2">absolute_schema_path:</span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">absolute_schema_path</span><span class="si">}</span><span class="se">\n</span><span class="s2">absolute_path:</span><span class="si">{</span><span class="n">e</span><span class="o">.</span><span class="n">absolute_path</span><span class="si">}</span><span class="s2">"</span>
+        <span class="n">CardLogger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">ProjectCardValidationError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">SchemaError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">CardLogger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">ProjectCardJSONSchemaError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">"pycode"</span> <span class="ow">in</span> <span class="n">jsondata</span><span class="p">:</span>
+        <span class="k">if</span> <span class="s2">"self."</span> <span class="ow">in</span> <span class="n">jsondata</span><span class="p">[</span><span class="s2">"pycode"</span><span class="p">]:</span>
+            <span class="k">if</span> <span class="s2">"self_obj_type"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">jsondata</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="n">PycodeError</span><span class="p">(</span>
+                    <span class="s2">"If using self, must specify what `self` refers to in yml frontmatter using self_obj_type: &lt;RoadwayNetwork|TransitNetwork&gt;"</span>
+                <span class="p">)</span>
+        <span class="n">_validate_pycode</span><span class="p">(</span><span class="n">jsondata</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">True</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-function">
+<h2 class="doc doc-heading" id="projectcard.validate.validate_schema_file">
+<code class="language-python"><span class="n">validate_schema_file</span><span class="p">(</span><span class="n">schema_path</span><span class="o">=</span><span class="n">PROJECTCARD_SCHEMA</span><span class="p">)</span></code>
+<a class="headerlink" href="#projectcard.validate.validate_schema_file" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p>Validates that a schema file is a valid JSON-schema.</p>
+<p><span class="doc-section-title">Parameters:</span></p>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Type</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="doc-section-item">
+<td><code>schema_path</code></td>
+<td>
+<code><span title="typing.Union">Union</span>[<span title="pathlib.Path">Path</span>, str]</code>
+</td>
+<td>
+<div class="doc-md-description">
+<p><em>description</em>. Defaults to PROJECTCARD_SCHEMA which is
+ROOTDIR / “schema” / “projectcard.json”.</p>
+</div>
+</td>
+<td>
+<code><span title="projectcard.validate.PROJECTCARD_SCHEMA">PROJECTCARD_SCHEMA</span></code>
+</td>
+</tr>
+</tbody>
+</table>
+<details class="quote">
+<summary>Source code in <code>projectcard/validate.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">validate_schema_file</span><span class="p">(</span><span class="n">schema_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Path</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">PROJECTCARD_SCHEMA</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Validates that a schema file is a valid JSON-schema.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        schema_path: _description_. Defaults to PROJECTCARD_SCHEMA which is</span>
+<span class="sd">            ROOTDIR / "schema" / "projectcard.json".</span>
+<span class="sd">    """</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">_schema_data</span> <span class="o">=</span> <span class="n">_load_schema</span><span class="p">(</span><span class="n">schema_path</span><span class="p">)</span>
+        <span class="c1"># _resolver = _ref_resolver(schema_path,_schema_data)</span>
+        <span class="n">validate</span><span class="p">({},</span> <span class="n">schema</span><span class="o">=</span><span class="n">_schema_data</span><span class="p">)</span>  <span class="c1"># ,resolver=_resolver)</span>
+    <span class="k">except</span> <span class="n">ValidationError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">except</span> <span class="n">SchemaError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">CardLogger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="n">ProjectCardJSONSchemaError</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="kc">True</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+</main>
+<footer class="md-footer">
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.annotate", "content.tabs.link", "navigation.indexes"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+<script src="../assets/javascripts/bundle.ad660dcc.min.js"></script>
+<script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="../javascript/schema_doc.min.js"></script>
+</body>
+</html>
