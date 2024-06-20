@@ -9,7 +9,7 @@
 <link href="../json-schemas/" rel="prev"/>
 <link href="../api/" rel="next"/>
 <link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.0, mkdocs-material-9.5.26" name="generator"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-9.5.27" name="generator"/>
 <title>Pydantic - Project Cards</title>
 <link href="../assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
 <link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
@@ -36,7 +36,7 @@
 <header class="md-header" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
 <a aria-label="Project Cards" class="md-header__button md-logo" data-md-component="logo" href=".." title="Project Cards">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 10H3v2h11v-2m0-4H3v2h11V6M3 16h7v-2H3v2m18.5-4.5L23 13l-7 7-4.5-4.5L13 14l3 3 5.5-5.5Z"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
@@ -168,7 +168,7 @@
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
 <a aria-label="Project Cards" class="md-nav__button md-logo" data-md-component="logo" href=".." title="Project Cards">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 10H3v2h11v-2m0-4H3v2h11V6M3 16h7v-2H3v2m18.5-4.5L23 13l-7 7-4.5-4.5L13 14l3 3 5.5-5.5Z"></path></svg>
 </a>
     Project Cards
   </label>
@@ -231,6 +231,24 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.PC_Time">
+<span class="md-ellipsis">
+      PC_Time
+    </span>
+</a>
+<nav aria-label="PC_Time" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.PC_Time.time_sec">
+<span class="md-ellipsis">
+      time_sec
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#projectcard.models.time.PC_Timespan">
 <span class="md-ellipsis">
       PC_Timespan
@@ -253,9 +271,37 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.PC_Timespan.end_time">
+<span class="md-ellipsis">
+      end_time
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.PC_Timespan.end_time_dt">
+<span class="md-ellipsis">
+      end_time_dt
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#projectcard.models.time.PC_Timespan.end_time_sec">
 <span class="md-ellipsis">
       end_time_sec
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.PC_Timespan.start_time">
+<span class="md-ellipsis">
+      start_time
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.PC_Timespan.start_time_dt">
+<span class="md-ellipsis">
+      start_time_dt
     </span>
 </a>
 </li>
@@ -268,6 +314,20 @@
 </li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.TimeFormatError">
+<span class="md-ellipsis">
+      TimeFormatError
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.TimespanFormatError">
+<span class="md-ellipsis">
+      TimespanFormatError
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -315,6 +375,24 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.PC_Time">
+<span class="md-ellipsis">
+      PC_Time
+    </span>
+</a>
+<nav aria-label="PC_Time" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.PC_Time.time_sec">
+<span class="md-ellipsis">
+      time_sec
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#projectcard.models.time.PC_Timespan">
 <span class="md-ellipsis">
       PC_Timespan
@@ -337,9 +415,37 @@
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.PC_Timespan.end_time">
+<span class="md-ellipsis">
+      end_time
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.PC_Timespan.end_time_dt">
+<span class="md-ellipsis">
+      end_time_dt
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#projectcard.models.time.PC_Timespan.end_time_sec">
 <span class="md-ellipsis">
       end_time_sec
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.PC_Timespan.start_time">
+<span class="md-ellipsis">
+      start_time
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.PC_Timespan.start_time_dt">
+<span class="md-ellipsis">
+      start_time_dt
     </span>
 </a>
 </li>
@@ -353,6 +459,20 @@
 </ul>
 </nav>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.TimeFormatError">
+<span class="md-ellipsis">
+      TimeFormatError
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#projectcard.models.time.TimespanFormatError">
+<span class="md-ellipsis">
+      TimespanFormatError
+    </span>
+</a>
+</li>
 </ul>
 </nav>
 </div>
@@ -361,7 +481,10 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="pydantic-data-models">Pydantic Data Models<a class="headerlink" href="#pydantic-data-models" title="Permanent link"> ¶</a></h1>
-<p>TODO - get documentation for pydantic models auto-inventoried and listed here.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The switch from json-schema to Pydantic is  WIP.</p>
+</div>
 <div class="doc doc-object doc-module">
 <a id="projectcard.models"></a>
 <div class="doc doc-contents first">
@@ -378,88 +501,170 @@ can be used without pydantic.</p>
 <div class="doc doc-object doc-module">
 <a id="projectcard.models.time"></a>
 <div class="doc doc-contents first">
+<p>Helper classes for time and timespan representation.</p>
 <div class="doc doc-children">
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="projectcard.models.time.PC_Time">
+<code>PC_Time</code>
+<a class="headerlink" href="#projectcard.models.time.PC_Time" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p>Project Card Time representation.</p>
+<details class="quote">
+<summary>Source code in <code>projectcard/models/time.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
+<span class="k">class</span> <span class="nc">PC_Time</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Project Card Time representation."""</span>
+    <span class="n">time</span><span class="p">:</span> <span class="n">PC_TimeString</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">datetime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="ow">is</span> <span class="nb">str</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">":"</span><span class="p">))</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="s2">"%H:%M"</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">time</span><span class="p">,</span> <span class="s2">"%H:%M:%S"</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span> <span class="ow">is</span> <span class="n">time</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">time</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="n">TimeFormatError</span><span class="p">(</span><span class="s2">"time must be a string or time object"</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">time_sec</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Time in seconds since midnight."""</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">hour</span> <span class="o">*</span> <span class="mi">3600</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">minute</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">second</span>
+        <span class="p">)</span>
+</code></pre></div></td></tr></table></div>
+</details>
+<div class="doc doc-children">
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.models.time.PC_Time.time_sec">
+<code class="language-python"><span class="n">time_sec</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.models.time.PC_Time.time_sec" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Time in seconds since midnight.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
 <div class="doc doc-object doc-class">
 <h2 class="doc doc-heading" id="projectcard.models.time.PC_Timespan">
 <code>PC_Timespan</code>
 <a class="headerlink" href="#projectcard.models.time.PC_Timespan" title="Permanent link"> ¶</a></h2>
 <div class="doc doc-contents">
+<p>Project Card Timespan representation.</p>
 <details class="quote">
 <summary>Source code in <code>projectcard/models/time.py</code></summary>
-<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span>
-<span class="normal">97</span>
-<span class="normal">98</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclass</span>
 <span class="k">class</span> <span class="nc">PC_Timespan</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""Project Card Timespan representation."""</span>
     <span class="n">timespan</span><span class="p">:</span> <span class="n">PC_TimeSpanString</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">start_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Start time of the timespan."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">timespan</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">time</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">end_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""End time of the timespan."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">timespan</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">time</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">start_time_dt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""Start time as a datetime object."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">timespan</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">datetime</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">end_time_dt</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""End time as a datetime object."""</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">timespan</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">datetime</span>
 
     <span class="nd">@property</span>
@@ -529,6 +734,28 @@ midnight.</p>
 </div>
 </div>
 <div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.models.time.PC_Timespan.end_time">
+<code class="language-python"><span class="n">end_time</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.models.time.PC_Timespan.end_time" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>End time of the timespan.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.models.time.PC_Timespan.end_time_dt">
+<code class="language-python"><span class="n">end_time_dt</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.models.time.PC_Timespan.end_time_dt" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>End time as a datetime object.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
 <h3 class="doc doc-heading" id="projectcard.models.time.PC_Timespan.end_time_sec">
 <code class="language-python"><span class="n">end_time_sec</span></code>
 <span class="doc doc-labels">
@@ -537,6 +764,28 @@ midnight.</p>
 <a class="headerlink" href="#projectcard.models.time.PC_Timespan.end_time_sec" title="Permanent link"> ¶</a></h3>
 <div class="doc doc-contents">
 <p>End time in seconds since midnight.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.models.time.PC_Timespan.start_time">
+<code class="language-python"><span class="n">start_time</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.models.time.PC_Timespan.start_time" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Start time of the timespan.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="projectcard.models.time.PC_Timespan.start_time_dt">
+<code class="language-python"><span class="n">start_time_dt</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-property"><code>property</code></small>
+</span>
+<a class="headerlink" href="#projectcard.models.time.PC_Timespan.start_time_dt" title="Permanent link"> ¶</a></h3>
+<div class="doc doc-contents">
+<p>Start time as a datetime object.</p>
 </div>
 </div>
 <div class="doc doc-object doc-attribute">
@@ -551,6 +800,44 @@ midnight.</p>
 </div>
 </div>
 </div>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="projectcard.models.time.TimeFormatError">
+<code>TimeFormatError</code>
+<a class="headerlink" href="#projectcard.models.time.TimeFormatError" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+              Bases: <code>Exception</code></p>
+<p>Exception raised for errors in the time format.</p>
+<details class="quote">
+<summary>Source code in <code>projectcard/models/time.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TimeFormatError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Exception raised for errors in the time format."""</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
+</div>
+</div>
+<div class="doc doc-object doc-class">
+<h2 class="doc doc-heading" id="projectcard.models.time.TimespanFormatError">
+<code>TimespanFormatError</code>
+<a class="headerlink" href="#projectcard.models.time.TimespanFormatError" title="Permanent link"> ¶</a></h2>
+<div class="doc doc-contents">
+<p class="doc doc-class-bases">
+              Bases: <code>Exception</code></p>
+<p>Exception raised for errors in the timespan format.</p>
+<details class="quote">
+<summary>Source code in <code>projectcard/models/time.py</code></summary>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TimespanFormatError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Exception raised for errors in the timespan format."""</span>
+    <span class="k">pass</span>
+</code></pre></div></td></tr></table></div>
+</details>
 </div>
 </div>
 </div>

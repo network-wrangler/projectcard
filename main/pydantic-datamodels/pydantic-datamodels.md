@@ -1,6 +1,8 @@
 # Pydantic Data Models
 
-TODO - get documentation for pydantic models auto-inventoried and listed here.
+!!! warning
+
+    The switch from json-schema to Pydantic is  WIP.
 
 ::: projectcard.models
 

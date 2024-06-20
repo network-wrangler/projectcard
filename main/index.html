@@ -8,7 +8,7 @@
 <link href="https://network-wrangler.github.io/projectcard/main/" rel="canonical"/>
 <link href="json-schemas/" rel="next"/>
 <link href="assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.0, mkdocs-material-9.5.26" name="generator"/>
+<meta content="mkdocs-1.6.0, mkdocs-material-9.5.27" name="generator"/>
 <title>Project Cards</title>
 <link href="assets/stylesheets/main.6543a935.min.css" rel="stylesheet"/>
 <link href="assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
@@ -35,7 +35,7 @@
 <header class="md-header" data-md-component="header">
 <nav aria-label="Header" class="md-header__inner md-grid">
 <a aria-label="Project Cards" class="md-header__button md-logo" data-md-component="logo" href="." title="Project Cards">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 10H3v2h11v-2m0-4H3v2h11V6M3 16h7v-2H3v2m18.5-4.5L23 13l-7 7-4.5-4.5L13 14l3 3 5.5-5.5Z"></path></svg>
 </a>
 <label class="md-header__button md-icon" for="__drawer">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
@@ -167,7 +167,7 @@
 <nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
 <label class="md-nav__title" for="__drawer">
 <a aria-label="Project Cards" class="md-nav__button md-logo" data-md-component="logo" href="." title="Project Cards">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 10H3v2h11v-2m0-4H3v2h11V6M3 16h7v-2H3v2m18.5-4.5L23 13l-7 7-4.5-4.5L13 14l3 3 5.5-5.5Z"></path></svg>
 </a>
     Project Cards
   </label>
@@ -235,16 +235,16 @@
 <nav aria-label="Basic Usage" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#reading-cards">
+<a class="md-nav__link" href="#command-line">
 <span class="md-ellipsis">
-      Reading cards
+      Command Line
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#validating-a-function-input-conforms-to-a-sub-schema">
+<a class="md-nav__link" href="#python-api">
 <span class="md-ellipsis">
-      Validating a function input conforms to a sub-schema
+      Python API
     </span>
 </a>
 </li>
@@ -351,16 +351,16 @@
 <nav aria-label="Basic Usage" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
-<a class="md-nav__link" href="#reading-cards">
+<a class="md-nav__link" href="#command-line">
 <span class="md-ellipsis">
-      Reading cards
+      Command Line
     </span>
 </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#validating-a-function-input-conforms-to-a-sub-schema">
+<a class="md-nav__link" href="#python-api">
 <span class="md-ellipsis">
-      Validating a function input conforms to a sub-schema
+      Python API
     </span>
 </a>
 </li>
@@ -396,7 +396,7 @@
 <div class="md-content" data-md-component="content">
 <article class="md-content__inner md-typeset">
 <h1 id="project-cards">Project Cards<a class="headerlink" href="#project-cards" title="Permanent link"> ¶</a></h1>
-<p>Project Cards</p>
+<p>Project Cards represent information about a tranportation infrastructure projects sufficient for usage in a regional travel demand model.</p>
 <h2 id="schema">Schema<a class="headerlink" href="#schema" title="Permanent link"> ¶</a></h2>
 <p>The ProjectCard schema is represented as a <a href="https://json-schema.org">json-schema</a> in the <code>/schema</code> directory.  More details:  <a href="json-schemas/">json-schemas page</a>.</p>
 <h2 id="pydantic-data-models">Pydantic Data Models<a class="headerlink" href="#pydantic-data-models" title="Permanent link"> ¶</a></h2>
@@ -404,7 +404,16 @@
 <h3 id="example-data">Example Data<a class="headerlink" href="#example-data" title="Permanent link"> ¶</a></h3>
 <p>Example project cards can be found in the <code>/examples</code> directory and on the <a href="examples/">examples page</a></p>
 <h2 id="basic-usage">Basic Usage<a class="headerlink" href="#basic-usage" title="Permanent link"> ¶</a></h2>
-<h3 id="reading-cards">Reading cards<a class="headerlink" href="#reading-cards" title="Permanent link"> ¶</a></h3>
+<p>This package should generally be used to validate or update project cards.  </p>
+<p>There is also a limited object model, <code>ProjectCard</code> which can be used to organize and manage project cards.</p>
+<h3 id="command-line">Command Line<a class="headerlink" href="#command-line" title="Permanent link"> ¶</a></h3>
+<p>Validate project card(s) from a directory or specific file path, optionally filtering by a tag.</p>
+<div class="highlight"><pre><span></span><code>validate_card<span class="w"> </span>card_search_dir<span class="w"> </span>--filter_tags<span class="w"> </span><span class="o">[</span><span class="s1">'tag_to_search_for'</span><span class="o">]</span>
+</code></pre></div>
+<p>Update older project card(s) to current format from a directory or specific file path.  Cards should still be validated afterwards.</p>
+<div class="highlight"><pre><span></span><code>update_projectcard_schema<span class="w"> </span>card_search_dir<span class="w"> </span>output_dir
+</code></pre></div>
+<h3 id="python-api">Python API<a class="headerlink" href="#python-api" title="Permanent link"> ¶</a></h3>
 <div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">projectcard.io</span> <span class="kn">import</span> <span class="n">read_cards</span>
 
 <span class="c1"># Read in cards from a directory with the tag "Baseline 2030"</span>
@@ -417,17 +426,9 @@
 <span class="c1"># Print out a summary of the card with the project name "4th Ave Busway"</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">project_cards</span><span class="p">[</span><span class="s2">"4th Ave Busway"</span><span class="p">])</span>
 </code></pre></div>
-<h3 id="validating-a-function-input-conforms-to-a-sub-schema">Validating a function input conforms to a sub-schema<a class="headerlink" href="#validating-a-function-input-conforms-to-a-sub-schema" title="Permanent link"> ¶</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">pydantic</span> <span class="kn">import</span> <span class="n">validate_call</span>
-<span class="kn">from</span> <span class="nn">projectcard.models</span> <span class="kn">import</span> <span class="n">SelectSegment</span>
-
-<span class="nd">@validate_call</span>
-<span class="k">def</span> <span class="nf">select_segment_in</span><span class="p">(</span><span class="n">data</span><span class="p">:</span> <span class="n">SelectSegment</span><span class="p">):</span>
-    <span class="c1"># Add your function code here which expects taht data conforms to a segment selection</span>
-    <span class="k">pass</span>
-</code></pre></div>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link"> ¶</a></h2>
-<p>Generally it is not necessary to install the projectcard package as the main purpose of this repository is to maintain the project card <em>schema</em>.</p>
+<p><code>pip install projectcard</code></p>
+<p>Note :Generally it is not necessary to install the projectcard package as the main purpose of this repository is to maintain the project card <em>schema</em>.  Projects that use the package to validate project cards usually include projectcards as a requirement and install it on their own.</p>
 <h2 id="development-environment">Development Environment<a class="headerlink" href="#development-environment" title="Permanent link"> ¶</a></h2>
 <ol>
 <li>
