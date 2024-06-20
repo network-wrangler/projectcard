@@ -1,3 +1,4 @@
+flake8
 jsonref
 jsonschema
 pydantic>=2.0
