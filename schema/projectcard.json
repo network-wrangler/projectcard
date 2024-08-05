@@ -7,6 +7,7 @@
 		"change_roadway_property_change": { "$ref": "changes/roadway_property_change.json"},
 		"transit_property_change": { "$ref": "changes/transit_property_change.json"},
 		"transit_routing_change": { "$ref": "changes/transit_routing_change.json"},
+		"transit_add_new_route": { "$ref": "changes/transit_add_new_route.json"},
 		"pycode":{ "type": "string" },
 		"change": {
 			"type":"object",
@@ -16,6 +17,7 @@
 				"roadway_property_change": { "$ref": "#/$defs/change_roadway_property_change"},
 				"transit_property_change": { "$ref": "#/$defs/transit_property_change"},
 				"transit_routing_change": { "$ref": "#/$defs/transit_routing_change"},
+				"transit_add_new_route:": { "$ref": "#/$defs/transit_add_new_route"},
 				"pycode": { "$ref": "#/$defs/pycode"}
 			},
 			"oneOf": [

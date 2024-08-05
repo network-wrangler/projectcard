@@ -29,13 +29,25 @@
         "description": "Consistent with GTFS definition defining outbound vs inbound routes."
       },
       "headway_secs":{
-        "type": "integer",
-        "description": "Headway between trips in seconds."
+        "type": "object",
+        "description": "Headway for each time period."
+      },
+      "trip_stop":{
+        "type":"object",
+        "additionalProperties": false,
+        "properties":{
+          "board":{"type":"string", "default": false},
+          "stop":{"type":"bool", "default": false},
+          "alight":{"type":"bool", "default": false},
+          "dwell_sec":{"type":"int", "default": 0},
+          "time_to_next_node_sec":{"type":"int"}
+        },
+        "description": "Features of a stop for a given trip."
       },
       "routing":{
         "type":"array",
-        "items":{"type":"integer"},
-        "description": "List of nodes that the trip traverses with a `-` in front of nodes where the service does not stop."
+        "items":{"$ref":"trip_stop"},
+        "description": "List of nodes that the trip traverses."
       }
     },
     "properties":{

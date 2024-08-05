@@ -11,6 +11,7 @@ There is a wrapper script for the third function in `/bin/batch_update_project_c
 Note that this script is tested (`test_conversion_script.py`) to successfully convert all the
 project cards in `tests/data/cards/*.v0.yaml` to the current format.
 """
+from __future__ import annotations
 
 import sys
 from pathlib import Path
@@ -19,13 +20,18 @@ import yaml
 
 from projectcard import ProjectCard, write_card
 from projectcard.utils import _update_dict_key
+from projectcard.io import SKIP_READ
 from projectcard import CardLogger
 
 
 def _get_card_files(card_search_dir_or_filename: Path) -> list[Path]:
     if card_search_dir_or_filename.is_dir():
         # Read all .yaml or .yml files in the directory
-        card_files = list(Path(card_search_dir_or_filename).rglob("*.[yY][aA]?[mM][lL]*"))
+        card_files = (
+            list(Path(card_search_dir_or_filename).rglob("*.yml"))
+            + list(Path(card_search_dir_or_filename).rglob("*.yaml"))
+        )
+        card_files = list(set(card_files))
         if not card_files:
             print(f"No card files found in {card_search_dir_or_filename}")
             sys.exit(1)
@@ -70,27 +76,27 @@ def _nest_change_under_category_type(card: dict) -> dict:
     ```
 
     """
-    CardLogger.debug(f"Card.nest_change_under_category_type:\n {card}")
+    # CardLogger.debug(f"Card.nest_change_under_category_type:\n {card}")
     if "changes" in card:
         _updated_changes = []
         for change in card["changes"]:
-            CardLogger.debug(f"...Change: {change}")
+            # CardLogger.debug(f"...Change: {change}")
             _updated_changes.append(_nest_change_under_category_type(change))
         card["changes"] = _updated_changes
         return card
     elif "category" in card:
         category = card.pop("category")
 
-        CardLogger.debug(f"Category: {category}")
+        # CardLogger.debug(f"Category: {category}")
         if category not in CATEGORY_NAME_MAP:
             raise ValueError(f"Invalid category: {category}")
         category_key = CATEGORY_NAME_MAP[category]
         card[category_key] = {k: card.pop(k) for k in NESTED_VALUES if k in card}
-        CardLogger.debug(f"Updated Card.nest_change_under_category_type:\n {card}")
+        # CardLogger.debug(f"Updated Card.nest_change_under_category_type:\n {card}")
         return card
 
     else:
-        CardLogger.debug(f"Can't find category in: {card}. This card might already be updated?")
+        CardLogger.info(f"Can't find category in: {card}. This card might already be updated?")
         return card
 
 
@@ -107,6 +113,14 @@ DEFAULT_ROADWAY_VALUES: dict = {
     "nodes": {},
 }
 
+REPLACE_ROADWAY_VALUES = {
+    "roadway": {    
+        "ramp": "motorway_link",
+        "Ramp": "motorway_link",
+        "Trunk": "trunk",
+    }
+}
+
 
 def _update_roadway_addition(card, default_roadway_values: dict = DEFAULT_ROADWAY_VALUES):
     """Adds required link and node values for roadway additions with assumed defaults.
@@ -117,6 +131,13 @@ def _update_roadway_addition(card, default_roadway_values: dict = DEFAULT_ROADWA
             not specified in project card. Defaults to DEFAULT_ROADWAY_VALUES.
 
     """
+    if "changes" in card:
+        _updated_changes = []
+        for change in card["changes"]:
+            # CardLogger.debug(f"Change: {change}")
+            _updated_changes.append(_update_roadway_addition(change))
+        card["changes"] = _updated_changes
+        return card
     if "roadway_addition" not in card:
         return card
     network_parts = ["links", "nodes"]
@@ -124,11 +145,17 @@ def _update_roadway_addition(card, default_roadway_values: dict = DEFAULT_ROADWA
         if p not in card["roadway_addition"]:
             continue
         for item in card["roadway_addition"][p]:
+            for key, vals in REPLACE_ROADWAY_VALUES.items():
+                if item.get(key) in vals.keys():
+                    item[key] = vals[item[key]]
             for field, default_value in default_roadway_values[p].items():
                 if field not in item:
                     item[field] = default_value
+                elif item[field] == "":
+                    item[field] = default_value
+            item["roadway"] = item["roadway"].lower()
 
-    CardLogger.debug(f"Updated Card.update_roadway_addition:\n {card}")
+    # CardLogger.debug(f"Updated Card.update_roadway_addition:\n {card}")
     return card
 
 
@@ -228,9 +255,16 @@ def _update_property_changes_key(card):
     ```
 
     """
+    if "changes" in card:
+        _updated_changes = []
+        for change in card["changes"]:
+            # CardLogger.debug(f"Change: {change}")
+            _updated_changes.append(_update_property_changes_key(change))
+        card["changes"] = _updated_changes
+        return card
     if "properties" not in card:
         return card
-    CardLogger.debug(f"Card.update_property_changes_key:\n {card}")
+    # CardLogger.debug(f"Card.update_property_changes_key:\n {card}")
     _pchanges = card.pop("properties")
     updated_pchanges = {}
     for _pc in _pchanges:
@@ -239,7 +273,7 @@ def _update_property_changes_key(card):
             _pc = _unnest_scoped_properties(_pc)
         updated_pchanges[property_name] = _pc
     card["property_changes"] = updated_pchanges
-    CardLogger.debug(f"Updated Card.update_property_changes_key:\n {card}")
+    # CardLogger.debug(f"Updated Card.update_property_changes_key:\n {card}")
     return card
 
 
@@ -256,6 +290,13 @@ def _update_roadway_facility(card):
         A to "from"
         B to "to"
     """
+    if "changes" in card:
+        _updated_changes = []
+        for change in card["changes"]:
+            # CardLogger.debug(f"Change: {change}")
+            _updated_changes.append(_update_roadway_facility(change))
+        card["changes"] = _updated_changes
+        return card
     applicable_categories = ["roadway_property_change", "roadway_managed_lanes"]
     for change_cat in applicable_categories:
         if change_cat not in card:
@@ -268,7 +309,7 @@ def _update_roadway_facility(card):
         # unnest links from list
         if "links" in card[change_cat]["facility"]:
             card[change_cat]["facility"]["links"] = card[change_cat]["facility"].pop("links")[0]
-        CardLogger.debug(f"Updated Card.update_roadway_facility:\n {card}")
+        # CardLogger.debug(f"Updated Card.update_roadway_facility:\n {card}")
     return card
 
 
@@ -315,9 +356,16 @@ def _update_transit_service(card):
     ```
 
     """
+    if "changes" in card:
+        _updated_changes = []
+        for change in card["changes"]:
+            # CardLogger.debug(f"Change: {change}")
+            _updated_changes.append(_update_transit_service(change))
+        card["changes"] = _updated_changes
+        return card
     if "facility" not in card.get("transit_property_change", {}):
         _tpc = card.get("transit_property_change", {})
-        CardLogger.debug(f"card.get(...): { _tpc}")
+        # CardLogger.debug(f"card.get(...): { _tpc}")
         return card
 
     ROUTE_PROPS = ["route_long_name", "route_short_name", "agency_id"]
@@ -348,11 +396,18 @@ def _update_transit_service(card):
     if timespans:
         card["transit_property_change"]["service"]["timespans"] = timespans
 
-    CardLogger.debug(f"Updated Card.Updated Transit Service:\n {card}")
+    # CardLogger.debug(f"Updated Card.Updated Transit Service:\n {card}")
     return card
 
 
 def _update_transit_routing(card):
+    if "changes" in card:
+        _updated_changes = []
+        for change in card["changes"]:
+            # CardLogger.debug(f"Change: {change}")
+            _updated_changes.append(_update_transit_routing(change))
+        card["changes"] = _updated_changes
+        return card
     if "transit_property_change" in card:
         # TODO do "shapes"
         if "routing" in card["transit_property_change"]["property_changes"]:
@@ -376,8 +431,43 @@ def _update_timespan(card):
     """
     card = _update_dict_key(card, "time", "timespan")
 
-    CardLogger.debug(f"Updated Card.update_timespan:\n {card}")
+    # CardLogger.debug(f"Updated Card.update_timespan:\n {card}")
     return card
+
+
+def _remove_empty_strings(data):
+    """Remove keys/values with empty string values from dictionaries and lists."""
+    if isinstance(data, dict):
+        return {k: _remove_empty_strings(v) for k, v in data.items() if v != ''}
+    elif isinstance(data, list):
+        return [_remove_empty_strings(item) for item in data if item != '']
+    else:
+        return data
+
+
+def _literals_to_arrays(data):
+    "Make tags arrays even if just one."
+    if isinstance(data.get("tags", []), str):
+        data["tags"] = [data["tags"]]
+    return data
+
+
+def _clean_floats_to_ints(data):
+    """Convert floats to ints if they are whole numbers."""
+    if isinstance(data, dict):
+        return {k: _clean_floats_to_ints(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [_clean_floats_to_ints(item) for item in data]
+    elif isinstance(data, float) and data.is_integer():
+        return int(data)
+    else:
+        try:
+            data = float(data)
+            if data.is_integer():
+                return int(data)
+            return data
+        except:
+            return data
 
 
 def update_schema_for_card(card_data: dict, errlog_output_dir: Path = ".") -> dict:
@@ -403,6 +493,10 @@ def update_schema_for_card(card_data: dict, errlog_output_dir: Path = ".") -> di
     card_data = _update_transit_service(card_data)
     card_data = _update_transit_routing(card_data)
     card_data = _update_timespan(card_data)
+    card_data = _remove_empty_strings(card_data)
+    card_data = _literals_to_arrays(card_data)
+    card_data = _clean_floats_to_ints(card_data)
+
 
     """
     TODO: validate against ProjectCardModel when that is updated before returning
@@ -439,6 +533,9 @@ def update_schema_for_card_file(
         rename_input: rename input card file with a ".v0 pre-suffix. Default: False
     """
     card_data = yaml.safe_load(input_card_path.read_text())
+    for k in SKIP_READ:
+        if k in card_data:
+            del card_data[k]
 
     if output_card_path is None:
         output_card_path = input_card_path.parent / (
@@ -456,9 +553,14 @@ def update_schema_for_card_file(
         )
 
     card_data = update_schema_for_card(card_data, errlog_output_dir=output_card_path.parent)
+    CardLogger.debug("Completed updating schema.\n...initializing as ProjectCard")
+    CardLogger.debug(f"card_data:\n{card_data}")
     card = ProjectCard(card_data)
+    CardLogger.debug(f"Initialized as ProjectCard.\n...writing to {output_card_path}")
+    CardLogger.debug(f"ProjectCard:\n{card}")
     # Write it out first so that it is easier to troubleshoot
     write_card(card, output_card_path)
+    CardLogger.debug(f"Completed writing.\n...validating")
     assert card.valid
 
 

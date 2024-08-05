@@ -42,6 +42,7 @@
         "agency_id":{"$ref":"#/$defs/agency_id"},
         "route_short_name":{"$ref":"#/$defs/route_short_name"},
         "route_long_name":{"$ref":"#/$defs/route_long_name"},
-        "route_type":{"$ref":"#/$defs/route_type"}
+        "route_type":{"$ref":"#/$defs/route_type"},
+        "trips":{"type":"array","items":{"$ref":"../transit/selection/transit_trip.json"}}
     }
 }
