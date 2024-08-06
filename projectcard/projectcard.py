@@ -14,6 +14,14 @@ from .validate import (
 UNSPECIFIED_PROJECT_NAMES = ["", "TO DO User Define", "USER TO define"]
 VALID_EXT = [".yml", ".yaml", ".json", ".toml", ".wr", ".wrangler"]
 REPLACE_KEYS = {"a": "A", "b": "B"}
+CHANGE_TYPES = [
+    "roadway_property_change",
+    "roadway_addition",
+    "roadway_deletion",
+    "transit_property_change",
+    "transit_routing_change",
+    "pycode",
+]
 
 
 class ProjectCard(object):
@@ -41,6 +49,7 @@ class ProjectCard(object):
         self.project: str = None
         self.tags: list[str] = []
         self.dependencies: dict = {}
+        self.notes: str = ""
         self._sub_projects: list[SubProject] = []
 
         self.__dict__.update(attribute_dictonary)
@@ -151,16 +160,8 @@ class ProjectCard(object):
         """Returns list of all change types from project/subproject."""
         if self._sub_projects:
             return [sp.change_type for sp in self._sub_projects]
-        _ignore = [
-            "project",
-            "tags",
-            "notes",
-            "dependencies",
-            "self_obj_type",
-            "sub_projects",
-            "file",
-        ]
-        type_keys = [k for k in self.__dict__.keys() if k not in _ignore]
+
+        type_keys = [k for k in self.__dict__.keys() if k in CHANGE_TYPES]
         if not type_keys:
             raise ProjectCardValidationError(f"Couldn't find type of project card {self.project}")
         return type_keys
