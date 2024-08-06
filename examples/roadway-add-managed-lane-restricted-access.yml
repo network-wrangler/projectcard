@@ -1,6 +1,6 @@
 project: Example I394 Parallel Lanes
 tags: ['managed lanes']
-notes: Need to adjust normal lanes
+notes: demonstrates how to add managed lanes to an existing roadway with restricted access
 roadway_property_change:
   facility:
     links:
