@@ -11,6 +11,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://network-wrangler.github.io/projectcard/main/development/</loc>
+         <lastmod>2024-08-06</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://network-wrangler.github.io/projectcard/main/examples/</loc>
          <lastmod>2024-08-06</lastmod>
          <changefreq>daily</changefreq>

@@ -156,6 +156,16 @@
 
       </a>
 </li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="development/">
+        
+  
+    
+  
+  Development
+
+      </a>
+</li>
 </ul>
 </div>
 </nav>
@@ -258,20 +268,6 @@
     </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#development-environment">
-<span class="md-ellipsis">
-      Development Environment
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#production-environment">
-<span class="md-ellipsis">
-      Production Environment
-    </span>
-</a>
-</li>
 </ul>
 </nav>
 </li>
@@ -300,6 +296,13 @@
 <a class="md-nav__link" href="examples/">
 <span class="md-ellipsis">
     Example Data
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="development/">
+<span class="md-ellipsis">
+    Development
   </span>
 </a>
 </li>
@@ -374,20 +377,6 @@
     </span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#development-environment">
-<span class="md-ellipsis">
-      Development Environment
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#production-environment">
-<span class="md-ellipsis">
-      Production Environment
-    </span>
-</a>
-</li>
 </ul>
 </nav>
 </div>
@@ -408,49 +397,34 @@
 <p>There is also a limited object model, <code>ProjectCard</code> which can be used to organize and manage project cards.</p>
 <h3 id="command-line">Command Line<a class="headerlink" href="#command-line" title="Permanent link"> ¶</a></h3>
 <p>Validate project card(s) from a directory or specific file path, optionally filtering by a tag.</p>
-<div class="highlight"><pre><span></span><code>validate_card<span class="w"> </span>card_search_dir<span class="w"> </span>--filter_tags<span class="w"> </span><span class="o">[</span><span class="s1">'tag_to_search_for'</span><span class="o">]</span>
-</code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>validate_card<span class="w"> </span>card_search_dir<span class="w"> </span>--filter_tags<span class="w"> </span><span class="o">[</span><span class="s1">'tag_to_search_for'</span><span class="o">]</span>
+</span></code></pre></div>
 <p>Update older project card(s) to current format from a directory or specific file path.  Cards should still be validated afterwards.</p>
-<div class="highlight"><pre><span></span><code>update_projectcard_schema<span class="w"> </span>card_search_dir<span class="w"> </span>output_dir
-</code></pre></div>
+<div class="language-sh highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>update_projectcard_schema<span class="w"> </span>card_search_dir<span class="w"> </span>output_dir
+</span></code></pre></div>
 <h3 id="python-api">Python API<a class="headerlink" href="#python-api" title="Permanent link"> ¶</a></h3>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">projectcard.io</span> <span class="kn">import</span> <span class="n">read_cards</span>
-
-<span class="c1"># Read in cards from a directory with the tag "Baseline 2030"</span>
-<span class="n">project_cards</span> <span class="o">=</span> <span class="n">read_cards</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">filter_tags</span><span class="o">=</span><span class="p">[</span><span class="s2">"Baseline2030"</span><span class="p">])</span>
-
-<span class="c1"># Iterate through a deck of cards for validity</span>
-<span class="k">for</span> <span class="n">project_name</span><span class="p">,</span><span class="n">card</span> <span class="ow">in</span> <span class="n">project_cards</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">project_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">card</span><span class="o">.</span><span class="n">valid</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
-
-<span class="c1"># Print out a summary of the card with the project name "4th Ave Busway"</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">project_cards</span><span class="p">[</span><span class="s2">"4th Ave Busway"</span><span class="p">])</span>
-</code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">projectcard.io</span> <span class="kn">import</span> <span class="n">read_cards</span>
+</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="c1"># Read in cards from a directory with the tag "Baseline 2030"</span>
+</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="n">project_cards</span> <span class="o">=</span> <span class="n">read_cards</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">filter_tags</span><span class="o">=</span><span class="p">[</span><span class="s2">"Baseline2030"</span><span class="p">])</span>
+</span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1"># Iterate through a deck of cards for validity</span>
+</span><span id="__span-2-7"><a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="k">for</span> <span class="n">project_name</span><span class="p">,</span><span class="n">card</span> <span class="ow">in</span> <span class="n">project_cards</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+</span><span id="__span-2-8"><a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a>    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">project_name</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">card</span><span class="o">.</span><span class="n">valid</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-2-9"><a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a>
+</span><span id="__span-2-10"><a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="c1"># Print out a summary of the card with the project name "4th Ave Busway"</span>
+</span><span id="__span-2-11"><a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">project_cards</span><span class="p">[</span><span class="s2">"4th Ave Busway"</span><span class="p">])</span>
+</span></code></pre></div>
 <h2 id="installation">Installation<a class="headerlink" href="#installation" title="Permanent link"> ¶</a></h2>
 <p><code>pip install projectcard</code></p>
-<p>Note :Generally it is not necessary to install the projectcard package as the main purpose of this repository is to maintain the project card <em>schema</em>.  Projects that use the package to validate project cards usually include projectcards as a requirement and install it on their own.</p>
-<h2 id="development-environment">Development Environment<a class="headerlink" href="#development-environment" title="Permanent link"> ¶</a></h2>
-<ol>
-<li>
-<p><a href="https://github.com/network-wrangler/projectcard/fork">Fork</a> and clone repo locally</p>
-</li>
-<li>
-<p>Install dependencies</p>
-</li>
-</ol>
-<div class="highlight"><pre><span></span><code>conda<span class="w"> </span>install<span class="w"> </span>--yes<span class="w"> </span>--file<span class="w"> </span>requirements.txt
-</code></pre></div>
-<p>or</p>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-</code></pre></div>
-<ol>
-<li>Install from working directory</li>
-</ol>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
-</code></pre></div>
-<h2 id="production-environment">Production Environment<a class="headerlink" href="#production-environment" title="Permanent link"> ¶</a></h2>
-<div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/network-wrangler/projectcard@main#egg<span class="o">=</span>projectcard
-</code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Note</p>
+<p>It is <strong>not generally necessary to install the projectcard package yourself</strong> unless you are using it to do independent validation of project cards. Projects such as <code>network_wrangler</code> that use the <code>projectcard</code> package to validate project cards usually include <code>projectcard</code> as a requirement and install it on their own.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Plan on developing in network wrangler?</p>
+<p>You might want to follow the directions in the <a href="development/">development</a> documentation.</p>
+</div>
 </article>
 </div>
 <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
@@ -475,7 +449,7 @@
 <div class="md-dialog" data-md-component="dialog">
 <div class="md-dialog__inner md-typeset"></div>
 </div>
-<script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "content.code.annotate", "content.tabs.link", "navigation.indexes"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+<script id="__config" type="application/json">{"base": ".", "features": ["navigation.tabs", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes"], "search": "assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
 <script src="assets/javascripts/bundle.fe8b6f2b.min.js"></script>
 <script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
