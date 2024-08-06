@@ -1,0 +1,194 @@
+project: convert intersection to interchange
+notes: demonstrates how to nest multiple changes into a single project under `changes`
+changes:
+- roadway_deletion:
+    links:
+      model_link_id:
+      - 2171
+      - 25856
+      - 383747
+      - 383790
+- roadway_addition:
+    links:
+      - A: 354386
+        name: interchange ramp
+        roadway: motorway_link
+        B: 16214
+        distance : 0.13201
+        lanes: 1
+        model_link_id: 2171
+        bus_only: 0
+        rail_only: 0
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 16214
+        name: interchange ramp
+        roadway: motorway_link
+        B: 354386
+        distance: 0.13201
+        lanes: 1
+        model_link_id: 25856
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 4336
+        name: interchange ramp
+        roadway: motorway_link
+        B: 354387
+        distance: 0.14848
+        lanes: 1
+        model_link_id: 2171
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 354387
+        name: interchange ramp
+        roadway: motorway_link
+        B: 354386
+        distance: 0.10981
+        lanes: 1
+        model_link_id: 2171
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 354386
+        name: interchange ramp
+        roadway: motorway_link
+        B: 354387
+        distance: 0.10981
+        lanes: 1
+        model_link_id: 25856
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 354387
+        name: interchange ramp
+        roadway: motorway_link
+        B: 4336
+        distance: 0.14848
+        lanes: 1
+        model_link_id: 25856
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 354388
+        name: interchange ramp
+        roadway: motorway_link
+        B: 13931
+        distance: 0.55987
+        lanes: 2
+        model_link_id: 383747
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 12590
+        name: interchange ramp
+        roadway: motorway_link
+        count_AM: 0
+        B: 354389
+        distance: 0.15228
+        lanes: 2
+        model_link_id: 383747
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 354389
+        name: interchange ramp
+        roadway: motorway_link
+        B: 354388
+        distance: 0.16071
+        lanes: 2
+        model_link_id: 383747
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 12655
+        name: interchange ramp
+        roadway: motorway_link
+        B: 354390
+        distance: 0.21899
+        lanes: 3
+        model_link_id: 383790
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 354390
+        name: interchange ramp
+        roadway: motorway_link
+        B: 354391
+        distance: 0.21108
+        lanes: 3
+        model_link_id: 383790
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 354391
+        B: 14248
+        name: interchange ramp
+        roadway: motorway_link
+        distance: 0.36316
+        lanes: 3
+        model_link_id: 383790
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 354387
+        name: interchange ramp
+        roadway: motorway_link
+        B: 354388
+        distance: 0.09188
+        lanes: 2
+        model_link_id: 384040
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 354390
+        name: interchange ramp
+        roadway: motorway_link
+        B: 354386
+        distance: 0.12286
+        lanes: 2
+        model_link_id: 384040
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 354386
+        name: interchange ramp
+        roadway: motorway_link
+        B: 354391
+        distance: 0.08689
+        lanes: 2
+        model_link_id: 384040
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+      - A: 354389
+        B: 354387
+        name: interchange ramp
+        roadway: motorway_link
+        distance: 0.09431
+        lanes: 2
+        model_link_id: 384040
+        bike_access: 0
+        drive_access: 1
+        walk_access: 0
+    nodes:
+      - X: -93.14412
+        Y: 44.87497
+        model_node_id: 354386
+      - X: -93.14189
+        Y: 44.87499
+        model_node_id: 354387
+      - X: -93.14239
+        Y: 44.87644
+        model_node_id: 354388
+      - X: -93.14322
+        Y: 44.87414
+        model_node_id: 354389
+      - X: -93.14273
+        Y: 44.87648
+        model_node_id: 354390
+      - X: -93.14382
+        Y: 44.87355
+        model_node_id: 354391

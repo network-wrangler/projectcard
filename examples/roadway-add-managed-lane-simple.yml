@@ -1,5 +1,5 @@
 project: example add simple managed lane project
-notes: Simple managed lane project with AM and PM lanes are HOT during the peak periods
+notes: Simple managed lane project with AM and PM lanes are tolled based on occupancy
 tags:
    - 'example'
    - 'managed'

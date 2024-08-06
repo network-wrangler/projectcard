@@ -6,6 +6,7 @@ import re
 from pathlib import Path
 
 from projectcard import ProjectCard
+from projectcard.utils import slug_to_str
 
 SCHEMA_DIR = "schema"
 
@@ -93,18 +94,18 @@ def define_env(env):
 
         return content
 
-    def _categories_as_str(card: "ProjectCard") -> str:
+    def _categories_as_str(card: ProjectCard) -> str:
         if len(card.change_types) == 1:
-            return card.change_type
+            return slug_to_str(card.change_type)
 
-        _cat_str = "Multiple Change Categories:<ul>\n"
-        _cat_str += "".join([f"<li>{c}</li>\n" for c in card.change_types])
-        _cat_str += "</ul>"
+        _cat_str = "Multiple: "
+        _cat_str += ", ".join([f"{slug_to_str(c)}" for c in list(set(card.change_types))])
+        return _cat_str
 
-    def _card_to_md(card: "ProjectCard") -> str:
-        _card_md = f"\n###{card.project}\n\n"
+    def _card_to_md(card: ProjectCard) -> str:
+        _card_md = f"\n###{card.project.title()}\n\n"
         _card_md += f"**Category**: {_categories_as_str(card)}\n"
-        _card_md += "```yml\n\n"
+        _card_md += f'``` yaml title="examples/{Path(card.file).name}"\n\n'
         _card_md += include_file((card.__dict__["file"]), downshift_h1=False)
         _card_md += "\n```\n"
         return _card_md
@@ -120,22 +121,25 @@ def define_env(env):
         """
         from projectcard.io import _make_slug, read_cards
 
-        table_fields = ["Category"]
+        table_fields = ["Category", "Notes"]
 
         data_dir = os.path.join(env.project_dir, data_dir)
 
         _md_examples = "\n## Cards\n"
         _md_table = (
-            "| **Name** | "
+            "| **Name** | **"
             + "** | **".join(table_fields)
-            + " |\n| "
+            + "** |\n| "
             + " ----- | " * (len(table_fields) + 1)
             + "\n"
         )
 
         def _card_to_mdrow(card, fields):
-            _md_row = f"| [{card.project}](#{_make_slug(card.project).replace('_','-')}) | "
-            _md_row += f"{_categories_as_str(card)}" " |\n"
+            _md_row = (
+                f"| [{card.project.title()}](#{_make_slug(card.project).replace('_','-')}) | "
+            )
+            _md_row += f" {_categories_as_str(card)} |"
+            _md_row += f" {card.notes} |\n"
             return _md_row
 
         _example_cards = None

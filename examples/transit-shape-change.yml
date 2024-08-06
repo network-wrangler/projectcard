@@ -1,4 +1,5 @@
 project: Bus Reroute
+notes: re-routes a bus route to avoid construction
 tags:
    - existing_plus_committed
 transit_routing_change:

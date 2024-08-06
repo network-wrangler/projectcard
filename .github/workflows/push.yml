@@ -41,8 +41,10 @@ jobs:
         pytest-coverage-path: ./pytest-coverage.txt
         junitxml-path: ./pytest.xml
     - name: Install docs dependencies
+      if: "!contains(github.ref, '/merge')"
       run: |
         pip install -r docs/requirements.txt
     - name: Build docs
+      if: "!contains(github.ref, '/merge')"
       run: |
         mike deploy --push --rebase ${{ github.ref_name }}
