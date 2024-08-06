@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 
 [project]
 name = "projectcard"
-version = "0.1.1"
+version = "0.1.2"
 description = "Project Cards represent information about a tranportation infrastructure projects sufficient for usage in a regional travel demand model. This package supports validation and usage of this schema."
 license =  {file = "LICENSE"}
 readme = "README.md"
