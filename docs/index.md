@@ -54,32 +54,10 @@ print(project_cards["4th Ave Busway"])
 
 `pip install projectcard`
 
-Note :Generally it is not necessary to install the projectcard package as the main purpose of this repository is to maintain the project card *schema*.  Projects that use the package to validate project cards usually include projectcards as a requirement and install it on their own.
+!!! tip "Note"
 
-## Development Environment
+    It is **not generally necessary to install the projectcard package yourself** unless you are using it to do independent validation of project cards. Projects such as `network_wrangler` that use the `projectcard` package to validate project cards usually include `projectcard` as a requirement and install it on their own.
 
-1. [Fork](https://github.com/network-wrangler/projectcard/fork) and clone repo locally
+!!! note "Plan on developing in network wrangler?"
 
-2. Install dependencies
-
-```sh
-conda install --yes --file requirements.txt
-```
-
-or
-
-```sh
-pip install -r requirements.txt
-```
-
-3. Install from working directory
-
-```sh
-pip install -e .
-```
-
-## Production Environment
-
-```sh
-pip install git+https://github.com/network-wrangler/projectcard@main#egg=projectcard
-```
+    You might want to follow the directions in the [development](development.md) documentation.

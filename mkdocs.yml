@@ -8,12 +8,14 @@ nav:
     - "Pydantic": 'pydantic-datamodels.md'
     - 'api.md'
     - 'examples.md'
+    - 'development.md'
 
 theme:
   name: material
   features:
     - navigation.tabs
     - content.code.annotate
+    - content.code.copy
     - content.tabs.link
     - navigation.indexes
   palette:
@@ -65,6 +67,11 @@ markdown_extensions:
       linenums: true
   - meta
   - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.snippets
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tabbed:
