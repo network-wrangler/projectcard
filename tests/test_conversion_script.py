@@ -19,3 +19,8 @@ def test_convert_to_v0_cards(all_v0_card_files, test_out_dir):
     output_path = test_out_dir
     for p in all_v0_card_files:
         update_schema_for_card_file(p, output_path)
+
+
+def test_convert_ag2(test_dir, test_out_dir):
+    _card_dir = Path(test_dir) / "data" / "cards" / "ag2cleanup.v0.yml"
+    update_schema_for_card_file(_card_dir, test_out_dir)

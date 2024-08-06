@@ -63,7 +63,7 @@ def _open_json(schema_path: str) -> dict:
 
 def _load_schema(schema_absolute_path: Union[Path, str]) -> dict:
     base_path = Path(schema_absolute_path).parent
-    base_uri = f"file://{base_path}/"
+    base_uri = f"file:///{base_path}/"
 
     _s = jsonref.replace_refs(
         _open_json(schema_absolute_path),

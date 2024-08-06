@@ -108,28 +108,47 @@ DEFAULT_ROADWAY_VALUES: dict = {
 }
 
 
-def _update_roadway_addition(card, default_roadway_values: dict = DEFAULT_ROADWAY_VALUES):
+def _drop_empty_object(card: dict) -> dict:
+    """Dependencies, notes and tags should be dropped if empty string or None."""
+    for key in ["dependencies", "tags", "notes"]:
+        if key in card:
+            if card[key] == "" or card[key] is None:
+                card.pop(key)
+    return card
+
+
+def _tags_to_list(card: dict) -> dict:
+    """Convert tags to list if not already."""
+    if "tags" in card and isinstance(card["tags"], str):
+        card["tags"] = [card["tags"]]
+    return card
+
+
+def _update_roadway_addition(change, default_roadway_values: dict = DEFAULT_ROADWAY_VALUES):
     """Adds required link and node values for roadway additions with assumed defaults.
 
+    Also updates roadway names to lowercase and changes "ramp" to "motorway_link".
+
     Args:
-        card: ProjectCard dictionary to update.
+        change: ProjectCard dictionary to update.
         default_roadway_values (dict): Mapping of field name and default value to use for links if
             not specified in project card. Defaults to DEFAULT_ROADWAY_VALUES.
-
     """
-    if "roadway_addition" not in card:
-        return card
+    if "roadway_addition" not in change:
+        return change
     network_parts = ["links", "nodes"]
     for p in network_parts:
-        if p not in card["roadway_addition"]:
+        if p not in change["roadway_addition"]:
             continue
-        for item in card["roadway_addition"][p]:
+        for item in change["roadway_addition"][p]:
             for field, default_value in default_roadway_values[p].items():
-                if field not in item:
+                if field not in item or item[field] is None or item[field] == "":
                     item[field] = default_value
-
-    CardLogger.debug(f"Updated Card.update_roadway_addition:\n {card}")
-    return card
+            item["roadway"] = item["roadway"].lower()
+            if "ramp" in item["roadway"]:
+                item["roadway"] = "motorway_link"
+    CardLogger.debug(f"Updated Card.update_roadway_addition:\n {change}")
+    return change
 
 
 def _unnest_scoped_properties(property_change: dict) -> list[dict]:
@@ -206,8 +225,8 @@ def _unnest_scoped_properties(property_change: dict) -> list[dict]:
         return property_change
 
 
-def _update_property_changes_key(card):
-    """Find "properties" key and update to "property_changes" and to nest as object under the property name .
+def _update_property_changes_key(change: dict) -> dict:
+    """Update "properties" to "property_changes" and nest under the property name.
 
     e.g.
 
@@ -228,26 +247,34 @@ def _update_property_changes_key(card):
     ```
 
     """
-    if "properties" not in card:
-        return card
-    CardLogger.debug(f"Card.update_property_changes_key:\n {card}")
-    _pchanges = card.pop("properties")
+    if "roadway_property_change" in change:
+        change_name = "roadway_property_change"
+    elif "transit_property_change" in change:
+        change_name = "transit_property_change"
+    else:
+        return change
+
+    if "properties" not in change[change_name]:
+        return change
+
+    CardLogger.debug(f"Card.update_property_changes_key:\n {change}")
+    _pchanges = change[change_name].pop("properties")
     updated_pchanges = {}
     for _pc in _pchanges:
         property_name = _pc.pop("property")
         if "group" in _pc or "timeofday" in _pc:
             _pc = _unnest_scoped_properties(_pc)
         updated_pchanges[property_name] = _pc
-    card["property_changes"] = updated_pchanges
-    CardLogger.debug(f"Updated Card.update_property_changes_key:\n {card}")
-    return card
+    change[change_name]["property_changes"] = updated_pchanges
+    CardLogger.debug(f"Updated Card.update_property_changes_key:\n {change}")
+    return change
 
 
 ROADWAY_FACILITY_UPDATED_KEYS = {"link": "links", "A": "from", "B": "to"}
 
 
-def _update_roadway_facility(card):
-    """Update keys for "facility" dict under "roadway_property_change or roadway_managed_lanes"".
+def _update_roadway_facility(change: dict) -> dict:
+    """Update keys for "facility" dict under "roadway_property_change".
 
     Also unnests "links" from an unnecessary list.
 
@@ -256,23 +283,26 @@ def _update_roadway_facility(card):
         A to "from"
         B to "to"
     """
-    applicable_categories = ["roadway_property_change", "roadway_managed_lanes"]
-    for change_cat in applicable_categories:
-        if change_cat not in card:
-            continue
+    if "roadway_property_change" not in change:
+        return change
 
-        for old_key, new_key in ROADWAY_FACILITY_UPDATED_KEYS.items():
-            if old_key in card[change_cat]["facility"]:
-                card[change_cat]["facility"][new_key] = card[change_cat]["facility"].pop(old_key)
+    facility = change["roadway_property_change"].pop("facility")
 
-        # unnest links from list
-        if "links" in card[change_cat]["facility"]:
-            card[change_cat]["facility"]["links"] = card[change_cat]["facility"].pop("links")[0]
-        CardLogger.debug(f"Updated Card.update_roadway_facility:\n {card}")
-    return card
+    # update prop names
+    for old_key, new_key in ROADWAY_FACILITY_UPDATED_KEYS.items():
+        if old_key in facility:
+            facility[new_key] = facility.pop(old_key)
+
+    # unnest links from list
+    if "links" in facility:
+        facility["links"] = facility.pop("links")[0]
+
+    change["roadway_property_change"]["facility"] = facility
+    CardLogger.debug(f"Updated Card.update_roadway_facility:\n {change}")
+    return change
 
 
-def _update_transit_service(card):
+def _update_transit_service(change):
     """For a change with "transit" in the title, update 'facility' to 'service' and change format.
 
     Nest under trip_properties and route_properties as follows:
@@ -315,15 +345,15 @@ def _update_transit_service(card):
     ```
 
     """
-    if "facility" not in card.get("transit_property_change", {}):
-        _tpc = card.get("transit_property_change", {})
+    if "facility" not in change.get("transit_property_change", {}):
+        _tpc = change.get("transit_property_change", {})
         CardLogger.debug(f"card.get(...): { _tpc}")
-        return card
+        return change
 
     ROUTE_PROPS = ["route_long_name", "route_short_name", "agency_id"]
     TRIP_PROPS = ["trip_id", "route_id", "direction_id"]
     NOT_A_LIST = ["direction_id"]
-    facility = card["transit_property_change"].pop("facility")
+    facility = change["transit_property_change"].pop("facility")
     trip_properties = {}
     route_properties = {}
     timespans = []
@@ -335,49 +365,44 @@ def _update_transit_service(card):
             trip_properties[key] = value
         elif key in ROUTE_PROPS:
             route_properties[key] = value
-        elif key == "time":
+        elif key == "timespan":
             # timespans is a list of a list
             timespans = value
         else:
             raise ValueError(f"Unimplemented transit property: {key}")
-    card["transit_property_change"]["service"] = {}
+    change["transit_property_change"]["service"] = {}
     if trip_properties:
-        card["transit_property_change"]["service"]["trip_properties"] = trip_properties
+        change["transit_property_change"]["service"]["trip_properties"] = trip_properties
     if route_properties:
-        card["transit_property_change"]["service"]["route_properties"] = route_properties
+        change["transit_property_change"]["service"]["route_properties"] = route_properties
     if timespans:
-        card["transit_property_change"]["service"]["timespans"] = timespans
+        change["transit_property_change"]["service"]["timespans"] = timespans
 
-    CardLogger.debug(f"Updated Card.Updated Transit Service:\n {card}")
-    return card
+    CardLogger.debug(f"Updated Card.Updated Transit Service:\n {change}")
+    return change
 
 
-def _update_transit_routing(card):
-    if "transit_property_change" in card:
+def _update_transit_routing(change):
+    if "transit_property_change" in change:
         # TODO do "shapes"
-        if "routing" in card["transit_property_change"]["property_changes"]:
-            transit_property_change = card.pop("transit_property_change")
+        if "routing" in change["transit_property_change"]["property_changes"]:
+            transit_property_change = change.pop("transit_property_change")
 
-            card["transit_routing_change"] = {
+            change["transit_routing_change"] = {
                 "service": transit_property_change["service"],
                 "routing": transit_property_change["property_changes"]["routing"],
             }
-    return card
+    return change
 
 
-def _update_timespan(card):
-    """Find "time" key and update to "timespan" in a nested dictionary.
-
-    Args:
-        card: The card dictionary to update.
-
-    Returns:
-        The updated card dictionary.
-    """
-    card = _update_dict_key(card, "time", "timespan")
-
-    CardLogger.debug(f"Updated Card.update_timespan:\n {card}")
-    return card
+def _update_change(change_data: dict) -> dict:
+    """Update change object in card data to current format."""
+    change_data = _update_property_changes_key(change_data)
+    change_data = _update_roadway_addition(change_data)
+    change_data = _update_roadway_facility(change_data)
+    change_data = _update_transit_service(change_data)
+    change_data = _update_transit_routing(change_data)
+    return change_data
 
 
 def update_schema_for_card(card_data: dict, errlog_output_dir: Path = ".") -> dict:
@@ -396,13 +421,20 @@ def update_schema_for_card(card_data: dict, errlog_output_dir: Path = ".") -> di
     """
     _project = card_data["project"]
     CardLogger.info(f"Updating {_project}...")
-    card_data = _update_property_changes_key(card_data)
+    card_data = _drop_empty_object(card_data)
+    card_data = _tags_to_list(card_data)
     card_data = _nest_change_under_category_type(card_data)
-    card_data = _update_roadway_addition(card_data)
-    card_data = _update_roadway_facility(card_data)
-    card_data = _update_transit_service(card_data)
-    card_data = _update_transit_routing(card_data)
-    card_data = _update_timespan(card_data)
+    card_data = _update_dict_key(card_data, "roadway_managed_lanes", "roadway_property_change")
+    card_data = _update_dict_key(card_data, "time", "timespan")
+
+    if "changes" in card_data:
+        _updated_changes = []
+        for change in card_data["changes"]:
+            CardLogger.debug(f"...Change: {change}")
+            _updated_changes.append(_update_change(change))
+        card_data["changes"] = _updated_changes
+    else:
+        card_data = _update_change(card_data)
 
     """
     TODO: validate against ProjectCardModel when that is updated before returning

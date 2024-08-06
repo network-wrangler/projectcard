@@ -1,5 +1,7 @@
 """Functions for reading and writing project cards."""
 
+from __future__ import annotations
+
 import json
 import os
 from pathlib import Path
@@ -16,6 +18,10 @@ class ProjectCardReadError(Exception):
     """Error in reading project card."""
 
     pass
+
+
+SKIP_READ = ["valid"]
+SKIP_WRITE = ["valid"]
 
 
 def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):
@@ -85,13 +91,18 @@ def write_card(project_card, filename: str = None):
         filename = _make_slug(project_card.project) + ".yml"
     if not project_card.valid:
         CardLogger.warning(f"{project_card.project} Project Card not valid.")
-    # import collections
-    # out_dict = collections.OrderedDict()
     out_dict = {}
+
+    # Writing these first manually so that they are at top of file
     out_dict["project"] = None
-    out_dict["tags"] = ""
-    out_dict["dependencies"] = ""
-    out_dict.update(project_card.__dict__)
+    if project_card.dict.get("tags"):
+        out_dict["tags"] = None
+    if project_card.dict.get("dependencies"):
+        out_dict["dependencies"] = None
+    out_dict.update(project_card.dict)
+    for k in SKIP_WRITE:
+        if k in out_dict:
+            del out_dict[k]
 
     with open(filename, "w") as outfile:
         yaml.dump(out_dict, outfile, default_flow_style=False, sort_keys=False)
@@ -199,6 +210,10 @@ def read_cards(
         CardLogger.debug(f"Unsupported file type for file {filepath}")
         raise ProjectCardReadError(f"Unsupported file type: {_ext}")
     _card_dict = _read_method_map[_ext](filepath)
+    for k in SKIP_READ:
+        if k in _card_dict:
+            del _card_dict[k]
+    _card_dict = {k: v for k, v in _card_dict.items() if v is not None}
     _card_dict = _change_keys(_card_dict)
     _card_dict["file"] = filepath
     _project_name = _card_dict["project"].lower()
