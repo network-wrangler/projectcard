@@ -25,7 +25,7 @@ from projectcard import CardLogger
 def _get_card_files(card_search_dir_or_filename: Path) -> list[Path]:
     if card_search_dir_or_filename.is_dir():
         # Read all .yaml or .yml files in the directory
-        card_files = list(Path(card_search_dir_or_filename).rglob("*.[yY][aA]?[mM][lL]*"))
+        card_files = list(Path(card_search_dir_or_filename).rglob("*.[yY]*[mM][lL]*"))
         if not card_files:
             print(f"No card files found in {card_search_dir_or_filename}")
             sys.exit(1)

@@ -24,13 +24,14 @@ SKIP_READ = ["valid"]
 SKIP_WRITE = ["valid"]
 
 
-def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):
+def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT, recursive: bool = False):
     """Returns a list of valid paths to project cards given a search string.
 
     Args:
         filepath: where the project card is.  A single path, list of paths,
             a directory, or a glob pattern.
         valid_ext: list of valid file extensions
+        recursive: if True, will search recursively in subdirs
 
     Returns: list of valid paths to project cards
     """
@@ -43,7 +44,10 @@ def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):
         _paths = [Path(f) for f in filepath]
     elif (isinstance(filepath, Path) or isinstance(filepath, str)) and Path(filepath).is_dir():
         CardLogger.debug(f"Getting all files in: {filepath}")
-        _paths = [Path(p) for p in Path(filepath).glob("*")]
+        if recursive:
+            _paths = [Path(p) for p in Path(filepath).rglob("*") if p.is_file()]
+        else:
+            _paths = [Path(p) for p in Path(filepath).glob("*")]
     else:
         raise ProjectCardReadError(f"filepath: {filepath} not understood.")
     CardLogger.debug(f"All paths: {_paths}")
@@ -181,6 +185,7 @@ def read_card(filepath: str, validate: bool = False):
 def read_cards(
     filepath: Union[Collection[str], str],
     filter_tags: Collection[str] = [],
+    recursive: bool = False,
     _cards: Mapping[str, ProjectCard] = {},
 ) -> Mapping[str, ProjectCard]:
     """Reads collection of project card files by inferring the file type.
@@ -191,7 +196,8 @@ def read_cards(
     Args:
         filepath: where the project card is.  A single path, list of paths,
             a directory, or a glob pattern.
-        filter_tags: list of tags to filter by
+        filter_tags: list of tags to filter by.
+        recursive: if True, will search recursively in subdirs.
         _cards: dictionary of project cards to add to. Should not be used by user.
 
     Returns: dictionary of project cards by project name
@@ -200,7 +206,9 @@ def read_cards(
 
     filter_tags = list(map(str.lower, filter_tags))
     if isinstance(filepath, list) or not os.path.isfile(filepath):
-        _card_paths = _get_cardpath_list(filepath, valid_ext=_read_method_map.keys())
+        _card_paths = _get_cardpath_list(
+            filepath, valid_ext=_read_method_map.keys(), recursive=recursive
+        )
         for p in _card_paths:
             _cards.update(read_cards(p, filter_tags=filter_tags, _cards=_cards))
         return _cards
