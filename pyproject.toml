@@ -1,5 +1,9 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = [
+    "setuptools>=60",
+    "setuptools-scm>=8.0",
+    "wheel"
+]
 
 [project]
 name = "projectcard"
@@ -29,7 +33,9 @@ dependencies = [
 ]
 
 [tool.setuptools]
+packages = ["projectcard"]
 script-files = ["bin/validate_card", "bin/update_projectcard_schema"]
+include-package-data = true
 
 [tool.setuptools.dynamic]
 version = {attr = "projectcard.__version__"}

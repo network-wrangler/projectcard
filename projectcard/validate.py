@@ -13,7 +13,7 @@ from jsonschema.exceptions import SchemaError, ValidationError
 
 from .logger import CardLogger
 
-ROOTDIR = Path(__file__).resolve().parent.parent
+ROOTDIR = Path(__file__).resolve().parent
 PROJECTCARD_SCHEMA = ROOTDIR / "schema" / "projectcard.json"
 
 # Errors to catch in valdiating "wrangler" project cards which use python code.
