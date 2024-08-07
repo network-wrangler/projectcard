@@ -23,13 +23,13 @@ Fork and Install:
 
     === "github ux"
 
-        - In browser, fork the repository to your github account: <https://github.com/network-wrangler/projectcard/fork>. 
+        - In browser, fork the repository to your github account: <https://github.com/network-wrangler/projectcard/fork>.
         - In the browser with your new fork, click green `code` botton and clone to local disk using Github Desktop.
         - Add the original repo to your upstream remotes to be able to track changes:
           - Make sure the cloned repository is open in GitHub Desktop
           - Click on `Repository` in the menu bar
           - Select Open in Terminal (or Open in Git Bash on Windows).
-          - In the terminal window that opens, enter the following command to add the original repository as a remote named upstream: 
+          - In the terminal window that opens, enter the following command to add the original repository as a remote named upstream:
             ``` bash
             git remote add upstream https://github.com/network-wrangler/projectcard.git
             ```
