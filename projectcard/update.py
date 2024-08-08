@@ -11,6 +11,7 @@ There is a wrapper script for the third function in `/bin/batch_update_project_c
 Note that this script is tested (`test_conversion_script.py`) to successfully convert all the
 project cards in `tests/data/cards/*.v0.yaml` to the current format.
 """
+from __future__ import annotations
 
 import sys
 from pathlib import Path
@@ -19,6 +20,7 @@ import yaml
 
 from projectcard import ProjectCard, write_card
 from projectcard.utils import _update_dict_key
+from projectcard.io import SKIP_READ
 from projectcard import CardLogger
 
 
@@ -70,27 +72,27 @@ def _nest_change_under_category_type(card: dict) -> dict:
     ```
 
     """
-    CardLogger.debug(f"Card.nest_change_under_category_type:\n {card}")
+    # CardLogger.debug(f"Card.nest_change_under_category_type:\n {card}")
     if "changes" in card:
         _updated_changes = []
         for change in card["changes"]:
-            CardLogger.debug(f"...Change: {change}")
+            # CardLogger.debug(f"...Change: {change}")
             _updated_changes.append(_nest_change_under_category_type(change))
         card["changes"] = _updated_changes
         return card
     elif "category" in card:
         category = card.pop("category")
 
-        CardLogger.debug(f"Category: {category}")
+        # CardLogger.debug(f"Category: {category}")
         if category not in CATEGORY_NAME_MAP:
             raise ValueError(f"Invalid category: {category}")
         category_key = CATEGORY_NAME_MAP[category]
         card[category_key] = {k: card.pop(k) for k in NESTED_VALUES if k in card}
-        CardLogger.debug(f"Updated Card.nest_change_under_category_type:\n {card}")
+        # CardLogger.debug(f"Updated Card.nest_change_under_category_type:\n {card}")
         return card
 
     else:
-        CardLogger.debug(f"Can't find category in: {card}. This card might already be updated?")
+        CardLogger.info(f"Can't find category in: {card}. This card might already be updated?")
         return card
 
 
@@ -105,6 +107,14 @@ DEFAULT_ROADWAY_VALUES: dict = {
         "walk_access": 1,
     },
     "nodes": {},
+}
+
+REPLACE_ROADWAY_VALUES = {
+    "roadway": {    
+        "ramp": "motorway_link",
+        "Ramp": "motorway_link",
+        "Trunk": "trunk",
+    }
 }
 
 
@@ -405,6 +415,41 @@ def _update_change(change_data: dict) -> dict:
     return change_data
 
 
+def _remove_empty_strings(data):
+    """Remove keys/values with empty string values from dictionaries and lists."""
+    if isinstance(data, dict):
+        return {k: _remove_empty_strings(v) for k, v in data.items() if v != ''}
+    elif isinstance(data, list):
+        return [_remove_empty_strings(item) for item in data if item != '']
+    else:
+        return data
+
+
+def _literals_to_arrays(data):
+    "Make tags arrays even if just one."
+    if isinstance(data.get("tags", []), str):
+        data["tags"] = [data["tags"]]
+    return data
+
+
+def _clean_floats_to_ints(data):
+    """Convert floats to ints if they are whole numbers."""
+    if isinstance(data, dict):
+        return {k: _clean_floats_to_ints(v) for k, v in data.items()}
+    elif isinstance(data, list):
+        return [_clean_floats_to_ints(item) for item in data]
+    elif isinstance(data, float) and data.is_integer():
+        return int(data)
+    else:
+        try:
+            data = float(data)
+            if data.is_integer():
+                return int(data)
+            return data
+        except:
+            return data
+
+
 def update_schema_for_card(card_data: dict, errlog_output_dir: Path = ".") -> dict:
     """Update older project card data in dictionary to current format.
 
@@ -471,6 +516,9 @@ def update_schema_for_card_file(
         rename_input: rename input card file with a ".v0 pre-suffix. Default: False
     """
     card_data = yaml.safe_load(input_card_path.read_text())
+    for k in SKIP_READ:
+        if k in card_data:
+            del card_data[k]
 
     if output_card_path is None:
         output_card_path = input_card_path.parent / (
@@ -488,9 +536,14 @@ def update_schema_for_card_file(
         )
 
     card_data = update_schema_for_card(card_data, errlog_output_dir=output_card_path.parent)
+    CardLogger.debug("Completed updating schema.\n...initializing as ProjectCard")
+    CardLogger.debug(f"card_data:\n{card_data}")
     card = ProjectCard(card_data)
+    CardLogger.debug(f"Initialized as ProjectCard.\n...writing to {output_card_path}")
+    CardLogger.debug(f"ProjectCard:\n{card}")
     # Write it out first so that it is easier to troubleshoot
     write_card(card, output_card_path)
+    CardLogger.debug(f"Completed writing.\n...validating")
     assert card.valid
 
 

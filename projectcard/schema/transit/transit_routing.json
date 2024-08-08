@@ -1,0 +1,65 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema",
+    "description": "Transit trip pattern / routing properties.",
+    "type":"array",
+    "$defs":{
+      "route_stop":{
+        "type": "object",
+        "description": "Stop charactersitics for a given trip pattern.",
+        "required": ["node_id"],
+        "properties":{
+          "node_id": {
+            "type": "integer",
+            "description": "model_node_id."},
+          "stop": {
+            "type": "boolean",
+            "default": false,
+            "description": "Whether this is a stop. Defaults to False."},
+          "dwell_sec": {
+            "type": "integer",
+            "description": "Dwell time in seconds."
+        },
+          "time_to_next_node_sec": {
+            "type": "integer",
+            "description": "Time to next node in seconds. Defaults to network travel time."},
+          "board": {
+            "type": "boolean",
+            "description": "Whether passengers can board at this stop.Defaults to True if stop=true. specify only when not default."
+            },
+          "alight": {
+            "type": "boolean", 
+            "description": "Whether passengers can alight at this stop. Defaults to True if stop=true. specify only when not default."
+            }
+        }
+      }
+    },
+    "items": {"$ref": "#/$defs/route_stop"},
+    "examples": [
+        [
+            {
+                "node_id": 1,
+                "stop": true
+            },
+            {
+                "node_id": 2,
+                "stop": true
+            },
+            {
+                "node_id": 3,
+                "stop": true
+            },
+            {
+                "node_id": 4,
+                "stop": true
+            },
+            {
+                "node_id": 5,
+                "stop": true,
+                "dwell_sec": 30
+            },
+            {
+                "node_id": 6
+            }
+        ]
+    ]
+}
