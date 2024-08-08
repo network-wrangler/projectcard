@@ -1,5 +1,6 @@
 """Project Card class for project card data schema."""
 
+from __future__ import annotations
 from typing import List, Union
 
 from .logger import CardLogger
@@ -13,6 +14,14 @@ from .validate import (
 UNSPECIFIED_PROJECT_NAMES = ["", "TO DO User Define", "USER TO define"]
 VALID_EXT = [".yml", ".yaml", ".json", ".toml", ".wr", ".wrangler"]
 REPLACE_KEYS = {"a": "A", "b": "B"}
+CHANGE_TYPES = [
+    "roadway_property_change",
+    "roadway_addition",
+    "roadway_deletion",
+    "transit_property_change",
+    "transit_routing_change",
+    "pycode",
+]
 
 
 class ProjectCard(object):
@@ -40,12 +49,13 @@ class ProjectCard(object):
         self.project: str = None
         self.tags: list[str] = []
         self.dependencies: dict = {}
-        self.sub_projects: list[SubProject] = []
+        self.notes: str = ""
+        self._sub_projects: list[SubProject] = []
 
         self.__dict__.update(attribute_dictonary)
         for sp in self.__dict__.get("changes", []):
             sp_obj = SubProject(sp, self)
-            self.sub_projects.append(sp_obj)
+            self._sub_projects.append(sp_obj)
 
     def __str__(self):
         """String representation of project card."""
@@ -55,6 +65,11 @@ class ProjectCard(object):
     def validate(self) -> bool:
         """Return True if project card is valid, False otherwise."""
         return validate_card(self.__dict__)
+
+    @property
+    def dict(self) -> dict:
+        """Return dictionary of public project card attributes."""
+        return {k: v for k, v in self.__dict__.items() if not k.startswith("_") and v is not None}
 
     @property
     def valid(self) -> bool:
@@ -67,7 +82,7 @@ class ProjectCard(object):
         return True
 
     @property
-    def facilities(self) -> List[dict]:
+    def facilities(self) -> list[dict]:
         """Return all facilities from project card as list of dicts."""
         if any(["transit" in t for t in self.change_types]):
             CardLogger.warning("Transit project doesn't have services.")
@@ -143,18 +158,10 @@ class ProjectCard(object):
     @property
     def change_types(self) -> List[str]:
         """Returns list of all change types from project/subproject."""
-        if self.sub_projects:
-            return [sp.change_type for sp in self.sub_projects]
-        _ignore = [
-            "project",
-            "tags",
-            "notes",
-            "dependencies",
-            "self_obj_type",
-            "sub_projects",
-            "file",
-        ]
-        type_keys = [k for k in self.__dict__.keys() if k not in _ignore]
+        if self._sub_projects:
+            return [sp.change_type for sp in self._sub_projects]
+
+        type_keys = [k for k in self.__dict__.keys() if k in CHANGE_TYPES]
         if not type_keys:
             raise ProjectCardValidationError(f"Couldn't find type of project card {self.project}")
         return type_keys
@@ -189,7 +196,7 @@ class SubProject(ProjectCard):
                 list of parent projet card
             parent_project (ProjectCard): ProjectCard object for parent project card
         """
-        self.parent_project = parent_project
+        self._parent_project = parent_project
 
         if not len(sp_dictionary) == 1:
             CardLogger.debug(f"Invalid sp_dictionary with !=1 keys: {sp_dictionary.keys()}")
@@ -199,7 +206,7 @@ class SubProject(ProjectCard):
             )
         self._change_type = list(sp_dictionary.keys())[0]
         self.__dict__.update(sp_dictionary)
-        self.sub_projects = []
+        self._sub_projects = []
 
     @property
     def change_type(self) -> str:
@@ -207,19 +214,24 @@ class SubProject(ProjectCard):
         return self._change_type
 
     @property
+    def parent_project(self) -> str:
+        """Return parent project from parent project card."""
+        return self._parent_project
+
+    @property
     def project(self) -> str:
         """Return project name from parent project card."""
-        return self.parent_project.project
+        return self._parent_project.project
 
     @property
     def dependencies(self) -> str:
         """Return dependencies from parent project card."""
-        return self.parent_project.dependencies
+        return self._parent_project.dependencies
 
     @property
     def tags(self) -> str:
         """Return tags from parent project card."""
-        return self.parent_project.tags
+        return self._parent_project.tags
 
     @property
     def facility(self) -> dict:
@@ -227,11 +239,11 @@ class SubProject(ProjectCard):
         if "facility" not in self.__dict__:
             raise SubprojectValidationError(
                 f"Couldn't find facility in subproject in project card\
-                                            {self.parent_project.project}"
+                                            {self._parent_project.project}"
             )
         return self.__dict__["facility"]
 
     @property
     def valid(self) -> bool:
         """Check if subproject is valid."""
-        return self.parent_project.valid
+        return self._parent_project.valid

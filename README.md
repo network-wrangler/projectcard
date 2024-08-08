@@ -50,7 +50,7 @@ print(project_cards["4th Ave Busway"])
 
 `pip install projectcard`
 
-Note :Generally it is not necessary to install the projectcard package as the main purpose of this repository is to maintain the project card *schema*.  Projects that use the package to validate project cards usually include projectcards as a requirement and install it on their own.  
+Note: Generally it is not necessary to install the projectcard package as the main purpose of this repository is to maintain the project card *schema*.  Projects that use the package to validate project cards usually include projectcards as a requirement and install it on their own.
 
 ### Development Environment
 
@@ -72,10 +72,4 @@ pip install -r requirements.txt
 
 ```sh
 pip install -e .
-```
-
-### Production Environment
-
-```sh
-pip install git+https://github.com/network-wrangler/projectcard@main#egg=projectcard
 ```

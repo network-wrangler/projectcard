@@ -37,7 +37,9 @@ class ByTimeOfDay(BaseModel):
 
 
 class SelfObjType(Enum):
-    """For calculated project cards, must refer to the object to perform the calculation on."""
+    """
+    For calculated project cards, must refer to the object to perform the calculation on.
+    """
 
     RoadwayNetwork = "RoadwayNetwork"
     TransitNetwork = "TransitNetwork"
@@ -141,7 +143,15 @@ class Point(RootModel[Any]):
 
 
 class Distance(RootModel[float]):
-    root: Annotated[float, Field(examples=[93.08], ge=0.0, title="Distance")]
+    root: Annotated[
+        float,
+        Field(
+            description="Distance of facility in miles. If not provided, will be calculated provided nodes",
+            examples=[93.08],
+            ge=0.0,
+            title="Distance",
+        ),
+    ]
 
 
 class Ref(RootModel[str]):
@@ -168,7 +178,9 @@ class OsmLinkId(RootModel[str]):
 
 
 class Roadway(Enum):
-    """Roadway type, using [OSM Highway values](https://wiki.openstreetmap.org/wiki/Key:highway#Roads). Notes: * `X_link` roadway types denote linkage roads going to/from roadway type X (i.e. on/off ramps, etc). * `road` denotes unknown type."""
+    """
+    Roadway type, using [OSM Highway values](https://wiki.openstreetmap.org/wiki/Key:highway#Roads). Notes: * `X_link` roadway types denote linkage roads going to/from roadway type X (i.e. on/off ramps, etc). * `road` denotes unknown type.
+    """
 
     motorway = "motorway"
     trunk = "trunk"
@@ -202,7 +214,9 @@ class LocationReference(BaseModel):
 
 
 class LocationReferences(RootModel[List[LocationReference]]):
-    """The Locationreferences Schema."""
+    """
+    The Locationreferences Schema
+    """
 
     root: Annotated[
         List[LocationReference], Field(description="The Locationreferences Schema")
@@ -415,7 +429,9 @@ class TransitNode(RootModel[Union[int, bool]]):
 
 
 class RoadwayNode(BaseModel):
-    """Requirements for roadway nodes."""
+    """
+    Requirements for roadway nodes.
+    """
 
     model_node_id: ModelNodeId
     osm_node_id: Optional[OsmNodeId] = None
@@ -432,7 +448,9 @@ class RoadwayNode(BaseModel):
 
 
 class Point1(RootModel[List[Z]]):
-    """The Point Schema."""
+    """
+    The Point Schema
+    """
 
     root: Annotated[
         List[Z], Field(description="The Point Schema", max_length=3, min_length=2)
@@ -444,7 +462,9 @@ class PropertyChanges1(RootModel[Dict[str, Any]]):
 
 
 class SelectNode1(BaseModel):
-    """Selection of a single roadway node in the `facility` section of a project card."""
+    """
+    Selection of a single roadway node in the `facility` section of a project card.
+    """
 
     model_config = ConfigDict(extra="forbid")
     osm_node_id: OsmNodeId
@@ -455,7 +475,9 @@ class SelectNode1(BaseModel):
 
 
 class SelectNode2(BaseModel):
-    """Selection of a single roadway node in the `facility` section of a project card."""
+    """
+    Selection of a single roadway node in the `facility` section of a project card.
+    """
 
     model_config = ConfigDict(extra="forbid")
     osm_node_id: Optional[OsmNodeId] = None
@@ -494,9 +516,7 @@ class PropertySet(RootModel[Union[PropertySet1, PropertySet2]]):
 
 class TripId(RootModel[str]):
     root: Annotated[
-        str,
-        BeforeValidator(str),
-        Field(description="ID for Individual trip a transit vehicle takes.."),
+        str, Field(description="ID for Individual trip a transit vehicle takes..")
     ]
 
 
@@ -514,9 +534,7 @@ class ServiceId(RootModel[str]):
 
 class TripShortName(RootModel[str]):
     root: Annotated[
-        str,
-        BeforeValidator(str),
-        Field(description="Route short name, often something like `38X`."),
+        str, Field(description="Route short name, often something like `38X`.")
     ]
 
 
@@ -525,7 +543,9 @@ class TripHeadsign(RootModel[str]):
 
 
 class DirectionId(Enum):
-    """Consistent with GTFS definition defining outbound vs inbound routes."""
+    """
+    Consistent with GTFS definition defining outbound vs inbound routes.
+    """
 
     integer_0 = 0
     integer_1 = 1
@@ -536,7 +556,9 @@ class HeadwaySecs(RootModel[int]):
 
 
 class Routing(RootModel[List[int]]):
-    """List of nodes that the trip traverses with a `-` in front of nodes where the service does not stop."""
+    """
+    List of nodes that the trip traverses with a `-` in front of nodes where the service does not stop.
+    """
 
     root: Annotated[
         List[int],
@@ -565,7 +587,9 @@ class RouteLongName(RootModel[str]):
 
 
 class RouteType(Enum):
-    """Route type."""
+    """
+    Route type.
+    """
 
     integer_0 = 0
     integer_1 = 1
@@ -580,7 +604,9 @@ class RouteType(Enum):
 
 
 class SelectRouteProperties(BaseModel):
-    """Selection proeprties for transit routes."""
+    """
+    Selection proeprties for transit routes.
+    """
 
     model_config = ConfigDict(extra="allow")
     route_short_name: Annotated[
@@ -619,7 +645,9 @@ class Pycode(RootModel[str]):
 
 
 class SelectLinks1(BaseModel):
-    """requirements for describing links in the `facility` section of a project card."""
+    """
+    requirements for describing links in the `facility` section of a project card.
+    """
 
     model_config = ConfigDict(extra="allow")
     all: Optional[All] = None
@@ -634,7 +662,9 @@ class SelectLinks1(BaseModel):
 
 
 class SelectLinks2(BaseModel):
-    """requirements for describing links in the `facility` section of a project card."""
+    """
+    requirements for describing links in the `facility` section of a project card.
+    """
 
     model_config = ConfigDict(extra="allow")
     all: Optional[All] = None
@@ -649,7 +679,9 @@ class SelectLinks2(BaseModel):
 
 
 class SelectLinks3(BaseModel):
-    """requirements for describing links in the `facility` section of a project card."""
+    """
+    requirements for describing links in the `facility` section of a project card.
+    """
 
     model_config = ConfigDict(extra="allow")
     all: Optional[All] = None
@@ -664,7 +696,9 @@ class SelectLinks3(BaseModel):
 
 
 class SelectLinks4(BaseModel):
-    """requirements for describing links in the `facility` section of a project card."""
+    """
+    requirements for describing links in the `facility` section of a project card.
+    """
 
     model_config = ConfigDict(extra="allow")
     all: Optional[All] = None
@@ -679,7 +713,9 @@ class SelectLinks4(BaseModel):
 
 
 class SelectLinks5(BaseModel):
-    """requirements for describing links in the `facility` section of a project card."""
+    """
+    requirements for describing links in the `facility` section of a project card.
+    """
 
     model_config = ConfigDict(extra="allow")
     all: All
@@ -720,7 +756,9 @@ class Timespan(RootModel[List[Time]]):
 
 
 class SelectNodes1(BaseModel):
-    """requirements for describing multiple nodes of a project card (e.g. to delete)."""
+    """
+    requirements for describing multiple nodes of a project card (e.g. to delete).
+    """
 
     model_config = ConfigDict(extra="forbid")
     osm_node_id: Annotated[List[OsmNodeId], Field(min_length=1)]
@@ -733,7 +771,9 @@ class SelectNodes1(BaseModel):
 
 
 class SelectNodes2(BaseModel):
-    """requirements for describing multiple nodes of a project card (e.g. to delete)."""
+    """
+    requirements for describing multiple nodes of a project card (e.g. to delete).
+    """
 
     model_config = ConfigDict(extra="forbid")
     osm_node_id: Annotated[Optional[List[OsmNodeId]], Field(None, min_length=1)]
@@ -817,7 +857,9 @@ class SelectSegment(RootModel[Union[SelectSegment1, SelectSegment2, SelectSegmen
 
 
 class SelectTripProperties(BaseModel):
-    """Selection properties for transit trips."""
+    """
+    Selection properties for transit trips.
+    """
 
     model_config = ConfigDict(extra="allow")
     trip_id: Annotated[Optional[List[TripId]], Field(None, min_length=1)]
@@ -832,7 +874,9 @@ class SelectTripProperties(BaseModel):
 
 
 class SelectNodes3(BaseModel):
-    """requirements for describing multiple transit nodes of a project card (e.g. to delete)."""
+    """
+    requirements for describing multiple transit nodes of a project card (e.g. to delete).
+    """
 
     model_config = ConfigDict(extra="forbid")
     stop_id: Annotated[List[StopId], Field(min_length=1)]
@@ -844,7 +888,9 @@ class SelectNodes3(BaseModel):
 
 
 class SelectNodes4(BaseModel):
-    """requirements for describing multiple transit nodes of a project card (e.g. to delete)."""
+    """
+    requirements for describing multiple transit nodes of a project card (e.g. to delete).
+    """
 
     model_config = ConfigDict(extra="forbid")
     stop_id: Annotated[Optional[List[StopId]], Field(None, min_length=1)]
@@ -947,7 +993,9 @@ class MLPrice(RootModel[Price]):
 
 
 class RoadwayLink(BaseModel):
-    """Requirements for roadway links."""
+    """
+    Requirements for roadway links.
+    """
 
     A: Node
     B: Node
@@ -969,8 +1017,8 @@ class RoadwayLink(BaseModel):
     bike_access: BikeAccess
     bike_facility: Optional[BikeFacility] = None
     drive_access: DriveAccess
-    bus_only: BusOnly
-    rail_only: RailOnly
+    bus_only: Optional[BusOnly] = None
+    rail_only: Optional[RailOnly] = None
     segment_id: Optional[SegmentId] = None
     ignore_missing: Optional[bool] = None
     all: Optional[bool] = None

@@ -1,5 +1,5 @@
 project: example delete roadway
-notes: project card with multiple category of add and delete changes
+notes: simple roadway deletion
 tags:
   - 'delete roadway'
   - 'example'

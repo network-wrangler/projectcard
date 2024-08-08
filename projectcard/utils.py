@@ -45,3 +45,16 @@ def _update_dict_key(dictdata: dict, findkey, replacekey):
                 if isinstance(item, dict):
                     _update_dict_key(item, findkey, replacekey)
     return dictdata
+
+
+def slug_to_str(slug: str) -> str:
+    """Convert a slug to a string.
+
+    Args:
+        slug: string to convert
+
+    Returns:
+        str: converted string
+
+    """
+    return slug.replace("-", " ").replace("_", " ").title()

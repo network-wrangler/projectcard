@@ -5,16 +5,15 @@ import pytest
 
 
 @pytest.fixture(scope="session")
-def update_datamodels():
+def update_datamodels(base_dir):
     """Run update_data_models script before every test run."""
-    base_dir = Path(__file__).resolve().parent.parent
     update_script = base_dir / "bin" / "update_data_models"
     subprocess.run([update_script], check=True)
 
 
 @pytest.fixture(scope="session")
 def base_dir():
-    return Path(__file__).resolve().parent.parent
+    return Path(__file__).resolve().parent.parent / "projectcard"
 
 
 @pytest.fixture(scope="session")
@@ -47,13 +46,13 @@ def schema_dir(base_dir: Path):
 
 @pytest.fixture(scope="session")
 def all_schema_files(schema_dir):
-    schema_files = [p for p in Path(schema_dir).glob("**/*.json")]
+    schema_files = [p for p in schema_dir.glob("**/*.json")]
     return schema_files
 
 
 @pytest.fixture(scope="session")
 def example_dir(base_dir: Path):
-    return Path(base_dir) / "examples"
+    return base_dir / "examples"
 
 
 @pytest.fixture(scope="session")

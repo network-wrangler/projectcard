@@ -8,12 +8,14 @@ nav:
     - "Pydantic": 'pydantic-datamodels.md'
     - 'api.md'
     - 'examples.md'
+    - 'development.md'
 
 theme:
   name: material
   features:
     - navigation.tabs
     - content.code.annotate
+    - content.code.copy
     - content.tabs.link
     - navigation.indexes
   palette:
@@ -50,7 +52,6 @@ extra:
     default: latest
 
 extra_javascript:
-  - https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js
   - https://code.jquery.com/jquery-3.4.1.min.js
   - https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js
   - javascript/schema_doc.min.js
@@ -65,6 +66,11 @@ markdown_extensions:
       linenums: true
   - meta
   - pymdownx.inlinehilite
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.snippets
   - pymdownx.tasklist:
       custom_checkbox: true
   - pymdownx.tabbed:
