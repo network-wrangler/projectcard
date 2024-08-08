@@ -43,11 +43,16 @@ jobs:
         uses: actions/checkout@v4
       - run: |
           current_version=$(grep -oP '(?<=__version__ = ")[^"]*' projectcard/__init__.py)
-          previous_version=$(git show HEAD~1:projectcard/__init__.py | grep -oP '(?<=__version__ = ")[^"]*')
-          if [ "$current_version" != "$previous_version" ]; then
-            echo "version_changed=true" >> "$GITHUB_OUTPUT"
+          if git show HEAD~1:projectcard/__init__.py > /dev/null 2>&1; then
+            previous_version=$(git show HEAD~1:projectcard/__init__.py | grep -oP '(?<=__version__ = ")[^"]*')
+            if [ "$current_version" != "$previous_version" ]; then
+              echo "version_changed=true" >> "$GITHUB_OUTPUT"
+            else
+              echo "version_changed=false" >> "$GITHUB_OUTPUT"
+            fi
           else
-            echo "version_changed=false" >> "$GITHUB_OUTPUT"
+            echo "version_changed=true" >> "$GITHUB_OUTPUT"
+          fi
   publish-to-testpypi:
     name: If version bumped, publish 📦 to TestPyPI
     needs:
