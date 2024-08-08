@@ -30,7 +30,7 @@ jobs:
     - name: Build a binary wheel and a source tarball
       run: python3 -m build
     - name: Store the distribution packages
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: python-package-distributions
         path: dist/
@@ -40,7 +40,7 @@ jobs:
       version_changed: ${{ steps.check_version.outputs.version_changed }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
       - run: |
           current_version=$(grep -oP '(?<=__version__ = ")[^"]*' projectcard/__init__.py)
           if git show HEAD~1:projectcard/__init__.py > /dev/null 2>&1; then
@@ -67,7 +67,7 @@ jobs:
       id-token: write  # IMPORTANT: mandatory for trusted publishing
     steps:
     - name: Download all the dists
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v4
       with:
         name: python-package-distributions
         path: dist/
