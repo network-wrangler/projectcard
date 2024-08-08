@@ -6,6 +6,9 @@
 	],
 	"additionalProperties" : false,
 	"properties": {
-		"routes": {"$ref": "../transit/selection/select_trips.json"}
+		"routes": {
+			"type": "array", 
+			"items": {"$ref": "../transit/transit_route.json"}
+		}
 	}
 }

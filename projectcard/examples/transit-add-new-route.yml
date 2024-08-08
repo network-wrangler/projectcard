@@ -7,40 +7,39 @@ transit_add_new_route:
       route_long_name: green_line
       route_short_name: green
       route_type: 3
-      agency_raw_name: MTr
-      agency_id: 1
+      agency_id: The Bus
       trips:
         - direction_id: 0
-          headway_sec: 
+          headway_secs: 
             ('6:00','12:00'): 600
             ('12:00','13:00'): 900
           routing:
-            -1:
+            - node_id: 1
               stop: True #when stop is set to True, defaults to allow both boarding and alighting
-            -2:
-            -3:
-            -4: 
+            - node_id: 2
+            - node_id: 3
+            - node_id: 4
               stop: True # default to False, specify only when stopping
               alight: False  # default to True, specify only when not default
-            -5:
-            -6:
+            - node_id: 5
+            - node_id: 6
               stop: True
         - direction_id: 1
-          headway_sec: 
-          - ('6:00','12:00'): 600
-          - ('12:00','13:00'): 900
+          headway_secs: 
+            ('6:00','12:00'): 600
+            ('12:00','13:00'): 900
           routing:
-            -6:
+            - node_id: 6
               stop: True
-            -5:
+            - node_id: 5
               stop: True
               dwell_sec: 30
-            -4:
+            - node_id: 4
               stop: True
-            -6:
-            -3:
+            - node_id: 6
+            - node_id: 3
               time_to_next_node_sec: 90
-            -2:
+            - node_id: 2
               stop: True
-            -1:
+            - node_id: 1
               stop: True

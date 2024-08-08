@@ -31,25 +31,9 @@
       "headway_secs":{
         "type": "object",
         "description": "Headway for each time period."
-      },
-      "trip_stop":{
-        "type":"object",
-        "additionalProperties": false,
-        "properties":{
-          "board":{"type":"string", "default": false},
-          "stop":{"type":"bool", "default": false},
-          "alight":{"type":"bool", "default": false},
-          "dwell_sec":{"type":"int", "default": 0},
-          "time_to_next_node_sec":{"type":"int"}
-        },
-        "description": "Features of a stop for a given trip."
-      },
-      "routing":{
-        "type":"array",
-        "items":{"$ref":"trip_stop"},
-        "description": "List of nodes that the trip traverses."
       }
     },
+    "required": ["headway_secs", "routing"],
     "properties":{
         "trip_id":{"$ref":"#/$defs/trip_id"},
         "service_id":{"$ref":"#/$defs/service_id"},
@@ -59,6 +43,6 @@
         "trip_short_name":{"$ref":"#/$defs/trip_short_name"},
         "direction_id":{"$ref":"#/$defs/direction_id"},
         "headway_secs":{"$ref":"#/$defs/headway_secs"},
-        "routing":{"$ref":"#/$defs/routing"}
+        "routing":{"$ref":"transit_routing.json"}
     }
 }
