@@ -34,7 +34,7 @@ dependencies = [
 
 [tool.setuptools]
 packages = ["projectcard"]
-script-files = ["bin/validate_card", "bin/update_projectcard_schema"]
+script-files = ["projectcard/bin/validate_card", "projectcard/bin/update_projectcard_schema"]
 include-package-data = true
 
 [tool.setuptools.dynamic]
