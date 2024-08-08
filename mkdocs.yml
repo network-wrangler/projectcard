@@ -52,7 +52,6 @@ extra:
     default: latest
 
 extra_javascript:
-  - https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js
   - https://code.jquery.com/jquery-3.4.1.min.js
   - https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js
   - javascript/schema_doc.min.js
