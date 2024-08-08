@@ -1,113 +1,215 @@
 
-<!DOCTYPE html>
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://network-wrangler.github.io/projectcard/add-new-transit-route/examples/">
+      
+      
+        <link rel="prev" href="../api/">
+      
+      
+        <link rel="next" href="../development/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.31">
+    
+    
+      
+        <title>Example Data - Project Cards</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.3cba04c6.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
 
-<html class="no-js" lang="en">
-<head>
-<meta charset="utf-8"/>
-<meta content="width=device-width,initial-scale=1" name="viewport"/>
-<link href="https://network-wrangler.github.io/projectcard/add-new-transit-route/examples/" rel="canonical"/>
-<link href="../api/" rel="prev"/>
-<link href="../assets/images/favicon.png" rel="icon"/>
-<meta content="mkdocs-1.6.0, mkdocs-material-9.5.31" name="generator"/>
-<title>Example Data - Project Cards</title>
-<link href="../assets/stylesheets/main.3cba04c6.min.css" rel="stylesheet"/>
-<link href="../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
-<style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
-<link href="../assets/_mkdocstrings.css" rel="stylesheet"/>
-<link href="../extra_css/extra.css" rel="stylesheet"/>
-<script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
-</head>
-<body data-md-color-accent="deep-purple" data-md-color-primary="blue-grey" data-md-color-scheme="default" dir="ltr">
-<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
-<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
-<label class="md-overlay" for="__drawer"></label>
-<div data-md-component="skip">
-<a class="md-skip" href="#example-data">
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../extra_css/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="deep-purple">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#macro-rendering-error" class="md-skip">
           Skip to content
         </a>
-</div>
-<div data-md-component="announce">
-</div>
-<div data-md-color-scheme="default" data-md-component="outdated" hidden="">
-</div>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
 <header class="md-header" data-md-component="header">
-<nav aria-label="Header" class="md-header__inner md-grid">
-<a aria-label="Project Cards" class="md-header__button md-logo" data-md-component="logo" href=".." title="Project Cards">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 10H3v2h11v-2m0-4H3v2h11V6M3 16h7v-2H3v2m18.5-4.5L23 13l-7 7-4.5-4.5L13 14l3 3 5.5-5.5Z"></path></svg>
-</a>
-<label class="md-header__button md-icon" for="__drawer">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"></path></svg>
-</label>
-<div class="md-header__title" data-md-component="header-title">
-<div class="md-header__ellipsis">
-<div class="md-header__topic">
-<span class="md-ellipsis">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Project Cards" class="md-header__button md-logo" aria-label="Project Cards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 10H3v2h11v-2m0-4H3v2h11V6M3 16h7v-2H3v2m18.5-4.5L23 13l-7 7-4.5-4.5L13 14l3 3 5.5-5.5Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
             Project Cards
           </span>
-</div>
-<div class="md-header__topic" data-md-component="header-topic">
-<span class="md-ellipsis">
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
             
               Example Data
             
           </span>
-</div>
-</div>
-</div>
-<form class="md-header__option" data-md-component="palette">
-<input aria-hidden="true" class="md-option" data-md-color-accent="deep-purple" data-md-color-media="" data-md-color-primary="blue-grey" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="deep-purple"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
 </form>
-<script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
-<label class="md-header__button md-icon" for="__search">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
-</label>
-<div class="md-search" data-md-component="search" role="dialog">
-<label class="md-search__overlay" for="__search"></label>
-<div class="md-search__inner" role="search">
-<form class="md-search__form" name="search">
-<input aria-label="Search" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="Search" required="" spellcheck="false" type="text"/>
-<label class="md-search__icon md-icon" for="__search">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"></path></svg>
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"></path></svg>
-</label>
-<nav aria-label="Search" class="md-search__options">
-<button aria-label="Clear" class="md-search__icon md-icon" tabindex="-1" title="Clear" type="reset">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"></path></svg>
-</button>
-</nav>
-</form>
-<div class="md-search__output">
-<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
-<div class="md-search-result" data-md-component="search-result">
-<div class="md-search-result__meta">
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
             Initializing search
           </div>
-<ol class="md-search-result__list" role="presentation"></ol>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
-</div>
-</div>
-</div>
-</div>
-<div class="md-header__source">
-<a class="md-source" data-md-component="source" href="https://github.com/network-wrangler/projectcard" title="Go to repository">
-<div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
-</div>
-<div class="md-source__repository">
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/network-wrangler/projectcard" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
     GitHub
   </div>
 </a>
-</div>
-</nav>
+      </div>
+    
+  </nav>
+  
 </header>
-<div class="md-container" data-md-component="container">
-<nav aria-label="Tabs" class="md-tabs" data-md-component="tabs">
-<div class="md-grid">
-<ul class="md-tabs__list">
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="..">
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
         
   
     
@@ -115,9 +217,16 @@
   Project Cards
 
       </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../json-schemas/">
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../json-schemas/" class="md-tabs__link">
         
   
     
@@ -125,9 +234,16 @@
   Schema Documentation
 
       </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../pydantic-datamodels/">
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../pydantic-datamodels/" class="md-tabs__link">
         
   
     
@@ -135,9 +251,16 @@
   Pydantic
 
       </a>
-</li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../api/">
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../api/" class="md-tabs__link">
         
   
     
@@ -145,9 +268,18 @@
   API
 
       </a>
-</li>
-<li class="md-tabs__item md-tabs__item--active">
-<a class="md-tabs__link" href="./">
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
         
   
     
@@ -155,737 +287,318 @@
   Example Data
 
       </a>
-</li>
-</ul>
-</div>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../development/" class="md-tabs__link">
+        
+  
+    
+  
+  Development
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
 </nav>
-<main class="md-main" data-md-component="main">
-<div class="md-main__inner md-grid">
-<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav aria-label="Navigation" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
-<label class="md-nav__title" for="__drawer">
-<a aria-label="Project Cards" class="md-nav__button md-logo" data-md-component="logo" href=".." title="Project Cards">
-<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 10H3v2h11v-2m0-4H3v2h11V6M3 16h7v-2H3v2m18.5-4.5L23 13l-7 7-4.5-4.5L13 14l3 3 5.5-5.5Z"></path></svg>
-</a>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Project Cards" class="md-nav__button md-logo" aria-label="Project Cards" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 10H3v2h11v-2m0-4H3v2h11V6M3 16h7v-2H3v2m18.5-4.5L23 13l-7 7-4.5-4.5L13 14l3 3 5.5-5.5Z"/></svg>
+
+    </a>
     Project Cards
   </label>
-<div class="md-nav__source">
-<a class="md-source" data-md-component="source" href="https://github.com/network-wrangler/projectcard" title="Go to repository">
-<div class="md-source__icon md-icon">
-<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"></path></svg>
-</div>
-<div class="md-source__repository">
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/network-wrangler/projectcard" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
     GitHub
   </div>
 </a>
-</div>
-<ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="..">
-<span class="md-ellipsis">
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
     Project Cards
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../json-schemas/">
-<span class="md-ellipsis">
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../json-schemas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
     Schema Documentation
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../pydantic-datamodels/">
-<span class="md-ellipsis">
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pydantic-datamodels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
     Pydantic
   </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="../api/">
-<span class="md-ellipsis">
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
     API
   </span>
-</a>
-</li>
-<li class="md-nav__item md-nav__item--active">
-<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
-<label class="md-nav__link md-nav__link--active" for="__toc">
-<span class="md-ellipsis">
-    Example Data
-  </span>
-<span class="md-nav__icon md-icon"></span>
-</label>
-<a class="md-nav__link md-nav__link--active" href="./">
-<span class="md-ellipsis">
-    Example Data
-  </span>
-</a>
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#cards">
-<span class="md-ellipsis">
-      Cards
-    </span>
-</a>
-<nav aria-label="Cards" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#change-node-x-value-location">
-<span class="md-ellipsis">
-      Change node X value location
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-property-change">
-<span class="md-ellipsis">
-      Example property change
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#blue-line-service-enhancement-a">
-<span class="md-ellipsis">
-      Blue Line Service Enhancement A
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-property-change-for-all-links">
-<span class="md-ellipsis">
-      Example property change for all links
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-delete-roadway">
-<span class="md-ellipsis">
-      example delete roadway
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#bus-resign">
-<span class="md-ellipsis">
-      Bus resign
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-i394-parallel-lanes">
-<span class="md-ellipsis">
-      Example I394 Parallel Lanes
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-calculate-mega-freeways">
-<span class="md-ellipsis">
-      example calculate mega freeways
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#bus-reroute">
-<span class="md-ellipsis">
-      Bus Reroute
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-roadway-add">
-<span class="md-ellipsis">
-      example roadway add
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-roadway-multiple-add-and-delete">
-<span class="md-ellipsis">
-      example roadway multiple add and delete
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-add-simple-managed-lane-project">
-<span class="md-ellipsis">
-      example add simple managed lane project
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-</div>
-<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
-<div class="md-sidebar__scrollwrap">
-<div class="md-sidebar__inner">
-<nav aria-label="Table of contents" class="md-nav md-nav--secondary">
-<label class="md-nav__title" for="__toc">
-<span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#cards">
-<span class="md-ellipsis">
-      Cards
-    </span>
-</a>
-<nav aria-label="Cards" class="md-nav">
-<ul class="md-nav__list">
-<li class="md-nav__item">
-<a class="md-nav__link" href="#change-node-x-value-location">
-<span class="md-ellipsis">
-      Change node X value location
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-property-change">
-<span class="md-ellipsis">
-      Example property change
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#blue-line-service-enhancement-a">
-<span class="md-ellipsis">
-      Blue Line Service Enhancement A
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-property-change-for-all-links">
-<span class="md-ellipsis">
-      Example property change for all links
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-delete-roadway">
-<span class="md-ellipsis">
-      example delete roadway
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#bus-resign">
-<span class="md-ellipsis">
-      Bus resign
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-i394-parallel-lanes">
-<span class="md-ellipsis">
-      Example I394 Parallel Lanes
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-calculate-mega-freeways">
-<span class="md-ellipsis">
-      example calculate mega freeways
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#bus-reroute">
-<span class="md-ellipsis">
-      Bus Reroute
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-roadway-add">
-<span class="md-ellipsis">
-      example roadway add
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-roadway-multiple-add-and-delete">
-<span class="md-ellipsis">
-      example roadway multiple add and delete
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#example-add-simple-managed-lane-project">
-<span class="md-ellipsis">
-      example add simple managed lane project
-    </span>
-</a>
-</li>
-</ul>
-</nav>
-</li>
-</ul>
-</nav>
-</div>
-</div>
-</div>
-<div class="md-content" data-md-component="content">
-<article class="md-content__inner md-typeset">
-<h1 id="example-data">Example Data<a class="headerlink" href="#example-data" title="Permanent link"> ¶</a></h1>
-<p>Example data can be found in the <code>/examples</code> directory.</p>
-<table>
-<thead>
-<tr>
-<th><strong>Name</strong></th>
-<th>Category</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="#change-node-x-value-location">Change node X value location</a></td>
-<td>roadway_property_change</td>
-</tr>
-<tr>
-<td><a href="#example-property-change">Example property change</a></td>
-<td>roadway_property_change</td>
-</tr>
-<tr>
-<td><a href="#blue-line-service-enhancement-a">Blue Line Service Enhancement A</a></td>
-<td>transit_property_change</td>
-</tr>
-<tr>
-<td><a href="#example-property-change-for-all-links">Example property change for all links</a></td>
-<td>roadway_property_change</td>
-</tr>
-<tr>
-<td><a href="#example-delete-roadway">example delete roadway</a></td>
-<td>roadway_deletion</td>
-</tr>
-<tr>
-<td><a href="#bus-resign">Bus resign</a></td>
-<td>transit_property_change</td>
-</tr>
-<tr>
-<td><a href="#example-i394-parallel-lanes">Example I394 Parallel Lanes</a></td>
-<td>roadway_property_change</td>
-</tr>
-<tr>
-<td><a href="#example-calculate-mega-freeways">example calculate mega freeways</a></td>
-<td>pycode</td>
-</tr>
-<tr>
-<td><a href="#bus-reroute">Bus Reroute</a></td>
-<td>transit_routing_change</td>
-</tr>
-<tr>
-<td><a href="#example-roadway-add">example roadway add</a></td>
-<td>roadway_addition</td>
-</tr>
-<tr>
-<td><a href="#example-roadway-multiple-add-and-delete">example roadway multiple add and delete</a></td>
-<td>None</td>
-</tr>
-<tr>
-<td><a href="#example-add-simple-managed-lane-project">example add simple managed lane project</a></td>
-<td>roadway_property_change</td>
-</tr>
-</tbody>
-</table>
-<h2 id="cards">Cards<a class="headerlink" href="#cards" title="Permanent link"> ¶</a></h2>
-<h3 id="change-node-x-value-location">Change node X value location<a class="headerlink" href="#change-node-x-value-location" title="Permanent link"> ¶</a></h3>
-<p><strong>Category</strong>: roadway_property_change
-<div class="highlight"><pre><span></span><code>project: Change node X value location
-roadway_property_change:
-  facility:
-    nodes:
-      model_node_id: [1234]
-  property_changes:
-    X:
-      set: 1.0
-</code></pre></div></p>
-<h3 id="example-property-change">Example property change<a class="headerlink" href="#example-property-change" title="Permanent link"> ¶</a></h3>
-<p><strong>Category</strong>: roadway_property_change
-<div class="highlight"><pre><span></span><code>project: Example property change
-tags:
-   - 'example'
-roadway_property_change:
-  facility:
-    links:
-      modes: ['drive','bike']
-      osm_link_id:
-        - '1234'
-        - '2345'
-    from:
-      osm_node_id: '4321'
-    to:
-      osm_node_id: '4322'
-  property_changes:
-    lanes:
-      set: 2
-    bicycle_facility:
-      set: 3
-notes: Simple road diet
-</code></pre></div></p>
-<h3 id="blue-line-service-enhancement-a">Blue Line Service Enhancement A<a class="headerlink" href="#blue-line-service-enhancement-a" title="Permanent link"> ¶</a></h3>
-<p><strong>Category</strong>: transit_property_change
-<div class="highlight"><pre><span></span><code>project: Blue Line Service Enhancement A
-tags:
-   - example
-transit_property_change:
-  service:
-    trip_properties:
-      trip_id:
-        - 14940701-JUN19-MVS-BUS-Weekday-01
-    timespans:
-      - ['06:00:00', '09:00:00']
-  property_changes:
-    headway_secs:
-      set: 900
-</code></pre></div></p>
-<h3 id="example-property-change-for-all-links">Example property change for all links<a class="headerlink" href="#example-property-change-for-all-links" title="Permanent link"> ¶</a></h3>
-<p><strong>Category</strong>: roadway_property_change
-<div class="highlight"><pre><span></span><code>project: Example property change for all links
-tags:
-   - 'example'
-roadway_property_change:
-  facility:
-    links:
-      modes: ['drive']
-      all: 'True'
-      lanes: 2
-      bicycle_facility: [0,2,3]
-  property_changes:
-    lanes:
-      set: 1
-    bicycle_facility:
-      set: 1
-notes: Reduce lanes and add separated bike facility for all drive links with two lanes and bicycle facility of 0,2, or 3
-</code></pre></div></p>
-<h3 id="example-delete-roadway">example delete roadway<a class="headerlink" href="#example-delete-roadway" title="Permanent link"> ¶</a></h3>
-<p><strong>Category</strong>: roadway_deletion
-<div class="highlight"><pre><span></span><code>project: example delete roadway
-notes: project card with multiple category of add and delete changes
-tags:
-  - 'delete roadway'
-  - 'example'
-roadway_deletion:
-  links:
-    model_link_id:
-      - 281
-      - 477533
-  nodes:
-    model_node_id:
-      - 314159
-</code></pre></div></p>
-<h3 id="bus-resign">Bus resign<a class="headerlink" href="#bus-resign" title="Permanent link"> ¶</a></h3>
-<p><strong>Category</strong>: transit_property_change
-<div class="highlight"><pre><span></span><code>project: Bus resign
-tags:
-   - existing_plus_committed
-transit_property_change:
-  service:
-    trip_properties:
-      route_id:
-        - "294-111"
-    nodes:
-      model_node_id:
-        - 37582
-        - 37574
-      require: "any"
-  property_changes:
-    trip_headsign:
-      change: " thru Union Station"
-</code></pre></div></p>
-<h3 id="example-i394-parallel-lanes">Example I394 Parallel Lanes<a class="headerlink" href="#example-i394-parallel-lanes" title="Permanent link"> ¶</a></h3>
-<p><strong>Category</strong>: roadway_property_change
-<div class="highlight"><pre><span></span><code>project: Example I394 Parallel Lanes
-tags: ['managed lanes']
-notes: Need to adjust normal lanes
-roadway_property_change:
-  facility:
-    links:
-      model_link_id:
-        - 390239
-        - 391206
-        - 390344
-        - 401484
-  property_changes:
-    ML_lanes:
-      set: 0
-      scoped:
-      - timespan: ['6:00', '9:00']
-        set: 1
-      - timespan: ['15:00', '18:00']
-        set: 1
-    lanes:
-      change: 0
-      scoped:
-      - timespan: ['6:00', '9:00']
-        change: -1
-      - timespan: ['15:00', '18:00']
-        change: -1
-    segment_id:
-      set: 5
-    ML_HOV:
-      set: 5
-    HOV:
-      set: 5
-    ML_access_point:
-      set: [38765, 87982]
-    ML_egress_point:
-      set: [87993, 37457]
-</code></pre></div></p>
-<h3 id="example-calculate-mega-freeways">example calculate mega freeways<a class="headerlink" href="#example-calculate-mega-freeways" title="Permanent link"> ¶</a></h3>
-<p><strong>Category</strong>: pycode
-<div class="highlight"><pre><span></span><code>---
-project: example calculate mega freeways
-self_obj_type: RoadwayNetwork
----
+  
 
-self.links_df.loc[self.links_df['lanes'] == 4, 'lanes'] = 12
-</code></pre></div></p>
-<h3 id="bus-reroute">Bus Reroute<a class="headerlink" href="#bus-reroute" title="Permanent link"> ¶</a></h3>
-<p><strong>Category</strong>: transit_routing_change
-<div class="highlight"><pre><span></span><code>project: Bus Reroute
-tags:
-   - existing_plus_committed
-transit_routing_change:
-  service:
-    trip_properties:
-      route_id:
-        - 294-111
-      direction_id: 1
-  routing:
-    existing:
-      - -37582
-      - -37574
-      - -4761
-      - -4763
-      - -4764
-      - -98429
-      - 45985
-      - -57483
-      - -126324
-      - -57484
-      - 150855
-      - -11188
-      - 84899
-      - 46666
-      - -77077
-    set:
-      - -37582
-      - -37574
-      - -4761
-      - -4763
-      - -4764
-      - -98429
-      - 45985
-      - -57483
-      - -126324
-      - -57484
-      - 150855
-      - -11188
-      - 84899
-      - 46666
-      - -46665
-      - -46663
-      - -81820
-      - -76167
-      - -77077
-</code></pre></div></p>
-<h3 id="example-roadway-add">example roadway add<a class="headerlink" href="#example-roadway-add" title="Permanent link"> ¶</a></h3>
-<p><strong>Category</strong>: roadway_addition
-<div class="highlight"><pre><span></span><code>project: example roadway add
-notes: Simple project card to add new roadway
-tags:
-  - 'add roadway'
-  - 'example'
-roadway_addition:
-  links:
-    - A: 269066
-      B: 268932
-      name: new neighborhood st
-      bike_access: 1
-      drive_access: 0
-      bus_only: 0
-      rail_only: 0
-      walk_access: 1
-      roadway: residential
-      lanes: 1
-      model_link_id: 404982
-    - A: 268932
-      B: 269066
-      bike_access: 1
-      name: new neighborhood st
-      drive_access: 0
-      bus_only: 0
-      rail_only: 0
-      walk_access: 1
-      roadway: residential
-      lanes: 1
-      model_link_id: 407042
-</code></pre></div></p>
-<h3 id="example-roadway-multiple-add-and-delete">example roadway multiple add and delete<a class="headerlink" href="#example-roadway-multiple-add-and-delete" title="Permanent link"> ¶</a></h3>
-<p><strong>Category</strong>: None
-<div class="highlight"><pre><span></span><code>project: example roadway multiple add and delete
-tags:
-  - 'add and delete roadway'
-changes:
-  - roadway_addition:
-      nodes:
-      - model_node_id: 314159
-        X: -93.18389
-        Y: 44.96898
-        drive_node: 1
-        walk_node: 0
-        bike_node: 0
-        transit_node: 1
-  - roadway_deletion:
-      links:
-        model_link_id:
-          - 281
-          - 477533
-      nodes:
-        model_node_id:
-          - 314159
-  - roadway_addition:
-      links:
-      - A: 3230
-        B: 3262
-        model_link_id: 999998
-        trn_priority: 0
-        lanes: 1
-        name: new bike greenway and neighborhood st
-        bike_facility: 3
-        drive_access: 1
-        walk_access: 1
-        bike_access: 1
-        bus_only: 0
-        rail_only: 0
-        roadway: residential
-        distance: 0.10462
-        ttime_assert: 0.0
-        OPERATION_final: A
-      - A: 3262
-        B: 3230
-        model_link_id: 999997
-        trn_priority: 0
-        lanes: 1
-        name: new bike greenway and neighborhood st
-        bike_facility: 3
-        drive_access: 1
-        walk_access: 1
-        bike_access: 1
-        bus_only: 0
-        rail_only: 0
-        roadway: residential
-        distance: 0.10462
-        ttime_assert: 0.0
-        OPERATION_final: A
-      nodes:
-      - model_node_id: 354388
-        X: -93.18389
-        Y: 44.96898
-        drive_node: 1
-        walk_node: 0
-        bike_node: 0
-        transit_node: 1
-notes: project card with multiple category of add and delete changes
-</code></pre></div></p>
-<h3 id="example-add-simple-managed-lane-project">example add simple managed lane project<a class="headerlink" href="#example-add-simple-managed-lane-project" title="Permanent link"> ¶</a></h3>
-<p><strong>Category</strong>: roadway_property_change
-<div class="highlight"><pre><span></span><code>project: example add simple managed lane project
-notes: Simple managed lane project with AM and PM lanes are HOT during the peak periods
-tags:
-   - 'example'
-   - 'managed'
-roadway_property_change:
-  facility:
-    links:
-      name:
-        - 'I 35E'
-    from:
-      osm_node_id: '961117623'
-    to:
-      osm_node_id: '2564047368'
-  property_changes:
-    segment_id:
-      set: 35EHOT-A
-    lanes:
-      set: 3
-      scoped:
-        - timespan: ['6:00', '9:00']
-          set: 2
-        - timespan: ['16:00', '19:00']
-          set: 2
-    ML_lanes:
-      set: 0
-      scoped:
-        - timespan: ['6:00', '9:00']
-          set: 1
-        - timespan: ['16:00', '19:00']
-          set: 1
-    ML_price:
-      set: 0
-      scoped:
-        - timespan: ['6:00', '9:00']
-          category: ['sov']
-          set: 1.5
-        - timespan: ['16:00', '19:00']
-          category: ['sov']
-          set: 2.5
-        - timespan: ['6:00', '9:00']
-          category: ['hov2']
-          set: 1.0
-        - timespan: ['16:00', '19:00']
-          category: ['hov2']
-          set: 2.0
-    ML_access_point:
-      set: 'all'
-    ML_egress_point:
-      set: 'all'
-</code></pre></div></p>
-</article>
-</div>
-<script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Example Data
+  </span>
+  
+
+      </a>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../development/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Development
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="macro-rendering-error"><em>Macro Rendering Error</em><a class="headerlink" href="#macro-rendering-error" title="Permanent link"> ¶</a></h1>
+<p><em>File</em>: <code>examples.md</code></p>
+<p><em>ProjectCardValidationError</em>: Couldn&rsquo;t find type of project card New Green Transit</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traceback (most recent call last):
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  File &quot;/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/mkdocs_macros/plugin.py&quot;, line 527, in render
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    return md_template.render(**page_variables)
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  File &quot;/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/jinja2/environment.py&quot;, line 1304, in render
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    self.environment.handle_exception()
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  File &quot;/opt/hostedtoolcache/Python/3.10.14/x64/lib/python3.10/site-packages/jinja2/environment.py&quot;, line 939, in handle_exception
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    raise rewrite_traceback_stack(source=source)
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  File &quot;&lt;template&gt;&quot;, line 5, in top-level template code
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  File &quot;/home/runner/work/projectcard/projectcard/main.py&quot;, line 149, in list_examples
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    _md_table += _card_to_mdrow(_card, table_fields)
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  File &quot;/home/runner/work/projectcard/projectcard/main.py&quot;, line 141, in _card_to_mdrow
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    _md_row += f&quot; {_categories_as_str(card)} |&quot;
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  File &quot;/home/runner/work/projectcard/projectcard/main.py&quot;, line 98, in _categories_as_str
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    if len(card.change_types) == 1:
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  File &quot;/home/runner/work/projectcard/projectcard/projectcard/projectcard.py&quot;, line 166, in change_types
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>    raise ProjectCardValidationError(f&quot;Couldn&#39;t find type of project card {self.project}&quot;)
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>projectcard.validate.ProjectCardValidationError: Couldn&#39;t find type of project card New Green Transit
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var tab,labels=set.querySelector(".tabbed-labels");for(tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
-</div>
-</main>
-<footer class="md-footer">
-<div class="md-footer-meta md-typeset">
-<div class="md-footer-meta__inner md-grid">
-<div class="md-copyright">
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
   
   
     Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
       Material for MkDocs
     </a>
+  
 </div>
-</div>
-</div>
+      
+    </div>
+  </div>
 </footer>
-</div>
-<div class="md-dialog" data-md-component="dialog">
-<div class="md-dialog__inner md-typeset"></div>
-</div>
-<script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.annotate", "content.tabs.link", "navigation.indexes"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
-<script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
-<script src="https://unpkg.com/mermaid@8.5.0/dist/mermaid.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script src="../javascript/schema_doc.min.js"></script>
-</body>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes"], "search": "../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.fe8b6f2b.min.js"></script>
+      
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+      
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+      
+        <script src="../javascript/schema_doc.min.js"></script>
+      
+    
+  </body>
 </html>
