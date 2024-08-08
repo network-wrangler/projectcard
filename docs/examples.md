@@ -2,4 +2,4 @@
 
 Example data can be found in the `/examples` directory.
 
-{{ list_examples('examples') }}
+{{ list_examples('projectcard/examples') }}

@@ -8,7 +8,7 @@ from pathlib import Path
 from projectcard import ProjectCard
 from projectcard.utils import slug_to_str
 
-SCHEMA_DIR = "schema"
+SCHEMA_DIR = Path("projectcard") / "schema"
 
 
 def define_env(env):
@@ -25,8 +25,8 @@ def define_env(env):
             GenerationConfiguration,
         )
 
-        _rel_schema_path = os.path.join(SCHEMA_DIR, schema_filename)
-        _abs_schema_path = Path(_rel_schema_path).absolute()
+        _rel_schema_path = SCHEMA_DIR / schema_filename
+        _abs_schema_path = _rel_schema_path.absolute()
         if not os.path.exists(_abs_schema_path):
             raise ValueError(f"Schema doesn't exist at: {_abs_schema_path}")
 

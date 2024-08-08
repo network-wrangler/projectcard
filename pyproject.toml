@@ -1,9 +1,13 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = [
+    "setuptools>=60",
+    "setuptools-scm>=8.0",
+    "wheel"
+]
 
 [project]
 name = "projectcard"
-version = "0.1.2"
+dynamic = ["version"]
 description = "Project Cards represent information about a tranportation infrastructure projects sufficient for usage in a regional travel demand model. This package supports validation and usage of this schema."
 license =  {file = "LICENSE"}
 readme = "README.md"
@@ -27,6 +31,14 @@ dependencies = [
     "pyyaml",
     "toml",
 ]
+
+[tool.setuptools]
+packages = ["projectcard"]
+script-files = ["projectcard/bin/validate_card", "projectcard/bin/update_projectcard_schema"]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "projectcard.__version__"}
 
 [tool.flake8]
 max-line-length = 99

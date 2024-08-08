@@ -1,6 +1,7 @@
 fontawesome_markdown
 jsonschema2md
-mike<2.0
+json_schema_for_humans
+mike
 mkdocs
 mkdocs-autorefs
 mkdocs-awesome-pages-plugin

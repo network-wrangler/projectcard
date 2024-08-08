@@ -1,0 +1,67 @@
+#!/usr/bin/env python3
+"""Validates Project Cards from command line.
+
+Usage:
+    validate_card card_search_dir --filter_tags ['baseline2030'] [--recursive] [--verbose]
+
+Arguments:
+    card_search_dir  Directory or file location to find project cards.
+    --filter_tags    Tags to filter project cards by. If not provided, will validate all.
+    --recursive      Recursively search for cards in subdirectories.
+    --verbose        Enable verbose logging with debug level.
+"""
+
+import argparse
+import logging
+from projectcard import read_cards, CardLogger
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger("CardLogger")
+
+parser = argparse.ArgumentParser(description="Project Card Validator")
+parser.add_argument(
+    "card_search_dir", type=str, help="Directory or file location to find project cards."
+)
+parser.add_argument(
+    "filter_tags",
+    nargs="*",
+    type=str,
+    help="Tags to filter project cards by. If not provided, will look at all.",
+)
+parser.add_argument(
+    "--recursive", action="store_true", help="Recursively search for cards in subdirectories."
+)
+parser.add_argument(
+    "--verbose", action="store_true", help="Enable verbose logging with debug level."
+)
+
+if __name__ == "__main__":
+    args = parser.parse_args()
+
+    # Set logging level based on the verbose flag
+    if args.verbose:
+        logging.basicConfig(level=logging.DEBUG)
+    else:
+        logging.basicConfig(level=logging.INFO)
+
+    dir = args.card_search_dir
+    filter_tags = args.filter_tags if args.filter_tags else []
+
+    card_dict = read_cards(dir, filter_tags=filter_tags, recursive=args.recursive)
+
+    CardLogger.info(f"Evaluating {len(card_dict)} cards.")
+    invalid_files = []
+    for project, card in card_dict.items():
+        CardLogger.info(f"Evaluating: {project}")
+        try:
+            assert card.valid
+            CardLogger.info(f"{project} - Valid")
+        except Exception as e:
+            CardLogger.error(f"{project} - Not Valid")
+            CardLogger.error(f"{project} Error:\n{e}")
+            invalid_files.append(card.file)
+
+    logger.info(f"Validation completed. {len(invalid_files)} invalid cards.")
+    if invalid_files:
+        sep = "\n -"
+        logger.info(f"Invalid files:{sep}{sep.join(invalid_files)}")
