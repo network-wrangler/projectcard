@@ -1,6 +1,6 @@
 fontawesome_markdown
-jsonschema2md
 json_schema_for_humans
+jsonschema2md
 mike
 mkdocs
 mkdocs-autorefs
