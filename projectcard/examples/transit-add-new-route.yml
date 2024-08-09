@@ -10,7 +10,7 @@ transit_add_new_route:
       agency_id: The Bus
       trips:
         - direction_id: 0
-          headway_secs: 
+          headway_secs:
             ('6:00','12:00'): 600
             ('12:00','13:00'): 900
           routing:
@@ -25,7 +25,7 @@ transit_add_new_route:
             - node_id: 6
               stop: True
         - direction_id: 1
-          headway_secs: 
+          headway_secs:
             ('6:00','12:00'): 600
             ('12:00','13:00'): 900
           routing:

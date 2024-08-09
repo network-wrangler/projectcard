@@ -7,7 +7,7 @@
 	"additionalProperties" : false,
 	"properties": {
 		"routes": {
-			"type": "array", 
+			"type": "array",
 			"items": {"$ref": "../transit/transit_route.json"}
 		}
 	}

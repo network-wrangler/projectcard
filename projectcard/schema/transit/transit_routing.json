@@ -27,7 +27,7 @@
             "description": "Whether passengers can board at this stop.Defaults to True if stop=true. specify only when not default."
             },
           "alight": {
-            "type": "boolean", 
+            "type": "boolean",
             "description": "Whether passengers can alight at this stop. Defaults to True if stop=true. specify only when not default."
             }
         }

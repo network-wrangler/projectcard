@@ -11,6 +11,7 @@ There is a wrapper script for the third function in `/bin/batch_update_project_c
 Note that this script is tested (`test_conversion_script.py`) to successfully convert all the
 project cards in `tests/data/cards/*.v0.yaml` to the current format.
 """
+
 from __future__ import annotations
 
 import sys
@@ -110,7 +111,7 @@ DEFAULT_ROADWAY_VALUES: dict = {
 }
 
 REPLACE_ROADWAY_VALUES = {
-    "roadway": {    
+    "roadway": {
         "ramp": "motorway_link",
         "Ramp": "motorway_link",
         "Trunk": "trunk",
@@ -418,15 +419,15 @@ def _update_change(change_data: dict) -> dict:
 def _remove_empty_strings(data):
     """Remove keys/values with empty string values from dictionaries and lists."""
     if isinstance(data, dict):
-        return {k: _remove_empty_strings(v) for k, v in data.items() if v != ''}
+        return {k: _remove_empty_strings(v) for k, v in data.items() if v != ""}
     elif isinstance(data, list):
-        return [_remove_empty_strings(item) for item in data if item != '']
+        return [_remove_empty_strings(item) for item in data if item != ""]
     else:
         return data
 
 
 def _literals_to_arrays(data):
-    "Make tags arrays even if just one."
+    """Make tags arrays even if just one."""
     if isinstance(data.get("tags", []), str):
         data["tags"] = [data["tags"]]
     return data
