@@ -14,32 +14,32 @@ transit_add_new_route:
             ('6:00','12:00'): 600
             ('12:00','13:00'): 900
           routing:
-            - node_id: 1
-              stop: True #when stop is set to True, defaults to allow both boarding and alighting
-            - node_id: 2
-            - node_id: 3
-            - node_id: 4
-              stop: True # default to False, specify only when stopping
-              alight: False  # default to True, specify only when not default
-            - node_id: 5
-            - node_id: 6
-              stop: True
+            - 1:
+                stop: true #when stop is set to True, defaults to allow both boarding and alighting
+            - 2
+            - 3
+            - 4:
+                stop: true # default to False, specify only when stopping
+                alight: false  # default to True, specify only when not default
+            - 5
+            - 6:
+                stop: true
         - direction_id: 1
           headway_secs:
             ('6:00','12:00'): 600
             ('12:00','13:00'): 900
           routing:
-            - node_id: 6
-              stop: True
-            - node_id: 5
-              stop: True
-              dwell_sec: 30
-            - node_id: 4
-              stop: True
-            - node_id: 6
-            - node_id: 3
-              time_to_next_node_sec: 90
-            - node_id: 2
-              stop: True
-            - node_id: 1
-              stop: True
+            - 6:
+                stop: true
+            - 5:
+                stop: true
+                dwell_sec: 30
+            - 4:
+                stop: true
+            - 6
+            - 3:
+                time_to_next_node_sec: 90
+            - 2:
+                stop: true
+            - 1:
+                stop: true

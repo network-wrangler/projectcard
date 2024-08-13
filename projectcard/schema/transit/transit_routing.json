@@ -3,22 +3,35 @@
     "description": "Transit trip pattern / routing properties.",
     "type":"array",
     "$defs":{
-      "route_stop":{
+      "stop_id_str": {
+        "type": "string",
+        "description": "ID for stop.",
+        "regex": "^[0-9]+$"
+      },
+      "detailed_route_stop": {
+        "type": "object",
+        "description": "Stop with detailed attributes.",
+        "properties":{},
+        "additionalProperties": {"$ref": "#/$defs/route_stop_attributes"},
+        "propertyNames": {"ref": "#/$defs/stop_id_str"},
+        "minProperties": 1,
+        "maxProperties": 1,
+        "examples": [{"1": {"stop": true}}]
+      },
+      "route_stop_attributes":{
         "type": "object",
         "description": "Stop charactersitics for a given trip pattern.",
-        "required": ["node_id"],
+        "additionalProperties": false,
         "properties":{
-          "node_id": {
-            "type": "integer",
-            "description": "model_node_id."},
           "stop": {
             "type": "boolean",
             "default": false,
-            "description": "Whether this is a stop. Defaults to False."},
+            "description": "Whether this is a stop. Defaults to False."
+          },
           "dwell_sec": {
             "type": "integer",
             "description": "Dwell time in seconds."
-        },
+          },
           "time_to_next_node_sec": {
             "type": "integer",
             "description": "Time to next node in seconds. Defaults to network travel time."},
@@ -33,33 +46,43 @@
         }
       }
     },
-    "items": {"$ref": "#/$defs/route_stop"},
+    "minItems": 2,
+    "items": {
+      "anyOf": [
+        {"$ref": "#/$defs/detailed_route_stop"},
+        {"$ref": "#/$defs/stop_id_str"},
+        {"type": "integer"}
+      ]
+    },
     "examples": [
         [
             {
-                "node_id": 1,
+              "1": {
                 "stop": true
+              }
             },
             {
-                "node_id": 2,
+              "2": {
                 "stop": true
+              }
             },
             {
-                "node_id": 3,
+              "3": {
                 "stop": true
+              }
             },
             {
-                "node_id": 4,
+              "4": {
                 "stop": true
+              }
             },
             {
-                "node_id": 5,
+              "5": {
                 "stop": true,
                 "dwell_sec": 30
+              }
             },
-            {
-                "node_id": 6
-            }
+            "6"
         ]
     ]
 }
