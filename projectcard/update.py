@@ -155,9 +155,12 @@ def _update_roadway_addition(change, default_roadway_values: dict = DEFAULT_ROAD
             for field, default_value in default_roadway_values[p].items():
                 if field not in item or item[field] is None or item[field] == "":
                     item[field] = default_value
-            item["roadway"] = item["roadway"].lower()
-            if "ramp" in item["roadway"]:
-                item["roadway"] = "motorway_link"
+                if field in ["walk_access","bike_access","drive_access","bus_only","rail_only"]:
+                    item[field] = int(item[field])
+            if p == "links":
+                item["roadway"] = item["roadway"].lower()
+                if "ramp" in item["roadway"]:
+                    item["roadway"] = "motorway_link"
     CardLogger.debug(f"Updated Card.update_roadway_addition:\n {change}")
     return change
 
@@ -231,8 +234,8 @@ def _unnest_scoped_properties(property_change: dict) -> list[dict]:
     elif "timeofday" in property_change:
         property_change["scoped"] = []
         for change in property_change["timeofday"]:
-            property_change["scoped"].append(change.update({"category": cat}))
-        property_change.pop("category")
+            property_change["scoped"].append(change)
+        property_change.pop("timeofday")
         return property_change
 
 
@@ -306,7 +309,10 @@ def _update_roadway_facility(change: dict) -> dict:
 
     # unnest links from list
     if "links" in facility:
-        facility["links"] = facility.pop("links")[0]
+        if facility["links"] == "all":
+            facility["links"] = {"all": "True"}
+        else:
+            facility["links"] = facility.pop("links")[0]
 
     change["roadway_property_change"]["facility"] = facility
     CardLogger.debug(f"Updated Card.update_roadway_facility:\n {change}")
