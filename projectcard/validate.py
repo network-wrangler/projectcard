@@ -178,7 +178,7 @@ def _validate_pycode(
 
     # Add self, transit_net and roadway_net as mocked elements
     py_file_contents = "import mock\n"
-    py_file_contents += "\n".join([f"{v}=mock.Mock()" for v in mocked_vars])
+    py_file_contents += "\n".join([f"{v} = mock.Mock()" for v in mocked_vars])
     py_file_contents += "\n" + jsondata["pycode"]
 
     with open(tmp_py_path, "w") as py_file:
