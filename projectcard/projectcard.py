@@ -238,12 +238,13 @@ class SubProject(ProjectCard):
     @property
     def facility(self) -> dict:
         """Return facility dictionary from subproject."""
-        if "facility" not in self.__dict__:
+        f = list(_findkeys(self.__dict__, "facility"))
+        if not f:
             raise SubprojectValidationError(
                 f"Couldn't find facility in subproject in project card\
                                             {self._parent_project.project}"
             )
-        return self.__dict__["facility"]
+        return f[0]
 
     @property
     def valid(self) -> bool:
