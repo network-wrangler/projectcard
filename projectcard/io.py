@@ -186,7 +186,7 @@ def read_cards(
     filepath: Union[Collection[str], str],
     filter_tags: Collection[str] = [],
     recursive: bool = False,
-    _cards: Mapping[str, ProjectCard] = {},
+    _cards: Mapping[str, ProjectCard] = None,
 ) -> Mapping[str, ProjectCard]:
     """Reads collection of project card files by inferring the file type.
 
@@ -203,6 +203,9 @@ def read_cards(
     Returns: dictionary of project cards by project name
     """
     CardLogger.debug(f"Reading cards from {filepath}.")
+
+    if _cards is None:
+        _cards = {}
 
     filter_tags = list(map(str.lower, filter_tags))
     if isinstance(filepath, list) or not os.path.isfile(filepath):
