@@ -29,7 +29,7 @@
         "description": "Consistent with GTFS definition defining outbound vs inbound routes."
       },
       "headway_secs":{
-        "type": "object",
+        "type": "array",
         "description": "Headway for each time period."
       }
     },
