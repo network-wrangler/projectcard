@@ -2,32 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://network-wrangler.github.io/projectcard/metcouncil-test/</loc>
-         <lastmod>2024-08-22</lastmod>
+         <lastmod>2024-08-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://network-wrangler.github.io/projectcard/metcouncil-test/api/</loc>
-         <lastmod>2024-08-22</lastmod>
+         <lastmod>2024-08-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://network-wrangler.github.io/projectcard/metcouncil-test/development/</loc>
-         <lastmod>2024-08-22</lastmod>
+         <lastmod>2024-08-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://network-wrangler.github.io/projectcard/metcouncil-test/examples/</loc>
-         <lastmod>2024-08-22</lastmod>
+         <lastmod>2024-08-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://network-wrangler.github.io/projectcard/metcouncil-test/json-schemas/</loc>
-         <lastmod>2024-08-22</lastmod>
+         <lastmod>2024-08-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
          <loc>https://network-wrangler.github.io/projectcard/metcouncil-test/pydantic-datamodels/</loc>
-         <lastmod>2024-08-22</lastmod>
+         <lastmod>2024-08-27</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>
