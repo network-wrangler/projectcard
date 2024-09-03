@@ -1,8 +1,10 @@
+"""Tests for the projectcard.validate module."""
 
-from projectcard.validate import update_dict_with_schema_defaults
+from projectcard.logger import CardLogger
 
 
 def test_update_dict_with_schema_defaults():
+    from projectcard.validate import update_dict_with_schema_defaults
     # Test case 1: Missing required property with default value
     data = {}
     schema = {
@@ -117,4 +119,22 @@ def test_update_dict_with_schema_defaults():
             },
         ],
     }
+
     assert update_dict_with_schema_defaults(data, schema) == expected_result
+
+
+def test_update_project_card_with_defaults():
+    from projectcard.projectcard import ProjectCard
+    project_card_data = {
+        "project": "Delete Transit",
+        "transit_service_deletion": {
+            "service": {
+                "trip_properties": {
+                    "trip_id": ["trip_1"]
+                }
+            }
+        }
+    }
+    card = ProjectCard(project_card_data)
+    CardLogger.debug(f"card:\n{card}")
+    assert card.transit_service_deletion["clean_shapes"] is True
