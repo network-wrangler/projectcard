@@ -7,7 +7,8 @@
 		"change_roadway_property_change": { "$ref": "changes/roadway_property_change.json"},
 		"transit_property_change": { "$ref": "changes/transit_property_change.json"},
 		"transit_routing_change": { "$ref": "changes/transit_routing_change.json"},
-		"transit_add_new_route": { "$ref": "changes/transit_add_new_route.json"},
+		"transit_route_addition": { "$ref": "changes/transit_route_addition.json"},
+		"transit_service_deletion": { "$ref": "changes/transit_service_deletion.json"},
 		"pycode":{ "type": "string" },
 		"change": {
 			"type":"object",
@@ -17,7 +18,8 @@
 				"roadway_property_change": { "$ref": "#/$defs/change_roadway_property_change"},
 				"transit_property_change": { "$ref": "#/$defs/transit_property_change"},
 				"transit_routing_change": { "$ref": "#/$defs/transit_routing_change"},
-				"transit_add_new_route:": { "$ref": "#/$defs/transit_add_new_route"},
+				"transit_route_addition:": { "$ref": "#/$defs/transit_route_addition"},
+				"transit_service_deletion": { "$ref": "#/$defs/transit_service_deletion"},
 				"pycode": { "$ref": "#/$defs/pycode"}
 			},
 			"oneOf": [
@@ -26,7 +28,8 @@
 				{"required":["roadway_property_change"]},
 				{"required":["transit_property_change"]},
 				{"required":["transit_routing_change"]},
-				{"required":["transit_add_new_route"]},
+				{"required":["transit_route_addition"]},
+				{"required":["transit_service_deletion"]},
 				{"required":["pycode"]}
 			]
 		}
@@ -42,7 +45,8 @@
 		{"required":["roadway_managed_lanes"]},
 		{"required":["transit_property_change"]},
 		{"required":["transit_routing_change"]},
-		{"required":["transit_add_new_route"]},
+		{"required":["transit_route_addition"]},
+		{"required":["transit_service_deletion"]},
 		{"required":["pycode"]},
 		{"required":["changes"]}
 	],
@@ -57,7 +61,8 @@
 		"roadway_managed_lanes": { "$ref": "#/$defs/change_roadway_property_change"},
 		"transit_property_change":{ "$ref": "#/$defs/transit_property_change"},
 		"transit_routing_change":{ "$ref": "#/$defs/transit_routing_change"},
-		"transit_add_new_route":{ "$ref": "#/$defs/transit_add_new_route"},
+		"transit_add_new_route":{ "$ref": "#/$defs/transit_route_addition"},
+		"transit_service_deletion": { "$ref": "#/$defs/transit_service_deletion"},
 		"pycode":{ "$ref": "#/$defs/pycode"},
 		"changes": {"type": "array","items":{"$ref": "#/$defs/change"}},
 		"self_obj_type": {"type": "string","enum": ["RoadwayNetwork","TransitNetwork"],"description":"For calculated project cards, must refer to the object to perform the calculation on. "},
