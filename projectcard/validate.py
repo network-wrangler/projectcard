@@ -160,7 +160,7 @@ def update_dict_with_schema_defaults(
     return data
 
 
-def validate_card(jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SCHEMA) -> bool:
+def validate_card(jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SCHEMA, parse_defaults: bool = True) -> bool:
     """Validates json-like data to specified schema.
 
     If `pycode` key exists, will evaluate it for basic runtime errors using Flake8.
@@ -171,14 +171,18 @@ def validate_card(jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SC
         schema_path: path to schema to validate to.
             Defaults to PROJECTCARD_SCHEMA which is
             ROOTDIR / "schema" / "projectcard.json"
+        parse_defaults: if True, will use default values for missing required attributes.
 
     Raises:
         ValidationError: If jsondata doesn't conform to specified schema.
         SchemaError: If schema itself is not valid.
     """
-    CardLogger.debug(f"Validating: {jsondata['project']}")
+    if "project" in jsondata:
+        CardLogger.debug(f"Validating: {jsondata['project']}")
     try:
         _schema_data = _load_schema(schema_path)
+        if parse_defaults:
+            jsondata = update_dict_with_schema_defaults(jsondata, _schema_data)
         validate(jsondata, schema=_schema_data)
     except ValidationError as e:
         CardLogger.error(f"---- Error validating {jsondata['project']} ----")
