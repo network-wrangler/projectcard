@@ -59,7 +59,7 @@
     },
     "roadway":{
       "type": "string",
-      "enum":["taz","motorway","trunk","primary","secondary","tertiary","unclassified","residential","motorway_link","trunk_link","primary_link","secondary_link","tertiary_link","living_street","service","pedestrian","footway","steps","cycleway","track","bus_guideway","road","frontage"],
+      "enum":["taz","motorway","trunk","primary","secondary","tertiary","unclassified","residential","motorway_link","trunk_link","primary_link","secondary_link","tertiary_link","living_street","service","pedestrian","footway","steps","cycleway","track","bus_guideway","road"],
       "default":"road",
       "description":"Roadway type, using [OSM Highway values](https://wiki.openstreetmap.org/wiki/Key:highway#Roads). Notes: * `X_link` roadway types denote linkage roads going to/from roadway type X (i.e. on/off ramps, etc). * `road` denotes unknown type."
     },
