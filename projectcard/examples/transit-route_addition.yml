@@ -1,7 +1,7 @@
 project: New Green Transit
 tags:
    - new transit
-transit_add_new_route:
+transit_route_addition:
   routes:
     - route_id: abc
       route_long_name: green_line
