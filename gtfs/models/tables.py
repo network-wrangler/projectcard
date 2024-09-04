@@ -1,5 +1,4 @@
-"""
-This module defines the data models for various GTFS tables using pandera library.
+"""This module defines the data models for various GTFS tables using pandera library.
 
 The module includes the following classes:
 - AgencyTable: Represents the Agency table in the GTFS dataset.
@@ -10,12 +9,12 @@ The module includes the following classes:
 - TripsTable: Represents the Trips table in the GTFS dataset.
 
 Each table model leverages the Pydantic data models defined in the records module to define the
-data model for the corresponding table. The classes also include additional configurations for, 
+data model for the corresponding table. The classes also include additional configurations for,
 such as uniqueness constraints.
 
-There is NOT any foreign key validation in the data models. 
+There is NOT any foreign key validation in the data models.
 
-Additionally, the module includes a custom check method called "uniqueness" that can be used to 
+Additionally, the module includes a custom check method called "uniqueness" that can be used to
 check for uniqueness of values in a DataFrame.
 
 For more examples of how to use Pandera DataModels, see the Pandera documentation at:
@@ -33,7 +32,7 @@ Usage examples:
         # The table will be automatically validated against its data model
         pass
     ```
-    
+
 2. Creating an instance of AgencyTable:
 
     ```python
@@ -68,8 +67,7 @@ from records import (
 
 
 class AgenciesTable(pa.DataFrameModel):
-    """
-    Represents the Agency table in the GTFS dataset.
+    """Represents the Agency table in the GTFS dataset.
 
     Configurations:
     - dtype: PydanticModel(AgencyRecord)
@@ -85,8 +83,7 @@ class AgenciesTable(pa.DataFrameModel):
 
 
 class StopsTable(pa.DataFrameModel):
-    """
-    Represents the Stops table in the GTFS dataset.
+    """Represents the Stops table in the GTFS dataset.
 
     Configurations:
     - dtype: PydanticModel(StopRecord)
@@ -102,8 +99,7 @@ class StopsTable(pa.DataFrameModel):
 
 
 class RoutesTable(pa.DataFrameModel):
-    """
-    Represents the Routes table in the GTFS dataset.
+    """Represents the Routes table in the GTFS dataset.
 
     Configurations:
     - dtype: PydanticModel(RouteRecord)
@@ -119,8 +115,7 @@ class RoutesTable(pa.DataFrameModel):
 
 
 class ShapesTable(pa.DataFrameModel):
-    """
-    Represents the Shapes table in the GTFS dataset.
+    """Represents the Shapes table in the GTFS dataset.
 
     Configurations:
     - dtype: PydanticModel(ShapeRecord)
@@ -136,8 +131,7 @@ class ShapesTable(pa.DataFrameModel):
 
 
 class TripsTable(pa.DataFrameModel):
-    """
-    Represents the Trips table in the GTFS dataset.
+    """Represents the Trips table in the GTFS dataset.
 
     Configurations:
     - dtype: PydanticModel(TripRecord)
@@ -150,8 +144,7 @@ class TripsTable(pa.DataFrameModel):
 
 
 class FrequenciesTable(pa.DataFrameModel):
-    """
-    Represents the Agency table in the GTFS dataset.
+    """Represents the Agency table in the GTFS dataset.
 
     Configurations:
     - dtype: PydanticModel(FrequencyRecord)
@@ -167,8 +160,7 @@ class FrequenciesTable(pa.DataFrameModel):
 
 
 class StopTimesTable(pa.DataFrameModel):
-    """
-    Represents the Stop Times table in the GTFS dataset.
+    """Represents the Stop Times table in the GTFS dataset.
 
     Configurations:
     - dtype: PydanticModel(StopTimeRecord)

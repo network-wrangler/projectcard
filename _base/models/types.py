@@ -5,14 +5,14 @@ from pydantic import Field
 
 AllOf = Annotated[
     List[str],
-    Field(description=['List fields where all are required for the data model to be valid.']),
+    Field(description=["List fields where all are required for the data model to be valid."]),
 ]
 
 
 OneOf = Annotated[
     List[Union[str, AllOf]],
     Field(
-        description=['List fields where at least one is required for the data model to be valid.']
+        description=["List fields where at least one is required for the data model to be valid."]
     ),
 ]
 
@@ -20,7 +20,7 @@ OneOf = Annotated[
 AnyOf = Annotated[
     List[Union[str, AllOf]],
     Field(
-        description=['List fields, AllOf where any are required for the data model to be valid.']
+        description=["List fields, AllOf where any are required for the data model to be valid."]
     ),
 ]
 
@@ -33,8 +33,8 @@ PhoneNum = Annotated[str, Field("", description="Phone number for the specified 
 TimeString = Annotated[
     str,
     Field(
-        examples=['12:34', '12:34:56'],
-        description='Time of day in 24-hour format. Seconds are optional.',
-        pattern='^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$',
+        examples=["12:34", "12:34:56"],
+        description="Time of day in 24-hour format. Seconds are optional.",
+        pattern="^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9](:[0-5][0-9])?$",
     ),
 ]

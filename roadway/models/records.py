@@ -5,9 +5,7 @@ from .types import *
 
 
 class RoadwayNode(RecordModel):
-    """
-    Requirements for roadway nodes.
-    """
+    """Requirements for roadway nodes."""
 
     model_node_id: ModelNodeId
     osm_node_id: Optional[OsmNodeId] = None
@@ -20,9 +18,7 @@ class RoadwayNode(RecordModel):
 
 
 class RoadwayLink(RecordModel):
-    """
-    Requirements for roadway links.
-    """
+    """Requirements for roadway links."""
 
     A: ModelNodeId
     B: ModelNodeId

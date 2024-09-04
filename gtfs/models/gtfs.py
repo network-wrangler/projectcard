@@ -6,9 +6,7 @@ from ..._base.models import RecordModel
 
 
 class GTFSModel(RecordModel, DBModel):
-    """
-    Requirements for gtfs network.
-    """
+    """Requirements for gtfs network."""
 
     stops: StopsTable
     routes: RoutesTable

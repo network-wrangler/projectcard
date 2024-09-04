@@ -5,8 +5,7 @@ from pandera.extensions import register_check_method
 
 @register_check_method()
 def uniqueness(df, *, cols: list[str]):
-    """
-    Custom check method to check for uniqueness of values in a DataFrame.
+    """Custom check method to check for uniqueness of values in a DataFrame.
 
     Args:
         df (pandas.DataFrame): The DataFrame to check for uniqueness.

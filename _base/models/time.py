@@ -39,8 +39,7 @@ def dt_overlap_duration(
 
 
 def dt_contains(timespan1: list[time], timespan2: list[time]) -> bool:
-    """
-    Check if one timespan contains another.
+    """Check if one timespan contains another.
 
     Args:
         timespan1 (list[time]): The first timespan represented as a list containing the start time and end time.

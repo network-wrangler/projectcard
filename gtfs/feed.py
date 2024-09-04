@@ -44,8 +44,7 @@ FEED_CONFIG = {
 
 
 def file_from_feed(feed_path: Union[Path, str]) -> "Feed":
-    """
-    Reads a GTFS feed from a given path and returns a Feed object.
+    """Reads a GTFS feed from a given path and returns a Feed object.
 
     Args:
         feed_path (Union[Path, str]): The path to the GTFS feed.
@@ -57,8 +56,7 @@ def file_from_feed(feed_path: Union[Path, str]) -> "Feed":
 
 
 class Feed:
-    """
-    Wrapper class around GTFS feed to allow abstraction from partridge.
+    """Wrapper class around GTFS feed to allow abstraction from partridge.
 
     TODO: Replace usage of partridge
     """
@@ -94,9 +92,7 @@ class Feed:
 
     @property
     def config(self) -> DiGraph:
-        """
-        Internal configuration of the GTFS feed.
-        """
+        """Internal configuration of the GTFS feed."""
         return self._config
 
     def __deepcopy__(self, memo):
@@ -135,16 +131,12 @@ class Feed:
 
     @property
     def table_names(self) -> list[str]:
-        """
-        Returns list of tables from config.
-        """
+        """Returns list of tables from config."""
         return list(t.replace(".txt", "") for t in self.config.nodes.keys())
 
     @property
     def tables(self) -> list[pd.DataFrame]:
-        """
-        Returns list of tables from config.
-        """
+        """Returns list of tables from config."""
         return [self.get(table_name) for table_name in self.config.nodes.keys()]
 
     @property
@@ -163,9 +155,7 @@ class Feed:
 
     @property
     def valid(self) -> bool:
-        """
-        Returns True iff all specified tables match schemas and foreign keys valid.
-        """
+        """Returns True iff all specified tables match schemas and foreign keys valid."""
         return self.foreign_keys_valid & self.schemas_valid
 
     def _read_from_file(self, node: str) -> pd.DataFrame:
@@ -185,7 +175,7 @@ class Feed:
     def get(self, table: str) -> pd.DataFrame:
         """Get table by name.
 
-        args:
+        Args:
             table: table name. e.g. frequencies, stops, etc.
         """
         table = table.replace(".txt", "")
@@ -272,8 +262,7 @@ class Feed:
         id_property: str = "trip_id",
         properties: list[str] = None,
     ):
-        """
-        Set property values in a specific table for a list of IDs.
+        """Set property values in a specific table for a list of IDs.
 
         Args:
             table_name (str): Name of the table to modify.
@@ -327,8 +316,7 @@ class Feed:
 
     @classmethod
     def _config_from_files(cls, ptg_feed: ptg.gtfs.Feed) -> DiGraph:
-        """
-        Return updated config based on which files are available & have data.
+        """Return updated config based on which files are available & have data.
 
         Will fail if any Feed.REQUIRED_FILES are not present.
 
@@ -396,8 +384,7 @@ class Feed:
         return table_valid, table_fk_missing
 
     def validate_fks(self) -> bool:
-        """
-        Validates the foreign keys of all the tables in the feed.
+        """Validates the foreign keys of all the tables in the feed.
 
         Returns:
             bool: If true, all tables in feed have valid foreign keys.
@@ -425,13 +412,11 @@ class Feed:
         return _hash
 
     def tables_with_property(self, property: str) -> list[str]:
-        """
-        Returns feed tables in the feed which contain the property.
+        """Returns feed tables in the feed which contain the property.
 
         arg:
             property: name of property to search for tables with
         """
-
         return [t for t in self.table_names if property in self.get(t).columns]
 
     @check_output(TripsTable, inplace=True)
@@ -444,7 +429,7 @@ class Feed:
     def trip_stop_times(self, trip_id: str) -> pd.DataFrame:
         """Returns a stop_time records for a given trip_id.
 
-        args:
+        Args:
             trip_id: trip_id to get stop pattern for
         """
         stop_times_df = self.stop_times
@@ -454,7 +439,7 @@ class Feed:
     def trip_shape_id(self, trip_id: str) -> str:
         """Returns a shape_id for a given trip_id.
 
-        args:
+        Args:
             trip_id: trip_id to get stop pattern for
         """
         trips_df = self.get("trips")
@@ -463,7 +448,7 @@ class Feed:
     def trip_shape(self, trip_id: str) -> pd.DataFrame:
         """Returns a shape records for a given trip_id.
 
-        args:
+        Args:
             trip_id: trip_id to get stop pattern for
         """
         shape_id = self.trip_shape_id(trip_id)
@@ -479,7 +464,7 @@ class Feed:
     def shape_node_pattern(self, shape_id: str) -> list[int]:
         """Returns node pattern of a shape.
 
-        args:
+        Args:
             shape_id: string identifier of the shape.
         """
         shape_df = self.shapes.loc[self.shapes["shape_id"] == shape_id]
@@ -489,7 +474,7 @@ class Feed:
     def shape_with_trip_stops(self, trip_id: str, pickup_type: str = "either") -> pd.DataFrame:
         """Returns shapes.txt for a given trip_id with the stop_id added based on pickup_type.
 
-        args:
+        Args:
             trip_id: trip id to select
             pickup_type: str indicating logic for selecting stops based on piackup and dropoff
                 availability at stop. Defaults to "either".
@@ -499,7 +484,6 @@ class Feed:
                 "dropoff_only": only dropoff > 0
 
         """
-
         shapes = self.trip_shape(trip_id)
         trip_stop_times = self.trip_stop_times_for_pickup_type(trip_id, pickup_type=pickup_type)
 
@@ -543,7 +527,7 @@ class Feed:
             2 - Must phone agency to arrange pickup/dropoff.
             3 - Must coordinate with driver to arrange pickup/dropoff.
 
-        args:
+        Args:
             trip_id: trip_id to get stop pattern for
             pickup_type: str indicating logic for selecting stops based on piackup and dropoff
                 availability at stop. Defaults to "either".
@@ -557,7 +541,8 @@ class Feed:
         trip_stop_pattern = self.trip_stop_times(trip_id)
 
         pickup_type_selection = {
-            "either": (trip_stop_pattern.pickup_type != 1) | (trip_stop_pattern.drop_off_type != 1),
+            "either": (trip_stop_pattern.pickup_type != 1)
+            | (trip_stop_pattern.drop_off_type != 1),
             "both": (trip_stop_pattern.pickup_type != 1) & (trip_stop_pattern.drop_off_type != 1),
             "pickup_only": (trip_stop_pattern.pickup_type != 1)
             & (trip_stop_pattern.drop_off_type == 1),
@@ -575,7 +560,7 @@ class Feed:
     ) -> Union[bool, list[bool]]:
         """Returns a boolean indicating if a node (or a list of nodes) is (are) stops for a given trip_id.
 
-        args:
+        Args:
             node_id: node ID for roadway
             trip_id: trip_id to get stop pattern for
             pickup_type: str indicating logic for selecting stops based on piackup and dropoff
@@ -593,7 +578,7 @@ class Feed:
     def trip_stop_pattern(self, trip_id: str, pickup_type: str = "either") -> list[str]:
         """Returns a stop pattern for a given trip_id given by a list of stop_ids.
 
-        args:
+        Args:
             trip_id: trip_id to get stop pattern for
             pickup_type: str indicating logic for selecting stops based on piackup and dropoff
                 availability at stop. Defaults to "either".

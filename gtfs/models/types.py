@@ -5,14 +5,16 @@ from ..._base.models import TimeString
 
 
 class BikesAllowed(Enum):
-    "Indicates whether bicycles are allowed."
+    """Indicates whether bicycles are allowed."""
+
     NO_INFORMATION = 0
     ALLOWED = 1
     NOT_ALLOWED = 2
 
 
 class DirectionID(Enum):
-    "Indicates the direction of travel for a trip."
+    """Indicates the direction of travel for a trip."""
+
     OUTBOUND = 0
     INBOUND = 1
 
@@ -56,7 +58,8 @@ class TimepointType(Enum):
 
 
 class WheelchairAccessible(Enum):
-    "Indicates whether the trip is wheelchair accessible."
+    """Indicates whether the trip is wheelchair accessible."""
+
     NO_INFORMATION = 0
     POSSIBLE = 1
     NOT_POSSIBLE = 2
@@ -197,7 +200,8 @@ StopUrl = Annotated[HttpUrl, Field("", description="URL of a web page about a pa
 Timepoint = Annotated[
     TimepointType,
     Field(
-        1, description="Exact or approximate time that a vehicle arrives at or departs from a stop."
+        1,
+        description="Exact or approximate time that a vehicle arrives at or departs from a stop.",
     ),
 ]
 Timezone = str = Annotated[

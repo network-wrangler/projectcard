@@ -26,12 +26,12 @@ except ImportError:
     log.warning("Pandera is not installed, using mock models.")
     globals().update(
         {
-            'GTFSModel': MockPaModel,
-            'StopsTable': MockPaModel,
-            'RoutesTable': MockPaModel,
-            'TripsTable': MockPaModel,
-            'StopTimesTable': MockPaModel,
-            'ShapesTable': MockPaModel,
-            'FrequenciesTable': MockPaModel,
+            "GTFSModel": MockPaModel,
+            "StopsTable": MockPaModel,
+            "RoutesTable": MockPaModel,
+            "TripsTable": MockPaModel,
+            "StopTimesTable": MockPaModel,
+            "ShapesTable": MockPaModel,
+            "FrequenciesTable": MockPaModel,
         }
     )

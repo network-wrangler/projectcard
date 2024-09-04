@@ -21,7 +21,7 @@ def _findkeys(node, kv):
 
 
 def _dict_key_loc_value(dictdata: dict, findkey) -> list[tuple]:
-    """returns the location and value of each key in a dictionary.
+    """Returns the location and value of each key in a dictionary.
 
     ex:
         dictdata = {
