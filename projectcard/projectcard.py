@@ -22,7 +22,7 @@ CHANGE_TYPES = [
     "transit_property_change",
     "transit_routing_change",
     "transit_service_deletion",
-    "transit_add_new_route",
+    "transit_route_addition",
     "pycode",
 ]
 

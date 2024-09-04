@@ -37,7 +37,7 @@
         ]
       }
     },
-    "required": ["agency_id", "route_type"],
+    "required": ["route_id", "agency_id", "route_type"],
     "properties":{
         "route_id":{"$ref":"#/$defs/route_id"},
         "agency_id":{"$ref":"#/$defs/agency_id"},

@@ -11,8 +11,8 @@ transit_route_addition:
       trips:
         - direction_id: 0
           headway_secs:
-            ('6:00','12:00'): 600
-            ('12:00','13:00'): 900
+            - ('6:00','12:00'): 600
+            - ('12:00','13:00'): 900
           routing:
             - 1:
                 stop: true #when stop is set to True, defaults to allow both boarding and alighting
@@ -26,8 +26,8 @@ transit_route_addition:
                 stop: true
         - direction_id: 1
           headway_secs:
-            ('6:00','12:00'): 600
-            ('12:00','13:00'): 900
+            - ('6:00','12:00'): 600
+            - ('12:00','13:00'): 900
           routing:
             - 6:
                 stop: true
