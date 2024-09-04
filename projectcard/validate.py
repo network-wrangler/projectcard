@@ -133,16 +133,16 @@ def update_dict_with_schema_defaults(
     if isinstance(schema, str) or isinstance(schema, Path):
         schema = _load_schema(schema)
 
-    if 'properties' in schema:
-        for prop_name, schema_part in schema['properties'].items():
+    if "properties" in schema:
+        for prop_name, schema_part in schema["properties"].items():
             # Only update if the property is required, has a default, and is not already there
             if (
                 prop_name not in data
-                and 'default' in schema_part
-                and prop_name in schema.get('required', [])
+                and "default" in schema_part
+                and prop_name in schema.get("required", [])
             ):
                 CardLogger.debug(f"Adding default value for {prop_name}: {schema_part['default']}")
-                data[prop_name] = schema_part['default']
+                data[prop_name] = schema_part["default"]
             elif (
                 prop_name in data
                 and isinstance(data[prop_name], dict)
@@ -150,9 +150,7 @@ def update_dict_with_schema_defaults(
             ):
                 data[prop_name] = update_dict_with_schema_defaults(data[prop_name], schema_part)
             elif (
-                prop_name in data
-                and isinstance(data[prop_name], list)
-                and "items" in schema_part
+                prop_name in data and isinstance(data[prop_name], list) and "items" in schema_part
             ):
                 for item in data[prop_name]:
                     if isinstance(item, dict):
@@ -160,7 +158,9 @@ def update_dict_with_schema_defaults(
     return data
 
 
-def validate_card(jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SCHEMA, parse_defaults: bool = True) -> bool:
+def validate_card(
+    jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SCHEMA, parse_defaults: bool = True
+) -> bool:
     """Validates json-like data to specified schema.
 
     If `pycode` key exists, will evaluate it for basic runtime errors using Flake8.

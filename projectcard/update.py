@@ -155,7 +155,13 @@ def _update_roadway_addition(change, default_roadway_values: dict = DEFAULT_ROAD
             for field, default_value in default_roadway_values[p].items():
                 if field not in item or item[field] is None or item[field] == "":
                     item[field] = default_value
-                if field in ["walk_access","bike_access","drive_access","bus_only","rail_only"]:
+                if field in [
+                    "walk_access",
+                    "bike_access",
+                    "drive_access",
+                    "bus_only",
+                    "rail_only",
+                ]:
                     item[field] = int(item[field])
             if p == "links":
                 item["roadway"] = item["roadway"].lower()

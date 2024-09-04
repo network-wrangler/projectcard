@@ -6,4 +6,4 @@ transit_service_deletion:
     timespans:
       - ['06:00:00', '09:00:00']
   clean_shapes: false
-  clean_routes: false
+  clean_routes: true

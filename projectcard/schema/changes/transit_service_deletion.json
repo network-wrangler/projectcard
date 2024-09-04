@@ -11,13 +11,13 @@
 		"service": {"$ref": "../transit/selection/select_trips.json"},
         "clean_shapes": {
             "type": "boolean",
-            "description": "If true, unused shapes for these trips will be removed. Defaults to true.",
-            "default": true
+            "description": "If true, unused shapes for these trips will be removed. Defaults to false.",
+            "default": false
         },
         "clean_routes": {
             "type": "boolean",
-            "description": "If true, unused routes for these trips will be removed. Defaults to true.",
-            "default": true
+            "description": "If true, unused routes for these trips will be removed. Defaults to false.",
+            "default": false
         }
 	}
 }

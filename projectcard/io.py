@@ -124,7 +124,7 @@ def dict_to_yaml_with_comments(d):
 
     for line in yaml_lines:
         if "#" in line:
-            final_yaml_lines.append(f"#{line}")    
+            final_yaml_lines.append(f"#{line}")
         else:
             final_yaml_lines.append(line)
 

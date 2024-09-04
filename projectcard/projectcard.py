@@ -201,7 +201,7 @@ class SubProject(ProjectCard):
             sp_dictionary (dict): dictionary of sub-project attributes contained within "changes"
                 list of parent projet card
             parent_project (ProjectCard): ProjectCard object for parent project card
-            
+
         """
         self._parent_project = parent_project
 
@@ -255,4 +255,3 @@ class SubProject(ProjectCard):
     def valid(self) -> bool:
         """Check if subproject is valid."""
         return self._parent_project.valid
-
