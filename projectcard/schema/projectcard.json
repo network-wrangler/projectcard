@@ -18,7 +18,7 @@
 				"roadway_property_change": { "$ref": "#/$defs/change_roadway_property_change"},
 				"transit_property_change": { "$ref": "#/$defs/transit_property_change"},
 				"transit_routing_change": { "$ref": "#/$defs/transit_routing_change"},
-				"transit_route_addition:": { "$ref": "#/$defs/transit_route_addition"},
+				"transit_route_addition": { "$ref": "#/$defs/transit_route_addition"},
 				"transit_service_deletion": { "$ref": "#/$defs/transit_service_deletion"},
 				"pycode": { "$ref": "#/$defs/pycode"}
 			},

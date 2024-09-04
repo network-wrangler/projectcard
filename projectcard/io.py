@@ -108,10 +108,27 @@ def write_card(project_card, filename: str = None):
         if k in out_dict:
             del out_dict[k]
 
+    yaml_content = dict_to_yaml_with_comments(out_dict)
+
     with open(filename, "w") as outfile:
-        yaml.dump(out_dict, outfile, default_flow_style=False, sort_keys=False)
+        outfile.write(yaml_content)
 
     CardLogger.info("Wrote project card to: {}".format(filename))
+
+
+def dict_to_yaml_with_comments(d):
+    """Converts a dictionary to a YAML string with comments."""
+    yaml_str = yaml.dump(d, default_flow_style=False, sort_keys=False)
+    yaml_lines = yaml_str.splitlines()
+    final_yaml_lines = []
+
+    for line in yaml_lines:
+        if "#" in line:
+            final_yaml_lines.append(f"#{line}")    
+        else:
+            final_yaml_lines.append(line)
+
+    return "\n".join(final_yaml_lines)
 
 
 def _make_slug(text, delimiter: str = "_"):
@@ -186,7 +203,7 @@ def read_cards(
     filepath: Union[Collection[str], str],
     filter_tags: Collection[str] = [],
     recursive: bool = False,
-    _cards: Mapping[str, ProjectCard] = {},
+    _cards: Mapping[str, ProjectCard] = None,
 ) -> Mapping[str, ProjectCard]:
     """Reads collection of project card files by inferring the file type.
 
@@ -203,6 +220,9 @@ def read_cards(
     Returns: dictionary of project cards by project name
     """
     CardLogger.debug(f"Reading cards from {filepath}.")
+
+    if _cards is None:
+        _cards = {}
 
     filter_tags = list(map(str.lower, filter_tags))
     if isinstance(filepath, list) or not os.path.isfile(filepath):
