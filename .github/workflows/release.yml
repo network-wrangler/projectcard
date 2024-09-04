@@ -2,7 +2,7 @@ name: Publish Python Package to PyPI and Docs
 on:
   release:
       types: [published] # Auto trigger for PyPI
-  workflow_dispatch:  # Manual trigger for PyPI 
+  workflow_dispatch:  # Manual trigger for PyPI
 
 jobs:
   build:

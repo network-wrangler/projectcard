@@ -118,7 +118,49 @@ def validate_schema_file(schema_path: Union[Path, str] = PROJECTCARD_SCHEMA) -> 
     return True
 
 
-def validate_card(jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SCHEMA) -> bool:
+def update_dict_with_schema_defaults(
+    data: dict, schema: Union[str, Path, dict] = PROJECTCARD_SCHEMA
+) -> dict:
+    """Recursively update missing required properties with default values.
+
+    Args:
+        data: The data dictionary to update.
+        schema: The schema dictionary or path to the schema file.
+
+    Returns:
+        The updated data dictionary.
+    """
+    if isinstance(schema, str) or isinstance(schema, Path):
+        schema = _load_schema(schema)
+
+    if "properties" in schema:
+        for prop_name, schema_part in schema["properties"].items():
+            # Only update if the property is required, has a default, and is not already there
+            if (
+                prop_name not in data
+                and "default" in schema_part
+                and prop_name in schema.get("required", [])
+            ):
+                CardLogger.debug(f"Adding default value for {prop_name}: {schema_part['default']}")
+                data[prop_name] = schema_part["default"]
+            elif (
+                prop_name in data
+                and isinstance(data[prop_name], dict)
+                and "properties" in schema_part
+            ):
+                data[prop_name] = update_dict_with_schema_defaults(data[prop_name], schema_part)
+            elif (
+                prop_name in data and isinstance(data[prop_name], list) and "items" in schema_part
+            ):
+                for item in data[prop_name]:
+                    if isinstance(item, dict):
+                        update_dict_with_schema_defaults(item, schema_part["items"])
+    return data
+
+
+def validate_card(
+    jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SCHEMA, parse_defaults: bool = True
+) -> bool:
     """Validates json-like data to specified schema.
 
     If `pycode` key exists, will evaluate it for basic runtime errors using Flake8.
@@ -129,14 +171,18 @@ def validate_card(jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SC
         schema_path: path to schema to validate to.
             Defaults to PROJECTCARD_SCHEMA which is
             ROOTDIR / "schema" / "projectcard.json"
+        parse_defaults: if True, will use default values for missing required attributes.
 
     Raises:
         ValidationError: If jsondata doesn't conform to specified schema.
         SchemaError: If schema itself is not valid.
     """
-    CardLogger.debug(f"Validating: {jsondata['project']}")
+    if "project" in jsondata:
+        CardLogger.debug(f"Validating: {jsondata['project']}")
     try:
         _schema_data = _load_schema(schema_path)
+        if parse_defaults:
+            jsondata = update_dict_with_schema_defaults(jsondata, _schema_data)
         validate(jsondata, schema=_schema_data)
     except ValidationError as e:
         CardLogger.error(f"---- Error validating {jsondata['project']} ----")
@@ -178,7 +224,7 @@ def _validate_pycode(
 
     # Add self, transit_net and roadway_net as mocked elements
     py_file_contents = "import mock\n"
-    py_file_contents += "\n".join([f"{v}=mock.Mock()" for v in mocked_vars])
+    py_file_contents += "\n".join([f"{v} = mock.Mock()" for v in mocked_vars])
     py_file_contents += "\n" + jsondata["pycode"]
 
     with open(tmp_py_path, "w") as py_file:

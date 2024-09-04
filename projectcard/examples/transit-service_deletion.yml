@@ -1,0 +1,9 @@
+project: Remove AM service on the Green Line
+transit_service_deletion:
+  service:
+    trip_properties:
+      route_short_name: "green"
+    timespans:
+      - ['06:00:00', '09:00:00']
+  clean_shapes: false
+  clean_routes: true

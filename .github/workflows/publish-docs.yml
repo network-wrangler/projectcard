@@ -42,6 +42,5 @@ jobs:
         pip install -e .
     - name: Build docs
       run: |
-        git pull
         mike deploy --push ${{ env.docs_version_name }}
         echo "Documentation available at: http://network-wrangler.github.io/projectcard/${{ env.docs_version_name }}"

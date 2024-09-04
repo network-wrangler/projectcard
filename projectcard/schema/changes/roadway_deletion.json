@@ -27,6 +27,16 @@
 	"additionalProperties" : false,
 	"properties": {
 	    "links": {"$ref": "../roadway/selection/select_links.json"},
-		"nodes": {"$ref": "../roadway/selection/select_nodes.json"}
+		"nodes": {"$ref": "../roadway/selection/select_nodes.json"},
+		"clean_shapes": {
+			"type": "boolean",
+			"description": "If true, unused shapes for these links will be removed. Defaults to false.",
+			"default": false
+		},
+		"clean_nodes": {
+			"type": "boolean",
+			"description": "If true, unused nodes for these links will be removed. Defaults to false.",
+			"default": false
+		}
 	}
 }

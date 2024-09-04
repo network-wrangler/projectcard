@@ -9,6 +9,7 @@ from .validate import (
     ProjectCardValidationError,
     SubprojectValidationError,
     validate_card,
+    update_dict_with_schema_defaults,
 )
 
 UNSPECIFIED_PROJECT_NAMES = ["", "TO DO User Define", "USER TO define"]
@@ -20,6 +21,8 @@ CHANGE_TYPES = [
     "roadway_deletion",
     "transit_property_change",
     "transit_routing_change",
+    "transit_service_deletion",
+    "transit_route_addition",
     "pycode",
 ]
 
@@ -39,11 +42,13 @@ class ProjectCard(object):
         sub_projects: list of sub_project objects
     """
 
-    def __init__(self, attribute_dictonary: dict):
+    def __init__(self, attribute_dictonary: dict, use_defaults: bool = True):
         """Constructor for ProjectCard object.
 
         Args:
             attribute_dictonary: a nested dictionary of attributes
+            use_defaults: if True, will use default values for missing required attributes,
+                if exist in schema. Defaults to True.
         """
         # add these first so they are first on write out
         self.project: str = None
@@ -51,7 +56,8 @@ class ProjectCard(object):
         self.dependencies: dict = {}
         self.notes: str = ""
         self._sub_projects: list[SubProject] = []
-
+        if use_defaults:
+            attribute_dictonary = update_dict_with_schema_defaults(attribute_dictonary)
         self.__dict__.update(attribute_dictonary)
         for sp in self.__dict__.get("changes", []):
             sp_obj = SubProject(sp, self)
@@ -195,6 +201,7 @@ class SubProject(ProjectCard):
             sp_dictionary (dict): dictionary of sub-project attributes contained within "changes"
                 list of parent projet card
             parent_project (ProjectCard): ProjectCard object for parent project card
+
         """
         self._parent_project = parent_project
 
@@ -236,12 +243,13 @@ class SubProject(ProjectCard):
     @property
     def facility(self) -> dict:
         """Return facility dictionary from subproject."""
-        if "facility" not in self.__dict__:
+        f = list(_findkeys(self.__dict__, "facility"))
+        if not f:
             raise SubprojectValidationError(
                 f"Couldn't find facility in subproject in project card\
                                             {self._parent_project.project}"
             )
-        return self.__dict__["facility"]
+        return f[0]
 
     @property
     def valid(self) -> bool:
