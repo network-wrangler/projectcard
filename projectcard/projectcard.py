@@ -21,8 +21,8 @@ CHANGE_TYPES = [
     "roadway_deletion",
     "transit_property_change",
     "transit_routing_change",
-    "transit_route_addition",
     "transit_service_deletion",
+    "transit_route_addition",
     "pycode",
 ]
 

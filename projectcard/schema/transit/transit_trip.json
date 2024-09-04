@@ -28,8 +28,11 @@
         "enum":[0,1],
         "description": "Consistent with GTFS definition defining outbound vs inbound routes."
       },
-      "headway_secs":{
-        "type": "array",
+      "headway_secs_item":{
+        "type": "object",
+        "examples": [
+          {"('7:00', '9:00')": 600}
+        ],
         "description": "Headway for each time period."
       }
     },
@@ -42,7 +45,7 @@
         "trip_headsign":{"$ref":"#/$defs/trip_headsign"},
         "trip_short_name":{"$ref":"#/$defs/trip_short_name"},
         "direction_id":{"$ref":"#/$defs/direction_id"},
-        "headway_secs":{"$ref":"#/$defs/headway_secs"},
+        "headway_secs":{"type": "array", "items": {"$ref":"#/$defs/headway_secs_item"}},
         "routing":{"$ref":"transit_routing.json"}
     }
 }
