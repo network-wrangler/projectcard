@@ -1,3 +1,5 @@
+"""Logging module for the projectcard package."""
+
 import logging
 import os
 import sys
@@ -11,10 +13,9 @@ def setup_logging(
     debug_log_filename: str = None,
     log_to_console: bool = False,
 ):
-    """
-    Sets up the CardLogger w.r.t. the debug file location and if logging to console.
+    """Sets up the CardLogger w.r.t. the debug file location and if logging to console.
 
-    args:
+    Args:
         info_log_filename: the location of the log file that will get created to add the INFO log.
             The INFO Log is terse, just gives the bare minimum of details.
             Defaults to file in cwd() `cards_[datetime].log`. To turn off logging to a file,
@@ -24,7 +25,6 @@ def setup_logging(
             `cards_[datetime].log`. To turn off logging to a file, use log_filename = None.
         log_to_console: if True, logging will go to the console at DEBUG level. Defaults to False.
     """
-
     # add function variable so that we know if logging has been called
     setup_logging.called = True
 

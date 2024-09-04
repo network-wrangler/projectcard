@@ -1,0 +1,45 @@
+project: New Green Transit
+tags:
+   - new transit
+transit_route_addition:
+  routes:
+    - route_id: abc
+      route_long_name: green_line
+      route_short_name: green
+      route_type: 3
+      agency_id: The Bus
+      trips:
+        - direction_id: 0
+          headway_secs:
+            - ('6:00','12:00'): 600
+            - ('12:00','13:00'): 900
+          routing:
+            - 1:
+                stop: true #when stop is set to True, defaults to allow both boarding and alighting
+            - 2
+            - 3
+            - 4:
+                stop: true # default to False, specify only when stopping
+                alight: false  # default to True, specify only when not default
+            - 5
+            - 6:
+                stop: true
+        - direction_id: 1
+          headway_secs:
+            - ('6:00','12:00'): 600
+            - ('12:00','13:00'): 900
+          routing:
+            - 6:
+                stop: true
+            - 5:
+                stop: true
+                dwell_sec: 30
+            - 4:
+                stop: true
+            - 6
+            - 3:
+                time_to_next_node_sec: 90
+            - 2:
+                stop: true
+            - 1:
+                stop: true

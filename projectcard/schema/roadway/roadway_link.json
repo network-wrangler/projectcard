@@ -35,6 +35,7 @@
     "distance": {
       "type": "number",
       "title": "Distance",
+      "description":"Distance of facility in miles. If not provided, will be calculated provided nodes",
       "minimum": 0,
       "examples": [93.08]
     },
@@ -58,7 +59,7 @@
     },
     "roadway":{
       "type": "string",
-      "enum":["motorway","trunk","primary","secondary","tertiary","unclassified","residential","motorway_link","trunk_link","primary_link","secondary_link","tertiary_link","living_street","service","pedestrian","footway","steps","cycleway","track","bus_guideway","road"],
+      "enum":["taz","motorway","trunk","primary","secondary","tertiary","unclassified","residential","motorway_link","trunk_link","primary_link","secondary_link","tertiary_link","living_street","service","pedestrian","footway","steps","cycleway","track","bus_guideway","road"],
       "default":"road",
       "description":"Roadway type, using [OSM Highway values](https://wiki.openstreetmap.org/wiki/Key:highway#Roads). Notes: * `X_link` roadway types denote linkage roads going to/from roadway type X (i.e. on/off ramps, etc). * `road` denotes unknown type."
     },
@@ -169,6 +170,7 @@
         {"type": "number","minimum":0},
         {"$ref": "#/$defs/scoped_number_property_value"}
       ],
+      "default": 0,
       "examples": [0.75,2.90,{"default":1,"timeofday":{"time":["6:00","9:00"],"value":2}}],
       "description": "Price of facility, either as a positive number of a complex type by time of day and/or access category."
     },
@@ -195,10 +197,12 @@
     },
     "bus_only":{
       "type":["integer","boolean"],
+      "default": 0,
       "description": "Indicates if a facility is rail-only if True.  Must not be true if any of walk_access, bike_access, drive_access, rail_only are True."
     },
     "rail_only":{
       "type":["integer","boolean"],
+      "default": 0,
       "description": "Indicates if a facility is rail-only if True.  Must not be true if any of walk_access, bike_access, drive_access, bus_only are True."
     },
     "segment_id":{
@@ -224,9 +228,7 @@
     "lanes",
     "walk_access",
     "bike_access",
-    "drive_access",
-    "bus_only",
-    "rail_only"
+    "drive_access"
   ],
   "examples":[
     {
@@ -260,14 +262,16 @@
     "price":{"$ref": "#/$defs/price"},
     "ML_lanes":{"$ref": "#/$defs/lanes"},
     "ML_price":{"$ref": "#/$defs/ML_price"},
-    "ML_access":{"$ref": "#/$defs/ML_access_egress"},
-    "ML_egress":{"$ref": "#/$defs/ML_access_egress"},
+    "ML_access_point":{"$ref": "#/$defs/ML_access_egress"},
+    "ML_egress_point":{"$ref": "#/$defs/ML_access_egress"},
     "walk_access":{"$ref": "#/$defs/walk_access"},
     "bike_access":{"$ref": "#/$defs/bike_access"},
     "bike_facility":{"$ref": "#/$defs/bike_facility"},
     "drive_access":{"$ref": "#/$defs/drive_access"},
     "bus_only":{"$ref": "#/$defs/bus_only"},
     "rail_only":{"$ref": "#/$defs/rail_only"},
-    "segment_id":{"$ref": "#/$defs/segment_id"}
+    "segment_id":{"$ref": "#/$defs/segment_id"},
+    "ignore_missing": {"type": "boolean"},
+    "all": {"type": "boolean"}
   }
 }

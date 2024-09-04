@@ -1,17 +1,16 @@
-"""Testing of schemas
+"""Testing of schemas.
 
 USAGE:
     pytest tests/test_schemas.py
 """
-import logging
+
 import os
 from pathlib import Path
 
 import pytest
-from jsonschema import validate
 
 from projectcard import CardLogger, validate_schema_file
-from projectcard.validate import _load_schema, _open_json, package_schema
+from projectcard.validate import _load_schema, _open_json, package_schema, validate_card
 
 
 def test_schemas_valid_json(all_schema_files):
@@ -34,7 +33,7 @@ def test_individual_schemas(all_schema_files):
 
 @pytest.fixture(scope="session")
 def all_bad_schema_files(test_dir):
-    """Schema files which should fail"""
+    """Schema files which should fail."""
     schemas_dir = Path(test_dir) / "data" / "schemas"
     bad_schema_files = [p for p in schemas_dir.glob("**/*bad.json")]
     return bad_schema_files
@@ -61,5 +60,5 @@ def test_json_schema_examples_valid(all_schema_files):
         schema = _load_schema(s)
         if "examples" in schema:
             for example in schema["examples"]:
-                validate(example, schema=schema)
+                validate_card(example, schema_path=s)
     CardLogger.info(f"Evaluated examples valid for {len(all_schema_files)} schema files")

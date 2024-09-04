@@ -1,12 +1,8 @@
-"""Testing of schemas
+"""Testing of schemas.
 
 USAGE:
     pytest tests/test_schemas.py
 """
-
-import os
-
-import pytest
 
 from projectcard.io import _change_keys
 

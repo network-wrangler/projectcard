@@ -1,16 +1,18 @@
+"""Functions for mkdocs documentation."""
+
 import logging
 import os
 import re
 from pathlib import Path
 
 from projectcard import ProjectCard
+from projectcard.utils import slug_to_str
 
-SCHEMA_DIR = "schema"
+SCHEMA_DIR = Path("projectcard") / "schema"
 
 
 def define_env(env):
-    """
-    This is the hook for defining variables, macros and filters
+    """This is the hook for defining variables, macros and filters.
 
     - variables: the dictionary that contains the environment variables
     - macro: a decorator function, to declare a macro.
@@ -23,8 +25,8 @@ def define_env(env):
             GenerationConfiguration,
         )
 
-        _rel_schema_path = os.path.join(SCHEMA_DIR, schema_filename)
-        _abs_schema_path = Path(_rel_schema_path).absolute()
+        _rel_schema_path = SCHEMA_DIR / schema_filename
+        _abs_schema_path = _rel_schema_path.absolute()
         if not os.path.exists(_abs_schema_path):
             raise ValueError(f"Schema doesn't exist at: {_abs_schema_path}")
 
@@ -55,12 +57,11 @@ def define_env(env):
 
     @env.macro
     def include_file(filename: str, downshift_h1=True, start_line: int = 0, end_line: int = None):
-        """
-        Include a file, optionally indicating start_line and end_line.
+        """Include a file, optionally indicating start_line and end_line.
 
         Will create redirects if specified in FIND_REPLACE in main.py.
 
-        args:
+        Args:
             filename: file to include, relative to the top directory of the documentation project.
             downshift_h1: If true, will downshift headings by 1 if h1 heading found.
                 Defaults to True.
@@ -93,18 +94,18 @@ def define_env(env):
 
         return content
 
-    def _categories_as_str(card: "ProjectCard") -> str:
+    def _categories_as_str(card: ProjectCard) -> str:
         if len(card.change_types) == 1:
-            return card.change_type
+            return slug_to_str(card.change_type)
 
-        _cat_str = "Multiple Change Categories:<ul>\n"
-        _cat_str += "".join([f"<li>{c}</li>\n" for c in card.change_types])
-        _cat_str += "</ul>"
+        _cat_str = "Multiple: "
+        _cat_str += ", ".join([f"{slug_to_str(c)}" for c in list(set(card.change_types))])
+        return _cat_str
 
-    def _card_to_md(card: "ProjectCard") -> str:
-        _card_md = f"\n###{card.project}\n\n"
+    def _card_to_md(card: ProjectCard) -> str:
+        _card_md = f"\n###{card.project.title()}\n\n"
         _card_md += f"**Category**: {_categories_as_str(card)}\n"
-        _card_md += "```yml\n\n"
+        _card_md += f'``` yaml title="examples/{Path(card.file).name}"\n\n'
         _card_md += include_file((card.__dict__["file"]), downshift_h1=False)
         _card_md += "\n```\n"
         return _card_md
@@ -112,6 +113,7 @@ def define_env(env):
     @env.macro
     def list_examples(data_dir: str) -> str:
         """Outputs a simple list of the directories in a folder in markdown.
+
         Args:
             data_dir (str):directory to search in
         Returns:
@@ -119,24 +121,28 @@ def define_env(env):
         """
         from projectcard.io import _make_slug, read_cards
 
-        table_fields = ["Category"]
+        table_fields = ["Category", "Notes"]
 
         data_dir = os.path.join(env.project_dir, data_dir)
 
-        _md_examples = f"\n## Cards\n"
+        _md_examples = "\n## Cards\n"
         _md_table = (
-            "| **Name** | "
+            "| **Name** | **"
             + "** | **".join(table_fields)
-            + " |\n| "
+            + "** |\n| "
             + " ----- | " * (len(table_fields) + 1)
             + "\n"
         )
 
         def _card_to_mdrow(card, fields):
-            _md_row = f"| [{card.project}](#{_make_slug(card.project).replace('_','-')}) | "
-            _md_row += f"{_categories_as_str(card)}" " |\n"
+            _md_row = (
+                f"| [{card.project.title()}](#{_make_slug(card.project).replace('_','-')}) | "
+            )
+            _md_row += f" {_categories_as_str(card)} |"
+            _md_row += f" {card.notes} |\n"
             return _md_row
 
+        _example_cards = None
         _example_cards = read_cards(data_dir)
 
         for _card in _example_cards.values():
@@ -167,6 +173,7 @@ def _get_html_between_tags(content: str, tag: str = "body") -> str:
 
 def _rm_html_between_tags(content: str, tag: str = "footer") -> str:
     """Returns string without the tags if they are found. If not, returns whole string.
+
     Only removes first found instance.
 
     Args:

@@ -1,0 +1,174 @@
+project: AG2Cleanup
+tags: 'hi'
+dependencies: ''
+notes: null
+changes:
+- category: Roadway Deletion
+  links:
+    model_link_id:
+    - 66150
+    - 473463
+- category: Add New Roadway
+  links:
+  - A: 197700
+    B: 896903
+    name: bus ramp
+    roadway: ''
+    drive_access: 1
+    walk_access: 0
+    bike_access: 0
+    county: 4
+    model_link_id: 1750193
+    rail_only: 0
+    bus_only: 1
+    centroidconnect: 0
+    assign_group: 98
+    roadway_class: 40
+    area_type: 5
+    bike: 0
+    walk: 0
+    lanes: 1
+  - A: 896903
+    B: 197700
+    name: bus ramp
+    roadway: Ramp
+    drive_access: 1
+    walk_access: 0
+    bike_access: 0
+    county: 4
+    model_link_id: 1750193
+    rail_only: 0
+    bus_only: 1
+    centroidconnect: 0
+    assign_group: 98
+    roadway_class: 40
+    area_type: 5
+    bike: 0
+    walk: 0
+    lanes: 1
+- category: Roadway Property Change
+  facility:
+    link:
+    - model_link_id:
+      - 968136
+      - 751993
+      - 974518
+      - 678886
+      - 985084
+      - 844139
+  properties:
+  - existing: 20.0
+    set: 40.0
+    property: roadway_class
+- category: Roadway Property Change
+  facility:
+    link:
+    - model_link_id:
+      - 327792
+      - 196409
+      - 319962
+  properties:
+  - set: 15.0
+    property: assign_group
+  - existing: 30.0
+    set: 20.0
+    property: roadway_class
+- category: Roadway Property Change
+  facility:
+    link:
+    - model_link_id:
+      - 414903
+      - 288023
+      - 473626
+      - 247756
+  properties:
+  - set: 15.0
+    property: assign_group
+  - existing: 40.0
+    set: 20.0
+    property: roadway_class
+- category: Roadway Property Change
+  facility:
+    link:
+    - model_link_id:
+      - 83453
+      - 373903
+      - 298899
+  properties:
+  - set: 15.0
+    property: assign_group
+  - existing: 60.0
+    set: 20.0
+    property: roadway_class
+- category: Roadway Property Change
+  facility:
+    link:
+    - model_link_id:
+      - 105761
+      - 89672
+  properties:
+  - set: 15.0
+    property: assign_group
+- category: Roadway Property Change
+  facility:
+    link:
+    - model_link_id:
+      - 388191
+  properties:
+  - set: 5.0
+    property: assign_group
+  - existing: 10.0
+    set: 20.0
+    property: roadway_class
+- category: Roadway Property Change
+  facility:
+    link:
+    - model_link_id:
+      - 275190
+      - 3114
+      - 59674
+  properties:
+  - set: 5.0
+    property: assign_group
+  - existing: 15.2
+    set: 55.8
+    property: speed
+- category: Roadway Property Change
+  facility:
+    link:
+    - model_link_id:
+      - 12242
+      - 521487
+  properties:
+  - set: 5.0
+    property: assign_group
+- category: Roadway Property Change
+  facility:
+    link:
+    - model_link_id:
+      - 625691
+      - 194806
+  properties:
+  - set: 50.0
+    property: assign_group
+  - existing: 10.0
+    set: 50.0
+    property: roadway_class
+- category: Roadway Property Change
+  facility:
+    link:
+    - model_link_id:
+      - 1018645
+      - 449048
+  properties:
+  - set: 6.0
+    property: assign_group
+- category: Roadway Property Change
+  facility:
+    link:
+    - model_link_id:
+      - 559559
+  properties:
+  - set: 7.0
+    property: assign_group
+valid: false

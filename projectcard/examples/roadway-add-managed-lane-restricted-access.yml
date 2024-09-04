@@ -1,7 +1,7 @@
 project: Example I394 Parallel Lanes
 tags: ['managed lanes']
-notes: Need to adjust normal lanes
-roadway_managed_lanes:
+notes: demonstrates how to add managed lanes to an existing roadway with restricted access
+roadway_property_change:
   facility:
     links:
       model_link_id:
@@ -12,14 +12,14 @@ roadway_managed_lanes:
   property_changes:
     ML_lanes:
       set: 0
-      timeofday:
+      scoped:
       - timespan: ['6:00', '9:00']
         set: 1
       - timespan: ['15:00', '18:00']
         set: 1
     lanes:
       change: 0
-      timeofday:
+      scoped:
       - timespan: ['6:00', '9:00']
         change: -1
       - timespan: ['15:00', '18:00']

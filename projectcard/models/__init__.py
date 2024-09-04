@@ -1,5 +1,4 @@
-"""
-Access to pydantic and pandera data models for projectcard.
+"""Access to pydantic data models for the projectcard package generated from /schema jsonschema files.
 
 NOTE: if pandera is not installed they will provide no actual functionality
 (but they shouldn't crash either)
@@ -15,14 +14,14 @@ class MockPydModel:
 try:
     import pydantic
 
-    if pydantic.__version__.startswith('1'):
-        raise ImportError
+    if pydantic.__version__.startswith("2"):
+        from .generated.v2 import *
     else:
         from .records import *
 except ImportError:
     # Mock the data models
     globals().update(
         {
-            '*': MockPydModel(),
+            "generated": MockModule(),
         }
     )

@@ -1,8 +1,8 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+"""Functions for reading and writing project cards."""
+
+from __future__ import annotations
 
 import json
-import logging
 import os
 from pathlib import Path
 from typing import Callable, Collection, Mapping, Union
@@ -15,16 +15,23 @@ from .projectcard import VALID_EXT, ProjectCard
 
 
 class ProjectCardReadError(Exception):
+    """Error in reading project card."""
+
     pass
 
 
-def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):
+SKIP_READ = ["valid"]
+SKIP_WRITE = ["valid"]
+
+
+def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT, recursive: bool = False):
     """Returns a list of valid paths to project cards given a search string.
 
     Args:
         filepath: where the project card is.  A single path, list of paths,
             a directory, or a glob pattern.
         valid_ext: list of valid file extensions
+        recursive: if True, will search recursively in subdirs
 
     Returns: list of valid paths to project cards
     """
@@ -37,7 +44,10 @@ def _get_cardpath_list(filepath, valid_ext: Collection[str] = VALID_EXT):
         _paths = [Path(f) for f in filepath]
     elif (isinstance(filepath, Path) or isinstance(filepath, str)) and Path(filepath).is_dir():
         CardLogger.debug(f"Getting all files in: {filepath}")
-        _paths = [Path(p) for p in Path(filepath).glob("*")]
+        if recursive:
+            _paths = [Path(p) for p in Path(filepath).rglob("*") if p.is_file()]
+        else:
+            _paths = [Path(p) for p in Path(filepath).glob("*")]
     else:
         raise ProjectCardReadError(f"filepath: {filepath} not understood.")
     CardLogger.debug(f"All paths: {_paths}")
@@ -83,38 +93,90 @@ DROP_ON_WRITE = ["file", "valid", "sub_projects"]
 
 
 def write_card(project_card, filename: str = None):
-    """
-    Writes project card dictionary to YAML file
-    """
+    """Writes project card dictionary to YAML file."""
     if not filename:
         filename = _make_slug(project_card.project) + ".yml"
     if not project_card.valid:
         CardLogger.warning(f"{project_card.project} Project Card not valid.")
-
-    # Write out in order that we want to see in the file
     out_dict = {}
+
+    # Writing these first manually so that they are at top of file
     out_dict["project"] = None
-    out_dict["tags"] = ""
-    out_dict["dependencies"] = ""
-    out_dict.update(project_card.__dict__)
+    if project_card.dict.get("tags"):
+        out_dict["tags"] = None
+    if project_card.dict.get("dependencies"):
+        out_dict["dependencies"] = None
+    out_dict.update(project_card.dict)
+    for k in SKIP_WRITE:
+        if k in out_dict:
+            del out_dict[k]
+
+    yaml_content = dict_to_yaml_with_comments(out_dict)
 
     for key in DROP_ON_WRITE:
         out_dict.pop(key, None)
 
     with open(filename, "w") as outfile:
-        yaml.dump(out_dict, outfile, default_flow_style=False, sort_keys=False)
+        outfile.write(yaml_content)
 
     CardLogger.info("Wrote project card to: {}".format(filename))
 
 
+def dict_to_yaml_with_comments(d):
+    """Converts a dictionary to a YAML string with comments."""
+    yaml_str = yaml.dump(d, default_flow_style=False, sort_keys=False)
+    yaml_lines = yaml_str.splitlines()
+    final_yaml_lines = []
+
+    for line in yaml_lines:
+        if "#" in line:
+            final_yaml_lines.append(f"#{line}")
+        else:
+            final_yaml_lines.append(line)
+
+    return "\n".join(final_yaml_lines)
+
+
 def _make_slug(text, delimiter: str = "_"):
-    """
-    makes a slug from text
-    """
+    """Makes a slug from text."""
     import re
 
     text = re.sub("[,.;@#?!&$']+", "", text.lower())
     return re.sub("[\ ]+", delimiter, text)
+
+
+def _replace_selected(txt: str, change_dict: dict = REPLACE_KEYS):
+    """Will returned uppercased text if matches a select set of values.
+
+    Otherwise returns same text.
+
+    Args:
+        txt: string
+        change_dict: dictionary of key value pairs to replace
+    """
+    return change_dict.get(txt, txt)
+
+
+def _change_keys(obj: dict, convert: Callable = _replace_selected) -> dict:
+    """Recursively goes through the dictionary obj and replaces keys with the convert function.
+
+    Args:
+        obj: dictionary object to convert keys of
+        convert: convert function from one to other
+
+    Source: https://stackoverflow.com/questions/11700705/how-to-recursively-replace-character-in-keys-of-a-nested-dictionary
+    """
+    if isinstance(obj, (str, int, float)):
+        return obj
+    if isinstance(obj, dict):
+        new = obj.__class__()
+        for k, v in obj.items():
+            new[convert(k)] = _change_keys(v, convert)
+    elif isinstance(obj, (list, set, tuple)):
+        new = obj.__class__(_change_keys(v, convert) for v in obj)
+    else:
+        return obj
+    return new
 
 
 _read_method_map = {
@@ -130,7 +192,7 @@ _read_method_map = {
 def read_card(filepath: str, validate: bool = False):
     """Read single project card from a path and return project card object.
 
-    args:
+    Args:
         filepath: file where the project card is.
         validate: if True, will validate the project card schemea
     """
@@ -146,7 +208,8 @@ def read_card(filepath: str, validate: bool = False):
 def read_cards(
     filepath: Union[Collection[str], str],
     filter_tags: Collection[str] = [],
-    _cards: Mapping[str, ProjectCard] = {},
+    recursive: bool = False,
+    _cards: Mapping[str, ProjectCard] = None,
 ) -> Mapping[str, ProjectCard]:
     """Reads collection of project card files by inferring the file type.
 
@@ -155,14 +218,22 @@ def read_cards(
     Args:
         filepath: where the project card is.  A single path, list of paths,
             a directory, or a glob pattern.
+        filter_tags: list of tags to filter by.
+        recursive: if True, will search recursively in subdirs.
+        _cards: dictionary of project cards to add to. Should not be used by user.
 
     Returns: dictionary of project cards by project name
     """
     CardLogger.debug(f"Reading cards from {filepath}.")
 
+    if _cards is None:
+        _cards = {}
+
     filter_tags = list(map(str.lower, filter_tags))
     if isinstance(filepath, list) or not os.path.isfile(filepath):
-        _card_paths = _get_cardpath_list(filepath, valid_ext=_read_method_map.keys())
+        _card_paths = _get_cardpath_list(
+            filepath, valid_ext=_read_method_map.keys(), recursive=recursive
+        )
         for p in _card_paths:
             _cards.update(read_cards(p, filter_tags=filter_tags, _cards=_cards))
         return _cards
@@ -172,6 +243,10 @@ def read_cards(
         CardLogger.debug(f"Unsupported file type for file {filepath}")
         raise ProjectCardReadError(f"Unsupported file type: {_ext}")
     _card_dict = _read_method_map[_ext](filepath)
+    for k in SKIP_READ:
+        if k in _card_dict:
+            del _card_dict[k]
+    _card_dict = {k: v for k, v in _card_dict.items() if v is not None}
     _card_dict = _change_keys(_card_dict)
     _card_dict["file"] = filepath
     _project_name = _card_dict["project"].lower()

@@ -3,6 +3,7 @@
   "description": "requirements for describing links in the `facility` section of a project card.",
   "type":"object",
   "title": "Roadway link selection",
+  "required": ["ignore_missing"],
   "oneOf": [
     {"required":["name"]},
     {"required":["ref"]},
@@ -40,6 +41,7 @@
       "ref":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/ref"}},
       "osm_link_id":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/osm_link_id"}},
       "model_link_id":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/model_link_id"}},
-      "modes": {"type": "array","items": {"$ref": "../../defs/mode.json"}}
+      "modes": {"type": "array","items": {"$ref": "../../defs/mode.json"}},
+      "ignore_missing": {"type": "boolean","description": "If true, missing links for explicit ID selections will be ignored. Defaults to true.","default": true}
     }
   }

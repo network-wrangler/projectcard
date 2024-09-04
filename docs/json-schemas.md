@@ -1,5 +1,7 @@
 # Schema Documentation
 
-TODO - make this look a lot better
+!!! warning
+
+    The switch from json-schema to Pydantic is  WIP therefore this doesn't look too pretty, but is hopefully a temporary state.
 
 {{ document_schema(schema_filename="projectcard.json") }}

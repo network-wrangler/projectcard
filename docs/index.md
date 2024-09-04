@@ -1,6 +1,6 @@
 # Project Cards
 
-Project Cards
+Project Cards represent information about a tranportation infrastructure projects sufficient for usage in a regional travel demand model.
 
 ## Schema
 
@@ -16,7 +16,25 @@ Example project cards can be found in the `/examples` directory and on the [exam
 
 ## Basic Usage
 
-### Reading cards
+This package should generally be used to validate or update project cards.  
+
+There is also a limited object model, `ProjectCard` which can be used to organize and manage project cards.
+
+### Command Line
+
+Validate project card(s) from a directory or specific file path, optionally filtering by a tag.
+
+```sh
+validate_card card_search_dir --filter_tags ['tag_to_search_for']
+```
+
+Update older project card(s) to current format from a directory or specific file path.  Cards should still be validated afterwards.
+
+```sh
+update_projectcard_schema card_search_dir output_dir
+```
+
+### Python API
 
 ```python
 from projectcard.io import read_cards
@@ -32,48 +50,14 @@ for project_name,card in project_cards.items():
 print(project_cards["4th Ave Busway"])
 ```
 
-### Validating a function input conforms to a sub-schema
-
-```python
-
-from pydantic import validate_call
-from projectcard.models import SelectSegment
-
-@validate_call
-def select_segment_in(data: SelectSegment):
-    # Add your function code here which expects taht data conforms to a segment selection
-    pass
-
-```
-
 ## Installation
 
-Generally it is not necessary to install the projectcard package as the main purpose of this repository is to maintain the project card *schema*.
+`pip install projectcard`
 
-## Development Environment
+!!! tip "Note"
 
-1. [Fork](https://github.com/network-wrangler/projectcard/fork) and clone repo locally
+    It is **not generally necessary to install the projectcard package yourself** unless you are using it to do independent validation of project cards. Projects such as `network_wrangler` that use the `projectcard` package to validate project cards usually include `projectcard` as a requirement and install it on their own.
 
-2. Install dependencies
+!!! note "Plan on developing in network wrangler?"
 
-```sh
-conda install --yes --file requirements.txt
-```
-
-or
-
-```sh
-pip install -r requirements.txt
-```
-
-3. Install from working directory
-
-```sh
-pip install -e .
-```
-
-## Production Environment
-
-```sh
-pip install git+https://github.com/network-wrangler/projectcard@main#egg=projectcard
-```
+    You might want to follow the directions in the [development](development.md) documentation.

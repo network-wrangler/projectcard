@@ -1,14 +1,18 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = [
+    "setuptools>=60",
+    "setuptools-scm>=8.0",
+    "wheel"
+]
 
 [project]
 name = "projectcard"
-version = "0.0.1"
-description = ""
+dynamic = ["version"]
+description = "Project Cards represent information about a tranportation infrastructure projects sufficient for usage in a regional travel demand model. This package supports validation and usage of this schema."
 license =  {file = "LICENSE"}
 readme = "README.md"
 authors = [
-    { name = "Your Name", email = "your.email@example.com" },
+    { name = "Elizabeth Sall", email = "elizabeth@urbanlabs.io" },
 ]
 
 classifiers = [
@@ -19,13 +23,29 @@ classifiers = [
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
 ]
+dependencies = [
+    "flake8",
+    "jsonref",
+    "jsonschema",
+    "pydantic>=2.0",
+    "pyyaml",
+    "toml",
+]
+
+[tool.setuptools]
+packages = ["projectcard"]
+script-files = ["projectcard/bin/validate_card", "projectcard/bin/update_projectcard_schema"]
+include-package-data = true
+
+[tool.setuptools.dynamic]
+version = {attr = "projectcard.__version__"}
 
 [tool.flake8]
 max-line-length = 99
 ignore = [
     "E203",  # whitespace before ':'
     "E266",  # too many leading '#' for block comment
-    "E501",  # line too long (82 > 79 characters)
+    "E501",  # line too long
     "W503",  # line break before binary operator
     "F401",  # imported but unused
     "E231",  # missing whitespace after ','
@@ -42,6 +62,18 @@ exclude = [
 [tool.pydocstyle]
 convention = "google"
 
-[tool.black]
-skip-string-normalization = true
-line-length = 100
+[tool.ruff]
+exclude = [
+    "projectcard/models/**",
+]
+line-length = 99
+
+[tool.ruff.lint]
+select = ["D"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D103", "D106", "D101", "D104", "D100"]
+"**/__init__.py" = ["F401", "F403"]

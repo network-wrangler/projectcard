@@ -1,17 +1,17 @@
 {
 	"$schema": "http://json-schema.org/draft-07/schema#",
-    "type": "object",
+	"type": "object",
 	"required": [
 		"service",
 		"property_changes"
 	],
 		"additionalProperties" : false,
 		"properties": {
-		   "service": {"$ref": "../transit/selection/select_trips.json"},
-		   "property_changes": {
+			"service": {"$ref": "../transit/selection/select_trips.json"},
+			"property_changes": {
 				"type": "object",
 				"minItems":1,
 				"patternProperties":{".*": {"$ref": "defs/property_set.json"}}
 			}
 		}
-	}
+}

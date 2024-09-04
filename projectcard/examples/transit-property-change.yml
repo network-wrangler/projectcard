@@ -1,4 +1,5 @@
 project: Blue Line Service Enhancement A
+notes: changes headway for a single trip during the morning peak
 tags:
    - example
 transit_property_change:
@@ -6,7 +7,7 @@ transit_property_change:
     trip_properties:
       trip_id:
         - 14940701-JUN19-MVS-BUS-Weekday-01
-    timespans: 
+    timespans:
       - ['06:00:00', '09:00:00']
   property_changes:
     headway_secs:
