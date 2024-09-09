@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://network-wrangler.github.io/projectcard/add-overwrite-conflicting-scoped-properties/</loc>
+         <lastmod>2024-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://network-wrangler.github.io/projectcard/add-overwrite-conflicting-scoped-properties/api/</loc>
+         <lastmod>2024-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://network-wrangler.github.io/projectcard/add-overwrite-conflicting-scoped-properties/development/</loc>
+         <lastmod>2024-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://network-wrangler.github.io/projectcard/add-overwrite-conflicting-scoped-properties/examples/</loc>
+         <lastmod>2024-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://network-wrangler.github.io/projectcard/add-overwrite-conflicting-scoped-properties/json-schemas/</loc>
+         <lastmod>2024-09-09</lastmod>
+    </url>
+    <url>
+         <loc>https://network-wrangler.github.io/projectcard/add-overwrite-conflicting-scoped-properties/pydantic-datamodels/</loc>
+         <lastmod>2024-09-09</lastmod>
+    </url>
+</urlset>

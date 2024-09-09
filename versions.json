@@ -25,6 +25,11 @@
     "aliases": []
   },
   {
+    "version": "add-overwrite-conflicting-scoped-properties",
+    "title": "add-overwrite-conflicting-scoped-properties",
+    "aliases": []
+  },
+  {
     "version": "add-new-transit-route",
     "title": "add-new-transit-route",
     "aliases": []
