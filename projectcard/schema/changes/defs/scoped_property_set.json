@@ -6,8 +6,8 @@
         "change_num": {"type": "number"},
         "overwrite_scoped": {
           "type":"string",
-          "enum":["all","conflicting","none"],
-          "default":"none",
+          "enum":["all","conflicting","false"],
+          "default":"false",
           "description":"If 'all', all scoped items will be overwritten. If 'conflicting', only conflicting scoped items will be overwritten. If 'none', no scoped items will be overwritten and error will be raised if there are conflicts."
         },
         "scoped_property_set_item":{
