@@ -15,6 +15,7 @@ roadway_property_change:
       scoped:
       - timespan: ['6:00', '9:00']
         set: 1
+        overwrite_conflicts: true
       - timespan: ['15:00', '18:00']
         set: 1
     lanes:
