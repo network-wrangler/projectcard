@@ -129,7 +129,7 @@ def test_update_project_card_with_defaults():
 
     project_card_data = {
         "project": "Delete Transit",
-        "transit_service_deletion": {"service": {"trip_properties": {"trip_id":["trip_1"]}}},
+        "transit_service_deletion": {"service": {"trip_properties": {"trip_id": ["trip_1"]}}},
     }
     card = ProjectCard(project_card_data)
     CardLogger.debug(f"card:\n{card}")

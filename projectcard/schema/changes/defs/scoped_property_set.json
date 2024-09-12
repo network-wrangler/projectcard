@@ -4,6 +4,12 @@
     "$defs": {
         "set_num": {"type": "number", "minimum": 0},
         "change_num": {"type": "number"},
+        "overwrite_scoped": {
+          "type":"string",
+          "enum":["all","conflicting","false"],
+          "default":"false",
+          "description":"If 'all', all scoped items will be overwritten. If 'conflicting', only conflicting scoped items will be overwritten. If 'none', no scoped items will be overwritten and error will be raised if there are conflicts."
+        },
         "scoped_property_set_item":{
             "type": "object",
             "examples": [
@@ -27,7 +33,8 @@
               "set": {"$ref": "#/$defs/set_num"},
               "change": {"$ref": "#/$defs/change_num"},
               "category": {"type":"array"},
-              "timespan": {"$ref": "../../defs/timespan.json"}
+              "timespan": {"$ref": "../../defs/timespan.json"},
+              "overwrite_conflicting": {"type":"boolean", "default":false, "description":"If true, this item will overwrite any conflicting scoped items. If false, this item will be error if there is a conflicting item."}
               }
           }
     },
@@ -45,6 +52,7 @@
         "existing" : {"type": ["number", "string"]},
         "set" : {"$ref": "#/$defs/set_num"},
         "change" : {"$ref": "#/$defs/change_num"},
-        "scoped" : {"type":"array","items": {"$ref": "#/$defs/scoped_property_set_item"}}
+        "scoped" : {"type":"array","items": {"$ref": "#/$defs/scoped_property_set_item"}},
+        "overwrite_scoped": {"$ref": "#/$defs/overwrite_scoped"}
     }
 }

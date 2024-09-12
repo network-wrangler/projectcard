@@ -31,6 +31,7 @@ roadway_property_change:
           set: 1
     ML_price:
       set: 0
+      overwrite_scoped: "all"
       scoped:
         - timespan: ['6:00', '9:00']
           category: ['sov']
