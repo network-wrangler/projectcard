@@ -5,4 +5,4 @@ from .logger import CardLogger, setup_logging
 from .projectcard import ProjectCard, SubProject
 from .validate import PycodeError, ValidationError, validate_card, validate_schema_file
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
