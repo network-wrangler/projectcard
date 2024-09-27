@@ -962,7 +962,7 @@ specify a list of changes. This is useful when a project requires multiple chang
 to the network. For example, a project to add a new bus route may require adding new bus lanes
 to the roadway network.  Or adding a new, mid-block bus-route may require adding a new bus stop
 as a node in the roadway network and splitting the link.</p>
-<p>While the user can choose what changes should be grouped together into a single, 
+<p>While the user can choose what changes should be grouped together into a single,
 &ldquo;project&rdquo;, they should be careful to ensure that the changes are logically related and would
 likely be implemented together.</p>
 <h5 id="projectcard.models.project.ProjectModel--phased-projects">Phased Projects:<a class="headerlink" href="#projectcard.models.project.ProjectModel--phased-projects" title="Permanent link"> ¶</a></h5>
@@ -970,10 +970,10 @@ likely be implemented together.</p>
 separate project cards for each phase. This will help to ensure that the project can be
 in a network similar to how it would be implemented in the real world.</p>
 <h5 id="projectcard.models.project.ProjectModel--dependencies">Dependencies:<a class="headerlink" href="#projectcard.models.project.ProjectModel--dependencies" title="Permanent link"> ¶</a></h5>
-<p>If a project requires another project to be implemented first, the <code>pre-requisites</code> field 
+<p>If a project requires another project to be implemented first, the <code>pre-requisites</code> field
 of <code>dependencies</code> can be used.  Similarly, if a project would be impossible to implement
 if another project is implemented, the <code>conflicts</code> field of <code>dependencies</code> can be used.
-<code>corequisites</code> can be used to specify projects that must be implemented at the same time - 
+<code>corequisites</code> can be used to specify projects that must be implemented at the same time -
 noting that if Project A specifies Project B as a corequisite, then Project B need not specify
 Project A as a corequisite (if they were dependent upon each other, then they should likely
 be combined into a single project).</p>
@@ -1375,7 +1375,7 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
 </span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="sd">    to the roadway network.  Or adding a new, mid-block bus-route may require adding a new bus stop</span>
 </span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="sd">    as a node in the roadway network and splitting the link.</span>
 </span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32"></a>
-</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">    While the user can choose what changes should be grouped together into a single, </span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="sd">    While the user can choose what changes should be grouped together into a single,</span>
 </span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="sd">    &quot;project&quot;, they should be careful to ensure that the changes are logically related and would</span>
 </span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="sd">    likely be implemented together.</span>
 </span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36"></a>
@@ -1385,10 +1385,10 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
 </span><span id="__span-0-40"><a id="__codelineno-0-40" name="__codelineno-0-40"></a><span class="sd">    in a network similar to how it would be implemented in the real world.</span>
 </span><span id="__span-0-41"><a id="__codelineno-0-41" name="__codelineno-0-41"></a>
 </span><span id="__span-0-42"><a id="__codelineno-0-42" name="__codelineno-0-42"></a><span class="sd">    #### Dependencies:</span>
-</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="sd">    If a project requires another project to be implemented first, the `pre-requisites` field </span>
+</span><span id="__span-0-43"><a id="__codelineno-0-43" name="__codelineno-0-43"></a><span class="sd">    If a project requires another project to be implemented first, the `pre-requisites` field</span>
 </span><span id="__span-0-44"><a id="__codelineno-0-44" name="__codelineno-0-44"></a><span class="sd">    of `dependencies` can be used.  Similarly, if a project would be impossible to implement</span>
 </span><span id="__span-0-45"><a id="__codelineno-0-45" name="__codelineno-0-45"></a><span class="sd">    if another project is implemented, the `conflicts` field of `dependencies` can be used.</span>
-</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">    `corequisites` can be used to specify projects that must be implemented at the same time - </span>
+</span><span id="__span-0-46"><a id="__codelineno-0-46" name="__codelineno-0-46"></a><span class="sd">    `corequisites` can be used to specify projects that must be implemented at the same time -</span>
 </span><span id="__span-0-47"><a id="__codelineno-0-47" name="__codelineno-0-47"></a><span class="sd">    noting that if Project A specifies Project B as a corequisite, then Project B need not specify</span>
 </span><span id="__span-0-48"><a id="__codelineno-0-48" name="__codelineno-0-48"></a><span class="sd">    Project A as a corequisite (if they were dependent upon each other, then they should likely</span>
 </span><span id="__span-0-49"><a id="__codelineno-0-49" name="__codelineno-0-49"></a><span class="sd">    be combined into a single project).</span>
@@ -1572,7 +1572,7 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
 </span><span id="__span-0-256"><a id="__codelineno-0-256" name="__codelineno-0-256"></a>    <span class="n">model_config</span> <span class="o">=</span> <span class="n">ConfigDict</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="s2">&quot;forbid&quot;</span><span class="p">)</span>
 </span><span id="__span-0-257"><a id="__codelineno-0-257" name="__codelineno-0-257"></a>
 </span><span id="__span-0-258"><a id="__codelineno-0-258" name="__codelineno-0-258"></a>    <span class="n">require_one_of</span><span class="p">:</span> <span class="n">ClassVar</span> <span class="o">=</span> <span class="p">[</span>
-</span><span id="__span-0-259"><a id="__codelineno-0-259" name="__codelineno-0-259"></a>        <span class="p">[</span> 
+</span><span id="__span-0-259"><a id="__codelineno-0-259" name="__codelineno-0-259"></a>        <span class="p">[</span>
 </span><span id="__span-0-260"><a id="__codelineno-0-260" name="__codelineno-0-260"></a>            <span class="s2">&quot;roadway_property_change&quot;</span><span class="p">,</span>
 </span><span id="__span-0-261"><a id="__codelineno-0-261" name="__codelineno-0-261"></a>            <span class="s2">&quot;roadway_deletion&quot;</span><span class="p">,</span>
 </span><span id="__span-0-262"><a id="__codelineno-0-262" name="__codelineno-0-262"></a>            <span class="s2">&quot;roadway_addition&quot;</span><span class="p">,</span>
@@ -2550,10 +2550,10 @@ are not otherwise being used. Defaults to False.</p>
 
         <p>Roadway Facility Selection.</p>
 <p>Each selection must have at either: <code>links</code>, <code>nodes</code>, or <code>links</code> and <code>from</code> and <code>to</code>.</p>
-<p>Specifying <code>links</code>, <code>from</code>, and <code>to</code> will attempt to select a continuous path between the 
+<p>Specifying <code>links</code>, <code>from</code>, and <code>to</code> will attempt to select a continuous path between the
     two nodes which as much as possible follows the initial link selection that is provided
-    (e.g. <code>name</code>, <code>osm_link_id</code>, <code>model_link_id</code>, <code>ref</code>) using the specified <code>modes</code>.<br />
-    Secondary selection parameters (e.g. <code>lanes</code>, <code>price</code>) will be used to filter the 
+    (e.g. <code>name</code>, <code>osm_link_id</code>, <code>model_link_id</code>, <code>ref</code>) using the specified <code>modes</code>.
+    Secondary selection parameters (e.g. <code>lanes</code>, <code>price</code>) will be used to filter the
     continuous path - reulting in a final selection of links that may or may not connect
     the two nodes.</p>
 
@@ -2722,10 +2722,10 @@ facility:
 </span><span id="__span-0-167"><a id="__codelineno-0-167" name="__codelineno-0-167"></a>
 </span><span id="__span-0-168"><a id="__codelineno-0-168" name="__codelineno-0-168"></a><span class="sd">    Each selection must have at either: `links`, `nodes`, or `links` and `from` and `to`.</span>
 </span><span id="__span-0-169"><a id="__codelineno-0-169" name="__codelineno-0-169"></a>
-</span><span id="__span-0-170"><a id="__codelineno-0-170" name="__codelineno-0-170"></a><span class="sd">    Specifying `links`, `from`, and `to` will attempt to select a continuous path between the </span>
+</span><span id="__span-0-170"><a id="__codelineno-0-170" name="__codelineno-0-170"></a><span class="sd">    Specifying `links`, `from`, and `to` will attempt to select a continuous path between the</span>
 </span><span id="__span-0-171"><a id="__codelineno-0-171" name="__codelineno-0-171"></a><span class="sd">        two nodes which as much as possible follows the initial link selection that is provided</span>
-</span><span id="__span-0-172"><a id="__codelineno-0-172" name="__codelineno-0-172"></a><span class="sd">        (e.g. `name`, `osm_link_id`, `model_link_id`, `ref`) using the specified `modes`.  </span>
-</span><span id="__span-0-173"><a id="__codelineno-0-173" name="__codelineno-0-173"></a><span class="sd">        Secondary selection parameters (e.g. `lanes`, `price`) will be used to filter the </span>
+</span><span id="__span-0-172"><a id="__codelineno-0-172" name="__codelineno-0-172"></a><span class="sd">        (e.g. `name`, `osm_link_id`, `model_link_id`, `ref`) using the specified `modes`.</span>
+</span><span id="__span-0-173"><a id="__codelineno-0-173" name="__codelineno-0-173"></a><span class="sd">        Secondary selection parameters (e.g. `lanes`, `price`) will be used to filter the</span>
 </span><span id="__span-0-174"><a id="__codelineno-0-174" name="__codelineno-0-174"></a><span class="sd">        continuous path - reulting in a final selection of links that may or may not connect</span>
 </span><span id="__span-0-175"><a id="__codelineno-0-175" name="__codelineno-0-175"></a><span class="sd">        the two nodes.</span>
 </span><span id="__span-0-176"><a id="__codelineno-0-176" name="__codelineno-0-176"></a>
@@ -3316,7 +3316,7 @@ if they are not found. Defaults to True.</p>
 
 
         <p>Selection of transit trips.</p>
-<p>Each selection must have at least one of <code>trip_properties</code>, <code>route_properties</code>, <code>nodes</code>, 
+<p>Each selection must have at least one of <code>trip_properties</code>, <code>route_properties</code>, <code>nodes</code>,
 or <code>links</code>.</p>
 <p>Multiple requirements are treated as an AND condition.</p>
 
@@ -3478,7 +3478,7 @@ links that might be moved/deleted when a roadway is changed.</p>
 <span class="normal"><a href="#__codelineno-0-162">162</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-116"><a id="__codelineno-0-116" name="__codelineno-0-116"></a><span class="k">class</span> <span class="nc">SelectTransitTrips</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="__span-0-117"><a id="__codelineno-0-117" name="__codelineno-0-117"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Selection of transit trips.</span>
 </span><span id="__span-0-118"><a id="__codelineno-0-118" name="__codelineno-0-118"></a>
-</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119"></a><span class="sd">    Each selection must have at least one of `trip_properties`, `route_properties`, `nodes`, </span>
+</span><span id="__span-0-119"><a id="__codelineno-0-119" name="__codelineno-0-119"></a><span class="sd">    Each selection must have at least one of `trip_properties`, `route_properties`, `nodes`,</span>
 </span><span id="__span-0-120"><a id="__codelineno-0-120" name="__codelineno-0-120"></a><span class="sd">    or `links`.</span>
 </span><span id="__span-0-121"><a id="__codelineno-0-121" name="__codelineno-0-121"></a>
 </span><span id="__span-0-122"><a id="__codelineno-0-122" name="__codelineno-0-122"></a><span class="sd">    Multiple requirements are treated as an AND condition.</span>
@@ -4611,7 +4611,7 @@ existing (default, not scoped) value for this property.</p>
             <td>
               <div class="doc-md-description">
                 <p>Optional[Union[int, float]]: Change value for the property change.  If <code>scoped</code> is
-provided, this value will be used as the default value when no scoped value matches. 
+provided, this value will be used as the default value when no scoped value matches.
 Should not be provided if <code>set</code> is provided. This value is assumed to be a scalar
 difference to be applied to the existing value.</p>
               </div>
@@ -4770,7 +4770,7 @@ property change will be skipped.</p>
 </span><span id="__span-0-90"><a id="__codelineno-0-90" name="__codelineno-0-90"></a><span class="sd">        existing: Optional[Any]: Existing value for the property change. Assumption about the</span>
 </span><span id="__span-0-91"><a id="__codelineno-0-91" name="__codelineno-0-91"></a><span class="sd">            existing (default, not scoped) value for this property.</span>
 </span><span id="__span-0-92"><a id="__codelineno-0-92" name="__codelineno-0-92"></a><span class="sd">        change: Optional[Union[int, float]]: Change value for the property change.  If `scoped` is</span>
-</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="sd">            provided, this value will be used as the default value when no scoped value matches. </span>
+</span><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="sd">            provided, this value will be used as the default value when no scoped value matches.</span>
 </span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94"></a><span class="sd">            Should not be provided if `set` is provided. This value is assumed to be a scalar</span>
 </span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95"></a><span class="sd">            difference to be applied to the existing value.</span>
 </span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="sd">        set: Optional[Any]: Value to set the property to. If `scoped` is provided, this value</span>
@@ -5863,7 +5863,7 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Optional[str]: Route short name for the route. See GTFS for more 
+                <p>Optional[str]: Route short name for the route. See GTFS for more
 information: <a href="https://gtfs.org/reference/static/#routes.txt">https://gtfs.org/reference/static/#routes.txt</a>.</p>
               </div>
             </td>
@@ -5875,7 +5875,7 @@ information: <a href="https://gtfs.org/reference/static/#routes.txt">https://gtf
             </td>
             <td>
               <div class="doc-md-description">
-                <p>Optional[str]: Route long name for the route.  See GTFS for more 
+                <p>Optional[str]: Route long name for the route.  See GTFS for more
 information: <a href="https://gtfs.org/reference/static/#routes.txt">https://gtfs.org/reference/static/#routes.txt</a>.</p>
               </div>
             </td>
@@ -5934,9 +5934,9 @@ information: <a href="https://gtfs.org/reference/static/#routes.txt">https://gtf
 </span><span id="__span-0-596"><a id="__codelineno-0-596" name="__codelineno-0-596"></a><span class="sd">        route_id: str: Route ID for the route.</span>
 </span><span id="__span-0-597"><a id="__codelineno-0-597" name="__codelineno-0-597"></a><span class="sd">        agency_id: str: Agency ID for the route. See GTFS for more information:</span>
 </span><span id="__span-0-598"><a id="__codelineno-0-598" name="__codelineno-0-598"></a><span class="sd">            &lt;https://gtfs.org/reference/static/#routes.txt&gt;.</span>
-</span><span id="__span-0-599"><a id="__codelineno-0-599" name="__codelineno-0-599"></a><span class="sd">        route_short_name: Optional[str]: Route short name for the route. See GTFS for more </span>
+</span><span id="__span-0-599"><a id="__codelineno-0-599" name="__codelineno-0-599"></a><span class="sd">        route_short_name: Optional[str]: Route short name for the route. See GTFS for more</span>
 </span><span id="__span-0-600"><a id="__codelineno-0-600" name="__codelineno-0-600"></a><span class="sd">            information: &lt;https://gtfs.org/reference/static/#routes.txt&gt;.</span>
-</span><span id="__span-0-601"><a id="__codelineno-0-601" name="__codelineno-0-601"></a><span class="sd">        route_long_name: Optional[str]: Route long name for the route.  See GTFS for more </span>
+</span><span id="__span-0-601"><a id="__codelineno-0-601" name="__codelineno-0-601"></a><span class="sd">        route_long_name: Optional[str]: Route long name for the route.  See GTFS for more</span>
 </span><span id="__span-0-602"><a id="__codelineno-0-602" name="__codelineno-0-602"></a><span class="sd">            information: &lt;https://gtfs.org/reference/static/#routes.txt&gt;.</span>
 </span><span id="__span-0-603"><a id="__codelineno-0-603" name="__codelineno-0-603"></a><span class="sd">        route_type: int: Route type for the route. See GTFS for more information:</span>
 </span><span id="__span-0-604"><a id="__codelineno-0-604" name="__codelineno-0-604"></a><span class="sd">            &lt;https://gtfs.org/reference/static/#routes.txt&gt;.</span>
