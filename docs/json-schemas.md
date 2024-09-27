@@ -1,7 +1,6 @@
 # Schema Documentation
 
-!!! warning
-
-    The switch from json-schema to Pydantic is  WIP therefore this doesn't look too pretty, but is hopefully a temporary state.
+!!! tip "Find this documentation confusing?"
+    Me too.  That's why we spent a bunch more time documenting the [data models](datamodels.md), which read much more nicely - or you can check out the [examples](examples.md).
 
 {{ document_schema(schema_filename="projectcard.json") }}

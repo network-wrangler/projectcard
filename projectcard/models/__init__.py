@@ -1,8 +1,7 @@
-"""Access to pydantic data models for the projectcard package generated from /schema jsonschema files.
+"""Pydantic data models for the projectcard schema as a convenience product to use in Python tools.
 
-Checks if pydantic v1 vs v2 is installed and imports corresponding data models.
-If pydantic is not installed, its functionality will be "mocked" so that the project card package
-can be used without pydantic.
+Checks if pydantic is installed and imports data models. If pydantic is not installed, its 
+functionality will be "mocked" so that the project card package can be used without pydantic.
 
 NOTE: if pydantic is not installed they will provide no actual functionality
 (but they shouldn't crash either)
@@ -24,13 +23,13 @@ try:
     import pydantic
 
     if pydantic.__version__.startswith("2"):
-        from .generated.v2 import *
+        from .project import ProjectModel
     else:
-        from .generated.v1 import *
+        raise ImportError("Pydantic version is not 2.x.  Use mocked models.")
 except ImportError:
     # Mock the data models
     globals().update(
         {
-            "generated": MockModule(),
+            "projectcard_pyc": MockModule(),
         }
     )
