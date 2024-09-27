@@ -90,7 +90,7 @@ class RoadwayPropertyChange(BaseModel):
         existing: Optional[Any]: Existing value for the property change. Assumption about the
             existing (default, not scoped) value for this property.
         change: Optional[Union[int, float]]: Change value for the property change.  If `scoped` is
-            provided, this value will be used as the default value when no scoped value matches. 
+            provided, this value will be used as the default value when no scoped value matches.
             Should not be provided if `set` is provided. This value is assumed to be a scalar
             difference to be applied to the existing value.
         set: Optional[Any]: Value to set the property to. If `scoped` is provided, this value
@@ -272,7 +272,7 @@ class SelectTransitLinks(BaseModel):
 
 class SelectTransitNodes(BaseModel):
     """Selecting trips that use transit nodes.
-    
+
     Attributes:
         stop_id: List[int]: List of model node IDs to select. Must have at least one node.
             Multiple nodes are treated as an OR or AND based on the `require` attribute.
@@ -318,7 +318,7 @@ class SelectRoadNode(BaseModel):
 
 class RoadNode(BaseModel):
     """Requirements for describing new roadway nodes of a project card.
-    
+
     Attributes:
         model_node_id: int: Model node ID.
         X: Longitude: Longitude of the node.
@@ -505,7 +505,7 @@ class TransitStopProps(BaseModel):
         ```yaml
         stop: false
         ```
-    
+
     !!! Example "Example: Stop with boarding and alighting."
         ```yaml
         stop: true
@@ -591,14 +591,14 @@ class TransitTrip(BaseModel):
 
 class TransitRoute(BaseModel):
     """Description of a new transit route.
-    
+
     Attributes:
         route_id: str: Route ID for the route.
         agency_id: str: Agency ID for the route. See GTFS for more information:
             <https://gtfs.org/reference/static/#routes.txt>.
-        route_short_name: Optional[str]: Route short name for the route. See GTFS for more 
+        route_short_name: Optional[str]: Route short name for the route. See GTFS for more
             information: <https://gtfs.org/reference/static/#routes.txt>.
-        route_long_name: Optional[str]: Route long name for the route.  See GTFS for more 
+        route_long_name: Optional[str]: Route long name for the route.  See GTFS for more
             information: <https://gtfs.org/reference/static/#routes.txt>.
         route_type: int: Route type for the route. See GTFS for more information:
             <https://gtfs.org/reference/static/#routes.txt>.

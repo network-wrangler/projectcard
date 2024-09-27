@@ -116,7 +116,7 @@ class SelectRoadLinks(BaseModel):
 class SelectTransitTrips(BaseModel):
     """Selection of transit trips.
 
-    Each selection must have at least one of `trip_properties`, `route_properties`, `nodes`, 
+    Each selection must have at least one of `trip_properties`, `route_properties`, `nodes`,
     or `links`.
 
     Multiple requirements are treated as an AND condition.
@@ -167,10 +167,10 @@ class SelectFacility(BaseModel):
 
     Each selection must have at either: `links`, `nodes`, or `links` and `from` and `to`.
 
-    Specifying `links`, `from`, and `to` will attempt to select a continuous path between the 
+    Specifying `links`, `from`, and `to` will attempt to select a continuous path between the
         two nodes which as much as possible follows the initial link selection that is provided
-        (e.g. `name`, `osm_link_id`, `model_link_id`, `ref`) using the specified `modes`.  
-        Secondary selection parameters (e.g. `lanes`, `price`) will be used to filter the 
+        (e.g. `name`, `osm_link_id`, `model_link_id`, `ref`) using the specified `modes`.
+        Secondary selection parameters (e.g. `lanes`, `price`) will be used to filter the
         continuous path - reulting in a final selection of links that may or may not connect
         the two nodes.
 

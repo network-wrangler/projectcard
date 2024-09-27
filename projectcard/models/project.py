@@ -30,7 +30,7 @@ class ProjectModel(BaseModel):
     to the roadway network.  Or adding a new, mid-block bus-route may require adding a new bus stop
     as a node in the roadway network and splitting the link.
 
-    While the user can choose what changes should be grouped together into a single, 
+    While the user can choose what changes should be grouped together into a single,
     "project", they should be careful to ensure that the changes are logically related and would
     likely be implemented together.
 
@@ -40,10 +40,10 @@ class ProjectModel(BaseModel):
     in a network similar to how it would be implemented in the real world.
 
     #### Dependencies:
-    If a project requires another project to be implemented first, the `pre-requisites` field 
+    If a project requires another project to be implemented first, the `pre-requisites` field
     of `dependencies` can be used.  Similarly, if a project would be impossible to implement
     if another project is implemented, the `conflicts` field of `dependencies` can be used.
-    `corequisites` can be used to specify projects that must be implemented at the same time - 
+    `corequisites` can be used to specify projects that must be implemented at the same time -
     noting that if Project A specifies Project B as a corequisite, then Project B need not specify
     Project A as a corequisite (if they were dependent upon each other, then they should likely
     be combined into a single project).

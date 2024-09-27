@@ -256,7 +256,7 @@ class ChangeTypes(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     require_one_of: ClassVar = [
-        [ 
+        [
             "roadway_property_change",
             "roadway_deletion",
             "roadway_addition",

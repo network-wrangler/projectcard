@@ -1,6 +1,6 @@
 """Pydantic data models for the projectcard schema as a convenience product to use in Python tools.
 
-Checks if pydantic is installed and imports data models. If pydantic is not installed, its 
+Checks if pydantic is installed and imports data models. If pydantic is not installed, its
 functionality will be "mocked" so that the project card package can be used without pydantic.
 
 NOTE: if pydantic is not installed they will provide no actual functionality
