@@ -7,14 +7,14 @@
         "existing_value_conflict": {
           "type":"string",
           "enum":["error","warn","skip"],
-          "default":"false",
-          "description":"Only used if 'existing' provided in project card and `existing` doesn't match the existing network value. One of `error`, `warn`, or `skip`. `error` will raise an error, `warn` will warn the user, and `skip` will skip the change for that property (note it will still apply any remaining property changes). Will overwrite any WranglerConfig."
+          "default":"warn",
+          "description":"Only used if 'existing' provided in project card and `existing` doesn't match the existing network value. `error` will raise an error, `warn` will warn the user, and `skip` will skip the change for that property (note it will still apply any remaining property changes). Defaults to `warn`."
         },
         "overwrite_scoped": {
           "type":"string",
-          "enum":["all","conflicting","false"],
-          "default":"false",
-          "description":"If 'all', all scoped items will be overwritten. If 'conflicting', only conflicting scoped items will be overwritten. If 'none', no scoped items will be overwritten and error will be raised if there are conflicts."
+          "enum":["all","conflicting","error"],
+          "default":"error",
+          "description":"If 'all', all scoped items will be overwritten. If 'conflicting', only conflicting scoped items will be overwritten. If 'error', no scoped items will be overwritten and error will be raised if there are conflicts."
         },
         "scoped_property_set_item":{
             "type": "object",
@@ -60,6 +60,7 @@
         "set" : {"$ref": "#/$defs/set_num"},
         "change" : {"$ref": "#/$defs/change_num"},
         "scoped" : {"type":"array","items": {"$ref": "#/$defs/scoped_property_set_item"}},
-        "overwrite_scoped": {"$ref": "#/$defs/overwrite_scoped"}
+        "overwrite_scoped": {"$ref": "#/$defs/overwrite_scoped"},
+        "existing_value_conflict": {"$ref": "#/$defs/existing_value_conflict"}
     }
 }
