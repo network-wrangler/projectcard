@@ -9,6 +9,10 @@
          <lastmod>2024-09-27</lastmod>
     </url>
     <url>
+         <loc>https://network-wrangler.github.io/projectcard/main/datamodels/</loc>
+         <lastmod>2024-09-27</lastmod>
+    </url>
+    <url>
          <loc>https://network-wrangler.github.io/projectcard/main/development/</loc>
          <lastmod>2024-09-27</lastmod>
     </url>
@@ -18,10 +22,6 @@
     </url>
     <url>
          <loc>https://network-wrangler.github.io/projectcard/main/json-schemas/</loc>
-         <lastmod>2024-09-27</lastmod>
-    </url>
-    <url>
-         <loc>https://network-wrangler.github.io/projectcard/main/pydantic-datamodels/</loc>
          <lastmod>2024-09-27</lastmod>
     </url>
 </urlset>
