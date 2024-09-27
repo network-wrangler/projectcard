@@ -14,6 +14,12 @@
     "properties" : {
         "existing" : {"type": ["number", "string"]},
         "change" : {"type" : ["number","string"]},
-        "set" : {"type": ["number", "string"]}
+        "set" : {"type": ["number", "string"]},
+        "existing_value_conflict": {
+          "type":"string",
+          "enum":["error","warn","skip"],
+          "default":"warn",
+          "description":"Only used if 'existing' provided in project card and `existing` doesn't match the existing network value. `error` will raise an error, `warn` will warn the user, and `skip` will skip the change for that property (note it will still apply any remaining property changes). Defaults to `warn`."
+        }
     }
 }

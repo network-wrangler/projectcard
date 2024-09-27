@@ -14,7 +14,11 @@ roadway_property_change:
       osm_node_id: '4322'
   property_changes:
     lanes:
-      set: 2
+      existing: 3
+      change: -1
+      existing_value_conflict: error
     bicycle_facility:
+      existing: 1
       set: 3
+      existing_value_conflict: skip
 notes: Simple road diet
