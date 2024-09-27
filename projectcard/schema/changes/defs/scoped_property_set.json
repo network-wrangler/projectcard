@@ -4,6 +4,12 @@
     "$defs": {
         "set_num": {"type": "number", "minimum": 0},
         "change_num": {"type": "number"},
+        "existing_value_conflict": {
+          "type":"string",
+          "enum":["error","warn","skip"],
+          "default":"false",
+          "description":"Only used if 'existing' provided in project card and `existing` doesn't match the existing network value. One of `error`, `warn`, or `skip`. `error` will raise an error, `warn` will warn the user, and `skip` will skip the change for that property (note it will still apply any remaining property changes). Will overwrite any WranglerConfig."
+        },
         "overwrite_scoped": {
           "type":"string",
           "enum":["all","conflicting","false"],
@@ -34,7 +40,8 @@
               "change": {"$ref": "#/$defs/change_num"},
               "category": {"type":"array"},
               "timespan": {"$ref": "../../defs/timespan.json"},
-              "overwrite_conflicting": {"type":"boolean", "default":false, "description":"If true, this item will overwrite any conflicting scoped items. If false, this item will be error if there is a conflicting item."}
+              "overwrite_scoped": {"$ref": "#/$defs/overwrite_scoped"},
+              "existing_value_conflict": {"$ref": "#/$defs/existing_value_conflict"}
               }
           }
     },
