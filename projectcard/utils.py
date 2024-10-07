@@ -47,14 +47,14 @@ def _update_dict_key(dictdata: dict, findkey, replacekey):
     return dictdata
 
 
+def make_slug(text, delimiter: str = "_"):
+    """Makes a slug from text."""
+    import re
+
+    text = re.sub("[,.;@#?!&$']+", "", text.lower())
+    return re.sub("[\ ]+", delimiter, text)
+
+
 def slug_to_str(slug: str) -> str:
-    """Convert a slug to a string.
-
-    Args:
-        slug: string to convert
-
-    Returns:
-        str: converted string
-
-    """
+    """Convert a slug to a more readible sstring."""
     return slug.replace("-", " ").replace("_", " ").title()

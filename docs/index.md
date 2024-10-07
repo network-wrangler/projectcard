@@ -6,7 +6,7 @@ Project Cards represent information about a tranportation infrastructure project
 
 The ProjectCard schema is represented as a [json-schema](https://json-schema.org) in the `/schema` directory.  More details:  [json-schemas page](json-schemas.md).
 
-The rendering of json-schema leaves a wee bit to be desired, so you might prefer revieweing the schema in [datamodels].
+The rendering of json-schema leaves a wee bit to be desired, so you might prefer revieweing the schema in [datamodels](datamodels.md).
 
 ## Data Model
 
@@ -14,7 +14,7 @@ If you are working in a python environment, you might find it easier to use the 
 
 ### Example Data
 
-Example project cards can be found in the `/examples` directory and on the [examples page](examples.md) as well as within the [datamodels] documentation.
+Example project cards can be found in the `/examples` directory and on the [examples page](examples.md) as well as within the [datamodels](datamodels.md) documentation.
 
 ## Basic Usage
 

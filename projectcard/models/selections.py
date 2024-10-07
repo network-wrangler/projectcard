@@ -207,6 +207,7 @@ class SelectFacility(BaseModel):
                 model_node_id: 4
             to:
                 model_node_id: 5
+        ```
 
     !!! Example "Example: Select all links on SR320 which have 1 or 2 managed lanes."
         ```yaml

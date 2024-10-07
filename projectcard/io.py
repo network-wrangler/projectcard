@@ -97,7 +97,8 @@ def _read_wrangler(filepath: Path) -> dict:
 
 def write_card(project_card, filename: Optional[Path] = None):
     """Writes project card dictionary to YAML file."""
-    default_filename = _make_slug(project_card.project) + ".yml"
+    from .utils import make_slug
+    default_filename = make_slug(project_card.project) + ".yml"
     filename = filename or Path(default_filename)
 
     if not project_card.valid:
@@ -136,14 +137,6 @@ def dict_to_yaml_with_comments(d):
             final_yaml_lines.append(line)
 
     return "\n".join(final_yaml_lines)
-
-
-def _make_slug(text, delimiter: str = "_"):
-    """Makes a slug from text."""
-    import re
-
-    text = re.sub("[,.;@#?!&$']+", "", text.lower())
-    return re.sub("[\ ]+", delimiter, text)
 
 
 def _replace_selected(txt: str, change_dict: dict = REPLACE_KEYS):
