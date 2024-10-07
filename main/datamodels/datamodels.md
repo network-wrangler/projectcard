@@ -2,7 +2,7 @@
 
 !!! warning
 
-    These models are **not** the canonical schema and may or may not be completely accurate and up to date – although we try our best.  The canonical schema is maintained in json-schema format and is documented on the [schemas](../json-schemas) page – but this is much nicer to read so we recommend you stay here.
+    These models are **not** the canonical schema and may or may not be completely accurate and up to date – although we try our best.  The canonical schema is maintained in json-schema format and is documented on the [schemas](json-schemas.md) page – but this is much nicer to read so we recommend you stay here.
 
 ::: projectcard.models.project.ProjectModel
     options:
