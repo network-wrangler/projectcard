@@ -505,7 +505,7 @@
 
 <h1 id="macro-rendering-error"><em>Macro Rendering Error</em><a class="headerlink" href="#macro-rendering-error" title="Permanent link"> ¶</a></h1>
 <p><em>File</em>: <code>examples.md</code></p>
-<p><em>ProjectCardReadError</em>: Unsupported file type: </p>
+<p><em>AttributeError</em>: &lsquo;_io.TextIOWrapper&rsquo; object has no attribute &lsquo;read_text&rsquo;</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traceback (most recent call last):
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  File &quot;/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/site-packages/mkdocs_macros/plugin.py&quot;, line 644, in render
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    return md_template.render(**page_variables)
@@ -514,13 +514,11 @@
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>  File &quot;/opt/hostedtoolcache/Python/3.10.15/x64/lib/python3.10/site-packages/jinja2/environment.py&quot;, line 939, in handle_exception
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    raise rewrite_traceback_stack(source=source)
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  File &quot;&lt;template&gt;&quot;, line 5, in top-level template code
-</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  File &quot;/home/runner/work/projectcard/projectcard/main.py&quot;, line 109, in list_examples
-</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    _example_cards = read_cards(data_dir)
-</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  File &quot;/home/runner/work/projectcard/projectcard/projectcard/io.py&quot;, line 289, in read_cards
-</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    project_card = _read_card(
-</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>  File &quot;/home/runner/work/projectcard/projectcard/projectcard/io.py&quot;, line 221, in _read_card
-</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    raise ProjectCardReadError(msg)
-</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>projectcard.io.ProjectCardReadError: Unsupported file type: 
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  File &quot;/home/runner/work/projectcard/projectcard/main.py&quot;, line 113, in list_examples
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    _md_examples += _card_to_md(_card)
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>  File &quot;/home/runner/work/projectcard/projectcard/main.py&quot;, line 69, in _card_to_md
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    file_txt = file.read_text()
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>AttributeError: &#39;_io.TextIOWrapper&#39; object has no attribute &#39;read_text&#39;
 </span></code></pre></div>
 
 
