@@ -5,13 +5,13 @@ from projectcard import CardLogger
 
 
 @pytest.fixture(scope="session")
-def pyd_data_models(update_datamodels):
+def pyd_data_models():
     from pydantic import BaseModel
 
-    import projectcard.models as models
+    from projectcard import models
 
     data_models = []
-    print(f"MODELS:\n{dir(models)}")
+    CardLogger.info(f"MODELS:\n{dir(models)}")
     for attribute_name in dir(models):
         attribute = getattr(models, attribute_name)
         if isinstance(attribute, type) and issubclass(attribute, BaseModel):
@@ -34,10 +34,10 @@ def test_using_validate_call_models_with_pyd():
 
     invalid_data = {"links": {"model_link_id": 1234}}
 
-    from projectcard.models import SelectSegment
+    from projectcard.models.selections import SelectFacility
 
     @validate_call
-    def select_segment_in(data: SelectSegment):
+    def select_segment_in(data: SelectFacility):
         # Add your function code here
         pass
 
@@ -45,32 +45,24 @@ def test_using_validate_call_models_with_pyd():
     select_segment_in(valid_data)
 
     # Test with invalid data
-    try:
+    with pytest.raises(ValidationError):
         select_segment_in(invalid_data)
-    except ValidationError:
-        pass
-    else:
-        assert False, "Invalid data should have raised a ValueError"
 
 
 def test_instantiating_data_models_with_pyd():
     # Create valid and invalid data instances
-    from projectcard.models import SelectTrips
+    from projectcard.models.selections import SelectTransitTrips
 
     valid_data = {
         "trip_properties": {"trip_id": ["1234"]},
-        "route_properties": {"agency_id": [4321]},
+        "route_properties": {"agency_id": [4321]},  # should coerce this to a string
         "timespans": [["12:45", "12:30"]],
     }
 
     invalid_data = {"timespan": ["123", "123"]}
 
-    SelectTrips(**valid_data)
+    SelectTransitTrips(**valid_data)
 
     # Test with invalid data
-    try:
-        SelectTrips(**invalid_data)
-    except ValidationError:
-        pass
-    else:
-        assert False, "Invalid data should have raised a ValidationError"
+    with pytest.raises(ValidationError):
+        SelectTransitTrips(**invalid_data)

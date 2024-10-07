@@ -1,16 +1,20 @@
 """Structures (lists and objects) used in project card models."""
 
-from typing import Any, List, Optional, Union, Annotated, Literal, ClassVar
-from pydantic import BaseModel, Field, validator, ConfigDict
-from .fields import Longitude, Latitude, Timespan, OsmRoadwayType, MLAccessEgress, PositiveInt
+from typing import Annotated, Any, ClassVar, Literal, Optional, Union
+
+from pydantic import BaseModel, ConfigDict, Field, model_validator
+
+from ..logger import CardLogger
+from .fields import Latitude, Longitude, MLAccessEgress, OsmRoadwayType, PositiveInt, Timespan
 
 
 class Dependencies(BaseModel):
     """Dependencies for a project card."""
+
     model_config = ConfigDict(extra="forbid")
-    conflicts: Optional[List[str]]
-    prerequisites: Optional[List[str]]
-    corequisites: Optional[List[str]]
+    conflicts: Optional[list[str]]
+    prerequisites: Optional[list[str]]
+    corequisites: Optional[list[str]]
     _examples: ClassVar[list[dict]] = [
         {"conflicts": ["a", "b"], "prerequisites": ["c", "d"], "corequisites": ["e", "f"]},
     ]
@@ -52,8 +56,8 @@ class IndivScopedPropertySetItem(BaseModel):
         - category: hov2
           change: 1
         ```
-
     """
+
     model_config = ConfigDict(extra="forbid", exclude_none=True)
 
     category: Optional[Union[str, int]]
@@ -63,10 +67,10 @@ class IndivScopedPropertySetItem(BaseModel):
     change: Optional[Union[int, float]] = None
 
 
-ScopedPropertySetList = List[IndivScopedPropertySetItem]
+ScopedPropertySetList = list[IndivScopedPropertySetItem]
 
 
-class TransitPropertyChange(BaseModel):
+class TransitPropertyChange_PropertyChanges(BaseModel):
     """Value for setting a single property value for transit."""
 
     model_config = ConfigDict(extra="forbid", exclude_none=True)
@@ -109,7 +113,7 @@ class RoadwayPropertyChange(BaseModel):
             error. If `warn`, conflicting existing values will raise a warning. If `skip`,
             property change will be skipped.
 
-    !!! Example "Example: Reduce lanes by 1 – but only if the existing value is 3."
+    !!! Example "Example: Reduce lanes by 1...but only if the existing value is 3."
         ```yaml
         lanes:
             existing: 3
@@ -147,8 +151,7 @@ class RoadwayPropertyChange(BaseModel):
 
 
 class SelectRouteProperties(BaseModel):
-    """
-    Selection proeprties for transit routes.
+    """Selection proeprties for transit routes.
 
     Assumed to be an AND condition if more than one property is provided.
 
@@ -168,19 +171,21 @@ class SelectRouteProperties(BaseModel):
             the selection will be based on an OR condition. Can also select based on a partial match
             using the '*' wildcard character.
     """
-    model_config = ConfigDict(extra="allow")
-    route_short_name: Annotated[Optional[List[str]], Field(None, min_length=1)]
-    route_long_name: Annotated[Optional[List[str]], Field(None, min_length=1)]
-    agency_id: Annotated[Optional[List[str]], Field(None, min_length=1)]
-    route_type: Annotated[Optional[List[int]], Field(None, min_length=1)]
+
+    model_config = ConfigDict(extra="allow", coerce_numbers_to_str=True)
+    route_short_name: Annotated[Optional[list[str]], Field(None, min_length=1)]
+    route_long_name: Annotated[Optional[list[str]], Field(None, min_length=1)]
+    agency_id: Annotated[Optional[list[str]], Field(None, min_length=1)]
+    route_type: Annotated[Optional[list[int]], Field(None, min_length=1)]
 
     class ConfigDict:
+        """Config for the model."""
+
         protected_namespaces = ()
 
 
 class SelectTripProperties(BaseModel):
-    """
-    Selection properties for transit trips.
+    """Selection properties for transit trips.
 
     Assumed to be an AND condition if more than one property is provided.
 
@@ -204,16 +209,19 @@ class SelectTripProperties(BaseModel):
             is provided, the selection will be based on an OR condition. Can also select based on
             a partial match using the '*' wildcard character.
     """
-    model_config = ConfigDict(extra="allow")
 
-    trip_id: Annotated[Optional[List[str]], Field(None, misn_length=1)]
-    shape_id: Annotated[Optional[List[str]], Field(None, min_length=1)]
+    model_config = ConfigDict(extra="allow", coerce_numbers_to_str=True)
+
+    trip_id: Annotated[Optional[list[str]], Field(None, misn_length=1)]
+    shape_id: Annotated[Optional[list[str]], Field(None, min_length=1)]
     direction_id: Optional[Literal[0, 1]] = None
-    service_id: Annotated[Optional[List[str]], Field(None, min_length=1)]
-    route_id: Annotated[Optional[List[str]], Field(None, min_length=1)]
-    trip_short_name: Annotated[Optional[List[str]], Field(None, min_length=1)]
+    service_id: Annotated[Optional[list[str]], Field(None, min_length=1)]
+    route_id: Annotated[Optional[list[str]], Field(None, min_length=1)]
+    trip_short_name: Annotated[Optional[list[str]], Field(None, min_length=1)]
 
     class ConfigDict:
+        """Config for the model."""
+
         protected_namespaces = ()
 
 
@@ -246,12 +254,13 @@ class SelectTransitLinks(BaseModel):
         require: all
         ```
     """
+
     require_one_of: ClassVar = [
         ["ab_nodes", "model_link_id"],
     ]
 
-    model_link_id: Annotated[Optional[List[int]], Field(min_length=1)]
-    ab_nodes: Annotated[Optional[List[TransitABNodes]], Field(min_length=1)]
+    model_link_id: Annotated[Optional[list[int]], Field(min_length=1)]
+    ab_nodes: Annotated[Optional[list[TransitABNodes]], Field(min_length=1)]
     require: Optional[Literal["any", "all"]]
 
     model_config = ConfigDict(
@@ -285,7 +294,8 @@ class SelectTransitNodes(BaseModel):
         require: all
         ```
     """
-    stop_id: Annotated[List[int], Field(min_length=1)]
+
+    stop_id: Annotated[list[int], Field(min_length=1)]
     require: Optional[Literal["any", "all"]] = "any"
 
     model_config = ConfigDict(
@@ -309,8 +319,9 @@ class SelectRoadNode(BaseModel):
         model_node_id: 12345
         ```
     """
+
     require_one_of: ClassVar = [["osm_node_id", "model_node_id"]]
-    model_config = ConfigDict(extra="allow")
+    model_config = ConfigDict(extra="allow", coerce_numbers_to_str=True)
 
     osm_node_id: Optional[str]
     model_node_id: Optional[int]
@@ -324,6 +335,7 @@ class RoadNode(BaseModel):
         X: Longitude: Longitude of the node.
         Y: Latitude: Latitude of the node.
     """
+
     model_node_id: int
     X: Longitude
     Y: Latitude
@@ -405,9 +417,17 @@ class RoadLink(BaseModel):
               value: 4.0
         ```
     """
+
+    model_config = ConfigDict(coerce_numbers_to_str=True)
     PROTECTED_FIELDS: ClassVar = [
-        "model_link_id_idx", "managed","geometry", "projects", "ML_geometry", "ML_A", "ML_B",
-        "ML_projects"
+        "model_link_id_idx",
+        "managed",
+        "geometry",
+        "projects",
+        "ML_geometry",
+        "ML_A",
+        "ML_B",
+        "ML_projects",
     ]
     model_link_id: int
     A: int
@@ -421,9 +441,9 @@ class RoadLink(BaseModel):
     rail_only: Optional[bool]
     bus_only: Optional[bool]
     drive_access: Optional[bool]
-    bike_access:  Optional[bool]
-    walk_access:  Optional[bool]
-    truck_access:  Optional[bool]
+    bike_access: Optional[bool]
+    walk_access: Optional[bool]
+    truck_access: Optional[bool]
     distance: Annotated[float, Field(ge=0)]
 
     # Optional Fields for Wrangler
@@ -446,15 +466,20 @@ class RoadLink(BaseModel):
     sc_ML_access: Optional[list[dict]]
     ML_shape_id: Optional[str]
 
-    @validator("*", pre=True, always=True)
-    def check_protected_fields(cls, v, values):
-        for field in cls.PROTECTED_FIELDS:
-            if field in values:
-                raise ValueError(f"Field '{field}' is protected.")
-        return v
+    @model_validator(mode="before")
+    @classmethod
+    def check_protected_omitted(cls, data: Any) -> Any:
+        """Check that protected fields are omitted."""
+        if isinstance(data, dict):
+            protected_present = [k for k in cls.PROTECTED_FIELDS if k in data]
+            if protected_present:
+                msg = f"Protected fields {cls.PROTECTED_FIELDS} must be omitted."
+                CardLogger.error(msg + f" Found: {protected_present}")
+                raise ValueError(msg)
+        return data
 
 
-class TransitRoutingChange(BaseModel):
+class TransitRoutingChange_Routing(BaseModel):
     """Value for setting routing change for transit.
 
     Attributes:
@@ -465,11 +490,12 @@ class TransitRoutingChange(BaseModel):
 
     !!! Example "Example: Reroute around node 2."
         ```yaml
-        transit_routing_change:
+        routing:
             existing: [1, -2, 3]
             set: [1, -4, -5, -6,  3]
         ```
     """
+
     model_config = ConfigDict(extra="forbid")
     existing: list[int]
     set: list[int]
@@ -512,6 +538,7 @@ class TransitStopProps(BaseModel):
         time_to_next_node_sec: 68
         ```
     """
+
     require_one_of: ClassVar = [
         ["stop", "board"],
         ["stop", "alight"],
@@ -529,9 +556,10 @@ TransitStop = Annotated[dict[int, TransitStopProps], Field(min_length=1, max_len
 TransitRouteNode = Union[int, TransitStop]
 TransitRouting = Annotated[list[TransitRouteNode], Field(min_length=1)]
 
-TransitHeadways = \
-    Annotated[dict[Timespan, PositiveInt],
-    Field(min_length=1, max_length=1, examples=[{"('7:00', '9:00')": 600}])]
+TransitHeadways = Annotated[
+    dict[Timespan, PositiveInt],
+    Field(min_length=1, max_length=1, examples=[{"('7:00', '9:00')": 600}]),
+]
 
 
 class TransitTrip(BaseModel):
@@ -580,6 +608,8 @@ class TransitTrip(BaseModel):
                 stop: true
         ```
     """
+
+    model_config = ConfigDict(coerce_numbers_to_str=True)
     PROTECTED_FIELDS: ClassVar = ["trip_id", "shape_id", "route_id"]
     headway_secs: Annotated[list[TransitHeadways], Field(min_length=1)]
     routing: TransitRouting
@@ -604,6 +634,8 @@ class TransitRoute(BaseModel):
             <https://gtfs.org/reference/static/#routes.txt>.
         trips: list[TransitTrip]: List of trips for the route. Must have at least one trip.
     """
+
+    model_config = ConfigDict(coerce_numbers_to_str=True)
     route_id: str
     agency_id: str
     route_short_name: Optional[str]

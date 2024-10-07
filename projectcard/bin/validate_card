@@ -13,7 +13,8 @@ Arguments:
 
 import argparse
 import logging
-from projectcard import read_cards, CardLogger
+
+from projectcard import CardLogger, read_cards
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("CardLogger")

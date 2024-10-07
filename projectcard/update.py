@@ -14,15 +14,16 @@ project cards in `tests/data/cards/*.v0.yaml` to the current format.
 
 from __future__ import annotations
 
+import copy
 import sys
 from pathlib import Path
+from typing import Optional
 
 import yaml
 
-from projectcard import ProjectCard, write_card
-from projectcard.utils import _update_dict_key
+from projectcard import CardLogger, ProjectCard, write_card
 from projectcard.io import SKIP_READ
-from projectcard import CardLogger
+from projectcard.utils import _update_dict_key
 
 
 def _get_card_files(card_search_dir_or_filename: Path) -> list[Path]:
@@ -30,11 +31,10 @@ def _get_card_files(card_search_dir_or_filename: Path) -> list[Path]:
         # Read all .yaml or .yml files in the directory
         card_files = list(Path(card_search_dir_or_filename).rglob("*.[yY]*[mM][lL]*"))
         if not card_files:
-            print(f"No card files found in {card_search_dir_or_filename}")
+            CardLogger.error(f"No card files found in {card_search_dir_or_filename}")
             sys.exit(1)
         return [Path(file) for file in card_files]
-    else:
-        return [Path(card_search_dir_or_filename)]
+    return [Path(card_search_dir_or_filename)]
 
 
 CATEGORY_NAME_MAP = {
@@ -81,20 +81,20 @@ def _nest_change_under_category_type(card: dict) -> dict:
             _updated_changes.append(_nest_change_under_category_type(change))
         card["changes"] = _updated_changes
         return card
-    elif "category" in card:
+    if "category" in card:
         category = card.pop("category")
 
         # CardLogger.debug(f"Category: {category}")
         if category not in CATEGORY_NAME_MAP:
-            raise ValueError(f"Invalid category: {category}")
+            msg = f"Invalid category: {category}"
+            raise ValueError(msg)
         category_key = CATEGORY_NAME_MAP[category]
         card[category_key] = {k: card.pop(k) for k in NESTED_VALUES if k in card}
         # CardLogger.debug(f"Updated Card.nest_change_under_category_type:\n {card}")
         return card
 
-    else:
-        CardLogger.info(f"Can't find category in: {card}. This card might already be updated?")
-        return card
+    CardLogger.info(f"Can't find category in: {card}. This card might already be updated?")
+    return card
 
 
 DEFAULT_ROADWAY_VALUES: dict = {
@@ -122,9 +122,8 @@ REPLACE_ROADWAY_VALUES = {
 def _drop_empty_object(card: dict) -> dict:
     """Dependencies, notes and tags should be dropped if empty string or None."""
     for key in ["dependencies", "tags", "notes"]:
-        if key in card:
-            if card[key] == "" or card[key] is None:
-                card.pop(key)
+        if key in card and (card[key] == "" or card[key] is None):
+            card.pop(key)
     return card
 
 
@@ -171,7 +170,7 @@ def _update_roadway_addition(change, default_roadway_values: dict = DEFAULT_ROAD
     return change
 
 
-def _unnest_scoped_properties(property_change: dict) -> list[dict]:
+def _unnest_scoped_properties(property_change: dict) -> dict:
     """Update keys scoped managed lanes to a list of single-level dicts"".
 
     e.g.
@@ -242,7 +241,7 @@ def _unnest_scoped_properties(property_change: dict) -> list[dict]:
         for change in property_change["timeofday"]:
             property_change["scoped"].append(change)
         property_change.pop("timeofday")
-        return property_change
+    return property_change
 
 
 def _update_property_changes_key(change: dict) -> dict:
@@ -281,10 +280,11 @@ def _update_property_changes_key(change: dict) -> dict:
     _pchanges = change[change_name].pop("properties")
     updated_pchanges = {}
     for _pc in _pchanges:
-        property_name = _pc.pop("property")
+        _updated_pc = copy.deepcopy(_pc)
+        property_name = _updated_pc.pop("property")
         if "group" in _pc or "timeofday" in _pc:
-            _pc = _unnest_scoped_properties(_pc)
-        updated_pchanges[property_name] = _pc
+            _updated_pc = _unnest_scoped_properties(_updated_pc)
+        updated_pchanges[property_name] = _updated_pc
     change[change_name]["property_changes"] = updated_pchanges
     CardLogger.debug(f"Updated Card.update_property_changes_key:\n {change}")
     return change
@@ -382,17 +382,17 @@ def _update_transit_service(change):
     timespans = []
 
     for key, value in facility.items():
-        if value is not list and key not in NOT_A_LIST:
-            value = [value]
+        v = [value] if value is not list and key not in NOT_A_LIST else value
         if key in TRIP_PROPS:
-            trip_properties[key] = value
+            trip_properties[key] = v
         elif key in ROUTE_PROPS:
-            route_properties[key] = value
+            route_properties[key] = v
         elif key == "timespan":
             # timespans is a list of a list
-            timespans = value
+            timespans = v
         else:
-            raise ValueError(f"Unimplemented transit property: {key}")
+            msg = f"Unimplemented transit property: {key}"
+            raise NotImplementedError(msg)
     change["transit_property_change"]["service"] = {}
     if trip_properties:
         change["transit_property_change"]["service"]["trip_properties"] = trip_properties
@@ -406,15 +406,16 @@ def _update_transit_service(change):
 
 
 def _update_transit_routing(change):
-    if "transit_property_change" in change:
-        # TODO do "shapes"
-        if "routing" in change["transit_property_change"]["property_changes"]:
-            transit_property_change = change.pop("transit_property_change")
+    if (
+        "transit_property_change" in change
+        and "routing" in change["transit_property_change"]["property_changes"]
+    ):
+        transit_property_change = change.pop("transit_property_change")
 
-            change["transit_routing_change"] = {
-                "service": transit_property_change["service"],
-                "routing": transit_property_change["property_changes"]["routing"],
-            }
+        change["transit_routing_change"] = {
+            "service": transit_property_change["service"],
+            "routing": transit_property_change["property_changes"]["routing"],
+        }
     return change
 
 
@@ -432,10 +433,9 @@ def _remove_empty_strings(data):
     """Remove keys/values with empty string values from dictionaries and lists."""
     if isinstance(data, dict):
         return {k: _remove_empty_strings(v) for k, v in data.items() if v != ""}
-    elif isinstance(data, list):
+    if isinstance(data, list):
         return [_remove_empty_strings(item) for item in data if item != ""]
-    else:
-        return data
+    return data
 
 
 def _literals_to_arrays(data):
@@ -449,21 +449,20 @@ def _clean_floats_to_ints(data):
     """Convert floats to ints if they are whole numbers."""
     if isinstance(data, dict):
         return {k: _clean_floats_to_ints(v) for k, v in data.items()}
-    elif isinstance(data, list):
+    if isinstance(data, list):
         return [_clean_floats_to_ints(item) for item in data]
-    elif isinstance(data, float) and data.is_integer():
+    if isinstance(data, float) and data.is_integer():
         return int(data)
-    else:
-        try:
-            data = float(data)
-            if data.is_integer():
-                return int(data)
-            return data
-        except:
-            return data
+    try:
+        data = float(data)
+        if data.is_integer():
+            return int(data)
+        return data
+    except:
+        return data
 
 
-def update_schema_for_card(card_data: dict, errlog_output_dir: Path = ".") -> dict:
+def update_schema_for_card(card_data: dict) -> dict:
     """Update older project card data in dictionary to current format.
 
     Example usage:
@@ -512,7 +511,7 @@ def update_schema_for_card(card_data: dict, errlog_output_dir: Path = ".") -> di
 
 
 def update_schema_for_card_file(
-    input_card_path: Path, output_card_path: Path = None, rename_input: bool = False
+    input_card_path: Path, output_card_path: Optional[Path] = None, rename_input: bool = False
 ) -> None:
     """Update previous project card files to current format.
 
@@ -548,7 +547,7 @@ def update_schema_for_card_file(
             input_card_path.parent / (input_card_path.stem + ".v0" + input_card_path.suffix)
         )
 
-    card_data = update_schema_for_card(card_data, errlog_output_dir=output_card_path.parent)
+    card_data = update_schema_for_card(card_data)
     CardLogger.debug("Completed updating schema.\n...initializing as ProjectCard")
     CardLogger.debug(f"card_data:\n{card_data}")
     card = ProjectCard(card_data)
@@ -561,7 +560,7 @@ def update_schema_for_card_file(
 
 
 def update_schema_for_card_dir(
-    input_card_dir: Path, output_card_dir: Path = None, rename_input: bool = False
+    input_card_dir: Path, output_card_dir: Optional[Path] = None, rename_input: bool = False
 ) -> None:
     """Update all card files in a directory to current format.
 
@@ -579,23 +578,20 @@ def update_schema_for_card_dir(
     """
     # check that input and output paths are valid
     if not input_card_dir.exists():
-        raise ValueError(f"Invalid input_card_dir: {input_card_dir}")
+        msg = f"Invalid input_card_dir: {input_card_dir}"
+        raise ValueError(msg)
 
-    if output_card_dir is not None:
-        if not output_card_dir.exists():
-            raise ValueError(f"Invalid output_dir: {output_card_dir}")
-
-        if input_card_dir == output_card_dir:
-            raise ValueError(
-                "Error: output_dir cannot be the same as card_search_dir or card_filename."
-            )
+    if output_card_dir is None:
+        output_card_dir = input_card_dir.parent / (input_card_dir.name + "_v1")
+    elif input_card_dir == output_card_dir:
+        msg = "Error: output_dir cannot be the same as card_search_dir."
+        raise ValueError(msg)
+    output_card_dir.mkdir(parents=True, exist_ok=True)
 
     if input_card_dir.is_file():
         if output_card_dir is not None and input_card_dir.parent == output_card_dir:
-            raise ValueError(
-                "Error: output_dir cannot be the same as the directory of \
-                    card_search_dir or card_filename."
-            )
+            msg = "Error: output_dir cannot be the same as the directory of card_search_dir."
+            raise ValueError(msg)
         input_card_files = [input_card_dir]
     else:
         input_card_files = _get_card_files(input_card_dir)

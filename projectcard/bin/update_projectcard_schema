@@ -16,10 +16,13 @@ If you want to address it yourself, please open a pull request with:
 import sys
 from pathlib import Path
 
+from projectcard.logger import CardLogger
 from projectcard.update import update_schema_for_card_dir
 
-if len(sys.argv) != 3:
-    print("Usage: update_projectcard_schema <card_search_dir | card_filename> <output_dir>")
+if len(sys.argv) != 3:  # noqa: PLR2004
+    CardLogger.info(
+        "Usage: update_projectcard_schema <card_search_dir | card_filename> <output_dir>"
+    )
     sys.exit(1)
 card_search_dir_or_filename = Path(sys.argv[1])
 output_dir = Path(sys.argv[2])

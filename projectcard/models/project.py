@@ -1,12 +1,18 @@
 """The project card data model."""
 
+from typing import ClassVar, Literal, Optional
 
-from typing import Optional, ClassVar, Literal
-from pydantic import BaseModel
 from changes import (
-    ChangeTypes, RoadwayPropertyChanges, RoadwayDeletion, RoadwayAddition,
-    TransitPropertyChange, TransitRoutingChange, TransitServiceDeletion, TransitRouteAddition
+    ChangeTypes,
+    RoadwayAddition,
+    RoadwayDeletion,
+    RoadwayPropertyChanges,
+    TransitPropertyChange,
+    TransitRouteAddition,
+    TransitRoutingChange,
+    TransitServiceDeletion,
 )
+from pydantic import BaseModel
 from structs import Dependencies
 
 
@@ -70,7 +76,7 @@ class ProjectModel(BaseModel):
         tags (Optional[list[str]]): Tags for the project to associate the project card with a
             specific project or type of project.
         dependencies (Optional[Dependencies]): Dependencies for the project card: conflicts,
-            prerequisites, and corequisites – each of which is a list of project names.
+            prerequisites, and corequisites...each of which is a list of project names.
         changes (Optional[list[ChangeTypes]]): List of one or more changes. Must either have
             `changes` or a single change type (e.g. `roadway_property_change`,
             `transit_property_change`, etc.). If `changes` is provided, cannot specify another
@@ -108,6 +114,7 @@ class ProjectModel(BaseModel):
         transit_route_addition: ...
         ```
     """
+
     require_one_of: ClassVar = [
         "roadway_property_change",
         "roadway_deletion",
@@ -117,7 +124,7 @@ class ProjectModel(BaseModel):
         "transit_service_deletion",
         "transit_route_addition",
         ["pycode", "self_obj_type"],
-        "changes"
+        "changes",
     ]
 
     project: str

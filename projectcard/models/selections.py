@@ -1,12 +1,16 @@
-from typing import List, Optional, Annotated, ClassVar
+"""Data models for selecting nodes, links, and trips in a project card."""
 
-from pydantic import BaseModel, Field, ConfigDict
+from typing import Annotated, ClassVar, Optional
 
-from .fields import Timespan, Mode
+from pydantic import BaseModel, ConfigDict, Field
+
+from .fields import Mode, Timespan
 from .structs import (
-    SelectTripProperties, SelectRouteProperties,
-    SelectTransitNodes, SelectTransitLinks,
-    SelectRoadNode
+    SelectRoadNode,
+    SelectRouteProperties,
+    SelectTransitLinks,
+    SelectTransitNodes,
+    SelectTripProperties,
 )
 
 
@@ -28,10 +32,10 @@ class SelectRoadNodes(BaseModel):
         nodes:
             model_node_id: [12345, 67890]
         ```
-
     """
+
     require_any_of: ClassVar = [["osm_node_id", "model_node_id"]]
-    model_config = ConfigDict(extra="forbid")
+    model_config = ConfigDict(extra="forbid", coerce_numbers_to_str=True)
 
     all: Optional[bool] = False
     osm_node_id: Annotated[Optional[list[str]], Field(None, min_length=1)]
@@ -84,6 +88,7 @@ class SelectRoadLinks(BaseModel):
             drive_allowed: false
         ```
     """
+
     require_conflicts: ClassVar = [
         ["all", "osm_link_id"],
         ["all", "model_link_id"],
@@ -95,14 +100,14 @@ class SelectRoadLinks(BaseModel):
     ]
     require_any_of: ClassVar = [["name", "ref", "osm_link_id", "model_link_id", "all"]]
 
-    model_config = ConfigDict(extra="allow")
+    model_config = ConfigDict(extra="allow", coerce_numbers_to_str=True)
 
     all: Optional[bool] = False
     name: Annotated[Optional[list[str]], Field(None, min_length=1)]
     ref: Annotated[Optional[list[str]], Field(None, min_length=1)]
     osm_link_id: Annotated[Optional[list[str]], Field(None, min_length=1)]
     model_link_id: Annotated[Optional[list[int]], Field(None, min_length=1)]
-    modes: Optional[list[Mode]]
+    modes: Annotated[Optional[list[Mode]], Field(None, min_length=1)]
     ignore_missing: Optional[bool] = True
 
     _examples: ClassVar[list[dict]] = [
@@ -150,11 +155,12 @@ class SelectTransitTrips(BaseModel):
                 require: "all"
         ```
     """
-    trip_properties: Optional[SelectTripProperties]
-    route_properties: Optional[SelectRouteProperties]
-    timespans: Annotated[Optional[List[Timespan]], Field(None, min_length=1)]
-    nodes: Optional[SelectTransitNodes]
-    links: Optional[SelectTransitLinks]
+
+    trip_properties: Annotated[Optional[SelectTripProperties], Field(None)]
+    route_properties: Annotated[Optional[SelectRouteProperties], Field(None)]
+    timespans: Annotated[Optional[list[Timespan]], Field(None, min_length=1)]
+    nodes: Annotated[Optional[SelectTransitNodes], Field(None)]
+    links: Annotated[Optional[SelectTransitLinks], Field(None)]
 
     model_config = ConfigDict(
         extra="forbid",
@@ -210,6 +216,7 @@ class SelectFacility(BaseModel):
                 ML_lanes: [1, 2]
         ```
     """
+
     require_one_of: ClassVar = [
         ["links", "nodes", ["links", "from", "to"]],
     ]

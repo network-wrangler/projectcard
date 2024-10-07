@@ -1,16 +1,17 @@
 """Logging module for the projectcard package."""
 
 import logging
-import os
 import sys
 from datetime import datetime
+from pathlib import Path
+from typing import Optional
 
 CardLogger = logging.getLogger("CardLogger")
 
 
 def setup_logging(
-    info_log_filename: str = None,
-    debug_log_filename: str = None,
+    info_log_filename: Optional[Path] = None,
+    debug_log_filename: Optional[Path] = None,
     log_to_console: bool = False,
 ):
     """Sets up the CardLogger w.r.t. the debug file location and if logging to console.
@@ -36,20 +37,17 @@ def setup_logging(
     FORMAT = logging.Formatter(
         "%(asctime)-15s %(levelname)s: %(message)s", datefmt="%Y-%m-%d %H:%M:%S,"
     )
-    if not info_log_filename:
-        info_log_filename = os.path.join(
-            os.getcwd(),
-            "cards_{}.info.log".format(datetime.now().strftime("%Y_%m_%d__%H_%M_%S")),
-        )
+    default_log_filename = f"cards_{datetime.now().strftime('%Y_%m_%d__%H_%M_%S')}.info.log"
+    info_log_filename = info_log_filename or Path.cwd() / default_log_filename
 
-    info_file_handler = logging.StreamHandler(open(info_log_filename, "w"))
+    info_file_handler = logging.FileHandler(Path(info_log_filename))
     info_file_handler.setLevel(logging.INFO)
     info_file_handler.setFormatter(FORMAT)
     CardLogger.addHandler(info_file_handler)
 
     # create debug file only when debug_log_filename is provided
     if debug_log_filename:
-        debug_log_handler = logging.StreamHandler(open(debug_log_filename, "w"))
+        debug_log_handler = logging.FileHandler(Path(debug_log_filename))
         debug_log_handler.setLevel(logging.DEBUG)
         debug_log_handler.setFormatter(FORMAT)
         CardLogger.addHandler(debug_log_handler)

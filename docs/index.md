@@ -56,7 +56,9 @@ For more examples and detail, pleae see the [API](api.md) page.
 
 ## Installation
 
-`pip install projectcard`
+```bash
+pip install projectcard
+```
 
 !!! tip "Note"
 

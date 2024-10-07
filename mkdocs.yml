@@ -27,6 +27,7 @@ theme:
 plugins:
   - autorefs
   - awesome-pages
+  - include-markdown
   - mike
   - macros
   - mermaid2

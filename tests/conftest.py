@@ -1,14 +1,6 @@
-import subprocess
 from pathlib import Path
 
 import pytest
-
-
-@pytest.fixture(scope="session")
-def update_datamodels(base_dir):
-    """Run update_data_models script before every test run."""
-    update_script = base_dir / "bin" / "update_data_models"
-    subprocess.run([update_script], check=True)
 
 
 @pytest.fixture(scope="session")
@@ -30,7 +22,7 @@ def test_out_dir(test_dir: Path):
 
 
 @pytest.fixture(scope="session", autouse=True)
-def test_logging(test_out_dir: Path):
+def _test_logging(test_out_dir: Path) -> None:
     from projectcard import setup_logging
 
     setup_logging(

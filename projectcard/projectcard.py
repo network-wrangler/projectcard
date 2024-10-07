@@ -1,15 +1,16 @@
 """Project Card class for project card data schema."""
 
 from __future__ import annotations
-from typing import List, Union
+
+from typing import Union
 
 from .logger import CardLogger
 from .utils import _findkeys
 from .validate import (
     ProjectCardValidationError,
     SubprojectValidationError,
-    validate_card,
     update_dict_with_schema_defaults,
+    validate_card,
 )
 
 UNSPECIFIED_PROJECT_NAMES = ["", "TO DO User Define", "USER TO define"]
@@ -27,11 +28,15 @@ CHANGE_TYPES = [
 ]
 
 
-class ProjectCard(object):
+class ProjectCard:
     """Representation of a Project Card.
 
     Attributes:
         __dict__: Dictionary of project card attributes
+        project: Name of project
+        dependencies: Dependencies of project
+        tags: Tags of project
+        notes: Notes about project
         valid: Boolean indicating if data conforms to project card data schema
         facilities: List of all facility objects in project card
         facility: either singular facility in project card or the string "multiple"
@@ -51,7 +56,6 @@ class ProjectCard(object):
                 if exist in schema. Defaults to True.
         """
         # add these first so they are first on write out
-        self.project: str = None
         self.tags: list[str] = []
         self.dependencies: dict = {}
         self.notes: str = ""
@@ -65,7 +69,7 @@ class ProjectCard(object):
 
     def __str__(self):
         """String representation of project card."""
-        s = ["{}: {}".format(key, value) for key, value in self.__dict__.items()]
+        s = [f"{key}: {value}" for key, value in self.__dict__.items()]
         return "\n".join(s)
 
     def validate(self) -> bool:
@@ -73,7 +77,7 @@ class ProjectCard(object):
         return validate_card(self.__dict__)
 
     @property
-    def dict(self) -> dict:
+    def to_dict(self) -> dict:
         """Return dictionary of public project card attributes."""
         return {k: v for k, v in self.__dict__.items() if not k.startswith("_") and v is not None}
 
@@ -90,12 +94,13 @@ class ProjectCard(object):
     @property
     def facilities(self) -> list[dict]:
         """Return all facilities from project card as list of dicts."""
-        if any(["transit" in t for t in self.change_types]):
+        if any("transit" in t for t in self.change_types):
             CardLogger.warning("Transit project doesn't have services.")
             return []
         f = list(_findkeys(self.__dict__, "facility"))
         if not f:
-            raise ProjectCardValidationError("Couldn't find facility in project card")
+            msg = f"Couldn't find facility in project card {self.project}"
+            raise ProjectCardValidationError(msg)
         return f
 
     @property
@@ -107,14 +112,15 @@ class ProjectCard(object):
         return f[0]
 
     @property
-    def services(self) -> List[dict]:
+    def services(self) -> list[dict]:
         """Return all services from project card as list of dicts."""
-        if any(["roadway" in t for t in self.change_types]):
+        if any("roadway" in t for t in self.change_types):
             CardLogger.warning("Roadway project doesn't have services.")
             return []
         s = list(_findkeys(self.__dict__, "service"))
         if not s:
-            raise ProjectCardValidationError("Couldn't find service in project card")
+            msg = f"Couldn't find service in project card {self.project}"
+            raise ProjectCardValidationError(msg)
         return s
 
     @property
@@ -126,9 +132,9 @@ class ProjectCard(object):
         return s[0]
 
     @property
-    def all_transit_property_changes(self) -> List[dict]:
+    def all_transit_property_changes(self) -> list[dict]:
         """Return all transit property changes from project card."""
-        if not any(["transit_property_change" in t for t in self.change_types]):
+        if not any("transit_property_change" in t for t in self.change_types):
             CardLogger.warning(f"Project {self.project} doesn't have transit property changes.")
             return []
         tp = list(_findkeys(self.__dict__, "transit_property_change"))
@@ -144,9 +150,9 @@ class ProjectCard(object):
         return p[0]
 
     @property
-    def all_transit_routing_changes(self) -> List[dict]:
+    def all_transit_routing_changes(self) -> list[dict]:
         """Return all transit routing changes from project card."""
-        if not any(["transit_routing_change" in t for t in self.change_types]):
+        if not any("transit_routing_change" in t for t in self.change_types):
             CardLogger.warning(f"Project {self.project} doesn't have routing changes.")
             return []
         r = list(_findkeys(self.__dict__, "routing"))
@@ -162,14 +168,15 @@ class ProjectCard(object):
         return p[0]
 
     @property
-    def change_types(self) -> List[str]:
+    def change_types(self) -> list[str]:
         """Returns list of all change types from project/subproject."""
         if self._sub_projects:
             return [sp.change_type for sp in self._sub_projects]
 
-        type_keys = [k for k in self.__dict__.keys() if k in CHANGE_TYPES]
+        type_keys = [k for k in self.__dict__ if k in CHANGE_TYPES]
         if not type_keys:
-            raise ProjectCardValidationError(f"Couldn't find type of project card {self.project}")
+            msg = f"Couldn't find type of project card {self.project}"
+            raise ProjectCardValidationError(msg)
         return type_keys
 
     @property
@@ -181,7 +188,7 @@ class ProjectCard(object):
         return t[0]
 
 
-class SubProject(ProjectCard):
+class SubProject:
     """Representation of a SubProject within a ProjectCard.
 
     Attributes:
@@ -205,15 +212,16 @@ class SubProject(ProjectCard):
         """
         self._parent_project = parent_project
 
-        if not len(sp_dictionary) == 1:
-            CardLogger.debug(f"Invalid sp_dictionary with !=1 keys: {sp_dictionary.keys()}")
-            raise SubprojectValidationError(
-                f"Subproject of {parent_project.project} \
-                 should only have one change. Did you forget to indent the rest of this change?."
+        if len(sp_dictionary) != 1:
+            msg = f"Subproject of {parent_project.project} should only have one change. Found {len(sp_dictionary)} changes."
+            CardLogger.error(
+                msg
+                + f"  Did you forget to indent the rest of this change?\nKeys: {sp_dictionary.keys()}"
             )
-        self._change_type = list(sp_dictionary.keys())[0]
+            raise SubprojectValidationError(msg)
+        self._change_type = next(iter(sp_dictionary.keys()))
         self.__dict__.update(sp_dictionary)
-        self._sub_projects = []
+        self._sub_projects: list[SubProject] = []
 
     @property
     def change_type(self) -> str:
@@ -221,7 +229,7 @@ class SubProject(ProjectCard):
         return self._change_type
 
     @property
-    def parent_project(self) -> str:
+    def parent_project(self) -> ProjectCard:
         """Return parent project from parent project card."""
         return self._parent_project
 
@@ -231,12 +239,12 @@ class SubProject(ProjectCard):
         return self._parent_project.project
 
     @property
-    def dependencies(self) -> str:
+    def dependencies(self) -> dict:
         """Return dependencies from parent project card."""
         return self._parent_project.dependencies
 
     @property
-    def tags(self) -> str:
+    def tags(self) -> list[str]:
         """Return tags from parent project card."""
         return self._parent_project.tags
 
@@ -245,10 +253,8 @@ class SubProject(ProjectCard):
         """Return facility dictionary from subproject."""
         f = list(_findkeys(self.__dict__, "facility"))
         if not f:
-            raise SubprojectValidationError(
-                f"Couldn't find facility in subproject in project card\
-                                            {self._parent_project.project}"
-            )
+            msg = f"Couldn't find facility in subproject in project card {self._parent_project.project}"
+            raise SubprojectValidationError(msg)
         return f[0]
 
     @property

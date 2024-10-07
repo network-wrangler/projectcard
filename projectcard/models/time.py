@@ -1,7 +1,8 @@
 """Helper classes for time and timespan representation."""
+
 import datetime
 from datetime import time
-from typing import Annotated, List
+from typing import Annotated
 
 from pydantic import Field
 from pydantic.dataclasses import dataclass
@@ -9,46 +10,44 @@ from pydantic.dataclasses import dataclass
 
 class TimeFormatError(Exception):
     """Exception raised for errors in the time format."""
-    pass
 
 
 class TimespanFormatError(Exception):
     """Exception raised for errors in the timespan format."""
-    pass
 
 
 PC_TimeString = Annotated[str, Field(pattern=r"^\d{2}:\d{2}(:\d{2})?$")]
-PC_TimeSpanString = Annotated[List[PC_TimeString], Field(min_length=2, max_length=2)]
+PC_TimeSpanString = Annotated[list[PC_TimeString], Field(min_length=2, max_length=2)]
 
 
 @dataclass
 class PC_Time:
     """Project Card Time representation."""
+
     time: PC_TimeString
 
     @property
     def datetime(self):
+        """Time as a datetime object."""
         if self.time is str:
-            if len(self.time.split(":")) == 2:
+            if len(self.time.split(":")) == 2:  # noqa: PLR2004
                 return datetime.datetime.strptime(self.time, "%H:%M")
-            else:
-                return datetime.datetime.strptime(self.time, "%H:%M:%S")
-        elif self.time is time:
+            return datetime.datetime.strptime(self.time, "%H:%M:%S")
+        if self.time is time:
             return self.time
-        else:
-            raise TimeFormatError("time must be a string or time object")
+        msg = f"Time must be a string or time object, not {type(self.time)}"
+        raise TimeFormatError(msg)
 
     @property
     def time_sec(self):
         """Time in seconds since midnight."""
-        return (
-            self.datetime.hour * 3600 + self.datetime.minute * 60 + self.datetime.second
-        )
+        return self.datetime.hour * 3600 + self.datetime.minute * 60 + self.datetime.second
 
 
 @dataclass
 class PC_Timespan:
     """Project Card Timespan representation."""
+
     timespan: PC_TimeSpanString
 
     @property
@@ -84,8 +83,7 @@ class PC_Timespan:
                 minutes=self.end_time_dt.minute - self.start_time_dt.minute,
                 seconds=self.end_time_dt.second - self.start_time_dt.second,
             )
-        else:
-            return self.end_time_dt - self.start_time_dt
+        return self.end_time_dt - self.start_time_dt
 
     @property
     def start_time_sec(self):
@@ -106,5 +104,4 @@ class PC_Timespan:
         """
         if self.end_time_sec < self.start_time_sec:
             return (24 * 3600) - self.start_time_sec + self.end_time_sec
-        else:
-            return self.end_time_sec - self.start_time_sec
+        return self.end_time_sec - self.start_time_sec

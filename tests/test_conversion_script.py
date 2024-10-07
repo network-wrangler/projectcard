@@ -11,7 +11,8 @@ def all_v0_card_files(test_dir):
     _card_dir = Path(test_dir) / "data" / "cards"
     v0_card_files = list(Path(_card_dir).rglob("*[vV]0.*[yY]*[mM][lL]"))
     if not v0_card_files:
-        raise ValueError(f"No v0 card files found in {_card_dir}")
+        msg = f"No v0 card files found in {_card_dir}"
+        raise ValueError(msg)
     return v0_card_files
 
 

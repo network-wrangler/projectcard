@@ -4,7 +4,7 @@ import json
 from json import JSONDecodeError
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from typing import List, Union
+from typing import Optional, Union
 
 import jsonref
 from flake8.api import legacy as flake8
@@ -27,41 +27,35 @@ FLAKE8_ERRORS = ["E9", "F821", "F823", "F405"]
 class ProjectCardValidationError(ValidationError):
     """Error in formatting of ProjectCard."""
 
-    pass
-
 
 class SubprojectValidationError(ProjectCardValidationError):
     """Error in formatting of Subproject."""
-
-    pass
 
 
 class PycodeError(ProjectCardValidationError):
     """Basic runtime error in python code."""
 
-    pass
-
 
 class ProjectCardJSONSchemaError(SchemaError):
     """Error in the ProjectCard json schema."""
 
-    pass
 
-
-def _open_json(schema_path: str) -> dict:
+def _open_json(schema_path: Path) -> dict:
     try:
-        with open(schema_path, "r") as file:
+        with schema_path.open() as file:
             _json = json.loads(file.read())
             return _json
-    except FileNotFoundError:
-        CardLogger.error(f"Schema not found: {schema_path}")
-        raise ProjectCardJSONSchemaError("Schema definition missing")
-    except JSONDecodeError:
-        CardLogger.error(f"Schema not valid JSON: {schema_path}")
-        raise ProjectCardJSONSchemaError("Schema definition invalid")
+    except FileNotFoundError as err:
+        msg = "Schema not found."
+        CardLogger.error(msg + f"\n{schema_path}")
+        raise ProjectCardJSONSchemaError(msg) from FileNotFoundError
+    except JSONDecodeError as err:
+        msg = "Schema not valid JSON."
+        CardLogger.error(msg + f"\n{schema_path}")
+        raise ProjectCardJSONSchemaError(msg) from err
 
 
-def _load_schema(schema_absolute_path: Union[Path, str]) -> dict:
+def _load_schema(schema_absolute_path: Path) -> dict:
     base_path = Path(schema_absolute_path).parent
     base_uri = f"file:///{base_path}/"
 
@@ -78,7 +72,7 @@ def _load_schema(schema_absolute_path: Union[Path, str]) -> dict:
 
 def package_schema(
     schema_path: Union[Path, str] = PROJECTCARD_SCHEMA,
-    outfile_path: Union[Path, str] = None,
+    outfile_path: Optional[Union[Path, str]] = None,
 ) -> None:
     """Consolidates referenced schemas into a single schema and writes it out.
 
@@ -90,15 +84,15 @@ def package_schema(
     """
     schema_path = Path(schema_path)
     _s_data = _load_schema(schema_path)
-    if outfile_path is None:
-        outfile_path = schema_path.parent / f"{schema_path.stem}packaged.{schema_path.suffix}"
+    default_outfile_path = schema_path.parent / f"{schema_path.stem}packaged.{schema_path.suffix}"
+    outfile_path = outfile_path or default_outfile_path
     outfile_path = Path(outfile_path)
-    with open(outfile_path, "w") as outfile:
+    with outfile_path.open("w") as outfile:
         json.dump(_s_data, outfile, indent=4)
     CardLogger.info(f"Wrote {schema_path.stem} to {outfile_path.stem}")
 
 
-def validate_schema_file(schema_path: Union[Path, str] = PROJECTCARD_SCHEMA) -> bool:
+def validate_schema_file(schema_path: Path = PROJECTCARD_SCHEMA) -> bool:
     """Validates that a schema file is a valid JSON-schema.
 
     Args:
@@ -113,13 +107,13 @@ def validate_schema_file(schema_path: Union[Path, str] = PROJECTCARD_SCHEMA) -> 
         pass
     except SchemaError as e:
         CardLogger.error(e)
-        raise ProjectCardJSONSchemaError(f"{e}")
+        raise ProjectCardJSONSchemaError from e
 
     return True
 
 
 def update_dict_with_schema_defaults(
-    data: dict, schema: Union[str, Path, dict] = PROJECTCARD_SCHEMA
+    data: dict, schema: Union[Path, dict] = PROJECTCARD_SCHEMA
 ) -> dict:
     """Recursively update missing required properties with default values.
 
@@ -130,7 +124,7 @@ def update_dict_with_schema_defaults(
     Returns:
         The updated data dictionary.
     """
-    if isinstance(schema, str) or isinstance(schema, Path):
+    if isinstance(schema, (str, Path)):
         schema = _load_schema(schema)
 
     if "properties" in schema:
@@ -159,7 +153,7 @@ def update_dict_with_schema_defaults(
 
 
 def validate_card(
-    jsondata: dict, schema_path: Union[str, Path] = PROJECTCARD_SCHEMA, parse_defaults: bool = True
+    jsondata: dict, schema_path: Path = PROJECTCARD_SCHEMA, parse_defaults: bool = True
 ) -> bool:
     """Validates json-like data to specified schema.
 
@@ -189,25 +183,24 @@ def validate_card(
         msg = f"\nRelevant schema: {e.schema}\nValidator Value: {e.validator_value}\nValidator: {e.validator}"
         msg += f"\nabsolute_schema_path:{e.absolute_schema_path}\nabsolute_path:{e.absolute_path}"
         CardLogger.error(msg)
-        raise ProjectCardValidationError(f"{e}")
+        raise ProjectCardValidationError from e
     except SchemaError as e:
         CardLogger.error(e)
-        raise ProjectCardJSONSchemaError(f"{e}")
+        raise ProjectCardJSONSchemaError from e
 
     if "pycode" in jsondata:
-        if "self." in jsondata["pycode"]:
-            if "self_obj_type" not in jsondata:
-                raise PycodeError(
-                    "If using self, must specify what `self` refers to in yml frontmatter using self_obj_type: <RoadwayNetwork|TransitNetwork>"
-                )
+        if "self." in jsondata["pycode"] and "self_obj_type" not in jsondata:
+            msg = "If using self, must specify what `self` refers to in yml frontmatter using self_obj_type: <RoadwayNetwork|TransitNetwork>"
+            raise PycodeError(msg)
         _validate_pycode(jsondata)
 
     return True
 
 
-def _validate_pycode(
-    jsondata: dict, mocked_vars: List[str] = ["self", "roadway_net", "transit_net"]
-) -> None:
+DEFAULT_MOCKED_VARS = ["self", "roadway_net", "transit_net"]
+
+
+def _validate_pycode(jsondata: dict, mocked_vars: list[str] = DEFAULT_MOCKED_VARS) -> None:
     """Use flake8 to evaluate basic runtime errors on pycode.
 
     Uses mock.MagicMock() for self to mimic RoadwayNetwork or TransitNetwork
@@ -219,15 +212,15 @@ def _validate_pycode(
     """
     style_guide = flake8.get_style_guide(select=FLAKE8_ERRORS, ignore=["E", "F", "W"])
     dir = TemporaryDirectory()
-    tmp_py_path = str(Path(dir.name) / "tempcode.py")
-    CardLogger.debug(f"Storing temporary python files at: {tmp_py_path}")
+    tmp_py_path = Path(dir.name) / "tempcode.py"
+    CardLogger.debug(f"Storing temporary python files at: {tmp_py_path!s}")
 
     # Add self, transit_net and roadway_net as mocked elements
     py_file_contents = "import mock\n"
     py_file_contents += "\n".join([f"{v} = mock.Mock()" for v in mocked_vars])
     py_file_contents += "\n" + jsondata["pycode"]
 
-    with open(tmp_py_path, "w") as py_file:
+    with tmp_py_path.open("w") as py_file:
         py_file.write(py_file_contents)
 
     report = style_guide.check_files([tmp_py_path])
@@ -237,5 +230,6 @@ def _validate_pycode(
         CardLogger.debug(f"FILE CONTENTS\n{py_file_contents}")
         errors = {c: report.get_statistics(c) for c in FLAKE8_ERRORS if report.get_statistics(c)}
         CardLogger.debug(f"Flake 8 Report:\n {errors}")
-        raise PycodeError(f"Found {report.total_errors} errors in {jsondata['project']}")
+        msg = f"Found {report.total_errors} errors in {jsondata['project']}"
+        raise PycodeError(msg)
     dir.cleanup()

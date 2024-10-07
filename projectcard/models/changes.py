@@ -1,12 +1,18 @@
 """Change type models for project card."""
-from typing import Optional, Annotated, ClassVar
-from pydantic import BaseModel, Field, ConfigDict
 
-from .structs import (
-    RoadwayPropertyChange, TransitPropertyChange, TransitRoutingChange,
-    RoadLink, RoadNode, TransitRoute
-)
+from typing import Annotated, ClassVar, Optional
+
+from pydantic import BaseModel, ConfigDict, Field
+
 from .selections import SelectFacility, SelectRoadLinks, SelectRoadNodes, SelectTransitTrips
+from .structs import (
+    RoadLink,
+    RoadNode,
+    RoadwayPropertyChange,
+    TransitPropertyChange_PropertyChanges,
+    TransitRoute,
+    TransitRoutingChange_Routing,
+)
 
 
 class RoadwayDeletion(BaseModel):
@@ -34,6 +40,7 @@ class RoadwayDeletion(BaseModel):
             clean_nodes: false
         ```
     """
+
     require_any_of: ClassVar = [["links", "nodes"]]
     model_config = ConfigDict(extra="forbid")
 
@@ -113,8 +120,8 @@ class RoadwayPropertyChanges(BaseModel):
                     set: 3
                     existing_value_conflict: skip
         ```
-
     """
+
     model_config = ConfigDict(extra="forbid")
 
     facility: SelectFacility
@@ -142,10 +149,13 @@ class TransitPropertyChange(BaseModel):
                     set: 900
         ```
     """
+
     model_config = ConfigDict(extra="forbid")
 
     service: SelectTransitTrips
-    property_changes: Annotated[dict[str, TransitPropertyChange], Field(min_length=1)]
+    property_changes: Annotated[
+        dict[str, TransitPropertyChange_PropertyChanges], Field(min_length=1)
+    ]
 
 
 class TransitRoutingChange(BaseModel):
@@ -175,10 +185,11 @@ class TransitRoutingChange(BaseModel):
                 - 2
         ```
     """
+
     model_config = ConfigDict(extra="forbid")
 
     service: SelectTransitTrips
-    transit_routing_change: TransitRoutingChange
+    routing: TransitRoutingChange_Routing
 
 
 class TransitServiceDeletion(BaseModel):
@@ -202,8 +213,8 @@ class TransitServiceDeletion(BaseModel):
             clean_shapes: false
             clean_routes: true
         ```
-
     """
+
     model_config = ConfigDict(extra="forbid")
 
     service: SelectTransitTrips
@@ -245,6 +256,7 @@ class TransitRouteAddition(BaseModel):
 
         ```
     """
+
     model_config = ConfigDict(extra="forbid")
 
     routes: Annotated[list[TransitRoute], Field(min_length=1)]
@@ -264,7 +276,7 @@ class ChangeTypes(BaseModel):
             "transit_routing_change",
             "transit_service_deletion",
             "transit_route_addition",
-            "pycode"
+            "pycode",
         ],
     ]
 

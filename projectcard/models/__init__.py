@@ -9,13 +9,19 @@ NOTE: if pydantic is not installed they will provide no actual functionality
 
 
 class MockPydModel:
+    """Mock pydantic model for use when pydantic is not installed."""
+
     def __init__(self, **kwargs):
+        """Set attributes from kwargs."""
         for key, value in kwargs.items():
             setattr(self, key, value)
 
 
 class MockModule:
+    """Mock pydantic module for use when pydantic is not installed."""
+
     def __getattr__(self, name):
+        """Return a mock pydantic model."""
         return MockPydModel
 
 
@@ -25,7 +31,8 @@ try:
     if pydantic.__version__.startswith("2"):
         from .project import ProjectModel
     else:
-        raise ImportError("Pydantic version is not 2.x.  Use mocked models.")
+        msg = "Pydantic version is not 2.x.  Use mocked models."
+        raise ImportError(msg)
 except ImportError:
     # Mock the data models
     globals().update(

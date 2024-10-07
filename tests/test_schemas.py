@@ -20,7 +20,7 @@ def test_schemas_valid_json(all_schema_files):
 
 
 def test_projectcard_package(test_out_dir):
-    _outfile_path = os.path.join(test_out_dir, "projectcard.testpackage.json")
+    _outfile_path = test_out_dir / "projectcard.testpackage.json"
     package_schema(outfile_path=_outfile_path)
     validate_schema_file(_outfile_path)
 
@@ -40,16 +40,18 @@ def all_bad_schema_files(test_dir):
 
 
 def test_bad_schema(all_bad_schema_files):
+    non_failing_schemas = []
     for s in all_bad_schema_files:
         try:
             validate_schema_file(s)
-        except:
+        except ValueError:
             pass
         else:
-            CardLogger.error(f"Schema should not be valid: {s}")
-            raise ValueError(
-                "Schema shouldn't be valid but is not raising an error in validate_schema_file"
-            )
+            non_failing_schemas.append(s)
+    if non_failing_schemas:
+        msg = f"Failed to catch errors for: {non_failing_schemas}"
+        CardLogger.error(msg)
+        raise ValueError(msg)
     CardLogger.info(f"Evaluated {len(all_bad_schema_files)} bad schema files")
 
 
