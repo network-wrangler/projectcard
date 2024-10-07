@@ -273,7 +273,7 @@ def read_cards(
     cards = {}
 
     filepath = _resolve_rel_paths(filepath, base_path=base_path)
-    if isinstance(filepath, list) or not filepath.exists():
+    if isinstance(filepath, list) or filepath.is_dir():
         card_paths = _get_cardpath_list(filepath, valid_ext=VALID_EXT, recursive=recursive)
         for p in card_paths:
             project_card = _read_card(
