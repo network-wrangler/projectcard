@@ -17,7 +17,7 @@ from .structs import (
 class SelectRoadNodes(BaseModel):
     """Requirements for describing multiple nodes of a project card (e.g. to delete).
 
-    Parameters:
+    Attributes:
         all (bool): If True, select all nodes. Must have either `all`, `osm_node_id` or
             `model_node_id`.
         osm_node_id (Optional[list[str]]): List of OSM node IDs to select. Must have either
@@ -50,7 +50,7 @@ class SelectRoadLinks(BaseModel):
     Additional fields to select on may be provided and will be treated as an AND condition after
         the primary selection from `all`, `name`, `osm_link_id`, or `model_link_id`.
 
-    Parameters:
+    Attributes:
         all (bool): If True, select all links.
         name (Optional[list[str]]): List of names to select. If multiple provided will
             be treated as an OR condition.
@@ -126,7 +126,7 @@ class SelectTransitTrips(BaseModel):
 
     Multiple requirements are treated as an AND condition.
 
-    Parameters:
+    Attributes:
         trip_properties (Optional[SelectTripProperties]): Selection based on trip properties.
         route_properties (Optional[SelectRouteProperties]): Selection based on route properties.
         timespans (List[Timespan]): List of timespans to select. Multiple timespans are treated
@@ -180,7 +180,7 @@ class SelectFacility(BaseModel):
         continuous path - reulting in a final selection of links that may or may not connect
         the two nodes.
 
-    Parameters:
+    Attributes:
         links (Optional[SelectRoadLinks]): Selection of roadway links.
         nodes (Optional[SelectRoadNodes]): Selection of roadway nodes.
         from (Optional[SelectRoadNode]): Selection of the origin node.

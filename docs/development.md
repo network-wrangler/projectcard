@@ -133,3 +133,10 @@ mkdocs serve
 !!! tip
 
     Releases must have a unique version number in order to be updated on pypi.
+
+## Changelog
+
+{!
+    include-markdown "../CHANGELOG.md"
+    heading-offset=1
+!}

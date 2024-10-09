@@ -18,7 +18,7 @@ from .structs import (
 class RoadwayDeletion(BaseModel):
     """Requirements for describing roadway deletion project card (e.g. to delete).
 
-    Parameters:
+    Attributes:
         links (Optional[SelectRoadLinks]): Roadway links to delete.
         nodes (Optional[SelectRoadNodes]): Roadway nodes to delete.
         clean_shapes (bool): If True, will clean unused roadway shapes associated with the deleted links
@@ -53,7 +53,7 @@ class RoadwayDeletion(BaseModel):
 class RoadwayAddition(BaseModel):
     """Requirements for describing roadway addition project card.
 
-    Parameters:
+    Attributes:
         links (Optional[list[RoadLink]]): Roadway links to add. Must have at least one link.
         nodes (Optional[list[RoadNode]]): Roadway nodes to add. Must have at least one node.
 
@@ -93,7 +93,7 @@ class RoadwayAddition(BaseModel):
 class RoadwayPropertyChanges(BaseModel):
     """Value for setting property changes for a time of day and category.
 
-    Parameters:
+    Attributes:
         facility (SelectFacility): Selection of roadway links to change properties for.
         property_changes (dict[str, RoadwayPropertyChange]): Property changes to apply to the selection. Must have at least one property change.
 
@@ -131,7 +131,7 @@ class RoadwayPropertyChanges(BaseModel):
 class TransitPropertyChange(BaseModel):
     """Value for setting property change for a time of day and category.
 
-    Parameters:
+    Attributes:
         service (SelectTransitTrips): Selection of transit trips to change properties for.
         property_changes (dict[str, TransitPropertyChange]): List of property changes to apply.
 
@@ -161,7 +161,7 @@ class TransitPropertyChange(BaseModel):
 class TransitRoutingChange(BaseModel):
     """Value for setting routing change for transit.
 
-    Parameters:
+    Attributes:
         service (SelectTransitTrips): Selection of transit trips to change routing for.
         transit_routing_change (TransitRoutingChange): Existing and changed routing as denoted as a list of nodes with
             nodes where the route doesn't stop noted as negative integers.
@@ -195,7 +195,7 @@ class TransitRoutingChange(BaseModel):
 class TransitServiceDeletion(BaseModel):
     """Requirements for describing transit service deletion project card (e.g. to delete).
 
-    Parameters:
+    Attributes:
         service (SelectTransitTrips): Selection of transit trips to delete.
         clean_shapes (Optional[bool]): If True, will clean unused transit shapes associated with the deleted trips
             if they are not otherwise being used. Defaults to False.
@@ -225,7 +225,7 @@ class TransitServiceDeletion(BaseModel):
 class TransitRouteAddition(BaseModel):
     """Requirements for describing transit route addition project card.
 
-    Parameters:
+    Attributes:
         routes (list[TransitRoute]): List of transit routes to be added. Must have at least one route.
 
     !!! Example "Example Transit Route Addition"

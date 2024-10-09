@@ -9,6 +9,7 @@ from typing import Any, Callable, Optional, Union
 import toml
 import yaml
 
+from .errors import ProjectCardReadError
 from .logger import CardLogger
 from .projectcard import REPLACE_KEYS, VALID_EXT, ProjectCard
 
@@ -16,11 +17,6 @@ ProjectCardFilepath = Union[Path, str]
 ProjectCardFilepaths = Union[Path, list[Path], str, list[str]]
 
 DEFAULT_BASE_PATH = Path.cwd()
-
-
-class ProjectCardReadError(Exception):
-    """Error in reading project card."""
-
 
 SKIP_READ = ["valid"]
 SKIP_WRITE = ["valid"]
@@ -98,6 +94,7 @@ def _read_wrangler(filepath: Path) -> dict:
 def write_card(project_card, filename: Optional[Path] = None):
     """Writes project card dictionary to YAML file."""
     from .utils import make_slug
+
     default_filename = make_slug(project_card.project) + ".yml"
     filename = filename or Path(default_filename)
 

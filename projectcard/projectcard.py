@@ -4,11 +4,10 @@ from __future__ import annotations
 
 from typing import Union
 
+from .errors import ProjectCardValidationError, SubprojectValidationError
 from .logger import CardLogger
 from .utils import _findkeys
 from .validate import (
-    ProjectCardValidationError,
-    SubprojectValidationError,
     update_dict_with_schema_defaults,
     validate_card,
 )

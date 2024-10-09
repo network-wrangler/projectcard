@@ -11,6 +11,7 @@ from flake8.api import legacy as flake8
 from jsonschema import validate
 from jsonschema.exceptions import SchemaError, ValidationError
 
+from .errors import ProjectCardJSONSchemaError, ProjectCardValidationError, PycodeError
 from .logger import CardLogger
 
 ROOTDIR = Path(__file__).resolve().parent
@@ -22,22 +23,6 @@ PROJECTCARD_SCHEMA = ROOTDIR / "schema" / "projectcard.json"
 # F823 local variable name ... referenced before assignment
 # F405 name may be undefined, or defined from star imports: module
 FLAKE8_ERRORS = ["E9", "F821", "F823", "F405"]
-
-
-class ProjectCardValidationError(ValidationError):
-    """Error in formatting of ProjectCard."""
-
-
-class SubprojectValidationError(ProjectCardValidationError):
-    """Error in formatting of Subproject."""
-
-
-class PycodeError(ProjectCardValidationError):
-    """Basic runtime error in python code."""
-
-
-class ProjectCardJSONSchemaError(SchemaError):
-    """Error in the ProjectCard json schema."""
 
 
 def _open_json(schema_path: Path) -> dict:
@@ -58,6 +43,11 @@ def _open_json(schema_path: Path) -> dict:
 def _load_schema(schema_absolute_path: Path) -> dict:
     base_path = Path(schema_absolute_path).parent
     base_uri = f"file:///{base_path}/"
+
+    if not schema_absolute_path.exists():
+        msg = f"Schema not found at {schema_absolute_path}"
+        CardLogger.error(msg)
+        raise FileNotFoundError(msg)
 
     _s = jsonref.replace_refs(
         _open_json(schema_absolute_path),

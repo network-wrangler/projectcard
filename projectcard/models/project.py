@@ -69,7 +69,7 @@ class ProjectModel(BaseModel):
 
     List of tools that support json-schema: <https://json-schema.org/tools>
 
-    Parameters:
+    Attributes:
         project (str): The name of the project. This name must be unique within a set of projects
             being managed or applied to a network.
         notes (Optional[str]): Additional freeform notes about the project.

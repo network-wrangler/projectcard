@@ -15,8 +15,12 @@ theme:
   features:
     - content.code.annotate
     - content.code.copy
+    - content.tabs.link
+    - navigation.indexes
     - navigation.tabs
+    - navigation.expand
     - toc.integrate
+    - toc.follow
   palette:
     - scheme: default
       primary: blue grey
@@ -27,10 +31,12 @@ theme:
 plugins:
   - autorefs
   - awesome-pages
-  - include-markdown
-  - mike
+  - include-markdown:
+      opening_tag: "{!"
+      closing_tag: "!}"
   - macros
   - mermaid2
+  - mike
   - mkdocs-jupyter:
       include_source: True
   - mkdocstrings:
@@ -52,12 +58,10 @@ extra:
     default: latest
 
 extra_javascript:
-  - https://code.jquery.com/jquery-3.4.1.min.js
-  - https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js
+  - https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js
   - javascript/schema_doc.min.js
 
 extra_css:
-
   - extra_css/extra.css
 
 markdown_extensions:
@@ -65,11 +69,13 @@ markdown_extensions:
   - codehilite:
       linenums: true
   - meta
-  - pymdownx.inlinehilite
+  - pymdownx.details
   - pymdownx.highlight:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
+      use_pygments: true
+  - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.tasklist:
       custom_checkbox: true

@@ -30,6 +30,7 @@ dependencies = [
     "jsonschema",
     "pydantic>=2.0",
     "pyyaml",
+    "tabulate",
     "toml",
 ]
 

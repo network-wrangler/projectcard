@@ -15,42 +15,11 @@ def define_env(env):
     """
 
     @env.macro
-    def document_schema(schema_filename: str) -> str:
-        from json_schema_for_humans.generate import generate_from_schema
-        from json_schema_for_humans.generation_configuration import (
-            GenerationConfiguration,
-        )
+    def document_schema(**kwargs) -> str:
+        """Generate Markdown documentation for a JSON schema."""
+        from projectcard.docs import json_schema_to_md
 
-        _rel_schema_path = SCHEMA_DIR / schema_filename
-        _abs_schema_path = _rel_schema_path.absolute()
-        if not _abs_schema_path.exists():
-            msg = f"Schema doesn't exist at: {_abs_schema_path}"
-            raise FileNotFoundError(msg)
-
-        _config = GenerationConfiguration(
-            minify=False,
-            copy_css=False,
-            copy_js=False,
-            template_name="js",
-            expand_buttons=True,
-        )
-
-        content = generate_from_schema(_abs_schema_path, config=_config)
-
-        # get content ready for mkdocs
-        _footer = _get_html_between_tags(content, tag="footer")
-        replace_strings = {
-            "<!DOCTYPE html>": "",
-            '<div class="breadcrumbs"></div><span class="badge badge-dark value-type">\
-            Type: object</span><br/>': "",
-        }
-
-        for _orig, _new in replace_strings.items():
-            content = content.replace(_orig, _new)
-
-        content = _get_html_between_tags(content, tag="body")
-        content = _rm_html_between_tags(content, tag="footer")
-        return content
+        return json_schema_to_md(**kwargs)
 
     @env.macro
     def list_examples(data_dir: Path) -> str:
