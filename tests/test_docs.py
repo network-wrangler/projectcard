@@ -23,7 +23,7 @@ def test_jsonschema2md(request, test_out_dir):
     with out_md.open("w") as f:
         f.write(md)
     try:
-        markdown.markdown(md) 
+        markdown.markdown(md)
     except Exception as e:
         pytest.fail(f"json_schema_to_md generated Invalid markdown: {e}")
     CardLogger.info(f"--Finished: {request.node.name}")
@@ -36,7 +36,7 @@ def test_examples2md(request, example_dir, test_out_dir):
     with out_md.open("w") as f:
         f.write(md)
     try:
-        markdown.markdown(md) 
+        markdown.markdown(md)
     except Exception as e:
         pytest.fail(f"card_list_to_table generated Invalid markdown: {e}")
     CardLogger.info(f"--Finished: {request.node.name}")

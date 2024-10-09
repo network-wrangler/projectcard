@@ -97,7 +97,8 @@ def validate_schema_file(schema_path: Path = PROJECTCARD_SCHEMA) -> bool:
         pass
     except SchemaError as e:
         CardLogger.error(e)
-        raise ProjectCardJSONSchemaError from e
+        msg = f"Schema error for projectcard schema."
+        raise ProjectCardJSONSchemaError(msg) from e
 
     return True
 
@@ -173,10 +174,12 @@ def validate_card(
         msg = f"\nRelevant schema: {e.schema}\nValidator Value: {e.validator_value}\nValidator: {e.validator}"
         msg += f"\nabsolute_schema_path:{e.absolute_schema_path}\nabsolute_path:{e.absolute_path}"
         CardLogger.error(msg)
-        raise ProjectCardValidationError from e
+        msg = f"Validation error for project {jsondata['project']}"
+        raise ProjectCardValidationError(msg) from e
     except SchemaError as e:
         CardLogger.error(e)
-        raise ProjectCardJSONSchemaError from e
+        msg = f"Schema error for projectcard schema."
+        raise ProjectCardJSONSchemaError(msg) from e
 
     if "pycode" in jsondata:
         if "self." in jsondata["pycode"] and "self_obj_type" not in jsondata:
