@@ -1,6 +1,5 @@
 fontawesome_markdown
-json_schema_for_humans
-jsonschema2md
+jsonschema-markdown
 mike
 mkdocs
 mkdocs-autorefs
@@ -12,3 +11,4 @@ mkdocs-material
 mkdocs-mermaid2-plugin
 mkdocstrings
 mkdocstrings-python
+pandas

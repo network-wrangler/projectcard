@@ -84,4 +84,11 @@ But we'd love to make it better! Please report bugs or incorrect/unclear/missing
 
 ## Who-dat?
 
-ProjectCard was developed using resources from the [Metropolitan Transportation Commission](bayareametro.gov), [Metropolitan Council MN](https://metrocouncil.org/), and in-kind time from [UrbanLabs LLC](https://urbanlabs.io) and [WSP](www.wsp.com).  It is currently maintained using in-kind time...so please be patient.
+ProjectCard was developed using resources from the [Metropolitan Transportation Commission](https://www.bayareametro.gov), [Metropolitan Council MN](https://metrocouncil.org/), and in-kind time from [UrbanLabs LLC](https://urbanlabs.io) and [WSP](https://www.wsp.com).  It is currently maintained using in-kind time...so please be patient.
+
+## Release History
+
+{!
+    include-markdown "../CHANGELOG.md"
+    heading-offset=1
+!}

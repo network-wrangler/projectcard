@@ -1054,19 +1054,18 @@ the examples becuase it is less verbose than JSON and python dictonaries and eas
 <p>List of tools that support json-schema: <a href="https://json-schema.org/tools">https://json-schema.org/tools</a></p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
+<p><span class="doc-section-title">Attributes:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
-          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>project</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.project">project</span></code></td>
             <td>
                   <code>str</code>
             </td>
@@ -1076,12 +1075,9 @@ the examples becuase it is less verbose than JSON and python dictonaries and eas
 being managed or applied to a network.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>notes</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.notes">notes</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[str]</code>
             </td>
@@ -1090,12 +1086,9 @@ being managed or applied to a network.</p>
                 <p>Additional freeform notes about the project.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>tags</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.tags">tags</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[list[str]]</code>
             </td>
@@ -1105,12 +1098,9 @@ being managed or applied to a network.</p>
 specific project or type of project.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>dependencies</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.dependencies">dependencies</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="structs.Dependencies">Dependencies</span>]</code>
             </td>
@@ -1120,12 +1110,9 @@ specific project or type of project.</p>
 prerequisites, and corequisites&hellip;each of which is a list of project names.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>changes</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.changes">changes</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[list[<span title="changes.ChangeTypes">ChangeTypes</span>]]</code>
             </td>
@@ -1137,12 +1124,9 @@ prerequisites, and corequisites&hellip;each of which is a list of project names.
 change outside of changes.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>roadway_property_change</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.roadway_property_change">roadway_property_change</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="changes.RoadwayPropertyChanges">RoadwayPropertyChanges</span>]</code>
             </td>
@@ -1152,12 +1136,9 @@ change outside of changes.</p>
 change. Cannot be used with <code>changes</code> or another change type.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>roadway_deletion</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.roadway_deletion">roadway_deletion</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="changes.RoadwayDeletion">RoadwayDeletion</span>]</code>
             </td>
@@ -1167,12 +1148,9 @@ change. Cannot be used with <code>changes</code> or another change type.</p>
 be used with <code>changes</code> or another change type.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>roadway_addition</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.roadway_addition">roadway_addition</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="changes.RoadwayAddition">RoadwayAddition</span>]</code>
             </td>
@@ -1182,12 +1160,9 @@ be used with <code>changes</code> or another change type.</p>
 be used with <code>changes</code> or another change type.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>transit_property_change</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.transit_property_change">transit_property_change</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="changes.TransitPropertyChange">TransitPropertyChange</span>]</code>
             </td>
@@ -1197,12 +1172,9 @@ be used with <code>changes</code> or another change type.</p>
 change. Cannot be used with <code>changes</code> or another change type.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>transit_routing_change</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.transit_routing_change">transit_routing_change</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="changes.TransitRoutingChange">TransitRoutingChange</span>]</code>
             </td>
@@ -1212,12 +1184,9 @@ change. Cannot be used with <code>changes</code> or another change type.</p>
 Cannot be used with <code>changes</code> or another change type.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>transit_service_deletion</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.transit_service_deletion">transit_service_deletion</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="changes.TransitServiceDeletion">TransitServiceDeletion</span>]</code>
             </td>
@@ -1227,12 +1196,9 @@ Cannot be used with <code>changes</code> or another change type.</p>
 deletion change. Cannot be used with <code>changes</code> or another change type.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>transit_route_addition</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.transit_route_addition">transit_route_addition</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="changes.TransitRouteAddition">TransitRouteAddition</span>]</code>
             </td>
@@ -1242,12 +1208,9 @@ deletion change. Cannot be used with <code>changes</code> or another change type
 change. Cannot be used with <code>changes</code> or another change type.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>pycode</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.pycode">pycode</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[str]</code>
             </td>
@@ -1258,12 +1221,9 @@ which refers to self as a transit or roadway network. Cannot be used with <code>
 another change type.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>self_obj_type</code></td>
+            <td><code><span title="projectcard.models.project.ProjectModel.self_obj_type">self_obj_type</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<span title="typing.Literal">Literal</span>[&#39;RoadwayNetwork&#39;, &#39;TransitNetwork&#39;]]</code>
             </td>
@@ -1273,9 +1233,6 @@ another change type.</p>
 being changed in the pycode python code. Must be either TransitNetwork or
 RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -1472,7 +1429,7 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
 </span><span id="__span-0-69"><a id="__codelineno-0-69" name="__codelineno-0-69"></a>
 </span><span id="__span-0-70"><a id="__codelineno-0-70" name="__codelineno-0-70"></a><span class="sd">    List of tools that support json-schema: &lt;https://json-schema.org/tools&gt;</span>
 </span><span id="__span-0-71"><a id="__codelineno-0-71" name="__codelineno-0-71"></a>
-</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-0-72"><a id="__codelineno-0-72" name="__codelineno-0-72"></a><span class="sd">    Attributes:</span>
 </span><span id="__span-0-73"><a id="__codelineno-0-73" name="__codelineno-0-73"></a><span class="sd">        project (str): The name of the project. This name must be unique within a set of projects</span>
 </span><span id="__span-0-74"><a id="__codelineno-0-74" name="__codelineno-0-74"></a><span class="sd">            being managed or applied to a network.</span>
 </span><span id="__span-0-75"><a id="__codelineno-0-75" name="__codelineno-0-75"></a><span class="sd">        notes (Optional[str]): Additional freeform notes about the project.</span>
@@ -1697,19 +1654,18 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
         <p>Requirements for describing roadway addition project card.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
+<p><span class="doc-section-title">Attributes:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
-          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>links</code></td>
+            <td><code><span title="projectcard.models.changes.RoadwayAddition.links">links</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[list[<a class="autorefs autorefs-internal" title="projectcard.models.structs.RoadLink" href="#projectcard.models.structs.RoadLink">RoadLink</a>]]</code>
             </td>
@@ -1718,12 +1674,9 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
                 <p>Roadway links to add. Must have at least one link.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>nodes</code></td>
+            <td><code><span title="projectcard.models.changes.RoadwayAddition.nodes">nodes</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[list[<a class="autorefs autorefs-internal" title="projectcard.models.structs.RoadNode" href="#projectcard.models.structs.RoadNode">RoadNode</a>]]</code>
             </td>
@@ -1731,9 +1684,6 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
               <div class="doc-md-description">
                 <p>Roadway nodes to add. Must have at least one node.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -1806,7 +1756,7 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
 <span class="normal"><a href="#__codelineno-0-90">90</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="k">class</span> <span class="nc">RoadwayAddition</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Requirements for describing roadway addition project card.</span>
 </span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55"></a>
-</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">    Attributes:</span>
 </span><span id="__span-0-57"><a id="__codelineno-0-57" name="__codelineno-0-57"></a><span class="sd">        links (Optional[list[RoadLink]]): Roadway links to add. Must have at least one link.</span>
 </span><span id="__span-0-58"><a id="__codelineno-0-58" name="__codelineno-0-58"></a><span class="sd">        nodes (Optional[list[RoadNode]]): Roadway nodes to add. Must have at least one node.</span>
 </span><span id="__span-0-59"><a id="__codelineno-0-59" name="__codelineno-0-59"></a>
@@ -1881,19 +1831,18 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
         <p>Requirements for describing roadway deletion project card (e.g. to delete).</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
+<p><span class="doc-section-title">Attributes:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
-          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>links</code></td>
+            <td><code><span title="projectcard.models.changes.RoadwayDeletion.links">links</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectRoadLinks" href="#projectcard.models.selections.SelectRoadLinks">SelectRoadLinks</a>]</code>
             </td>
@@ -1902,12 +1851,9 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
                 <p>Roadway links to delete.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>nodes</code></td>
+            <td><code><span title="projectcard.models.changes.RoadwayDeletion.nodes">nodes</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectRoadNodes" href="#projectcard.models.selections.SelectRoadNodes">SelectRoadNodes</a>]</code>
             </td>
@@ -1916,12 +1862,9 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
                 <p>Roadway nodes to delete.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>clean_shapes</code></td>
+            <td><code><span title="projectcard.models.changes.RoadwayDeletion.clean_shapes">clean_shapes</span></code></td>
             <td>
                   <code>bool</code>
             </td>
@@ -1931,12 +1874,9 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
 if they are not otherwise being used. Defaults to False.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>clean_nodes</code></td>
+            <td><code><span title="projectcard.models.changes.RoadwayDeletion.clean_nodes">clean_nodes</span></code></td>
             <td>
                   <code>bool</code>
             </td>
@@ -1945,9 +1885,6 @@ if they are not otherwise being used. Defaults to False.</p>
                 <p>If True, will clean unused roadway nodes associated with the deleted links
 if they are not otherwise being used. Defaults to False.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -2004,7 +1941,7 @@ if they are not otherwise being used. Defaults to False.</p>
 <span class="normal"><a href="#__codelineno-0-50">50</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="k">class</span> <span class="nc">RoadwayDeletion</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Requirements for describing roadway deletion project card (e.g. to delete).</span>
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a>
-</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="sd">    Attributes:</span>
 </span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="sd">        links (Optional[SelectRoadLinks]): Roadway links to delete.</span>
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="sd">        nodes (Optional[SelectRoadNodes]): Roadway nodes to delete.</span>
 </span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="sd">        clean_shapes (bool): If True, will clean unused roadway shapes associated with the deleted links</span>
@@ -2074,19 +2011,18 @@ if they are not otherwise being used. Defaults to False.</p>
         <p>Value for setting property changes for a time of day and category.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
+<p><span class="doc-section-title">Attributes:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
-          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>facility</code></td>
+            <td><code><span title="projectcard.models.changes.RoadwayPropertyChanges.facility">facility</span></code></td>
             <td>
                   <code><a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectFacility" href="#projectcard.models.selections.SelectFacility">SelectFacility</a></code>
             </td>
@@ -2095,12 +2031,9 @@ if they are not otherwise being used. Defaults to False.</p>
                 <p>Selection of roadway links to change properties for.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>property_changes</code></td>
+            <td><code><span title="projectcard.models.changes.RoadwayPropertyChanges.property_changes">property_changes</span></code></td>
             <td>
                   <code>dict[str, <a class="autorefs autorefs-internal" title="projectcard.models.structs.RoadwayPropertyChange" href="#projectcard.models.structs.RoadwayPropertyChange">RoadwayPropertyChange</a>]</code>
             </td>
@@ -2108,9 +2041,6 @@ if they are not otherwise being used. Defaults to False.</p>
               <div class="doc-md-description">
                 <p>Property changes to apply to the selection. Must have at least one property change.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -2180,7 +2110,7 @@ if they are not otherwise being used. Defaults to False.</p>
 <span class="normal"><a href="#__codelineno-0-128">128</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-93"><a id="__codelineno-0-93" name="__codelineno-0-93"></a><span class="k">class</span> <span class="nc">RoadwayPropertyChanges</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="__span-0-94"><a id="__codelineno-0-94" name="__codelineno-0-94"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Value for setting property changes for a time of day and category.</span>
 </span><span id="__span-0-95"><a id="__codelineno-0-95" name="__codelineno-0-95"></a>
-</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-0-96"><a id="__codelineno-0-96" name="__codelineno-0-96"></a><span class="sd">    Attributes:</span>
 </span><span id="__span-0-97"><a id="__codelineno-0-97" name="__codelineno-0-97"></a><span class="sd">        facility (SelectFacility): Selection of roadway links to change properties for.</span>
 </span><span id="__span-0-98"><a id="__codelineno-0-98" name="__codelineno-0-98"></a><span class="sd">        property_changes (dict[str, RoadwayPropertyChange]): Property changes to apply to the selection. Must have at least one property change.</span>
 </span><span id="__span-0-99"><a id="__codelineno-0-99" name="__codelineno-0-99"></a>
@@ -2253,19 +2183,18 @@ if they are not otherwise being used. Defaults to False.</p>
         <p>Value for setting property change for a time of day and category.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
+<p><span class="doc-section-title">Attributes:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
-          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>service</code></td>
+            <td><code><span title="projectcard.models.changes.TransitPropertyChange.service">service</span></code></td>
             <td>
                   <code><a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectTransitTrips" href="#projectcard.models.selections.SelectTransitTrips">SelectTransitTrips</a></code>
             </td>
@@ -2274,12 +2203,9 @@ if they are not otherwise being used. Defaults to False.</p>
                 <p>Selection of transit trips to change properties for.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>property_changes</code></td>
+            <td><code><span title="projectcard.models.changes.TransitPropertyChange.property_changes">property_changes</span></code></td>
             <td>
                   <code>dict[str, <a class="autorefs autorefs-internal" title="projectcard.models.changes.TransitPropertyChange" href="#projectcard.models.changes.TransitPropertyChange">TransitPropertyChange</a>]</code>
             </td>
@@ -2287,9 +2213,6 @@ if they are not otherwise being used. Defaults to False.</p>
               <div class="doc-md-description">
                 <p>List of property changes to apply.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -2341,7 +2264,7 @@ if they are not otherwise being used. Defaults to False.</p>
 <span class="normal"><a href="#__codelineno-0-158">158</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131"></a><span class="k">class</span> <span class="nc">TransitPropertyChange</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Value for setting property change for a time of day and category.</span>
 </span><span id="__span-0-133"><a id="__codelineno-0-133" name="__codelineno-0-133"></a>
-</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-0-134"><a id="__codelineno-0-134" name="__codelineno-0-134"></a><span class="sd">    Attributes:</span>
 </span><span id="__span-0-135"><a id="__codelineno-0-135" name="__codelineno-0-135"></a><span class="sd">        service (SelectTransitTrips): Selection of transit trips to change properties for.</span>
 </span><span id="__span-0-136"><a id="__codelineno-0-136" name="__codelineno-0-136"></a><span class="sd">        property_changes (dict[str, TransitPropertyChange]): List of property changes to apply.</span>
 </span><span id="__span-0-137"><a id="__codelineno-0-137" name="__codelineno-0-137"></a>
@@ -2406,19 +2329,18 @@ if they are not otherwise being used. Defaults to False.</p>
         <p>Requirements for describing transit route addition project card.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
+<p><span class="doc-section-title">Attributes:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
-          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>routes</code></td>
+            <td><code><span title="projectcard.models.changes.TransitRouteAddition.routes">routes</span></code></td>
             <td>
                   <code>list[<a class="autorefs autorefs-internal" title="projectcard.models.structs.TransitRoute" href="#projectcard.models.structs.TransitRoute">TransitRoute</a>]</code>
             </td>
@@ -2426,9 +2348,6 @@ if they are not otherwise being used. Defaults to False.</p>
               <div class="doc-md-description">
                 <p>List of transit routes to be added. Must have at least one route.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -2503,7 +2422,7 @@ if they are not otherwise being used. Defaults to False.</p>
 <span class="normal"><a href="#__codelineno-0-262">262</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-225"><a id="__codelineno-0-225" name="__codelineno-0-225"></a><span class="k">class</span> <span class="nc">TransitRouteAddition</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="__span-0-226"><a id="__codelineno-0-226" name="__codelineno-0-226"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Requirements for describing transit route addition project card.</span>
 </span><span id="__span-0-227"><a id="__codelineno-0-227" name="__codelineno-0-227"></a>
-</span><span id="__span-0-228"><a id="__codelineno-0-228" name="__codelineno-0-228"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-0-228"><a id="__codelineno-0-228" name="__codelineno-0-228"></a><span class="sd">    Attributes:</span>
 </span><span id="__span-0-229"><a id="__codelineno-0-229" name="__codelineno-0-229"></a><span class="sd">        routes (list[TransitRoute]): List of transit routes to be added. Must have at least one route.</span>
 </span><span id="__span-0-230"><a id="__codelineno-0-230" name="__codelineno-0-230"></a>
 </span><span id="__span-0-231"><a id="__codelineno-0-231" name="__codelineno-0-231"></a><span class="sd">    !!! Example &quot;Example Transit Route Addition&quot;</span>
@@ -2578,19 +2497,18 @@ if they are not otherwise being used. Defaults to False.</p>
         <p>Value for setting routing change for transit.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
+<p><span class="doc-section-title">Attributes:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
-          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>service</code></td>
+            <td><code><span title="projectcard.models.changes.TransitRoutingChange.service">service</span></code></td>
             <td>
                   <code><a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectTransitTrips" href="#projectcard.models.selections.SelectTransitTrips">SelectTransitTrips</a></code>
             </td>
@@ -2599,12 +2517,9 @@ if they are not otherwise being used. Defaults to False.</p>
                 <p>Selection of transit trips to change routing for.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>transit_routing_change</code></td>
+            <td><code><span title="projectcard.models.changes.TransitRoutingChange.transit_routing_change">transit_routing_change</span></code></td>
             <td>
                   <code><a class="autorefs autorefs-internal" title="projectcard.models.changes.TransitRoutingChange" href="#projectcard.models.changes.TransitRoutingChange">TransitRoutingChange</a></code>
             </td>
@@ -2613,9 +2528,6 @@ if they are not otherwise being used. Defaults to False.</p>
                 <p>Existing and changed routing as denoted as a list of nodes with
 nodes where the route doesn&rsquo;t stop noted as negative integers.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -2676,7 +2588,7 @@ nodes where the route doesn&rsquo;t stop noted as negative integers.</p>
 <span class="normal"><a href="#__codelineno-0-192">192</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-161"><a id="__codelineno-0-161" name="__codelineno-0-161"></a><span class="k">class</span> <span class="nc">TransitRoutingChange</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="__span-0-162"><a id="__codelineno-0-162" name="__codelineno-0-162"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Value for setting routing change for transit.</span>
 </span><span id="__span-0-163"><a id="__codelineno-0-163" name="__codelineno-0-163"></a>
-</span><span id="__span-0-164"><a id="__codelineno-0-164" name="__codelineno-0-164"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-0-164"><a id="__codelineno-0-164" name="__codelineno-0-164"></a><span class="sd">    Attributes:</span>
 </span><span id="__span-0-165"><a id="__codelineno-0-165" name="__codelineno-0-165"></a><span class="sd">        service (SelectTransitTrips): Selection of transit trips to change routing for.</span>
 </span><span id="__span-0-166"><a id="__codelineno-0-166" name="__codelineno-0-166"></a><span class="sd">        transit_routing_change (TransitRoutingChange): Existing and changed routing as denoted as a list of nodes with</span>
 </span><span id="__span-0-167"><a id="__codelineno-0-167" name="__codelineno-0-167"></a><span class="sd">            nodes where the route doesn&#39;t stop noted as negative integers.</span>
@@ -2745,19 +2657,18 @@ nodes where the route doesn&rsquo;t stop noted as negative integers.</p>
         <p>Requirements for describing transit service deletion project card (e.g. to delete).</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
+<p><span class="doc-section-title">Attributes:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
-          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>service</code></td>
+            <td><code><span title="projectcard.models.changes.TransitServiceDeletion.service">service</span></code></td>
             <td>
                   <code><a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectTransitTrips" href="#projectcard.models.selections.SelectTransitTrips">SelectTransitTrips</a></code>
             </td>
@@ -2766,12 +2677,9 @@ nodes where the route doesn&rsquo;t stop noted as negative integers.</p>
                 <p>Selection of transit trips to delete.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>clean_shapes</code></td>
+            <td><code><span title="projectcard.models.changes.TransitServiceDeletion.clean_shapes">clean_shapes</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[bool]</code>
             </td>
@@ -2781,12 +2689,9 @@ nodes where the route doesn&rsquo;t stop noted as negative integers.</p>
 if they are not otherwise being used. Defaults to False.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>clean_routes</code></td>
+            <td><code><span title="projectcard.models.changes.TransitServiceDeletion.clean_routes">clean_routes</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[bool]</code>
             </td>
@@ -2795,9 +2700,6 @@ if they are not otherwise being used. Defaults to False.</p>
                 <p>If True, will clean unused routes associated with the deleted trips if they
 are not otherwise being used. Defaults to False.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -2847,7 +2749,7 @@ are not otherwise being used. Defaults to False.</p>
 <span class="normal"><a href="#__codelineno-0-222">222</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-195"><a id="__codelineno-0-195" name="__codelineno-0-195"></a><span class="k">class</span> <span class="nc">TransitServiceDeletion</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="__span-0-196"><a id="__codelineno-0-196" name="__codelineno-0-196"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Requirements for describing transit service deletion project card (e.g. to delete).</span>
 </span><span id="__span-0-197"><a id="__codelineno-0-197" name="__codelineno-0-197"></a>
-</span><span id="__span-0-198"><a id="__codelineno-0-198" name="__codelineno-0-198"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-0-198"><a id="__codelineno-0-198" name="__codelineno-0-198"></a><span class="sd">    Attributes:</span>
 </span><span id="__span-0-199"><a id="__codelineno-0-199" name="__codelineno-0-199"></a><span class="sd">        service (SelectTransitTrips): Selection of transit trips to delete.</span>
 </span><span id="__span-0-200"><a id="__codelineno-0-200" name="__codelineno-0-200"></a><span class="sd">        clean_shapes (Optional[bool]): If True, will clean unused transit shapes associated with the deleted trips</span>
 </span><span id="__span-0-201"><a id="__codelineno-0-201" name="__codelineno-0-201"></a><span class="sd">            if they are not otherwise being used. Defaults to False.</span>
@@ -2949,19 +2851,18 @@ are not otherwise being used. Defaults to False.</p>
     the two nodes.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
+<p><span class="doc-section-title">Attributes:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
-          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>links</code></td>
+            <td><code><span title="projectcard.models.selections.SelectFacility.links">links</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectRoadLinks" href="#projectcard.models.selections.SelectRoadLinks">SelectRoadLinks</a>]</code>
             </td>
@@ -2970,12 +2871,9 @@ are not otherwise being used. Defaults to False.</p>
                 <p>Selection of roadway links.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>nodes</code></td>
+            <td><code><span title="projectcard.models.selections.SelectFacility.nodes">nodes</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectRoadNodes" href="#projectcard.models.selections.SelectRoadNodes">SelectRoadNodes</a>]</code>
             </td>
@@ -2984,12 +2882,9 @@ are not otherwise being used. Defaults to False.</p>
                 <p>Selection of roadway nodes.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>from</code></td>
+            <td><code><span title="projectcard.models.selections.SelectFacility.from">from</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.structs.SelectRoadNode" href="#projectcard.models.structs.SelectRoadNode">SelectRoadNode</a>]</code>
             </td>
@@ -2998,12 +2893,9 @@ are not otherwise being used. Defaults to False.</p>
                 <p>Selection of the origin node.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>to</code></td>
+            <td><code><span title="projectcard.models.selections.SelectFacility.to">to</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.structs.SelectRoadNode" href="#projectcard.models.structs.SelectRoadNode">SelectRoadNode</a>]</code>
             </td>
@@ -3011,9 +2903,6 @@ are not otherwise being used. Defaults to False.</p>
               <div class="doc-md-description">
                 <p>Selection of the destination node.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -3122,7 +3011,7 @@ are not otherwise being used. Defaults to False.</p>
 </span><span id="__span-0-180"><a id="__codelineno-0-180" name="__codelineno-0-180"></a><span class="sd">        continuous path - reulting in a final selection of links that may or may not connect</span>
 </span><span id="__span-0-181"><a id="__codelineno-0-181" name="__codelineno-0-181"></a><span class="sd">        the two nodes.</span>
 </span><span id="__span-0-182"><a id="__codelineno-0-182" name="__codelineno-0-182"></a>
-</span><span id="__span-0-183"><a id="__codelineno-0-183" name="__codelineno-0-183"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-0-183"><a id="__codelineno-0-183" name="__codelineno-0-183"></a><span class="sd">    Attributes:</span>
 </span><span id="__span-0-184"><a id="__codelineno-0-184" name="__codelineno-0-184"></a><span class="sd">        links (Optional[SelectRoadLinks]): Selection of roadway links.</span>
 </span><span id="__span-0-185"><a id="__codelineno-0-185" name="__codelineno-0-185"></a><span class="sd">        nodes (Optional[SelectRoadNodes]): Selection of roadway nodes.</span>
 </span><span id="__span-0-186"><a id="__codelineno-0-186" name="__codelineno-0-186"></a><span class="sd">        from (Optional[SelectRoadNode]): Selection of the origin node.</span>
@@ -3212,19 +3101,18 @@ Additional fields to select on may be provided and will be treated as an AND con
     the primary selection from <code>all</code>, <code>name</code>, <code>osm_link_id</code>, or <code>model_link_id</code>.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
+<p><span class="doc-section-title">Attributes:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
-          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>all</code></td>
+            <td><code><span title="projectcard.models.selections.SelectRoadLinks.all">all</span></code></td>
             <td>
                   <code>bool</code>
             </td>
@@ -3233,12 +3121,9 @@ Additional fields to select on may be provided and will be treated as an AND con
                 <p>If True, select all links.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>name</code></td>
+            <td><code><span title="projectcard.models.selections.SelectRoadLinks.name">name</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[list[str]]</code>
             </td>
@@ -3248,12 +3133,9 @@ Additional fields to select on may be provided and will be treated as an AND con
 be treated as an OR condition.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>ref</code></td>
+            <td><code><span title="projectcard.models.selections.SelectRoadLinks.ref">ref</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[list[str]]</code>
             </td>
@@ -3264,12 +3146,9 @@ or exit number.  See: <a href="https://wiki.openstreetmap.org/wiki/Key:ref">http
 provided will be treated as an OR condition.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>osm_link_id</code></td>
+            <td><code><span title="projectcard.models.selections.SelectRoadLinks.osm_link_id">osm_link_id</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[list[str]]</code>
             </td>
@@ -3279,12 +3158,9 @@ provided will be treated as an OR condition.</p>
 will be treated as an OR condition.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>model_link_id</code></td>
+            <td><code><span title="projectcard.models.selections.SelectRoadLinks.model_link_id">model_link_id</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[list[int]]</code>
             </td>
@@ -3294,12 +3170,9 @@ will be treated as an OR condition.</p>
 will be treated as an OR condition.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>modes</code></td>
+            <td><code><span title="projectcard.models.selections.SelectRoadLinks.modes">modes</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[Modes]</code>
             </td>
@@ -3309,12 +3182,9 @@ will be treated as an OR condition.</p>
 treated as an OR condition.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>ignore_missing</code></td>
+            <td><code><span title="projectcard.models.selections.SelectRoadLinks.ignore_missing">ignore_missing</span></code></td>
             <td>
                   <code>bool</code>
             </td>
@@ -3323,9 +3193,6 @@ treated as an OR condition.</p>
                 <p>If True, ignore missing links. Otherwise, raise an error
 if they are not found. Defaults to True.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -3434,7 +3301,7 @@ if they are not found. Defaults to True.</p>
 </span><span id="__span-0-50"><a id="__codelineno-0-50" name="__codelineno-0-50"></a><span class="sd">    Additional fields to select on may be provided and will be treated as an AND condition after</span>
 </span><span id="__span-0-51"><a id="__codelineno-0-51" name="__codelineno-0-51"></a><span class="sd">        the primary selection from `all`, `name`, `osm_link_id`, or `model_link_id`.</span>
 </span><span id="__span-0-52"><a id="__codelineno-0-52" name="__codelineno-0-52"></a>
-</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-0-53"><a id="__codelineno-0-53" name="__codelineno-0-53"></a><span class="sd">    Attributes:</span>
 </span><span id="__span-0-54"><a id="__codelineno-0-54" name="__codelineno-0-54"></a><span class="sd">        all (bool): If True, select all links.</span>
 </span><span id="__span-0-55"><a id="__codelineno-0-55" name="__codelineno-0-55"></a><span class="sd">        name (Optional[list[str]]): List of names to select. If multiple provided will</span>
 </span><span id="__span-0-56"><a id="__codelineno-0-56" name="__codelineno-0-56"></a><span class="sd">            be treated as an OR condition.</span>
@@ -3540,19 +3407,18 @@ if they are not found. Defaults to True.</p>
         <p>Requirements for describing multiple nodes of a project card (e.g. to delete).</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
+<p><span class="doc-section-title">Attributes:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
-          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>all</code></td>
+            <td><code><span title="projectcard.models.selections.SelectRoadNodes.all">all</span></code></td>
             <td>
                   <code>bool</code>
             </td>
@@ -3562,12 +3428,9 @@ if they are not found. Defaults to True.</p>
 <code>model_node_id</code>.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>osm_node_id</code></td>
+            <td><code><span title="projectcard.models.selections.SelectRoadNodes.osm_node_id">osm_node_id</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[list[str]]</code>
             </td>
@@ -3577,12 +3440,9 @@ if they are not found. Defaults to True.</p>
 <code>all</code>, <code>osm_node_id</code> or <code>model_node_id</code>.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>model_node_id</code></td>
+            <td><code><span title="projectcard.models.selections.SelectRoadNodes.model_node_id">model_node_id</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[list[int]]</code>
             </td>
@@ -3592,12 +3452,9 @@ if they are not found. Defaults to True.</p>
 <code>all</code>, <code>osm_node_id</code> or <code>model_node_id</code>.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>ignore_missing</code></td>
+            <td><code><span title="projectcard.models.selections.SelectRoadNodes.ignore_missing">ignore_missing</span></code></td>
             <td>
                   <code>bool</code>
             </td>
@@ -3606,9 +3463,6 @@ if they are not found. Defaults to True.</p>
                 <p>If True, ignore missing nodes. Otherwise, raise an error
 if they are not found. Defaults to True.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -3651,7 +3505,7 @@ if they are not found. Defaults to True.</p>
 <span class="normal"><a href="#__codelineno-0-43">43</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="k">class</span> <span class="nc">SelectRoadNodes</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Requirements for describing multiple nodes of a project card (e.g. to delete).</span>
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19"></a>
-</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="sd">    Attributes:</span>
 </span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="sd">        all (bool): If True, select all nodes. Must have either `all`, `osm_node_id` or</span>
 </span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="sd">            `model_node_id`.</span>
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="sd">        osm_node_id (Optional[list[str]]): List of OSM node IDs to select. Must have either</span>
@@ -3718,19 +3572,18 @@ or <code>links</code>.</p>
 <p>Multiple requirements are treated as an AND condition.</p>
 
 
-<p><span class="doc-section-title">Parameters:</span></p>
+<p><span class="doc-section-title">Attributes:</span></p>
     <table>
       <thead>
         <tr>
           <th>Name</th>
           <th>Type</th>
           <th>Description</th>
-          <th>Default</th>
         </tr>
       </thead>
       <tbody>
           <tr class="doc-section-item">
-            <td><code>trip_properties</code></td>
+            <td><code><span title="projectcard.models.selections.SelectTransitTrips.trip_properties">trip_properties</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.structs.SelectTripProperties" href="#projectcard.models.structs.SelectTripProperties">SelectTripProperties</a>]</code>
             </td>
@@ -3739,12 +3592,9 @@ or <code>links</code>.</p>
                 <p>Selection based on trip properties.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>route_properties</code></td>
+            <td><code><span title="projectcard.models.selections.SelectTransitTrips.route_properties">route_properties</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.structs.SelectRouteProperties" href="#projectcard.models.structs.SelectRouteProperties">SelectRouteProperties</a>]</code>
             </td>
@@ -3753,12 +3603,9 @@ or <code>links</code>.</p>
                 <p>Selection based on route properties.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>timespans</code></td>
+            <td><code><span title="projectcard.models.selections.SelectTransitTrips.timespans">timespans</span></code></td>
             <td>
                   <code>List[<a class="autorefs autorefs-internal" title="projectcard.models.fields.Timespan" href="#projectcard.models.fields.Timespan">Timespan</a>]</code>
             </td>
@@ -3768,12 +3615,9 @@ or <code>links</code>.</p>
 as an OR condition.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>nodes</code></td>
+            <td><code><span title="projectcard.models.selections.SelectTransitTrips.nodes">nodes</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.structs.SelectTransitNodes" href="#projectcard.models.structs.SelectTransitNodes">SelectTransitNodes</a>]</code>
             </td>
@@ -3783,12 +3627,9 @@ as an OR condition.</p>
 stops that might be moved/deleted when a roadway is changed.</p>
               </div>
             </td>
-            <td>
-                <em>required</em>
-            </td>
           </tr>
           <tr class="doc-section-item">
-            <td><code>links</code></td>
+            <td><code><span title="projectcard.models.selections.SelectTransitTrips.links">links</span></code></td>
             <td>
                   <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.structs.SelectTransitLinks" href="#projectcard.models.structs.SelectTransitLinks">SelectTransitLinks</a>]</code>
             </td>
@@ -3797,9 +3638,6 @@ stops that might be moved/deleted when a roadway is changed.</p>
                 <p>Selection of transit links. Useful for querying
 links that might be moved/deleted when a roadway is changed.</p>
               </div>
-            </td>
-            <td>
-                <em>required</em>
             </td>
           </tr>
       </tbody>
@@ -3881,7 +3719,7 @@ links that might be moved/deleted when a roadway is changed.</p>
 </span><span id="__span-0-126"><a id="__codelineno-0-126" name="__codelineno-0-126"></a>
 </span><span id="__span-0-127"><a id="__codelineno-0-127" name="__codelineno-0-127"></a><span class="sd">    Multiple requirements are treated as an AND condition.</span>
 </span><span id="__span-0-128"><a id="__codelineno-0-128" name="__codelineno-0-128"></a>
-</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="sd">    Parameters:</span>
+</span><span id="__span-0-129"><a id="__codelineno-0-129" name="__codelineno-0-129"></a><span class="sd">    Attributes:</span>
 </span><span id="__span-0-130"><a id="__codelineno-0-130" name="__codelineno-0-130"></a><span class="sd">        trip_properties (Optional[SelectTripProperties]): Selection based on trip properties.</span>
 </span><span id="__span-0-131"><a id="__codelineno-0-131" name="__codelineno-0-131"></a><span class="sd">        route_properties (Optional[SelectRouteProperties]): Selection based on route properties.</span>
 </span><span id="__span-0-132"><a id="__codelineno-0-132" name="__codelineno-0-132"></a><span class="sd">        timespans (List[Timespan]): List of timespans to select. Multiple timespans are treated</span>
@@ -7349,6 +7187,8 @@ Example: <code>["12:00", "19:45:00"]</code>.</p>
             </div>
           
           
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
         
@@ -7378,14 +7218,12 @@ Example: <code>["12:00", "19:45:00"]</code>.</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.code.copy", "navigation.tabs", "toc.integrate"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.tabs", "navigation.expand", "toc.integrate", "toc.follow"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
       <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
       
-        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-      
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
       
         <script src="../javascript/schema_doc.min.js"></script>
       
