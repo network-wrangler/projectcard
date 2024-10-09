@@ -11,3 +11,4 @@ mkdocs-material
 mkdocs-mermaid2-plugin
 mkdocstrings
 mkdocstrings-python
+pandas
