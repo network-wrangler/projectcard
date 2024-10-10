@@ -182,12 +182,12 @@ _read_method_map = {
 VALID_EXT = list(_read_method_map.keys())
 
 
-def read_card(filepath: ProjectCardFilepath, validate: bool = False):
+def read_card(filepath: ProjectCardFilepath, validate: bool = True):
     """Read single project card from a path and return project card object.
 
     Args:
         filepath: file where the project card is.
-        validate: if True, will validate the project card schemea
+        validate: if True, will validate the project card schema. Defaults to True.
     """
     if not Path(filepath).is_file():
         msg = f"Cannot find project card file: {filepath}"

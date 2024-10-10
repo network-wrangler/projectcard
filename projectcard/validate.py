@@ -7,7 +7,6 @@ from tempfile import TemporaryDirectory
 from typing import Optional, Union
 
 import jsonref
-from flake8.api import legacy as flake8
 from jsonschema import validate
 from jsonschema.exceptions import SchemaError, ValidationError
 
@@ -17,12 +16,14 @@ from .logger import CardLogger
 ROOTDIR = Path(__file__).resolve().parent
 PROJECTCARD_SCHEMA = ROOTDIR / "schema" / "projectcard.json"
 
-# Errors to catch in valdiating "wrangler" project cards which use python code.
-# E9 Runtime
-# F63 undefined name name
-# F823 local variable name ... referenced before assignment
-# F405 name may be undefined, or defined from star imports: module
-FLAKE8_ERRORS = ["E9", "F821", "F823", "F405"]
+CRITICAL_ERRORS = ["E9", "F821", "F823", "F405"]
+"""
+Errors in Ruff that will cause a code execution failure.
+E9: Syntax errors.
+F821: Undefined name.
+F823: Local variable referenced before assignment.
+F405: Name may be undefined, or defined from star imports.
+"""
 
 
 def _open_json(schema_path: Path) -> dict:
@@ -203,7 +204,6 @@ def _validate_pycode(jsondata: dict, mocked_vars: list[str] = DEFAULT_MOCKED_VAR
         jsondata: project card json data as a python dictionary
         mocked_vars: list of variables available in the execution of the code
     """
-    style_guide = flake8.get_style_guide(select=FLAKE8_ERRORS, ignore=["E", "F", "W"])
     dir = TemporaryDirectory()
     tmp_py_path = Path(dir.name) / "tempcode.py"
     CardLogger.debug(f"Storing temporary python files at: {tmp_py_path!s}")
@@ -215,14 +215,20 @@ def _validate_pycode(jsondata: dict, mocked_vars: list[str] = DEFAULT_MOCKED_VAR
 
     with tmp_py_path.open("w") as py_file:
         py_file.write(py_file_contents)
+    import subprocess
 
-    report = style_guide.check_files([tmp_py_path])
-
-    if report.total_errors:
+    try:
+        result = subprocess.run(
+            ["ruff", "check", tmp_py_path, "--select", ",".join(CRITICAL_ERRORS)],
+            capture_output=True,
+            text=True,
+            check=True,
+        )
+    except subprocess.CalledProcessError as e:
         CardLogger.error(f"Errors found in {jsondata['project']}")
         CardLogger.debug(f"FILE CONTENTS\n{py_file_contents}")
-        errors = {c: report.get_statistics(c) for c in FLAKE8_ERRORS if report.get_statistics(c)}
-        CardLogger.debug(f"Flake 8 Report:\n {errors}")
-        msg = f"Found {report.total_errors} errors in {jsondata['project']}"
-        raise PycodeError(msg)
-    dir.cleanup()
+        CardLogger.debug(f"Ruff Report:\n {e.stdout}")
+        msg = f"Found errors in {jsondata['project']}"
+        raise PycodeError(msg) from e
+    finally:
+        dir.cleanup()

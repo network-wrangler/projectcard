@@ -25,12 +25,12 @@ classifiers = [
 ]
 requires-python = ">=3.9"
 dependencies = [
-    "flake8",
     "jsonref",
     "jsonschema",
     "pydantic>=2.0",
     "pyyaml",
     "tabulate",
+    "ruff",
     "toml",
 ]
 
