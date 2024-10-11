@@ -8,6 +8,7 @@ nav:
     - 'datamodels.md'
     - 'api.md'
     - 'examples.md'
+    - 'how-to.md'
     - 'development.md'
 
 theme:
