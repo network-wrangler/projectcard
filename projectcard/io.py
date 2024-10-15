@@ -219,10 +219,9 @@ def _read_card(
     if existing_projects and card_dict["project"] in existing_projects:
         msg = f"Project name not unique from `existing_projects`: {card_dict['project']}"
         raise ProjectCardReadError(msg)
-    if filter_tags and _overlapping_tags(card_dict["tags"], filter_tags):
-        CardLogger.debug(
-            f"Skipping {card_dict['project']} - no overlapping tags with {filter_tags}."
-        )
+    if filter_tags and card_dict.get("tags") and _overlapping_tags(card_dict["tags"], filter_tags):
+        msg = f"Skipping {card_dict['project']} - no overlapping tags with {filter_tags}."
+        # CardLogger.debug(msg)
         return None
     return ProjectCard(card_dict)
 
