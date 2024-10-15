@@ -316,7 +316,7 @@ def _update_roadway_facility(change: dict) -> dict:
     # unnest links from list
     if "links" in facility:
         if facility["links"] == "all":
-            facility["links"] = {"all": "True"}
+            facility["links"] = {"all": True}
         else:
             facility["links"] = facility.pop("links")[0]
 

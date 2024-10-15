@@ -171,11 +171,11 @@ def validate_card(
             jsondata = update_dict_with_schema_defaults(jsondata, _schema_data)
         validate(jsondata, schema=_schema_data)
     except ValidationError as e:
-        CardLogger.error(f"---- Error validating {jsondata['project']} ----")
+        CardLogger.error(f"---- Error validating {jsondata.get('project','unknown')} ----")
         msg = f"\nRelevant schema: {e.schema}\nValidator Value: {e.validator_value}\nValidator: {e.validator}"
         msg += f"\nabsolute_schema_path:{e.absolute_schema_path}\nabsolute_path:{e.absolute_path}"
         CardLogger.error(msg)
-        msg = f"Validation error for project {jsondata['project']}"
+        msg = f"Validation error for project {jsondata.get('project','unknown')}"
         raise ProjectCardValidationError(msg) from e
     except SchemaError as e:
         CardLogger.error(e)

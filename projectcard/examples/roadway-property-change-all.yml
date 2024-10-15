@@ -5,7 +5,7 @@ roadway_property_change:
   facility:
     links:
       modes: ['drive']
-      all: 'True'
+      all: true
       lanes: 2
       bicycle_facility: [0,2,3]
   property_changes:
