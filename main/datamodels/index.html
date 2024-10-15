@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.40">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.41">
     
     
       
@@ -26,7 +26,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.8c3ca2c6.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
@@ -1116,7 +1116,7 @@ being managed or applied to a network.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.notes">notes</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[str]</code>
+                  <code>Optional[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1127,7 +1127,7 @@ being managed or applied to a network.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.tags">tags</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[str]]</code>
+                  <code>Optional[list[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1139,7 +1139,7 @@ specific project or type of project.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.dependencies">dependencies</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="structs.Dependencies">Dependencies</span>]</code>
+                  <code>Optional[Dependencies]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1151,7 +1151,7 @@ prerequisites, and corequisites&hellip;each of which is a list of project names.
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.changes">changes</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[<span title="changes.ChangeTypes">ChangeTypes</span>]]</code>
+                  <code>Optional[list[ChangeTypes]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1165,7 +1165,7 @@ change outside of changes.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.roadway_property_change">roadway_property_change</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="changes.RoadwayPropertyChanges">RoadwayPropertyChanges</span>]</code>
+                  <code>Optional[RoadwayPropertyChanges]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1177,7 +1177,7 @@ change. Cannot be used with <code>changes</code> or another change type.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.roadway_deletion">roadway_deletion</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="changes.RoadwayDeletion">RoadwayDeletion</span>]</code>
+                  <code>Optional[RoadwayDeletion]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1189,7 +1189,7 @@ be used with <code>changes</code> or another change type.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.roadway_addition">roadway_addition</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="changes.RoadwayAddition">RoadwayAddition</span>]</code>
+                  <code>Optional[RoadwayAddition]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1201,7 +1201,7 @@ be used with <code>changes</code> or another change type.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.transit_property_change">transit_property_change</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="changes.TransitPropertyChange">TransitPropertyChange</span>]</code>
+                  <code>Optional[TransitPropertyChange]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1213,7 +1213,7 @@ change. Cannot be used with <code>changes</code> or another change type.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.transit_routing_change">transit_routing_change</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="changes.TransitRoutingChange">TransitRoutingChange</span>]</code>
+                  <code>Optional[TransitRoutingChange]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1225,7 +1225,7 @@ Cannot be used with <code>changes</code> or another change type.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.transit_service_deletion">transit_service_deletion</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="changes.TransitServiceDeletion">TransitServiceDeletion</span>]</code>
+                  <code>Optional[TransitServiceDeletion]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1237,7 +1237,7 @@ deletion change. Cannot be used with <code>changes</code> or another change type
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.transit_route_addition">transit_route_addition</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="changes.TransitRouteAddition">TransitRouteAddition</span>]</code>
+                  <code>Optional[TransitRouteAddition]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1249,7 +1249,7 @@ change. Cannot be used with <code>changes</code> or another change type.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.pycode">pycode</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[str]</code>
+                  <code>Optional[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1262,7 +1262,7 @@ another change type.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.project.ProjectModel.self_obj_type">self_obj_type</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Literal">Literal</span>[&#39;RoadwayNetwork&#39;, &#39;TransitNetwork&#39;]]</code>
+                  <code>Optional[Literal[&#39;RoadwayNetwork&#39;, &#39;TransitNetwork&#39;]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1286,6 +1286,11 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nt">transit_route_addition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">...</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/project.py</code></summary>
@@ -1573,6 +1578,11 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -1597,6 +1607,11 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
 
 
         <p>Union of all change types.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/changes.py</code></summary>
@@ -1704,7 +1719,7 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.RoadwayAddition.links">links</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[<a class="autorefs autorefs-internal" title="projectcard.models.structs.RoadLink" href="#projectcard.models.structs.RoadLink">RoadLink</a>]]</code>
+                  <code>Optional[list[RoadLink]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1715,7 +1730,7 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.RoadwayAddition.nodes">nodes</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[<a class="autorefs autorefs-internal" title="projectcard.models.structs.RoadNode" href="#projectcard.models.structs.RoadNode">RoadNode</a>]]</code>
+                  <code>Optional[list[RoadNode]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1750,6 +1765,11 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
 </span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">            </span><span class="l l-Scalar l-Scalar-Plain">longitude</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">-122.4194</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/changes.py</code></summary>
@@ -1881,7 +1901,7 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.RoadwayDeletion.links">links</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectRoadLinks" href="#projectcard.models.selections.SelectRoadLinks">SelectRoadLinks</a>]</code>
+                  <code>Optional[SelectRoadLinks]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1892,7 +1912,7 @@ RoadwayNetwork. Cannot be used with <code>changes</code> or another change type.
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.RoadwayDeletion.nodes">nodes</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectRoadNodes" href="#projectcard.models.selections.SelectRoadNodes">SelectRoadNodes</a>]</code>
+                  <code>Optional[SelectRoadNodes]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -1940,6 +1960,11 @@ if they are not otherwise being used. Defaults to False.</p>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">    </span><span class="nt">clean_nodes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/changes.py</code></summary>
@@ -2061,7 +2086,7 @@ if they are not otherwise being used. Defaults to False.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.RoadwayPropertyChanges.facility">facility</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectFacility" href="#projectcard.models.selections.SelectFacility">SelectFacility</a></code>
+                  <code>SelectFacility</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2072,7 +2097,7 @@ if they are not otherwise being used. Defaults to False.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.RoadwayPropertyChanges.property_changes">property_changes</span></code></td>
             <td>
-                  <code>dict[str, <a class="autorefs autorefs-internal" title="projectcard.models.structs.RoadwayPropertyChange" href="#projectcard.models.structs.RoadwayPropertyChange">RoadwayPropertyChange</a>]</code>
+                  <code>dict[str, RoadwayPropertyChange]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2106,6 +2131,11 @@ if they are not otherwise being used. Defaults to False.</p>
 </span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">            </span><span class="nt">existing_value_conflict</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skip</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/changes.py</code></summary>
@@ -2233,7 +2263,7 @@ if they are not otherwise being used. Defaults to False.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.TransitPropertyChange.service">service</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectTransitTrips" href="#projectcard.models.selections.SelectTransitTrips">SelectTransitTrips</a></code>
+                  <code>SelectTransitTrips</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2244,7 +2274,7 @@ if they are not otherwise being used. Defaults to False.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.TransitPropertyChange.property_changes">property_changes</span></code></td>
             <td>
-                  <code>dict[str, <a class="autorefs autorefs-internal" title="projectcard.models.changes.TransitPropertyChange" href="#projectcard.models.changes.TransitPropertyChange">TransitPropertyChange</a>]</code>
+                  <code>dict[str, TransitPropertyChange]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2268,6 +2298,11 @@ if they are not otherwise being used. Defaults to False.</p>
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="nt">set</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">900</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/changes.py</code></summary>
@@ -2379,7 +2414,7 @@ if they are not otherwise being used. Defaults to False.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.TransitRouteAddition.routes">routes</span></code></td>
             <td>
-                  <code>list[<a class="autorefs autorefs-internal" title="projectcard.models.structs.TransitRoute" href="#projectcard.models.structs.TransitRoute">TransitRoute</a>]</code>
+                  <code>list[TransitRoute]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2416,6 +2451,11 @@ if they are not otherwise being used. Defaults to False.</p>
 </span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="w">                    </span><span class="nt">stop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/changes.py</code></summary>
@@ -2547,7 +2587,7 @@ if they are not otherwise being used. Defaults to False.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.TransitRoutingChange.service">service</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectTransitTrips" href="#projectcard.models.selections.SelectTransitTrips">SelectTransitTrips</a></code>
+                  <code>SelectTransitTrips</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2558,7 +2598,7 @@ if they are not otherwise being used. Defaults to False.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.TransitRoutingChange.transit_routing_change">transit_routing_change</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="projectcard.models.changes.TransitRoutingChange" href="#projectcard.models.changes.TransitRoutingChange">TransitRoutingChange</a></code>
+                  <code>TransitRoutingChange</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2588,6 +2628,11 @@ nodes where the route doesn&rsquo;t stop noted as negative integers.</p>
 </span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">        </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/changes.py</code></summary>
@@ -2707,7 +2752,7 @@ nodes where the route doesn&rsquo;t stop noted as negative integers.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.TransitServiceDeletion.service">service</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectTransitTrips" href="#projectcard.models.selections.SelectTransitTrips">SelectTransitTrips</a></code>
+                  <code>SelectTransitTrips</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2718,7 +2763,7 @@ nodes where the route doesn&rsquo;t stop noted as negative integers.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.TransitServiceDeletion.clean_shapes">clean_shapes</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+                  <code>Optional[bool]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2730,7 +2775,7 @@ if they are not otherwise being used. Defaults to False.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.changes.TransitServiceDeletion.clean_routes">clean_routes</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+                  <code>Optional[bool]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2753,6 +2798,11 @@ are not otherwise being used. Defaults to False.</p>
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">    </span><span class="nt">clean_routes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/changes.py</code></summary>
@@ -2855,6 +2905,11 @@ are not otherwise being used. Defaults to False.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -2901,7 +2956,7 @@ are not otherwise being used. Defaults to False.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectFacility.links">links</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectRoadLinks" href="#projectcard.models.selections.SelectRoadLinks">SelectRoadLinks</a>]</code>
+                  <code>Optional[SelectRoadLinks]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2912,7 +2967,7 @@ are not otherwise being used. Defaults to False.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectFacility.nodes">nodes</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.selections.SelectRoadNodes" href="#projectcard.models.selections.SelectRoadNodes">SelectRoadNodes</a>]</code>
+                  <code>Optional[SelectRoadNodes]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2923,7 +2978,7 @@ are not otherwise being used. Defaults to False.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectFacility.from">from</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.structs.SelectRoadNode" href="#projectcard.models.structs.SelectRoadNode">SelectRoadNode</a>]</code>
+                  <code>Optional[SelectRoadNode]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2934,7 +2989,7 @@ are not otherwise being used. Defaults to False.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectFacility.to">to</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.structs.SelectRoadNode" href="#projectcard.models.structs.SelectRoadNode">SelectRoadNode</a>]</code>
+                  <code>Optional[SelectRoadNode]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -2975,6 +3030,11 @@ are not otherwise being used. Defaults to False.</p>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">        </span><span class="nt">ML_lanes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/selections.py</code></summary>
@@ -3162,7 +3222,7 @@ Additional fields to select on may be provided and will be treated as an AND con
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectRoadLinks.name">name</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[str]]</code>
+                  <code>Optional[list[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3174,7 +3234,7 @@ be treated as an OR condition.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectRoadLinks.ref">ref</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[str]]</code>
+                  <code>Optional[list[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3187,7 +3247,7 @@ provided will be treated as an OR condition.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectRoadLinks.osm_link_id">osm_link_id</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[str]]</code>
+                  <code>Optional[list[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3199,7 +3259,7 @@ will be treated as an OR condition.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectRoadLinks.model_link_id">model_link_id</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[int]]</code>
+                  <code>Optional[list[int]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3211,7 +3271,7 @@ will be treated as an OR condition.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectRoadLinks.modes">modes</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[Modes]</code>
+                  <code>Optional[Modes]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3256,6 +3316,11 @@ if they are not found. Defaults to True.</p>
 </span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="nt">drive_allowed</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/selections.py</code></summary>
@@ -3469,7 +3534,7 @@ if they are not found. Defaults to True.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectRoadNodes.osm_node_id">osm_node_id</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[str]]</code>
+                  <code>Optional[list[str]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3481,7 +3546,7 @@ if they are not found. Defaults to True.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectRoadNodes.model_node_id">model_node_id</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[int]]</code>
+                  <code>Optional[list[int]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3510,6 +3575,11 @@ if they are not found. Defaults to True.</p>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="nt">model_node_id</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">12345</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">67890</span><span class="p p-Indicator">]</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/selections.py</code></summary>
@@ -3622,7 +3692,7 @@ or <code>links</code>.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectTransitTrips.trip_properties">trip_properties</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.structs.SelectTripProperties" href="#projectcard.models.structs.SelectTripProperties">SelectTripProperties</a>]</code>
+                  <code>Optional[SelectTripProperties]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3633,7 +3703,7 @@ or <code>links</code>.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectTransitTrips.route_properties">route_properties</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.structs.SelectRouteProperties" href="#projectcard.models.structs.SelectRouteProperties">SelectRouteProperties</a>]</code>
+                  <code>Optional[SelectRouteProperties]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3644,7 +3714,7 @@ or <code>links</code>.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectTransitTrips.timespans">timespans</span></code></td>
             <td>
-                  <code>List[<a class="autorefs autorefs-internal" title="projectcard.models.fields.Timespan" href="#projectcard.models.fields.Timespan">Timespan</a>]</code>
+                  <code>List[Timespan]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3656,7 +3726,7 @@ as an OR condition.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectTransitTrips.nodes">nodes</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.structs.SelectTransitNodes" href="#projectcard.models.structs.SelectTransitNodes">SelectTransitNodes</a>]</code>
+                  <code>Optional[SelectTransitNodes]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3668,7 +3738,7 @@ stops that might be moved/deleted when a roadway is changed.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.selections.SelectTransitTrips.links">links</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.structs.SelectTransitLinks" href="#projectcard.models.structs.SelectTransitLinks">SelectTransitLinks</a>]</code>
+                  <code>Optional[SelectTransitLinks]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3698,6 +3768,11 @@ links that might be moved/deleted when a roadway is changed.</p>
 </span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="nt">require</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;all&quot;</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/selections.py</code></summary>
@@ -3840,6 +3915,11 @@ links that might be moved/deleted when a roadway is changed.</p>
 
 
 
+
+
+
+
+
   <div class="doc doc-children">
 
 
@@ -3864,6 +3944,11 @@ links that might be moved/deleted when a roadway is changed.</p>
 
 
         <p>Dependencies for a project card.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -3940,7 +4025,7 @@ links that might be moved/deleted when a roadway is changed.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.IndivScopedPropertySetItem.category">category</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[str, int]]</code>
+                  <code>Optional[Union[str, int]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3953,7 +4038,7 @@ provided.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.IndivScopedPropertySetItem.timespan">timespan</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.fields.Timespan" href="#projectcard.models.fields.Timespan">Timespan</a>]</code>
+                  <code>Optional[Timespan]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3966,7 +4051,7 @@ provided.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.IndivScopedPropertySetItem.set">set</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Any">Any</span>]</code>
+                  <code>Optional[Any]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3977,7 +4062,7 @@ provided.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.IndivScopedPropertySetItem.existing">existing</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Any">Any</span>]</code>
+                  <code>Optional[Any]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -3988,7 +4073,7 @@ provided.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.IndivScopedPropertySetItem.change">change</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[int, float]]</code>
+                  <code>Optional[Union[int, float]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4008,6 +4093,11 @@ provided.</p>
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">change</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -4178,7 +4268,7 @@ by Wrangler: <code>model_link_id_idx</code>, <code>managed</code>, <code>geometr
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.roadway">roadway</span></code></td>
             <td>
-                  <code><a class="autorefs autorefs-internal" title="projectcard.models.fields.OsmRoadwayType" href="#projectcard.models.fields.OsmRoadwayType">OsmRoadwayType</a></code>
+                  <code>OsmRoadwayType</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4189,7 +4279,7 @@ by Wrangler: <code>model_link_id_idx</code>, <code>managed</code>, <code>geometr
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.lanes">lanes</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[int, <span title="pydantic.Field">Field</span>(ge=0)]</code>
+                  <code>Annotated[int, Field(ge=0)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4200,7 +4290,7 @@ by Wrangler: <code>model_link_id_idx</code>, <code>managed</code>, <code>geometr
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.price">price</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[float]</code>
+                  <code>Optional[float]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4211,7 +4301,7 @@ by Wrangler: <code>model_link_id_idx</code>, <code>managed</code>, <code>geometr
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.rail_only">rail_only</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+                  <code>Optional[bool]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4222,7 +4312,7 @@ by Wrangler: <code>model_link_id_idx</code>, <code>managed</code>, <code>geometr
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.bus_only">bus_only</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+                  <code>Optional[bool]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4233,7 +4323,7 @@ by Wrangler: <code>model_link_id_idx</code>, <code>managed</code>, <code>geometr
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.drive_access">drive_access</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+                  <code>Optional[bool]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4244,7 +4334,7 @@ by Wrangler: <code>model_link_id_idx</code>, <code>managed</code>, <code>geometr
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.bike_access">bike_access</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+                  <code>Optional[bool]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4255,7 +4345,7 @@ by Wrangler: <code>model_link_id_idx</code>, <code>managed</code>, <code>geometr
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.walk_access">walk_access</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+                  <code>Optional[bool]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4266,7 +4356,7 @@ by Wrangler: <code>model_link_id_idx</code>, <code>managed</code>, <code>geometr
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.truck_access">truck_access</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+                  <code>Optional[bool]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4277,7 +4367,7 @@ by Wrangler: <code>model_link_id_idx</code>, <code>managed</code>, <code>geometr
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.distance">distance</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[float, <span title="pydantic.Field">Field</span>(ge=0)]</code>
+                  <code>Annotated[float, Field(ge=0)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4288,7 +4378,7 @@ by Wrangler: <code>model_link_id_idx</code>, <code>managed</code>, <code>geometr
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.shape_id">shape_id</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[str]</code>
+                  <code>Optional[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4300,7 +4390,7 @@ roadway shape table.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.osm_link_id">osm_link_id</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[str]</code>
+                  <code>Optional[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4311,7 +4401,7 @@ roadway shape table.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.access">access</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Any">Any</span>]</code>
+                  <code>Optional[Any]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4322,7 +4412,7 @@ roadway shape table.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.sc_lanes">sc_lanes</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[dict]]</code>
+                  <code>Optional[list[dict]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4334,7 +4424,7 @@ timespans and/or categories (e.g. HOV, truck, etc.).</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.sc_price">sc_price</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[dict]]</code>
+                  <code>Optional[list[dict]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4346,7 +4436,7 @@ timespans and/or categories (e.g. HOV, truck, etc.).</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.ML_access_point">ML_access_point</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.fields.MLAccessEgress" href="#projectcard.models.fields.MLAccessEgress">MLAccessEgress</a>]</code>
+                  <code>Optional[MLAccessEgress]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4357,7 +4447,7 @@ timespans and/or categories (e.g. HOV, truck, etc.).</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.ML_egress_point">ML_egress_point</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<a class="autorefs autorefs-internal" title="projectcard.models.fields.MLAccessEgress" href="#projectcard.models.fields.MLAccessEgress">MLAccessEgress</a>]</code>
+                  <code>Optional[MLAccessEgress]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4368,7 +4458,7 @@ timespans and/or categories (e.g. HOV, truck, etc.).</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.ML_lanes">ML_lanes</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Annotated">Annotated</span>[int, <span title="pydantic.Field">Field</span>(0, ge=0)]]</code>
+                  <code>Optional[Annotated[int, Field(0, ge=0)]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4380,7 +4470,7 @@ or equal to 0.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.ML_price">ML_price</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Annotated">Annotated</span>[float, <span title="pydantic.Field">Field</span>(0)]]</code>
+                  <code>Optional[Annotated[float, Field(0)]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4391,7 +4481,7 @@ or equal to 0.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.ML_access">ML_access</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Any">Any</span>]</code>
+                  <code>Optional[Any]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4402,7 +4492,7 @@ or equal to 0.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.sc_ML_lanes">sc_ML_lanes</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[dict]]</code>
+                  <code>Optional[list[dict]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4414,7 +4504,7 @@ lanes as it changes with timespans and/or categories (e.g. HOV, truck, etc.).</p
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadLink.sc_ML_price">sc_ML_price</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[list[dict]]</code>
+                  <code>Optional[list[dict]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4459,6 +4549,11 @@ lanes as it changes with timespans and/or categories (e.g. HOV, truck, etc.).</p
 </span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4.0</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -4843,7 +4938,7 @@ lanes as it changes with timespans and/or categories (e.g. HOV, truck, etc.).</p
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadNode.X">X</span></code></td>
             <td>
-                  <code><span title="projectcard.models.fields.Longitude">Longitude</span></code>
+                  <code>Longitude</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4854,7 +4949,7 @@ lanes as it changes with timespans and/or categories (e.g. HOV, truck, etc.).</p
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadNode.Y">Y</span></code></td>
             <td>
-                  <code><span title="projectcard.models.fields.Latitude">Latitude</span></code>
+                  <code>Latitude</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4864,6 +4959,11 @@ lanes as it changes with timespans and/or categories (e.g. HOV, truck, etc.).</p
           </tr>
       </tbody>
     </table>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -4944,7 +5044,7 @@ lanes as it changes with timespans and/or categories (e.g. HOV, truck, etc.).</p
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadwayPropertyChange.existing">existing</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Any">Any</span>]</code>
+                  <code>Optional[Any]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4956,7 +5056,7 @@ existing (default, not scoped) value for this property.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadwayPropertyChange.change">change</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[int, float]]</code>
+                  <code>Optional[Union[int, float]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4970,7 +5070,7 @@ difference to be applied to the existing value.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadwayPropertyChange.set">set</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Any">Any</span>]</code>
+                  <code>Optional[Any]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4983,7 +5083,7 @@ if <code>change</code> is provided.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadwayPropertyChange.scoped">scoped</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Union">Union</span>[None, <span title="projectcard.models.structs.ScopedPropertySetList">ScopedPropertySetList</span>]]</code>
+                  <code>Optional[Union[None, ScopedPropertySetList]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -4997,7 +5097,7 @@ the default value when no scoped value matches.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadwayPropertyChange.overwrite_scoped">overwrite_scoped</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Literal">Literal</span>[&#39;conflicting&#39;, &#39;all&#39;, &#39;error&#39;]]</code>
+                  <code>Optional[Literal[&#39;conflicting&#39;, &#39;all&#39;, &#39;error&#39;]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5011,7 +5111,7 @@ overwritten. If <code>error</code>, conflicting scoped property sets will raise 
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.RoadwayPropertyChange.existing_value_conflict">existing_value_conflict</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Literal">Literal</span>[&#39;error&#39;, &#39;warn&#39;, &#39;skip&#39;]]</code>
+                  <code>Optional[Literal[&#39;error&#39;, &#39;warn&#39;, &#39;skip&#39;]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5046,6 +5146,11 @@ property change will be skipped.</p>
 </span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">      </span><span class="nt">set</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3.0</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -5228,7 +5333,7 @@ property change will be skipped.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectRoadNode.model_node_id">model_node_id</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[int]</code>
+                  <code>Optional[int]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5240,7 +5345,7 @@ property change will be skipped.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectRoadNode.osm_node_id">osm_node_id</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[str]</code>
+                  <code>Optional[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5256,6 +5361,11 @@ property change will be skipped.</p>
 <div class="language-yaml highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">model_node_id</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12345</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -5357,7 +5467,7 @@ property change will be skipped.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectRouteProperties.route_short_name">route_short_name</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[<span title="typing.Optional">Optional</span>[list[str]], <span title="pydantic.Field">Field</span>(None, min_length=1)]</code>
+                  <code>Annotated[Optional[list[str]], Field(None, min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5370,7 +5480,7 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectRouteProperties.route_long_name">route_long_name</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[<span title="typing.Optional">Optional</span>[list[str]], <span title="pydantic.Field">Field</span>(None, min_length=1)]</code>
+                  <code>Annotated[Optional[list[str]], Field(None, min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5383,7 +5493,7 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectRouteProperties.agency_id">agency_id</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[<span title="typing.Optional">Optional</span>[list[str]], <span title="pydantic.Field">Field</span>(None, min_length=1)]</code>
+                  <code>Annotated[Optional[list[str]], Field(None, min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5396,7 +5506,7 @@ using the &lsquo;*&rsquo; wildcard character.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectRouteProperties.route_type">route_type</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[<span title="typing.Optional">Optional</span>[list[int]], <span title="pydantic.Field">Field</span>(None, min_length=1)]</code>
+                  <code>Annotated[Optional[list[int]], Field(None, min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5408,6 +5518,11 @@ using the &lsquo;*&rsquo; wildcard character.</p>
           </tr>
       </tbody>
     </table>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -5504,6 +5619,11 @@ using the &lsquo;*&rsquo; wildcard character.</p>
 
         <p>Config for the model.</p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-181">181</a></span>
@@ -5575,7 +5695,7 @@ using the &lsquo;*&rsquo; wildcard character.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectTransitLinks.model_link_id">model_link_id</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[<span title="typing.Optional">Optional</span>[list[int]], <span title="pydantic.Field">Field</span>(min_length=1)]</code>
+                  <code>Annotated[Optional[list[int]], Field(min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5588,7 +5708,7 @@ be provided if <code>ab_nodes</code> is not.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectTransitLinks.ab_nodes">ab_nodes</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[<span title="typing.Optional">Optional</span>[list[<a class="autorefs autorefs-internal" title="projectcard.models.structs.TransitABNodes" href="#projectcard.models.structs.TransitABNodes">TransitABNodes</a>]], <span title="pydantic.Field">Field</span>(min_length=1)]</code>
+                  <code>Annotated[Optional[list[TransitABNodes]], Field(min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5601,7 +5721,7 @@ be provided if <code>model_link_id</code> is not.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectTransitLinks.require">require</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Literal">Literal</span>[&#39;any&#39;, &#39;all&#39;]]</code>
+                  <code>Optional[Literal[&#39;any&#39;, &#39;all&#39;]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5628,6 +5748,11 @@ links to meet the selection criteria.</p>
 </span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nt">require</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -5787,7 +5912,7 @@ links to meet the selection criteria.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectTransitNodes.stop_id">stop_id</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[list[int], <span title="pydantic.Field">Field</span>(min_length=1)]</code>
+                  <code>Annotated[list[int], Field(min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5799,7 +5924,7 @@ Multiple nodes are treated as an OR or AND based on the <code>require</code> att
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectTransitNodes.require">require</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Literal">Literal</span>[&#39;any&#39;, &#39;all&#39;]]</code>
+                  <code>Optional[Literal[&#39;any&#39;, &#39;all&#39;]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5816,6 +5941,11 @@ nodes to meet the selection criteria.</p>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">require</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">all</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -5917,7 +6047,7 @@ nodes to meet the selection criteria.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectTripProperties.trip_id">trip_id</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[<span title="typing.Optional">Optional</span>[list[str]], <span title="pydantic.Field">Field</span>(None, misn_length=1)]</code>
+                  <code>Annotated[Optional[list[str]], Field(None, misn_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5930,7 +6060,7 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectTripProperties.shape_id">shape_id</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[<span title="typing.Optional">Optional</span>[list[str]], <span title="pydantic.Field">Field</span>(None, min_length=1)]</code>
+                  <code>Annotated[Optional[list[str]], Field(None, min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5943,7 +6073,7 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectTripProperties.direction_id">direction_id</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="typing.Literal">Literal</span>[0, 1]]</code>
+                  <code>Optional[Literal[0, 1]]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5954,7 +6084,7 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectTripProperties.service_id">service_id</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[<span title="typing.Optional">Optional</span>[list[str]], <span title="pydantic.Field">Field</span>(None, min_length=1)]</code>
+                  <code>Annotated[Optional[list[str]], Field(None, min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5967,7 +6097,7 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectTripProperties.route_id">route_id</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[<span title="typing.Optional">Optional</span>[list[str]], <span title="pydantic.Field">Field</span>(None, min_length=1)]</code>
+                  <code>Annotated[Optional[list[str]], Field(None, min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5980,7 +6110,7 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.SelectTripProperties.trip_short_name">trip_short_name</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[<span title="typing.Optional">Optional</span>[list[str]], <span title="pydantic.Field">Field</span>(None, min_length=1)]</code>
+                  <code>Annotated[Optional[list[str]], Field(None, min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -5992,6 +6122,11 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
           </tr>
       </tbody>
     </table>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -6102,6 +6237,11 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
 
         <p>Config for the model.</p>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-222">222</a></span>
@@ -6158,6 +6298,11 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
 
 
         <p>Single transit link model.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -6216,6 +6361,11 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
 
 
         <p>Value for setting a single property value for transit.</p>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -6319,7 +6469,7 @@ a partial match using the &lsquo;*&rsquo; wildcard character.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitRoute.route_short_name">route_short_name</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[str]</code>
+                  <code>Optional[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6331,7 +6481,7 @@ information: <a href="https://gtfs.org/reference/static/#routes.txt">https://gtf
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitRoute.route_long_name">route_long_name</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[str]</code>
+                  <code>Optional[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6354,7 +6504,7 @@ information: <a href="https://gtfs.org/reference/static/#routes.txt">https://gtf
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitRoute.trips">trips</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[list[<a class="autorefs autorefs-internal" title="projectcard.models.structs.TransitTrip" href="#projectcard.models.structs.TransitTrip">TransitTrip</a>], <span title="pydantic.Field">Field</span>(min_length=1)]</code>
+                  <code>Annotated[list[TransitTrip], Field(min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6364,6 +6514,11 @@ information: <a href="https://gtfs.org/reference/static/#routes.txt">https://gtf
           </tr>
       </tbody>
     </table>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -6496,6 +6651,11 @@ Nodes which are negative will be treated as non-stops.</p>
 </span></code></pre></div>
 </div>
 
+
+
+
+
+
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
                 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-482">482</a></span>
@@ -6603,7 +6763,7 @@ specified.</li>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitStopProps.stop">stop</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+                  <code>Optional[bool]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6614,7 +6774,7 @@ specified.</li>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitStopProps.dwell_secs">dwell_secs</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="projectcard.models.fields.PositiveInt">PositiveInt</span>]</code>
+                  <code>Optional[PositiveInt]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6625,7 +6785,7 @@ specified.</li>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitStopProps.time_to_next_node_sec">time_to_next_node_sec</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[<span title="projectcard.models.fields.PositiveInt">PositiveInt</span>]</code>
+                  <code>Optional[PositiveInt]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6636,7 +6796,7 @@ specified.</li>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitStopProps.board">board</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+                  <code>Optional[bool]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6647,7 +6807,7 @@ specified.</li>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitStopProps.alight">alight</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[bool]</code>
+                  <code>Optional[bool]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6674,6 +6834,11 @@ specified.</li>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">time_to_next_node_sec</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">68</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -6831,7 +6996,7 @@ key constraints are met.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitTrip.headway_secs">headway_secs</span></code></td>
             <td>
-                  <code><span title="typing.Annotated">Annotated</span>[list[<span title="projectcard.models.structs.TransitHeadways">TransitHeadways</span>], <span title="pydantic.Field">Field</span>(min_length=1)]</code>
+                  <code>Annotated[list[TransitHeadways], Field(min_length=1)]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6844,7 +7009,7 @@ Example: <code>{"('7:00', '9:00')": 600}</code>.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitTrip.routing">routing</span></code></td>
             <td>
-                  <code><span title="projectcard.models.structs.TransitRouting">TransitRouting</span></code>
+                  <code>TransitRouting</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6855,7 +7020,7 @@ Example: <code>{"('7:00', '9:00')": 600}</code>.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitTrip.service_id">service_id</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[str]</code>
+                  <code>Optional[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6867,7 +7032,7 @@ Example: <code>{"('7:00', '9:00')": 600}</code>.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitTrip.trip_headsign">trip_headsign</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[str]</code>
+                  <code>Optional[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6879,7 +7044,7 @@ Example: <code>{"('7:00', '9:00')": 600}</code>.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitTrip.trip_short_name">trip_short_name</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[str]</code>
+                  <code>Optional[str]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6891,7 +7056,7 @@ Example: <code>{"('7:00', '9:00')": 600}</code>.</p>
           <tr class="doc-section-item">
             <td><code><span title="projectcard.models.structs.TransitTrip.direction_id">direction_id</span></code></td>
             <td>
-                  <code><span title="typing.Optional">Optional</span>[int]</code>
+                  <code>Optional[int]</code>
             </td>
             <td>
               <div class="doc-md-description">
@@ -6925,6 +7090,11 @@ GTFS for more information: <a href="https://gtfs.org/reference/static/#trips.txt
 </span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">        </span><span class="nt">stop</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </span></code></pre></div>
 </div>
+
+
+
+
+
 
               <details class="quote">
                 <summary>Source code in <code>projectcard/models/structs.py</code></summary>
@@ -7078,6 +7248,11 @@ GTFS for more information: <a href="https://gtfs.org/reference/static/#trips.txt
     <div class="doc doc-contents first">
 
         <p>Field types for the projectcard models.</p>
+
+
+
+
+
 
 
 
@@ -7258,7 +7433,7 @@ Example: <code>["12:00", "19:45:00"]</code>.</p>
     <script id="__config" type="application/json">{"base": "..", "features": ["content.code.annotate", "content.code.copy", "content.tabs.link", "navigation.indexes", "navigation.tabs", "navigation.expand", "toc.integrate", "toc.follow"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.525ec568.min.js"></script>
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
       
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
       
