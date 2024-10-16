@@ -4,6 +4,7 @@ from typing import Annotated, ClassVar, Optional
 
 from pydantic import BaseModel, ConfigDict, Field
 
+from ._base import AnyOf, ConflictsWith, OneOf, RecordModel
 from .fields import Mode, Timespan
 from .structs import (
     SelectRoadNode,
@@ -14,7 +15,7 @@ from .structs import (
 )
 
 
-class SelectRoadNodes(BaseModel):
+class SelectRoadNodes(RecordModel):
     """Requirements for describing multiple nodes of a project card (e.g. to delete).
 
     Attributes:
@@ -34,7 +35,7 @@ class SelectRoadNodes(BaseModel):
         ```
     """
 
-    require_any_of: ClassVar = [["osm_node_id", "model_node_id"]]
+    require_any_of: ClassVar[AnyOf] = [["osm_node_id", "model_node_id"]]
     model_config = ConfigDict(extra="forbid", coerce_numbers_to_str=True)
 
     all: Optional[bool] = False
@@ -43,7 +44,7 @@ class SelectRoadNodes(BaseModel):
     ignore_missing: Optional[bool] = True
 
 
-class SelectRoadLinks(BaseModel):
+class SelectRoadLinks(RecordModel):
     """Requirements for describing links in the `facility` section of a project card.
 
     Must have one of `all`, `name`, `osm_link_id`, or `model_link_id`.
@@ -70,6 +71,7 @@ class SelectRoadLinks(BaseModel):
         ```yaml
         links:
             name: ["Main St", "Broadway"]
+            all: true
             modes: ["drive"]
             lanes: [2, 3]
         ```
@@ -83,22 +85,19 @@ class SelectRoadLinks(BaseModel):
     !!! Example "Example: Links where biking is allowed but driving is not."
         ```yaml
         links:
-            all: True
+            all: true
             bike_allowed: true
             drive_allowed: false
         ```
     """
 
-    require_conflicts: ClassVar = [
+    require_conflicts: ClassVar[ConflictsWith] = [
         ["all", "osm_link_id"],
         ["all", "model_link_id"],
-        ["all", "name"],
-        ["all", "ref"],
-        ["osm_link_id", "model_link_id"],
         ["osm_link_id", "name"],
         ["model_link_id", "name"],
     ]
-    require_any_of: ClassVar = [["name", "ref", "osm_link_id", "model_link_id", "all"]]
+    require_any_of: ClassVar[AnyOf] = [["name", "ref", "osm_link_id", "model_link_id", "all"]]
 
     model_config = ConfigDict(extra="allow", coerce_numbers_to_str=True)
 
@@ -114,11 +113,11 @@ class SelectRoadLinks(BaseModel):
         {"name": ["Main St"], "modes": ["drive"]},
         {"osm_link_id": ["123456789"]},
         {"model_link_id": [123456789], "modes": ["walk"]},
-        {"all": "True", "modes": ["transit"]},
+        {"all": True, "modes": ["transit"]},
     ]
 
 
-class SelectTransitTrips(BaseModel):
+class SelectTransitTrips(RecordModel):
     """Selection of transit trips.
 
     Each selection must have at least one of `trip_properties`, `route_properties`, `nodes`,
@@ -168,7 +167,7 @@ class SelectTransitTrips(BaseModel):
     )
 
 
-class SelectFacility(BaseModel):
+class SelectFacility(RecordModel):
     """Roadway Facility Selection.
 
     Each selection must have at either: `links`, `nodes`, or `links` and `from` and `to`.
@@ -218,7 +217,7 @@ class SelectFacility(BaseModel):
         ```
     """
 
-    require_one_of: ClassVar = [
+    require_one_of: ClassVar[OneOf] = [
         ["links", "nodes", ["links", "from", "to"]],
     ]
     model_config = ConfigDict(extra="forbid")

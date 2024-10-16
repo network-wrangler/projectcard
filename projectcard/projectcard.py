@@ -27,7 +27,19 @@ CHANGE_TYPES = [
 ]
 
 
-class ProjectCard:
+class DictDotAccessMixin:
+    """Provides dictionary-like access to class instance attributes and dot-like access to __dict__ attributes."""
+
+    def __getitem__(self, key):
+        """Return value of attribute."""
+        return getattr(self, key)
+
+    def __getattr__(self, key):
+        """Return value of attribute."""
+        return self.__dict__[key]
+
+
+class ProjectCard(DictDotAccessMixin):
     """Representation of a Project Card.
 
     Attributes:
@@ -37,10 +49,6 @@ class ProjectCard:
         tags: Tags of project
         notes: Notes about project
         valid: Boolean indicating if data conforms to project card data schema
-        facilities: List of all facility objects in project card
-        facility: either singular facility in project card or the string "multiple"
-        all_property_changes: List of all property_changes objects in project card
-        property_changes: either singular property_changes in project card or the string "multiple"
         change_types: List of all project types in project card
         change_type: either singular project type in project card or the string "multiple"
         sub_projects: list of sub_project objects
@@ -91,82 +99,6 @@ class ProjectCard:
         return True
 
     @property
-    def facilities(self) -> list[dict]:
-        """Return all facilities from project card as list of dicts."""
-        if any("transit" in t for t in self.change_types):
-            CardLogger.warning("Transit project doesn't have services.")
-            return []
-        f = list(_findkeys(self.__dict__, "facility"))
-        if not f:
-            msg = f"Couldn't find facility in project card {self.project}"
-            raise ProjectCardValidationError(msg)
-        return f
-
-    @property
-    def facility(self) -> Union[str, dict]:
-        """Return facility part of project card or "multiple" if more than one."""
-        f = self.facilities
-        if len(f) > 1:
-            return "multiple"
-        return f[0]
-
-    @property
-    def services(self) -> list[dict]:
-        """Return all services from project card as list of dicts."""
-        if any("roadway" in t for t in self.change_types):
-            CardLogger.warning("Roadway project doesn't have services.")
-            return []
-        s = list(_findkeys(self.__dict__, "service"))
-        if not s:
-            msg = f"Couldn't find service in project card {self.project}"
-            raise ProjectCardValidationError(msg)
-        return s
-
-    @property
-    def service(self) -> Union[str, dict]:
-        """Return service part of from project card or "multiple" if more than one."""
-        s = self.services
-        if len(s) > 1:
-            return "multiple"
-        return s[0]
-
-    @property
-    def all_transit_property_changes(self) -> list[dict]:
-        """Return all transit property changes from project card."""
-        if not any("transit_property_change" in t for t in self.change_types):
-            CardLogger.warning(f"Project {self.project} doesn't have transit property changes.")
-            return []
-        tp = list(_findkeys(self.__dict__, "transit_property_change"))
-        p = [i["property_changes"] for i in tp]
-        return p
-
-    @property
-    def transit_property_change(self) -> Union[str, dict]:
-        """Return transit property change from project card or "multiple if more than one."""
-        p = self.all_transit_property_changes
-        if len(p) > 1:
-            return "multiple"
-        return p[0]
-
-    @property
-    def all_transit_routing_changes(self) -> list[dict]:
-        """Return all transit routing changes from project card."""
-        if not any("transit_routing_change" in t for t in self.change_types):
-            CardLogger.warning(f"Project {self.project} doesn't have routing changes.")
-            return []
-        r = list(_findkeys(self.__dict__, "routing"))
-        CardLogger.debug(f"transit routing change: {r}")
-        return r
-
-    @property
-    def transit_routing_change(self) -> Union[str, dict]:
-        """Return transit routing change from project card."""
-        p = self.all_transit_routing_changes
-        if len(p) > 1:
-            return "multiple"
-        return p[0]
-
-    @property
     def change_types(self) -> list[str]:
         """Returns list of all change types from project/subproject."""
         if self._sub_projects:
@@ -187,7 +119,7 @@ class ProjectCard:
         return t[0]
 
 
-class SubProject:
+class SubProject(DictDotAccessMixin):
     """Representation of a SubProject within a ProjectCard.
 
     Attributes:
@@ -196,8 +128,6 @@ class SubProject:
         tags: reference to parent project card tags
         dependencies: reference to parent project card's dependencies
         project: reference to the name of the parent project card's name
-        facility: facility selection dictionary
-        property_changes:property_changes dictionary
     """
 
     def __init__(self, sp_dictionary: dict, parent_project: ProjectCard):
@@ -246,15 +176,6 @@ class SubProject:
     def tags(self) -> list[str]:
         """Return tags from parent project card."""
         return self._parent_project.tags
-
-    @property
-    def facility(self) -> dict:
-        """Return facility dictionary from subproject."""
-        f = list(_findkeys(self.__dict__, "facility"))
-        if not f:
-            msg = f"Couldn't find facility in subproject in project card {self._parent_project.project}"
-            raise SubprojectValidationError(msg)
-        return f[0]
 
     @property
     def valid(self) -> bool:

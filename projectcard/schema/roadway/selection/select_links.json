@@ -31,12 +31,12 @@
       "modes": ["walk"]
     },
     {
-      "all": "True",
+      "all": true,
       "modes": ["transit"]
     }
   ],
   "properties":{
-      "all":{"enum":["True","False"]},
+      "all":{"type":"boolean"},
       "name":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/name"}},
       "ref":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/ref"}},
       "osm_link_id":{"type":"array","minItems": 1,"items":{"$ref":"../roadway_link.json#/$defs/osm_link_id"}},
