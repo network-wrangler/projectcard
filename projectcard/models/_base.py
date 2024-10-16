@@ -1,4 +1,4 @@
-from typing import Annotated, Any, ClassVar, List, Union
+from typing import Annotated, Any, ClassVar, Union
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -179,7 +179,9 @@ def _check_one_or_one_superset_present(
     """Checks that exactly one of the fields in mixed_list is in fields_present or one superset."""
     normalized_list = _normalize_to_lists(mixed_list)
 
-    list_items_present = [i for i in normalized_list if set(i).issubset(all_fields_present)]
+    list_items_present: list[Union[str, list[str]]] = [
+        i for i in normalized_list if set(i).issubset(all_fields_present)
+    ]
 
     if len(list_items_present) == 1:
         return True
@@ -208,7 +210,7 @@ def _list_elements_subset_of_single_element(mixed_list: list[Union[str, list[str
     return len(valid_supersets) == 1
 
 
-def _normalize_to_lists(mixed_list: list[Union[str, list]]) -> list[list]:
+def _normalize_to_lists(mixed_list: list[Union[str, list]]) -> list[list[str]]:
     """Turn a mixed list of scalars and lists into a list of lists."""
     normalized_list = []
     for item in mixed_list:
