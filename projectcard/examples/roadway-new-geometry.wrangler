@@ -1,0 +1,93 @@
+---
+project: example true geometry
+tags: []
+dependencies: {}
+self_obj_type: RoadwayNetwork
+note: ''
+category: Calculated Roadway
+---
+
+# this is an example wrangler card to implement Option C dicussed in this issue:
+# https://github.com/network-wrangler/projectcard/issues/15
+# users will supply two shapefiles, both includes model_link_id and geometry
+# the only difference they are trying to capture is the geometry for some links
+
+import geopandas as gpd
+import pandas as pd
+import copy
+from network_wrangler.utils.ids import create_str_int_combo_ids
+
+## UPDATE HERE: in case the link id in the input .shp is not called model_link_id
+UNIQUE_INPUT_LINK_ID_KEY = "link_id"
+UNIQUE_SHAPE_KEY = "shape_id"
+
+## copy the link and shape attrs in case any dataframe changes remove these attrs
+links_attrs = copy.deepcopy(self.links_df.attrs)
+shapes_attrs = copy.deepcopy(self.shapes_df.attrs)
+
+########
+# INPUTS
+########
+
+# read input geometry file supplied by user, can be shapefiles, geojsons
+
+## UPDATE HERE: shapefile 1
+## this is the link .shp before user changes any geometry
+links_gdf = gpd.read_file("BaseLinks_head2.shp")
+
+## UPDATE HERE: shapefile 2
+## this is the link .shp after user changes any geometry
+links_geometry_gdf = gpd.read_file("BaseLinks_head2_geometry_changes.shp")
+
+## set index
+links_gdf = links_gdf.set_index(UNIQUE_INPUT_LINK_ID_KEY).sort_index()
+links_geometry_gdf = links_geometry_gdf.set_index(UNIQUE_INPUT_LINK_ID_KEY).sort_index()
+
+## checking consistency
+## check the two input shapefiles are of the same length
+assert len(links_gdf)==len(links_geometry_gdf), "the two input files have different length"
+## check the two input shapefiles have the same index, ignore sequence
+assert links_gdf.index.equals(links_geometry_gdf.index), "the two input files have different links"
+
+#########
+# PROCESS
+#########
+
+# convert the two input files to the same CRS as the base network
+links_gdf = links_gdf.to_crs("epsg:4269")
+links_geometry_gdf = links_geometry_gdf.to_crs("epsg:4269")
+
+# find links with different geometry
+new_geometry_gdf = links_geometry_gdf[~links_geometry_gdf.geom_equals(links_gdf)]
+
+# create unique shape hash for new geometry
+new_geometry_gdf[UNIQUE_SHAPE_KEY] = create_str_int_combo_ids(
+    len(new_geometry_gdf), self.shapes_df[UNIQUE_SHAPE_KEY]
+)
+
+# reset the index and rename it as "model_link_id"
+new_geometry_gdf = new_geometry_gdf.reset_index().rename(columns={UNIQUE_INPUT_LINK_ID_KEY: "model_link_id"})
+
+# overwrite the base network with the new geometry, if it exists
+self.links_df = self.links_df.set_index('model_link_id')
+new_geometry_gdf = new_geometry_gdf.set_index('model_link_id')
+# replace the geometry, and unique shape hash
+self.links_df['geometry'].update(new_geometry_gdf['geometry'])
+self.links_df[UNIQUE_SHAPE_KEY].update(new_geometry_gdf[UNIQUE_SHAPE_KEY])
+
+# reset and drop the index
+self.links_df = self.links_df.reset_index()
+assert "model_link_id" in self.links_df.columns
+new_geometry_gdf = new_geometry_gdf.reset_index()
+
+# add the new shape records to shapes
+new_geometry_gdf = new_geometry_gdf.to_crs(self.shapes_df.crs)
+self.shapes_df = pd.concat(
+    [self.shapes_df, new_geometry_gdf[[UNIQUE_SHAPE_KEY, "geometry"]]]
+)
+# drop duplicate unique shape id, keep last 
+self.shapes_df = self.shapes_df.drop_duplicates(subset=[UNIQUE_SHAPE_KEY], keep='last')
+
+# make sure the attrs stay the same
+self.links_df.attrs = links_attrs
+self.shapes_df.attrs = shapes_attrs
